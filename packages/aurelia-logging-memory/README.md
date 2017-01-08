@@ -19,7 +19,7 @@ addAppender(appender)
 // log away...
 
 // All logs are saved in `appender.logs`
-appender.logs.map(log => {
+appender.logs.forEach(log => {
   console.log(`${log.id} (${stringifyLogLevel(log.level)}):`, ...log.rest)
 })
 ```
