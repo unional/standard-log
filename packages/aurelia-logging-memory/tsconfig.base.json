@@ -15,7 +15,7 @@
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
-    "sourceRoot": "/@unional/aurelia-logging-memory",
+    "sourceRoot": "/aurelia-logging-memory",
     "strictNullChecks": true,
     "target": "es5"
   }
