@@ -22,8 +22,6 @@ export interface PaletteOption {
 }
 
 const BASE_CSS = 'padding: 2px; margin: 2px; line-height: 1.8em;'
-const ERROR_CSS = BASE_CSS + 'background: #ff0000; color: #ffffff; font-style: bold; border: 4px solid #cc0000;'
-const WARN_CSS = BASE_CSS + 'background: #ffff00; color: #343434; font-style: bold; border: 4px solid #cccc00;'
 
 export const rainbow: ColorMap = [
   { index: 0, rgb: [150, 0, 90] },
