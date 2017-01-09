@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging-color",
-  "description": "",
+  "description": "ColorAppender for `aurelia-logging`",
   "version": "0.0.0",
   "main": "dist/commonjs/index.js",
   "typings": "dist/commonjs/index.d.ts",
@@ -16,7 +16,7 @@
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint \"src/**/*.ts\"",
     "postpublish": "git push",
-    "prepare": "typings install && npm run build",
+    "prepare": "npm run build",
     "preversion": "git pull && npm run verify",
     "test": "npm run clean && tsc && nyc ava",
     "verify": "npm run lint && npm run coverage && npm run build && npm run dependency-check",
@@ -25,6 +25,10 @@
   "author": {
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
+  },
+  "homepage": "https://github.com/unional/aurelia-logging-color",
+  "bugs": {
+    "url": "https://github.com/unional/aurelia-logging-color/issues"
   },
   "license": "MIT",
   "ava": {
@@ -52,7 +56,7 @@
     "aurelia-logging": ">=1.2.0"
   },
   "devDependencies": {
-    "ansi-styles": "github:chalk/ansi-styles",
+    "aurelia-logging": "^1.2.0",
     "aurelia-polyfills": "^1.1.1",
     "ava": "^0.17.0",
     "browser-env": "^2.0.19",
@@ -68,7 +72,6 @@
     "typings": "^2.1.0"
   },
   "dependencies": {
-    "aurelia-logging": "^1.2.0",
     "color-map": "^0.4.0",
     "color-map-rainbow": "^2.0.1"
   }
