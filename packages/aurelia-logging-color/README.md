@@ -1,10 +1,31 @@
-# @unional/aurelia-logging-color
+# aurelia-logging-color
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 [![Build status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 
+`ColorAppender` for `aurelia-logging`.
+
+## Usage
+
+```ts
+import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
+import { ColorAppender } from 'aurelia-logging-color'
+
+addAppender(new ColorAppender())
+
+// turn on logging (this example do it globally)
+setLevel(logLevel.info)
+
+const logger = getLogger('something')
+
+logger.warn('Pretty Color')
+
+const anotherLogger = getLogger('something else')
+
+logger.info('Nother pretty color!')
+```
 
 ## Contribute
 

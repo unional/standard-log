@@ -15,7 +15,7 @@
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
-    "sourceRoot": "/@unional/aurelia-logging-color",
+    "sourceRoot": "/aurelia-logging-color",
     "strictNullChecks": true,
     "target": "es5"
   }

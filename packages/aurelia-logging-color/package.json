@@ -1,5 +1,5 @@
 {
-  "name": "@unional/aurelia-logging-color",
+  "name": "aurelia-logging-color",
   "description": "",
   "version": "0.0.0",
   "main": "dist/commonjs/index.js",
