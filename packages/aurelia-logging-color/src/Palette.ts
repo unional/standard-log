@@ -10,7 +10,7 @@ export interface PaletteExtraOption {
 export interface PaletteOption {
   /**
    * How many colors available.
-   * Recommend at least 30.
+   * Recommend at least 10.
    */
   maxColor: number
 
