@@ -17,6 +17,7 @@ export interface PaletteOption {
   /**
    * By default, `ColorAppender` will color the background of the logger ID.
    * If this is set to true, then the text of the ID will be colored instead.
+   * Currently this only have effect on NodeJS environment.
    */
   coloringText: boolean
 }
