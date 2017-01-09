@@ -21,8 +21,6 @@ export interface PaletteOption {
   coloringText: boolean
 }
 
-const BASE_CSS = 'padding: 2px; margin: 2px; line-height: 1.8em;'
-
 export const rainbow: ColorMap = [
   { index: 0, rgb: [150, 0, 90] },
   { index: 0.125, rgb: [0, 0, 200] },
@@ -101,6 +99,6 @@ export class Palette {
     const border = rgbHex(rgb.map(x => Math.max(0, x - 32)))
     const color = rgb.every(x => x < 220) ? '#ffffff' : '#000000'
 
-    return `${BASE_CSS}background: ${background};bother: 1px solid ${border};color: ${color};`
+    return `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};bother: 1px solid ${border};color: ${color};`
   }
 }
