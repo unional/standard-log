@@ -33,6 +33,8 @@ export const rainbow: ColorMap = [
   { index: 1, rgb: [255, 0, 0] }
 ]
 
+// The light green make it hard to read text.
+// Dim green a bit to make it more readable.
 export const ansiBackground: ColorMap = rainbow.map(m => {
   return {
     index: m.index,
