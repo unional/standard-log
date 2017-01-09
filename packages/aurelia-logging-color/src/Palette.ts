@@ -46,12 +46,47 @@ export const ansiBackground: ColorMap = rainbow.map(m => {
 export class Palette {
   public color: (text: string) => string
 
+  public get colorMode() {
+    return this._colorMode
+  }
+  public set colorMode(mode: ColorMode) {
+    if (mode === 'ANSI') {
+      if (this.option.coloringText) {
+        this.colors = this.rainbowColors
+        this.color = this.getAnsi16mString
+      }
+      else {
+        this.colors = this.ansiBackgroundColors
+        this.color = this.getAnsi16mBackgroundString
+      }
+    }
+    else if (mode === 'CSS') {
+      this.colors = this.rainbowColors
+      this.color = this.getCSSMetaString
+    }
+    else {
+      this.colors = this.rainbowColors
+      this.color = (x) => x
+    }
+
+    this._colorMode = mode
+  }
+
+  private _colorMode: ColorMode
   /**
    * How many unique strings encountered.
    */
   private count = 0
   private option: PaletteOption
   private colors: RGB[]
+  private get rainbowColors() {
+    return this._rainbowColors = this._rainbowColors || createColorsFromMap(rainbow, this.option.maxColor)
+  }
+  private get ansiBackgroundColors() {
+    return this._ansiBackgroundColors = this._ansiBackgroundColors || createColorsFromMap(ansiBackground, this.option.maxColor)
+  }
+  private _rainbowColors: RGB[]
+  private _ansiBackgroundColors: RGB[]
   private map: { [index: string]: RGB } = {}
   constructor(option: Partial<PaletteOption> & Partial<PaletteExtraOption> = {}) {
     this.option = {
@@ -59,25 +94,7 @@ export class Palette {
       coloringText: option.coloringText || false
     }
 
-    const colorMode = option.colorMode || (supportAnsiColor ? 'ANSI' : supportBrowserColor ? 'CSS' : 'NONE')
-    if (colorMode === 'ANSI') {
-      if (option.coloringText) {
-        this.colors = createColorsFromMap(rainbow, this.option.maxColor)
-        this.color = this.getAnsi16mString
-      }
-      else {
-        this.colors = createColorsFromMap(ansiBackground, this.option.maxColor)
-        this.color = this.getAnsi16mBackgroundString
-      }
-    }
-    else if (colorMode === 'CSS') {
-      this.colors = createColorsFromMap(rainbow, this.option.maxColor)
-      this.color = this.getCSSMetaString
-    }
-    else {
-      this.colors = createColorsFromMap(rainbow, this.option.maxColor)
-      this.color = (x) => x
-    }
+    this.colorMode = option.colorMode || (supportAnsiColor ? 'ANSI' : supportBrowserColor ? 'CSS' : 'NONE')
   }
   private getRgb(text: string) {
     // It is ok to overlep color.
