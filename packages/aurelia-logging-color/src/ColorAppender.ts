@@ -3,6 +3,7 @@ import { Logger } from 'aurelia-logging'
 import { Palette, PaletteOption } from './Palette'
 
 export interface ColorAppenderOption extends PaletteOption {}
+
 /**
  * A colored console log.
  * Color only apply to Chrome, Firefox, and NodeJS.
