@@ -13,7 +13,7 @@
     "clean": "rimraf dist",
     "coverage": "npm test && nyc check-coverage --branches 80 --functions 85 --lines 85",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "dependency-check": "dependency-check . --unused --no-dev --ignore aurelia-logging && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
     "lint": "tslint \"src/**/*.ts\"",
     "postpublish": "git push",
     "prepare": "npm run build",
