@@ -10,25 +10,29 @@ export class AnsiBrush implements Brush {
   private option: BrushOption
 
   constructor(option: Partial<BrushOption> = {}) {
-    this.codes = createColorCodes()
+    this.codes = calculatedCodes = calculatedCodes || createColorCodes()
     this.option = {
       maxColor: option.maxColor || this.codes.length,
       coloringText: option.coloringText || false
     }
   }
 
-  public paint(text: string) {
-    const codes = this.getCodes(text)
-    return this.wrapAnsi(text, codes)
+  public color(id: string, ...rest: string[]) {
+    const codes = this.getCodes(id)
+    return [this.wrapAnsi(id, codes), ...rest]
   }
 
   private getCodes(text: string) {
     return this.map[text] = this.map[text] || this.codes[this.count++ % this.option.maxColor]
   }
 
-  private wrapAnsi(text: string, codes: number[]) {
+  private wrapAnsi(id: string, codes: number[]) {
     const code = codes.join(';')
-    return `\u001B[${code}m${text}\u001B[0m`
+    if (codes.some(x => x > 40)) {
+      // Pad id when there is a background color in use.
+      id = ` ${id} `
+    }
+    return `\u001B[${code}m${id}\u001B[0m`
   }
 }
 
@@ -36,6 +40,7 @@ export class AnsiBrush implements Brush {
 // const styles = [1, 2, 4]
 // const foregroundColors = [31, 32, 33, 34, 35, 36]
 const backgroundColors = [41, 42, 43, 44, 45, 46]
+let calculatedCodes: number[][]
 
 function createColorCodes() {
   let baseCodes: number[][] = backgroundColors.map(x => [x])

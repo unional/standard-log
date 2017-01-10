@@ -4,7 +4,7 @@ import { rainbow } from './colors'
 import { BrushOption, Brush } from './interfaces'
 
 export class Ansi16mBrush implements Brush {
-  public paint: (text: string) => string
+  public color: (id: string, ...rest: string[]) => string[]
   private count = 0
   private colors: RGB[]
   private map: { [index: string]: RGB } = {}
@@ -27,7 +27,7 @@ export class Ansi16mBrush implements Brush {
 
     this.colors = createColorsFromMap(colormap, option.maxColor || 20)
 
-    this.paint = this.option.coloringText ? this.getAnsi16mString : this.getAnsi16mBackgroundString
+    this.color = this.option.coloringText ? this.colorAnsi16m : this.getAnsi16mBackgroundString
   }
 
   private getRgb(text: string) {
@@ -35,16 +35,16 @@ export class Ansi16mBrush implements Brush {
     // Not trying to be too smart about it.
     return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor]
   }
-  private getAnsi16mString(text: string) {
-    const rgb = this.getRgb(text)
-    return this.wrapAnsi16m(text, rgb)
+  private colorAnsi16m(id: string, ...rest: string[]) {
+    const rgb = this.getRgb(id)
+    return [this.wrapAnsi16m(id, rgb), ...rest]
   }
 
-  private getAnsi16mBackgroundString(text: string) {
-    const rgb = this.getRgb(text)
-    return this.wrapAnsi16m(text, rgb, 10)
+  private getAnsi16mBackgroundString(id: string, ...rest: string[]) {
+    const rgb = this.getRgb(id)
+    return [this.wrapAnsi16m(` ${id} `, rgb, 10), ...rest]
   }
-  private wrapAnsi16m(text: string, rgb, offset: number = 0) {
-    return `\u001B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m` + text + `\u001B[${39 + offset}m`
+  private wrapAnsi16m(id: string, rgb, offset: number = 0) {
+    return `\u001B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m` + id + `\u001B[${39 + offset}m`
   }
 }

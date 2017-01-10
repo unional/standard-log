@@ -8,18 +8,18 @@ test('background', t => {
 
   let actual: string[] = []
   for (let i = 0; i <= 10; i++) {
-    actual.push(brush.paint(i.toString()))
+    actual.push(...brush.color(i.toString()))
   }
   console.log.apply(console, actual)
 
-  t.deepEqual(actual, ['\u001b[48;2;150;0;90m0\u001b[49m', '\u001b[48;2;0;0;200m1\u001b[49m', '\u001b[48;2;0;18;255m2\u001b[49m', '\u001b[48;2;0;18;255m3\u001b[49m', '\u001b[48;2;0;106;255m4\u001b[49m', '\u001b[48;2;44;179;150m5\u001b[49m', '\u001b[48;2;151;179;0m6\u001b[49m', '\u001b[48;2;255;164;0m7\u001b[49m', '\u001b[48;2;255;164;0m8\u001b[49m', '\u001b[48;2;255;78;0m9\u001b[49m', '\u001b[48;2;150;0;90m10\u001b[49m']);
+  t.deepEqual(actual, ['\u001b[48;2;150;0;90m 0 \u001b[49m', '\u001b[48;2;0;0;200m 1 \u001b[49m', '\u001b[48;2;0;18;255m 2 \u001b[49m', '\u001b[48;2;0;18;255m 3 \u001b[49m', '\u001b[48;2;0;106;255m 4 \u001b[49m', '\u001b[48;2;44;179;150m 5 \u001b[49m', '\u001b[48;2;151;179;0m 6 \u001b[49m', '\u001b[48;2;255;164;0m 7 \u001b[49m', '\u001b[48;2;255;164;0m 8 \u001b[49m', '\u001b[48;2;255;78;0m 9 \u001b[49m', '\u001b[48;2;150;0;90m 10 \u001b[49m']);
 })
 
 test('text', t => {
   const brush = new Ansi16mBrush({ maxColor: 10, coloringText: true })
   let actual: string[] = []
   for (let i = 0; i <= 10; i++) {
-    actual.push(brush.paint(i.toString()))
+    actual.push(...brush.color(i.toString()))
   }
   console.log.apply(console, actual)
 

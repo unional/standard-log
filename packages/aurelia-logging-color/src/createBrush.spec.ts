@@ -37,5 +37,5 @@ test('create correct brushes', t => {
 
 test('PlainBrush', t => {
   const brush = new PlainBrush()
-  t.is(brush.paint('test'), 'test')
+  t.deepEqual(brush.color('test'), ['test'])
 })

@@ -3,7 +3,7 @@ import { RGB, createColorsFromMap, ColorMap, rgbHex } from 'color-map'
 import { rainbow } from './colors'
 import { supportAnsiColor, supportCSSColor, supportAnsi16mColor } from './environments'
 
-import { BrushOption } from './interfaces'
+import { Brush, BrushOption } from './interfaces'
 
 import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
@@ -34,8 +34,8 @@ export function createBrush(option: Partial<BrushOption> & Partial<InternalBrush
   return new PlainBrush()
 }
 
-export class PlainBrush {
-  paint(text: string) {
-    return text
+export class PlainBrush implements Brush {
+  color(id: string, ...rest: string[]) {
+    return [id, ...rest]
   }
 }

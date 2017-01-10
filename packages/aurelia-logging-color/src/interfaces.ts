@@ -16,5 +16,5 @@ export interface BrushOption {
 }
 
 export interface Brush {
-  paint(text: string): string
+  color(id: string, ...rest: string[]): string[]
 }
