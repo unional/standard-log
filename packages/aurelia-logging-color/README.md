@@ -38,6 +38,8 @@ const anotherLogger = getLogger('something else')
 logger.info('Nother pretty color!')
 ```
 
+Note that on windows 8 or below the constructor option is not in effect because there are not many color available.
+
 ## Contribute
 
 ```sh

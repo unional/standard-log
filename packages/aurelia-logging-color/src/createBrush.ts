@@ -9,16 +9,25 @@ import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
 import { CSSBrush } from './CSSBrush'
 
-export function createBrush(option: Partial<BrushOption> = {}) {
-  if (supportCSSColor) {
+export interface InternalBrushOption {
+  css: boolean
+  ansi16m: boolean
+  ansi: boolean
+}
+
+export function createBrush(option: Partial<BrushOption> & Partial<InternalBrushOption> = {}) {
+  const css = option.css !== undefined ? option.css : supportCSSColor
+  const ansi16m = option.ansi16m !== undefined ? option.ansi16m : supportAnsi16mColor
+  const ansi = option.ansi !== undefined ? option.ansi : supportAnsiColor
+  if (css) {
     return new CSSBrush(option)
   }
 
-  if (supportAnsi16mColor) {
+  if (ansi16m) {
     return new Ansi16mBrush(option)
   }
 
-  if (supportAnsiColor) {
+  if (ansi) {
     return new AnsiBrush(option)
   }
 

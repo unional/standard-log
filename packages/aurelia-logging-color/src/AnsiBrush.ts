@@ -4,7 +4,6 @@ import { rainbow } from './colors'
 import { BrushOption, Brush } from './interfaces'
 
 export class AnsiBrush implements Brush {
-  public paint: (text: string) => string
   private count = 0
   private codes: number[][]
   private map: { [index: string]: number[] } = {}
@@ -16,22 +15,17 @@ export class AnsiBrush implements Brush {
       maxColor: option.maxColor || this.codes.length,
       coloringText: option.coloringText || false
     }
+  }
 
-    this.paint = this.option.coloringText ? this.getString : this.getBackgroundString
+  public paint(text: string) {
+    const codes = this.getCodes(text)
+    return this.wrapAnsi(text, codes)
   }
 
   private getCodes(text: string) {
     return this.map[text] = this.map[text] || this.codes[this.count++ % this.option.maxColor]
   }
-  private getString(text: string) {
-    const codes = this.getCodes(text)
-    return this.wrapAnsi(text, codes)
-  }
 
-  private getBackgroundString(text: string) {
-    const codes = this.getCodes(text)
-    return this.wrapAnsi(text, codes)
-  }
   private wrapAnsi(text: string, codes: number[]) {
     const code = codes.join(';')
     return `\u001B[${code}m${text}\u001B[0m`

@@ -1,7 +1,7 @@
 import { Logger } from 'aurelia-logging'
 
 import { BrushOption, Brush } from './interfaces'
-import { createBrush } from './Brush'
+import { createBrush } from './createBrush'
 
 export interface ColorAppenderOption extends BrushOption { }
 
