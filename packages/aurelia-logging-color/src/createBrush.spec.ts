@@ -35,7 +35,7 @@ test('create correct brushes', t => {
   t.true(brush instanceof PlainBrush)
 })
 
-test('PlainBrush', t=> {
+test('PlainBrush', t => {
   const brush = new PlainBrush()
   t.is(brush.paint('test'), 'test')
 })
