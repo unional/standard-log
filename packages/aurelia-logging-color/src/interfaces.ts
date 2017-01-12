@@ -1,5 +1,3 @@
-import { RGB, RGBA } from 'color-map'
-
 export interface BrushOption {
   /**
    * How many colors available.

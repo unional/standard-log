@@ -2,8 +2,8 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist/commonjs",
-   "sourceRoot": "/aurelia-logging-color"
-   },
+    "sourceRoot": "/aurelia-logging-color"
+  },
   "files": [
     "src/index.ts"
   ],

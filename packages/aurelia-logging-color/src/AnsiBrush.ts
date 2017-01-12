@@ -1,6 +1,3 @@
-import { RGB, createColorsFromMap, rgbHex } from 'color-map'
-
-import { rainbow } from './colors'
 import { BrushOption, Brush } from './interfaces'
 
 export class AnsiBrush implements Brush {

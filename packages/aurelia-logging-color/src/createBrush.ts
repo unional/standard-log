@@ -1,6 +1,3 @@
-import { RGB, createColorsFromMap, ColorMap, rgbHex } from 'color-map'
-
-import { rainbow } from './colors'
 import { supportAnsiColor, supportCSSColor, supportAnsi16mColor } from './environments'
 
 import { Brush, BrushOption } from './interfaces'

@@ -1,4 +1,4 @@
-import { RGB, createColorsFromMap, rgbHex } from 'color-map'
+import { RGB, createColorsFromMap } from 'color-map'
 
 import { rainbow } from './colors'
 import { BrushOption, Brush } from './interfaces'
