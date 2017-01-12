@@ -53,11 +53,8 @@
       "**/fixtures/**/*"
     ]
   },
-  "peerDependencies": {
-    "aurelia-logging": ">=1.2.0"
-  },
   "devDependencies": {
-    "@types/node": "^6.0.58",
+    "@types/node": "^7.0.0",
     "ansi-styles": "github:chalk/ansi-styles",
     "aurelia-logging": "^1.2.0",
     "aurelia-polyfills": "^1.1.1",
