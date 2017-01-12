@@ -4,6 +4,7 @@
 [![NPM downloads][downloads-image]][downloads-url]
 [![Build status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
+![](http://img.badgesize.io/unional/aurelia-logging-color/master/dist/aurelia-logging-color.js)
 
 `ColorAppender` for `aurelia-logging`.
 
