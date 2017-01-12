@@ -1,5 +1,4 @@
 import test from 'ava'
-import * as style from 'ansi-styles'
 
 import { Ansi16mBrush } from './Ansi16mBrush'
 
