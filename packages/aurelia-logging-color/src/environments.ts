@@ -1,4 +1,4 @@
-import { release} from 'os'
+import { release } from 'os'
 
 const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined
 const vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined
