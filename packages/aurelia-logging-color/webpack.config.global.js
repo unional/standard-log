@@ -2,10 +2,12 @@
 const paramCase = require('param-case')
 const pascalCase = require('pascal-case')
 const path = require('path')
+const webpack = require('webpack')
 
 const pjson = require('./package.json')
 
 const packageName = pjson.name
+const version = pjson.version
 const filename = paramCase(packageName)
 const globalVariable = pascalCase(filename)
 
@@ -31,5 +33,8 @@ module.exports = {
         test: /\.js?$/
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.BannerPlugin(`${filename}.js version: ${version} generated on: ${new Date().toDateString()}`)
+  ]
 }
