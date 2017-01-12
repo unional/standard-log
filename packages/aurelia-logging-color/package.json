@@ -12,7 +12,7 @@
     "build-commonjs": "tsc -p tsconfig.commonjs.json",
     "build-global": "webpack --config webpack.config.global.js",
     "clean": "rimraf dist",
-    "coverage": "npm test && nyc check-coverage --branches 80 --functions 85 --lines 85",
+    "coverage": "npm test && nyc check-coverage --branches 85 --functions 85 --lines 85",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
     "lint": "tslint \"src/**/*.ts\"",
