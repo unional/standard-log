@@ -40,6 +40,10 @@ logger.info('Nother pretty color!')
 
 Note that on windows 8 or below the constructor option is not in effect because there are not many color available.
 
+## dependencies
+
+- [`color-map`](https://github.com/unional/color-map)
+
 ## Contribute
 
 ```sh

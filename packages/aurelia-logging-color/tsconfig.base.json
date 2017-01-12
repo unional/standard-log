@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "inlineSources": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "inlineSources": true,
     "lib": [
       "dom",
       "es2015",
@@ -15,7 +15,6 @@
     "noImplicitAny": false,
     "removeComments": false,
     "sourceMap": true,
-    "sourceRoot": "/aurelia-logging-color",
     "strictNullChecks": true,
     "target": "es5"
   }

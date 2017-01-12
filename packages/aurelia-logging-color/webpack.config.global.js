@@ -1,32 +1,34 @@
 'use strict';
-const path = require('path')
-const pascalCase = require('pascal-case')
 const paramCase = require('param-case')
+const pascalCase = require('pascal-case')
+const path = require('path')
+
 const pjson = require('./package.json')
+
 const packageName = pjson.name
 const filename = paramCase(packageName)
-const namespace = pascalCase(filename)
-
+const globalVariable = pascalCase(filename)
 
 module.exports = {
   externals: {
-    // We are including `aurelia-logging` in the distribution so consumer do not need to include it.
+    "color-map": "ColorMap"
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   entry: {
     [filename]: './dist/commonjs/index'
   },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `${filename}.js`,
-    library: namespace,
+    library: globalVariable,
     libraryTarget: 'var'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loader: "source-map-loader"
+        enforce: 'pre',
+        loader: "source-map-loader",
+        test: /\.js?$/
       }
     ]
   }
