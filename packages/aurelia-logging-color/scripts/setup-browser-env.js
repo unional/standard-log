@@ -1,1 +1,3 @@
-require('browser-env')()
+if (process.env.BROWSER_TEST) {
+  require('browser-env')()
+}
