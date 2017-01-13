@@ -55,9 +55,7 @@
   },
   "devDependencies": {
     "@types/node": "^7.0.0",
-    "ansi-styles": "github:chalk/ansi-styles",
     "aurelia-logging": "^1.2.0",
-    "aurelia-logging-color": "^0.4.1",
     "aurelia-polyfills": "^1.1.1",
     "ava": "^0.17.0",
     "browser-env": "^2.0.19",
