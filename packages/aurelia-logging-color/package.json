@@ -83,6 +83,6 @@
     "webpack": "^2.2.0-rc.3"
   },
   "dependencies": {
-    "color-map": "^0.4.3"
+    "color-map": "^0.5.2"
   }
 }
