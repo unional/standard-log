@@ -26,7 +26,10 @@ export default {
   moduleName,
   plugins: [
     sourcemaps(),
-    nodeResolve({ jsnext: true }),
+    nodeResolve({
+      jsnext: true,
+      skip: ['color-map']
+    }),
     nodeGlobals(),
     nodeBuiltins(),
     commonjs(),
