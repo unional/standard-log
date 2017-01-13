@@ -10,7 +10,7 @@
   "scripts": {
     "build": "npm run clean && npm run build-commonjs && npm run build-global",
     "build-commonjs": "tsc -p tsconfig.commonjs.json",
-    "build-global": "rollup --config rollup.config.global.js",
+    "build-global": "webpack --config webpack.config.global.js",
     "clean": "rimraf dist",
     "coverage": "npm test && nyc check-coverage --branches 85 --functions 85 --lines 85",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
