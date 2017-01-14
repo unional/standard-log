@@ -10,7 +10,8 @@ const majorVersion = parseInt(release().split('.')[0], 10)
 const isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false
 const isFirefox = userAgent ? /firefox/i.test(userAgent) : false
 
-const isNode = typeof module !== 'undefined' && module.exports
+// use `module['exports']` instead of `module.exports` as it trigger failure in webpack during consumption.
+const isNode = typeof module !== 'undefined' && module['exports']
 const isWindow = platform ? /^win/.test(platform) : false
 
 // Not checking specific version support, but should work as
