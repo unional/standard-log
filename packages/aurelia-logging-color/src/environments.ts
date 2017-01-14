@@ -19,5 +19,5 @@ const isWindow = platform ? /^win/.test(platform) : false
 export const supportCSSColor = isChrome || isFirefox
 export const supportAnsiColor = isNode && (!isWindow || majorVersion <= 6)
 
-// Just assume Windows 10 Insider with 16m support is v7.
+// Just assume Windows 10 Insider with 16m color support is v7. Will fix to the correct version when issue appears.
 export const supportAnsi16mColor = isNode && (!isWindow || majorVersion > 6)
