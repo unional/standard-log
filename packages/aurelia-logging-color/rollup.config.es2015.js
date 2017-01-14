@@ -15,14 +15,8 @@ const moduleName = pascalCase(pkg.name)
 export default {
   dest: `dist/${paramCase(pkg.name)}.es2015.js`,
   entry: 'dist/es2015/index.js',
-  external: [
-    'color-map'
-  ],
   exports: 'named',
   format: 'iife',
-  globals: {
-    'color-map': 'ColorMap'
-  },
   moduleId: pkg.name,
   moduleName,
   // This may comes handy
@@ -38,10 +32,7 @@ export default {
   plugins: [
     sourcemaps(),
     nodeResolve({
-      jsnext: true,
-      skip: [
-        'color-map'
-      ]
+      jsnext: true
     }),
     nodeGlobals(),
     nodeBuiltins(),

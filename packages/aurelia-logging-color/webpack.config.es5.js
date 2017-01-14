@@ -14,9 +14,6 @@ module.exports = {
   entry: {
     [filename]: './dist/es5/index'
   },
-  externals: {
-    'color-map': 'ColorMap'
-  },
   module: {
     rules: [
       {

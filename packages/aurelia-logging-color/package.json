@@ -68,7 +68,6 @@
     "color-map": "^0.5.2"
   },
   "devDependencies": {
-    "aurelia-logging-color": "file://aurelia-logging-color",
     "aurelia-polyfills": "^1.1.1",
     "ava": "^0.17.0",
     "browser-env": "^2.0.19",
