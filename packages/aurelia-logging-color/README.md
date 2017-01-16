@@ -11,7 +11,7 @@
 
 ## Why color
 
-Logging is a greate tool. But it is also heavily underutilized.
+Logging is a great tool. But it is also heavily underutilized.
 One major reason is that when we log a lot of stuff, we can quickly get overwhelmed by all those information.
 
 `aurelia-logging` allows you to create different loggers for different part of your application, as fine grain as you wanted.
