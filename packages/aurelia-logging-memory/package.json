@@ -24,7 +24,7 @@
     "lint": "tslint \"src/**/*.ts\"",
     "postpublish": "git push",
     "prepare": "npm run build && npm run bundle",
-    "preversion": "git pull && npm run verify && git add -f dist/aurelia-logging-memory*",
+    "preversion": "git pull && npm run verify && npm run bundle && git add -f dist/aurelia-logging-memory*",
     "remove-spec": "rimraf dist/es5/**/*.spec.*",
     "test": "npm run clean && tsc && ava",
     "verify": "npm run lint && npm run coverage && npm run remove-spec && npm run dependency-check",
