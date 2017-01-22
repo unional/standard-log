@@ -7,7 +7,6 @@ const vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined
 const isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false
 const isFirefox = userAgent ? /firefox/i.test(userAgent) : false
 
-
 export function getSupportedColorMode(): ColorMode {
   // Not checking specific version support, but should work as
   // most people update their chrome and firefox.
