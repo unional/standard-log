@@ -7,30 +7,22 @@ import { createBrush, PlainBrush } from './createBrush'
 
 test('create correct brushes', t => {
   let brush = createBrush({
-    css: true,
-    ansi: false,
-    ansi16m: false
+    colorMode: 'CSS'
   })
   t.true(brush instanceof CSSBrush)
 
   brush = createBrush({
-    css: false,
-    ansi: true,
-    ansi16m: false
+    colorMode: 'ANSI'
   })
   t.true(brush instanceof AnsiBrush)
 
   brush = createBrush({
-    css: false,
-    ansi: false,
-    ansi16m: true
+    colorMode: 'ANSI16M'
   })
   t.true(brush instanceof Ansi16mBrush)
 
   brush = createBrush({
-    css: false,
-    ansi: false,
-    ansi16m: false
+    colorMode: 'NONE'
   })
   t.true(brush instanceof PlainBrush)
 })

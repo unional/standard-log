@@ -5,6 +5,7 @@
     "sourceRoot": "/aurelia-logging-color"
   },
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "src/environments-browser.ts"
   ]
 }

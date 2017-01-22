@@ -1,34 +1,35 @@
-import { supportAnsiColor, supportCSSColor, supportAnsi16mColor } from './environments'
+import { getSupportedColorMode } from './environments'
 
-import { Brush, BrushOption } from './interfaces'
+import { Brush, BrushOption, ColorMode } from './interfaces'
 
 import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
 import { CSSBrush } from './CSSBrush'
 
 export interface InternalBrushOption {
-  css: boolean
-  ansi16m: boolean
-  ansi: boolean
+  colorMode: ColorMode
 }
 
 export function createBrush(option: Partial<BrushOption> & Partial<InternalBrushOption> = {}) {
-  const css = option.css !== undefined ? option.css : supportCSSColor
-  const ansi16m = option.ansi16m !== undefined ? option.ansi16m : supportAnsi16mColor
-  const ansi = option.ansi !== undefined ? option.ansi : supportAnsiColor
-  if (css) {
-    return new CSSBrush(option)
-  }
+  const colorMode: ColorMode = option.colorMode || getSupportedColorMode()
 
-  if (ansi16m) {
-    return new Ansi16mBrush(option)
+  let brush;
+  switch (colorMode) {
+    case 'CSS':
+      brush = new CSSBrush(option)
+      break
+    case 'ANSI':
+      brush = new AnsiBrush(option)
+      break
+    case 'ANSI16M':
+      brush = new Ansi16mBrush(option)
+      break
+    default:
+    case 'NONE':
+      brush = new PlainBrush()
+      break
   }
-
-  if (ansi) {
-    return new AnsiBrush(option)
-  }
-
-  return new PlainBrush()
+  return brush
 }
 
 export class PlainBrush implements Brush {

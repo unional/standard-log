@@ -16,3 +16,5 @@ export interface BrushOption {
 export interface Brush {
   color(id: string, ...rest: string[]): string[]
 }
+
+export type ColorMode = 'CSS' | 'ANSI' | 'ANSI16M' | 'NONE'

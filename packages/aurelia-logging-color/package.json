@@ -3,6 +3,9 @@
   "description": "ColorAppender for `aurelia-logging`",
   "version": "0.4.10",
   "main": "dist/es5/index.js",
+  "browser": {
+    "./dist/es5/environments.js": "./dist/es5/environments-browser.js"
+  },
   "module": "dist/es2015/index.js",
   "typings": "dist/es5/index.d.ts",
   "files": [
@@ -10,11 +13,11 @@
   ],
   "scripts": {
     "build": "npm run clean && npm run build-es5 && npm run build-es2015 && npm run bundle",
-    "build-es5": "tsc -p tsconfig.es5.json",
     "build-es2015": "tsc -p tsconfig.es2015.json",
-    "bundle": "npm run bundle-rollup && npm run bundle-webpack",
-    "bundle-rollup": "rollup --config rollup.config.es2015.js",
-    "bundle-webpack": "webpack --config webpack.config.es5.js",
+    "build-es5": "tsc -p tsconfig.es5.json",
+    "bundle": "npm run bundle-es5 && npm run bundle-es2015",
+    "bundle-es2015": "rollup --config rollup.config.es2015.js",
+    "bundle-es5": "webpack --config webpack.config.es5.js",
     "clean": "rimraf dist",
     "coverage": "nyc --check-coverage --branches 85 --functions 85 --lines 85 npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
@@ -94,6 +97,6 @@
     "tslint-config-unional": "^0.6.0",
     "typescript": "^2.1.5",
     "uglify-js": "github:mishoo/UglifyJS2#harmony",
-    "webpack": "^2.2.0-rc.4"
+    "webpack": "^2.2.0"
   }
 }
