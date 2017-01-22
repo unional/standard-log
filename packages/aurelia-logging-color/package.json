@@ -12,23 +12,25 @@
     "dist"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build-es5 && npm run build-es2015 && npm run bundle",
+    "build": "npm run clean && npm run build-es5 && npm run build-es2015",
     "build-es2015": "tsc -p tsconfig.es2015.json",
     "build-es5": "tsc -p tsconfig.es5.json",
     "bundle": "npm run bundle-es5 && npm run bundle-es2015",
     "bundle-es2015": "rollup --config rollup.config.es2015.js",
     "bundle-es5": "webpack --config webpack.config.es5.js",
-    "clean": "rimraf dist",
+    "clean": "rimraf dist/es5 dist/es2015",
     "coverage": "nyc --check-coverage --branches 85 --functions 85 --lines 85 npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "demo": "node scripts/demo.js",
+    "dc": "npm run dependency-check",
+    "demo": "npm run prepare && node scripts/demo.js",
     "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
     "lint": "tslint \"src/**/*.ts\"",
     "postpublish": "git push",
-    "prepare": "npm run build",
-    "preversion": "git pull && npm run verify && git add -f dist/aurelia-logging-color*",
+    "prepare": "npm run build && npm run bundle",
+    "preversion": "git pull && npm run verify && npm run bundle && git add -f dist/aurelia-logging-color*",
+    "remove-spec": "rimraf dist/es5/**/*.spec.*",
     "test": "npm run clean && tsc && ava && export BROWSER_TEST=true; ava",
-    "verify": "npm run lint && npm run coverage && npm run build && npm run dependency-check",
+    "verify": "npm run lint && npm run coverage && npm run remove-spec && npm run dependency-check",
     "watch": "npm run clean && node scripts/watch.js"
   },
   "author": {
@@ -46,11 +48,11 @@
   "license": "MIT",
   "ava": {
     "files": [
-      "dist/spec/**/*.spec.js"
+      "dist/es5/**/*.spec.js"
     ],
     "source": [
       "scripts/*.js",
-      "dist/spec/**/*.js",
+      "dist/es5/**/*.js",
       "*.json"
     ],
     "require": [
@@ -79,24 +81,22 @@
     "browser-env": "^2.0.19",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
-    "eslint": "^3.13.1",
+    "eslint": "^3.14.0",
     "eslint-config-unional": "^0.2.3",
-    "nyc": "^10.0.0",
+    "nyc": "^10.1.2",
     "param-case": "^2.1.0",
     "pascal-case": "^2.0.0",
     "rimraf": "^2.5.4",
-    "rollup": "^0.41.3",
+    "rollup": "^0.41.4",
     "rollup-plugin-commonjs": "^7.0.0",
     "rollup-plugin-node-builtins": "^2.0.0",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-sourcemaps": "^0.4.1",
-    "rollup-plugin-uglify": "^1.0.1",
     "source-map-loader": "^0.1.6",
     "tslint": "^4.3.1",
     "tslint-config-unional": "^0.6.0",
     "typescript": "^2.1.5",
-    "uglify-js": "github:mishoo/UglifyJS2#harmony",
     "webpack": "^2.2.0"
   }
 }

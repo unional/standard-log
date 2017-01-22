@@ -14,12 +14,9 @@ cp.spawn('tsc', ['-w'], { shell: true })
     const text = data.toString()
     process.stdout.write(text)
     if (/.*Compilation complete/.test(text)) {
-      let lint = cp.spawnSync('npm', ['run', 'lint'], {
+      cp.spawnSync('npm', ['run', 'lint'], {
         stdio: 'inherit',
         shell: true
       })
-      if (lint.status === 0) {
-        cp.spawnSync('npm', ['run', 'build-commonjs'])
-      }
     }
   })

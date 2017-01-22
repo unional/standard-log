@@ -2,7 +2,7 @@
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "outDir": "dist/es5",
-    "sourceRoot": "/aurelia-logging-color"
+    "target": "es5"
   },
   "files": [
     "src/index.ts",

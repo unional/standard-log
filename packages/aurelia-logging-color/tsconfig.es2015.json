@@ -3,10 +3,10 @@
   "compilerOptions": {
     "module": "es2015",
     "outDir": "dist/es2015",
-    "sourceRoot": "/aurelia-logging-color",
     "target": "es2015"
   },
   "files": [
-    "src/index.ts"
+    "src/index.ts",
+    "src/environments-browser.ts"
   ]
 }

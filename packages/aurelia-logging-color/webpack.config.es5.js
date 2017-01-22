@@ -2,7 +2,6 @@
 const paramCase = require('param-case')
 const pascalCase = require('pascal-case')
 const path = require('path')
-const webpack = require('webpack')
 
 const pjson = require('./package.json')
 
@@ -27,7 +26,15 @@ module.exports = {
     path: path.join(__dirname, 'dist'),
     filename: `${filename}.es5.js`,
     library: globalVariable,
-    libraryTarget: 'var'
+    libraryTarget: 'var',
+    devtoolModuleFilenameTemplate: (info) => {
+      if (info.identifier.lastIndexOf('.ts') === info.identifier.length - 3) {
+        return `webpack:///${pjson.name}/${info.resource.slice(9)}`
+      }
+      else {
+        return `webpack:///${info.resourcePath}`
+      }
+    }
   },
   resolve: {
     aliasFields: ['browser']
