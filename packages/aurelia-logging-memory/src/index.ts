@@ -1,4 +1,4 @@
-import { Logger, LogLevel, logLevel } from 'aurelia-logging'
+import { Logger, logLevel } from 'aurelia-logging'
 
 export interface LogEntry {
   id: string

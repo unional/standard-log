@@ -10,9 +10,10 @@ node_js:
 
 before_install:
   - npm install -g npm
+  - npm install coveralls
 
 script:
   - npm run verify
 
-after_script:
-  - npm install coveralls && npm run coveralls
+after_success:
+  - npm run coveralls
