@@ -1,2 +1,484 @@
-!function(n){"use strict";function t(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function i(n){if(A===setTimeout)return setTimeout(n,0);if((A===t||!A)&&setTimeout)return A=setTimeout,setTimeout(n,0);try{return A(n,0)}catch(t){try{return A.call(null,n,0)}catch(t){return A.call(this,n,0)}}}function r(n){if(M===clearTimeout)return clearTimeout(n);if((M===o||!M)&&clearTimeout)return M=clearTimeout,clearTimeout(n);try{return M(n)}catch(t){try{return M.call(null,n)}catch(t){return M.call(this,n)}}}function e(){k&&E&&(k=!1,E.length?L=E.concat(L):N=-1,L.length&&u())}function u(){if(!k){var n=i(e);k=!0;for(var t=L.length;t;){for(E=L,L=[];++N<t;)E&&E[N].run();N=-1,t=L.length}E=null,k=!1,r(n)}}function s(n){var t=new Array(arguments.length-1);if(arguments.length>1)for(var o=1;o<arguments.length;o++)t[o-1]=arguments[o];L.push(new c(n,t)),1!==L.length||k||i(u)}function c(n,t){this.fun=n,this.array=t}function a(){}function f(n){throw new Error("process.binding is not supported")}function l(){return"/"}function h(n){throw new Error("process.chdir is not supported")}function p(){return 0}function g(n){var t=.001*U.call(Q),o=Math.floor(t),i=Math.floor(t%1*1e9);return n&&(o-=n[0],i-=n[1],i<0&&(o--,i+=1e9)),[o,i]}function m(){var n=new Date,t=n-W;return t/1e3}function d(){return"undefined"!=typeof C.navigator?C.navigator.appVersion:""}function w(n,t,o,i){const r=[],e=[...n],u=[t[0]-n[0],t[1]-n[1],t[2]-n[2]];i&&(e.push(i[0]),u.push(i[1]-i[0]));for(let s=0;s<o;s++){const n=1/Math.max(o-1,1),t=[Math.round(e[0]+s*u[0]*n),Math.round(e[1]+s*u[1]*n),Math.round(e[2]+s*u[2]*n),i?e[3]+s*u[3]*n:1];r.push(t)}return r}function x(n,t,o){if(t<n.length)throw new Error(`Requires at least ${n.length} shades.`);const i=[],r=[];for(let e=0;e<n.length;e++)r.push(Math.round(n[e].index*t));for(let e=0;e<n.length-1;e++){const t=r[e+1]-r[e],u=n[e].rgb,s=n[e+1].rgb;i.push(...w(u,s,t,o))}return i}function b(n){let t="#";for(let o=0;o<3;o++)t+=v(n[o]);return t}function v(n){let t=(+n).toString(16);return t.length<2?"0"+t:t}function T(){let n=ln.map(n=>[n]);n.push(...ln.map(n=>[n,31])),n.push(...ln.map(n=>[n,32])),n.push(...ln.map(n=>[n,33])),n.push(...ln.map(n=>[n,34])),n.push(...ln.map(n=>[n,35])),n.push(...ln.map(n=>[n,36])),n=n.filter(n=>1===n.length||n[0]!==n[1]+10);const t=n.map(n=>[...n,1]),o=n.map(n=>[...n,2]),i=n.map(n=>[...n,4]);return[...n,...t,...o,...i]}function y(n={}){const t=void 0!==n.css?n.css:en,o=void 0!==n.ansi16m?n.ansi16m:sn,i=void 0!==n.ansi?n.ansi:un;return t?new pn(n):o?new an(n):i?new fn(n):new gn}var C="undefined"!=typeof global?global:"undefined"!=typeof self?self:"undefined"!=typeof window?window:{},A=t,M=o;"function"==typeof C.setTimeout&&(A=setTimeout),"function"==typeof C.clearTimeout&&(M=clearTimeout);var E,L=[],k=!1,N=-1;c.prototype.run=function(){this.fun.apply(null,this.array)};var D="browser",R="browser",I=!0,S={},j=[],z="",B={},G={},V={},q=a,F=a,H=a,J=a,K=a,O=a,P=a,Q=C.performance||{},U=Q.now||Q.mozNow||Q.msNow||Q.oNow||Q.webkitNow||function(){return(new Date).getTime()},W=new Date,X={nextTick:s,title:D,browser:I,env:S,argv:j,version:z,versions:B,on:q,addListener:F,once:H,off:J,removeListener:K,removeAllListeners:O,emit:P,binding:f,cwd:l,chdir:h,umask:p,hrtime:g,platform:R,release:G,config:V,uptime:m};const Y="undefined"!=typeof navigator?navigator.userAgent:void 0,Z="undefined"!=typeof navigator?navigator.vendor:void 0,$="undefined"!=typeof X?X.platform:void 0,_=parseInt(d().split(".")[0],10),nn=!(!Y||!Z)&&(/Chrome/.test(Y)&&/Google Inc/.test(Z)),tn=!!Y&&/firefox/i.test(Y),on="undefined"!=typeof module&&module.exports,rn=!!$&&/^win/.test($),en=nn||tn,un=on&&(!rn||_<=6),sn=on&&(!rn||_>6),cn=[{index:0,rgb:[150,0,90]},{index:.125,rgb:[0,0,200]},{index:.25,rgb:[0,25,255]},{index:.375,rgb:[0,152,255]},{index:.5,rgb:[44,255,150]},{index:.625,rgb:[151,255,0]},{index:.75,rgb:[255,234,0]},{index:.875,rgb:[255,111,0]},{index:1,rgb:[255,0,0]}];class an{constructor(n={}){this.count=0,this.map={},this.option={maxColor:n.maxColor||20,coloringText:n.coloringText||!1};const t=this.option.coloringText?cn:cn.map(n=>{return{index:n.index,rgb:[n.rgb[0],.7*n.rgb[1],n.rgb[2]]}});this.colors=x(t,n.maxColor||20),this.color=this.option.coloringText?this.colorAnsi16m:this.getAnsi16mBackgroundString}getRgb(n){return this.map[n]=this.map[n]||this.colors[this.count++%this.option.maxColor]}colorAnsi16m(n,...t){const o=this.getRgb(n);return[this.wrapAnsi16m(n,o),...t]}getAnsi16mBackgroundString(n,...t){const o=this.getRgb(n);return[this.wrapAnsi16m(` ${n} `,o,10),...t]}wrapAnsi16m(n,t,o=0){return`[${38+o};2;${t[0]};${t[1]};${t[2]}m`+n+`[${39+o}m`}}class fn{constructor(n={}){this.count=0,this.map={},this.codes=hn=hn||T(),this.option={maxColor:n.maxColor||this.codes.length,coloringText:n.coloringText||!1}}color(n,...t){const o=this.getCodes(n);return[this.wrapAnsi(n,o),...t]}getCodes(n){return this.map[n]=this.map[n]||this.codes[this.count++%this.option.maxColor]}wrapAnsi(n,t){const o=t.join(";");return t.some(n=>n>40)&&(n=` ${n} `),`[${o}m${n}[0m`}}const ln=[41,42,43,44,45,46];let hn;class pn{constructor(n={}){this.count=0,this.map={},this.option={maxColor:n.maxColor||20,coloringText:n.coloringText||!1},this.colors=x(cn,n.maxColor||20)}color(n,...t){const o=this.getRgb(n),i=b(o),r=b(o.map(n=>Math.max(0,n-32))),e=o.every(n=>n<220)?"#ffffff":"#000000";return[`%c ${n} `,`padding: 2px; margin: 2px; line-height: 1.8em;background: ${i};bother: 1px solid ${r};color: ${e};`,...t]}getRgb(n){return this.map[n]=this.map[n]||this.colors[this.count++%this.option.maxColor]}}class gn{color(n,...t){return[n,...t]}}class mn{constructor(n){this.brush=y(n)}error(n,...t){console.error.apply(console,this.brush.color(n.id,...t))}warn(n,...t){console.warn.apply(console,this.brush.color(n.id,...t))}info(n,...t){console.info.apply(console,this.brush.color(n.id,...t))}debug(n,...t){(console.debug||console.log).apply(console,this.brush.color(n.id,...t))}}n.ColorAppender=mn}(this.AureliaLoggingColor=this.AureliaLoggingColor||{});
+(function (exports) {
+'use strict';
+
+var global$1 = typeof global !== "undefined" ? global :
+            typeof self !== "undefined" ? self :
+            typeof window !== "undefined" ? window : {};
+
+// shim for using process in browser
+// based off https://github.com/defunctzombie/node-process/blob/master/browser.js
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+var cachedSetTimeout = defaultSetTimout;
+var cachedClearTimeout = defaultClearTimeout;
+if (typeof global$1.setTimeout === 'function') {
+    cachedSetTimeout = setTimeout;
+}
+if (typeof global$1.clearTimeout === 'function') {
+    cachedClearTimeout = clearTimeout;
+}
+
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+function nextTick(fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+}
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+var title = 'browser';
+var platform$1 = 'browser';
+var browser = true;
+var env = {};
+var argv = [];
+var version = ''; // empty string to avoid regexp issues
+var versions = {};
+var release = {};
+var config = {};
+
+function noop() {}
+
+var on = noop;
+var addListener = noop;
+var once = noop;
+var off = noop;
+var removeListener = noop;
+var removeAllListeners = noop;
+var emit = noop;
+
+function binding(name) {
+    throw new Error('process.binding is not supported');
+}
+
+function cwd () { return '/' }
+function chdir (dir) {
+    throw new Error('process.chdir is not supported');
+}
+function umask() { return 0; }
+
+// from https://github.com/kumavis/browser-process-hrtime/blob/master/index.js
+var performance = global$1.performance || {};
+var performanceNow =
+  performance.now        ||
+  performance.mozNow     ||
+  performance.msNow      ||
+  performance.oNow       ||
+  performance.webkitNow  ||
+  function(){ return (new Date()).getTime() };
+
+// generate timestamp or delta
+// see http://nodejs.org/api/process.html#process_process_hrtime
+function hrtime(previousTimestamp){
+  var clocktime = performanceNow.call(performance)*1e-3;
+  var seconds = Math.floor(clocktime);
+  var nanoseconds = Math.floor((clocktime%1)*1e9);
+  if (previousTimestamp) {
+    seconds = seconds - previousTimestamp[0];
+    nanoseconds = nanoseconds - previousTimestamp[1];
+    if (nanoseconds<0) {
+      seconds--;
+      nanoseconds += 1e9;
+    }
+  }
+  return [seconds,nanoseconds]
+}
+
+var startTime = new Date();
+function uptime() {
+  var currentTime = new Date();
+  var dif = currentTime - startTime;
+  return dif / 1000;
+}
+
+var process = {
+  nextTick: nextTick,
+  title: title,
+  browser: browser,
+  env: env,
+  argv: argv,
+  version: version,
+  versions: versions,
+  on: on,
+  addListener: addListener,
+  once: once,
+  off: off,
+  removeListener: removeListener,
+  removeAllListeners: removeAllListeners,
+  emit: emit,
+  binding: binding,
+  cwd: cwd,
+  chdir: chdir,
+  umask: umask,
+  hrtime: hrtime,
+  platform: platform$1,
+  release: release,
+  config: config,
+  uptime: uptime
+};
+
+function release$1 () {
+  if (typeof global$1.navigator !== 'undefined') {
+    return global$1.navigator.appVersion;
+  }
+  return '';
+}
+
+const platform$$1 = typeof process !== 'undefined' ? process.platform : undefined;
+const majorVersion = parseInt(release$1().split('.')[0], 10);
+// use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
+const isNode = typeof module !== 'undefined' && module['e' + 'xports'];
+const isWindow = platform$$1 ? /^win/.test(platform$$1) : false;
+function getSupportedColorMode() {
+    // Just assume Windows 10 Insider with 16m color support has `majorVersion > 6`.
+    // Will fix to the correct version when issue appears.
+    return (isNode && (!isWindow || majorVersion <= 6)) ? 'ANSI' : 'ANSI16M';
+}
+
+function createColors(from, to, shades, alpha) {
+    const rgba = [];
+    const start = [...from];
+    const diff = [
+        to[0] - from[0],
+        to[1] - from[1],
+        to[2] - from[2]
+    ];
+    if (alpha) {
+        start.push(alpha[0]);
+        diff.push(alpha[1] - alpha[0]);
+    }
+    for (let i = 0; i < shades; i++) {
+        const inc = 1 /
+            Math.max(shades - 1, 1);
+        const color = [
+            Math.round(start[0] + i * diff[0] * inc),
+            Math.round(start[1] + i * diff[1] * inc),
+            Math.round(start[2] + i * diff[2] * inc),
+            alpha ? start[3] + i * diff[3] * inc : 1
+        ];
+        rgba.push(color);
+    }
+    return rgba;
+}
+
+/**
+ * Create colors with specified color map.
+ */
+function createColorsFromMap(colormap, shades, alpha) {
+    if (shades < colormap.length) {
+        throw new Error(`Requires at least ${colormap.length} shades.`);
+    }
+    const result = [];
+    const steps = [];
+    for (let i = 0; i < colormap.length; i++) {
+        steps.push(Math.round(colormap[i].index * shades));
+    }
+    for (let i = 0; i < colormap.length - 1; i++) {
+        const n = steps[i + 1] - steps[i];
+        const from = colormap[i].rgb;
+        const to = colormap[i + 1].rgb;
+        result.push(...createColors(from, to, n, alpha));
+    }
+    return result;
+}
+
+/**
+ * Convert `RGB` to `#rgb`
+ * JavaScript note: no check for array length, use it properly.
+ */
+function rgbHex(rgb) {
+    let hex = '#';
+    for (let i = 0; i < 3; i++) {
+        hex += d2h(rgb[i]);
+    }
+    return hex;
+}
+function d2h(d) {
+    let s = (+d).toString(16);
+    return s.length < 2 ? '0' + s : s;
+}
+
+const rainbow = [
+    { index: 0, rgb: [150, 0, 90] },
+    { index: 0.125, rgb: [0, 0, 200] },
+    { index: 0.25, rgb: [0, 25, 255] },
+    { index: 0.375, rgb: [0, 152, 255] },
+    { index: 0.5, rgb: [44, 255, 150] },
+    { index: 0.625, rgb: [151, 255, 0] },
+    { index: 0.75, rgb: [255, 234, 0] },
+    { index: 0.875, rgb: [255, 111, 0] },
+    { index: 1, rgb: [255, 0, 0] }
+];
+
+class Ansi16mBrush {
+    constructor(option = {}) {
+        this.count = 0;
+        this.map = {};
+        this.option = {
+            maxColor: option.maxColor || 20,
+            coloringText: option.coloringText || false
+        };
+        // For background color, the light green make it hard to read text.
+        // Dim green a bit to make it more readable.
+        const colormap = this.option.coloringText ? rainbow : rainbow.map(m => {
+            return {
+                index: m.index,
+                rgb: [m.rgb[0], m.rgb[1] * 0.7, m.rgb[2]]
+            };
+        });
+        this.colors = createColorsFromMap(colormap, option.maxColor || 20);
+        this.color = this.option.coloringText ? this.colorAnsi16m : this.getAnsi16mBackgroundString;
+    }
+    getRgb(text) {
+        // It is ok to overlep color.
+        // Not trying to be too smart about it.
+        return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor];
+    }
+    colorAnsi16m(id, ...rest) {
+        const rgb = this.getRgb(id);
+        return [this.wrapAnsi16m(id, rgb), ...rest];
+    }
+    getAnsi16mBackgroundString(id, ...rest) {
+        const rgb = this.getRgb(id);
+        return [this.wrapAnsi16m(` ${id} `, rgb, 10), ...rest];
+    }
+    wrapAnsi16m(id, rgb, offset = 0) {
+        return `\u001B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m` + id + `\u001B[${39 + offset}m`;
+    }
+}
+
+class AnsiBrush {
+    constructor(option = {}) {
+        this.count = 0;
+        this.map = {};
+        this.codes = calculatedCodes = calculatedCodes || createColorCodes();
+        this.option = {
+            maxColor: option.maxColor || this.codes.length,
+            coloringText: option.coloringText || false
+        };
+    }
+    color(id, ...rest) {
+        const codes = this.getCodes(id);
+        return [this.wrapAnsi(id, codes), ...rest];
+    }
+    getCodes(text) {
+        return this.map[text] = this.map[text] || this.codes[this.count++ % this.option.maxColor];
+    }
+    wrapAnsi(id, codes) {
+        const code = codes.join(';');
+        if (codes.some(x => x > 40)) {
+            // Pad id when there is a background color in use.
+            id = ` ${id} `;
+        }
+        return `\u001B[${code}m${id}\u001B[0m`;
+    }
+}
+// Bright, dim, underscore
+// const styles = [1, 2, 4]
+// const foregroundColors = [31, 32, 33, 34, 35, 36]
+const backgroundColors = [41, 42, 43, 44, 45, 46];
+let calculatedCodes;
+function createColorCodes() {
+    let baseCodes = backgroundColors.map(x => [x]);
+    baseCodes.push(...backgroundColors.map(x => [x, 31]));
+    baseCodes.push(...backgroundColors.map(x => [x, 32]));
+    baseCodes.push(...backgroundColors.map(x => [x, 33]));
+    baseCodes.push(...backgroundColors.map(x => [x, 34]));
+    baseCodes.push(...backgroundColors.map(x => [x, 35]));
+    baseCodes.push(...backgroundColors.map(x => [x, 36]));
+    baseCodes = baseCodes.filter(x => x.length === 1 || x[0] !== x[1] + 10);
+    const brighten = baseCodes.map(x => [...x, 1]);
+    const dimmed = baseCodes.map(x => [...x, 2]);
+    const underscored = baseCodes.map(x => [...x, 4]);
+    return [...baseCodes, ...brighten, ...dimmed, ...underscored];
+}
+
+class CSSBrush {
+    constructor(option = {}) {
+        this.count = 0;
+        this.map = {};
+        this.option = {
+            maxColor: option.maxColor || 20,
+            coloringText: option.coloringText || false
+        };
+        this.colors = createColorsFromMap(rainbow, option.maxColor || 20);
+    }
+    color(id, ...rest) {
+        // TODO style (italic, bold, underscore) rotation
+        const rgb = this.getRgb(id);
+        const background = rgbHex(rgb);
+        const border = rgbHex(rgb.map(x => Math.max(0, x - 32)));
+        const color = rgb.every(x => x < 220) ? '#ffffff' : '#000000';
+        return [`%c ${id} `, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};bother: 1px solid ${border};color: ${color};`, ...rest];
+    }
+    getRgb(text) {
+        // It is ok to overlep color.
+        // Not trying to be too smart about it.
+        return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor];
+    }
+}
+
+function createBrush(option = {}) {
+    const colorMode = option.colorMode || getSupportedColorMode();
+    let brush;
+    switch (colorMode) {
+        case 'CSS':
+            brush = new CSSBrush(option);
+            break;
+        case 'ANSI':
+            brush = new AnsiBrush(option);
+            break;
+        case 'ANSI16M':
+            brush = new Ansi16mBrush(option);
+            break;
+        default:
+        case 'NONE':
+            brush = new PlainBrush();
+            break;
+    }
+    return brush;
+}
+class PlainBrush {
+    color(id, ...rest) {
+        return [id, ...rest];
+    }
+}
+
+/**
+ * A colored console log.
+ * Color only apply to Chrome, Firefox, and NodeJS.
+ * Other will behave like `ConsoleAppender`
+ */
+class ColorAppender {
+    constructor(option) {
+        this.brush = createBrush(option);
+    }
+    error(logger, ...rest) {
+        console.error.apply(console, this.brush.color(logger.id, ...rest));
+    }
+    warn(logger, ...rest) {
+        console.warn.apply(console, this.brush.color(logger.id, ...rest));
+    }
+    info(logger, ...rest) {
+        console.info.apply(console, this.brush.color(logger.id, ...rest));
+    }
+    debug(logger, ...rest) {
+        (console.debug || console.log).apply(console, this.brush.color(logger.id, ...rest));
+    }
+}
+
+exports.ColorAppender = ColorAppender;
+
+}((this.AureliaLoggingColor = this.AureliaLoggingColor || {})));
 //# sourceMappingURL=aurelia-logging-color.es2015.js.map

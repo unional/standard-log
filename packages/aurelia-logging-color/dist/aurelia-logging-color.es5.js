@@ -1,2 +1,498 @@
-var AureliaLoggingColor=function(n){function t(o){if(r[o])return r[o].exports;var e=r[o]={i:o,l:!1,exports:{}};return n[o].call(e.exports,e,e.exports,t),e.l=!0,e.exports}var r={};return t.m=n,t.c=r,t.i=function(n){return n},t.d=function(n,r,o){t.o(n,r)||Object.defineProperty(n,r,{configurable:!1,enumerable:!0,get:o})},t.n=function(n){var r=n&&n.__esModule?function(){return n.default}:function(){return n};return t.d(r,"a",r),r},t.o=function(n,t){return Object.prototype.hasOwnProperty.call(n,t)},t.p="",t(t.s=15)}([function(n,t,r){"use strict";t.rainbow=[{index:0,rgb:[150,0,90]},{index:.125,rgb:[0,0,200]},{index:.25,rgb:[0,25,255]},{index:.375,rgb:[0,152,255]},{index:.5,rgb:[44,255,150]},{index:.625,rgb:[151,255,0]},{index:.75,rgb:[255,234,0]},{index:.875,rgb:[255,111,0]},{index:1,rgb:[255,0,0]}]},function(n,t,r){"use strict";function o(n,t,r,o){const e=[],i=[...n],u=[t[0]-n[0],t[1]-n[1],t[2]-n[2]];o&&(i.push(o[0]),u.push(o[1]-o[0]));for(let c=0;c<r;c++){const n=1/Math.max(r-1,1),t=[Math.round(i[0]+c*u[0]*n),Math.round(i[1]+c*u[1]*n),Math.round(i[2]+c*u[2]*n),o?i[3]+c*u[3]*n:1];e.push(t)}return e}t.a=o},function(n,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var o=r(1);r.d(t,"createColors",function(){return o.a});var e=r(9);r.d(t,"createColorsFromMap",function(){return e.a});var i=r(10);r.d(t,"rgbHex",function(){return i.a});var u=r(11);r.d(t,"rgbaString",function(){return u.a})},function(n,t,r){"use strict";var o=r(7),e=function(){function n(n){this.brush=o.createBrush(n)}return n.prototype.error=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];console.error.apply(console,(o=this.brush).color.apply(o,[n.id].concat(t)));var o},n.prototype.warn=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];console.warn.apply(console,(o=this.brush).color.apply(o,[n.id].concat(t)));var o},n.prototype.info=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];console.info.apply(console,(o=this.brush).color.apply(o,[n.id].concat(t)));var o},n.prototype.debug=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];(console.debug||console.log).apply(console,(o=this.brush).color.apply(o,[n.id].concat(t)));var o},n}();t.ColorAppender=e},function(n,t,r){"use strict";var o=r(2),e=r(0),i=function(){function n(n){void 0===n&&(n={}),this.count=0,this.map={},this.option={maxColor:n.maxColor||20,coloringText:n.coloringText||!1};var t=this.option.coloringText?e.rainbow:e.rainbow.map(function(n){return{index:n.index,rgb:[n.rgb[0],.7*n.rgb[1],n.rgb[2]]}});this.colors=o.createColorsFromMap(t,n.maxColor||20),this.color=this.option.coloringText?this.colorAnsi16m:this.getAnsi16mBackgroundString}return n.prototype.getRgb=function(n){return this.map[n]=this.map[n]||this.colors[this.count++%this.option.maxColor]},n.prototype.colorAnsi16m=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var o=this.getRgb(n);return[this.wrapAnsi16m(n,o)].concat(t)},n.prototype.getAnsi16mBackgroundString=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var o=this.getRgb(n);return[this.wrapAnsi16m(" "+n+" ",o,10)].concat(t)},n.prototype.wrapAnsi16m=function(n,t,r){return void 0===r&&(r=0),"["+(38+r)+";2;"+t[0]+";"+t[1]+";"+t[2]+"m"+n+("["+(39+r)+"m")},n}();t.Ansi16mBrush=i},function(n,t,r){"use strict";function o(){var n=u.map(function(n){return[n]});n.push.apply(n,u.map(function(n){return[n,31]})),n.push.apply(n,u.map(function(n){return[n,32]})),n.push.apply(n,u.map(function(n){return[n,33]})),n.push.apply(n,u.map(function(n){return[n,34]})),n.push.apply(n,u.map(function(n){return[n,35]})),n.push.apply(n,u.map(function(n){return[n,36]})),n=n.filter(function(n){return 1===n.length||n[0]!==n[1]+10});var t=n.map(function(n){return n.concat([1])}),r=n.map(function(n){return n.concat([2])}),o=n.map(function(n){return n.concat([4])});return n.concat(t,r,o)}var e=function(){function n(n){void 0===n&&(n={}),this.count=0,this.map={},this.codes=i=i||o(),this.option={maxColor:n.maxColor||this.codes.length,coloringText:n.coloringText||!1}}return n.prototype.color=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var o=this.getCodes(n);return[this.wrapAnsi(n,o)].concat(t)},n.prototype.getCodes=function(n){return this.map[n]=this.map[n]||this.codes[this.count++%this.option.maxColor]},n.prototype.wrapAnsi=function(n,t){var r=t.join(";");return t.some(function(n){return n>40})&&(n=" "+n+" "),"["+r+"m"+n+"[0m"},n}();t.AnsiBrush=e;var i,u=[41,42,43,44,45,46]},function(n,t,r){"use strict";var o=r(2),e=r(0),i=function(){function n(n){void 0===n&&(n={}),this.count=0,this.map={},this.option={maxColor:n.maxColor||20,coloringText:n.coloringText||!1},this.colors=o.createColorsFromMap(e.rainbow,n.maxColor||20)}return n.prototype.color=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];var e=this.getRgb(n),i=o.rgbHex(e),u=o.rgbHex(e.map(function(n){return Math.max(0,n-32)})),c=e.every(function(n){return n<220})?"#ffffff":"#000000";return["%c "+n+" ","padding: 2px; margin: 2px; line-height: 1.8em;background: "+i+";bother: 1px solid "+u+";color: "+c+";"].concat(t)},n.prototype.getRgb=function(n){return this.map[n]=this.map[n]||this.colors[this.count++%this.option.maxColor]},n}();t.CSSBrush=i},function(n,t,r){"use strict";function o(n){void 0===n&&(n={});var t=void 0!==n.css?n.css:e.supportCSSColor,r=void 0!==n.ansi16m?n.ansi16m:e.supportAnsi16mColor,o=void 0!==n.ansi?n.ansi:e.supportAnsiColor;return t?new c.CSSBrush(n):r?new i.Ansi16mBrush(n):o?new u.AnsiBrush(n):new a}var e=r(8),i=r(4),u=r(5),c=r(6);t.createBrush=o;var a=function(){function n(){}return n.prototype.color=function(n){for(var t=[],r=1;r<arguments.length;r++)t[r-1]=arguments[r];return[n].concat(t)},n}();t.PlainBrush=a},function(n,t,r){"use strict";(function(n,o){var e=r(12),i="undefined"!=typeof navigator?navigator.userAgent:void 0,u="undefined"!=typeof navigator?navigator.vendor:void 0,c="undefined"!=typeof n?n.platform:void 0,a=parseInt(e.release().split(".")[0],10),s=!(!i||!u)&&(/Chrome/.test(i)&&/Google Inc/.test(u)),f=!!i&&/firefox/i.test(i),p="undefined"!=typeof o&&o.exports,l=!!c&&/^win/.test(c);t.supportCSSColor=s||f,t.supportAnsiColor=p&&(!l||a<=6),t.supportAnsi16mColor=p&&(!l||a>6)}).call(t,r(13),r(14)(n))},function(n,t,r){"use strict";function o(n,t,o){if(t<n.length)throw new Error(`Requires at least ${n.length} shades.`);const i=[],u=[];for(let c=0;c<n.length;c++)u.push(Math.round(n[c].index*t));for(let c=0;c<n.length-1;c++){const t=u[c+1]-u[c],a=n[c].rgb,s=n[c+1].rgb;i.push(...r.i(e.a)(a,s,t,o))}return i}var e=r(1);t.a=o},function(n,t,r){"use strict";function o(n){let t="#";for(let r=0;r<3;r++)t+=e(n[r]);return t}function e(n){let t=(+n).toString(16);return t.length<2?"0"+t:t}t.a=o},function(n,t,r){"use strict";function o(n){return"rgba("+n.join(",")+")"}t.a=o},function(n,t){t.endianness=function(){return"LE"},t.hostname=function(){return"undefined"!=typeof location?location.hostname:""},t.loadavg=function(){return[]},t.uptime=function(){return 0},t.freemem=function(){return Number.MAX_VALUE},t.totalmem=function(){return Number.MAX_VALUE},t.cpus=function(){return[]},t.type=function(){return"Browser"},t.release=function(){return"undefined"!=typeof navigator?navigator.appVersion:""},t.networkInterfaces=t.getNetworkInterfaces=function(){return{}},t.arch=function(){return"javascript"},t.platform=function(){return"browser"},t.tmpdir=t.tmpDir=function(){return"/tmp"},t.EOL="\n"},function(n,t){function r(){throw new Error("setTimeout has not been defined")}function o(){throw new Error("clearTimeout has not been defined")}function e(n){if(f===setTimeout)return setTimeout(n,0);if((f===r||!f)&&setTimeout)return f=setTimeout,setTimeout(n,0);try{return f(n,0)}catch(t){try{return f.call(null,n,0)}catch(t){return f.call(this,n,0)}}}function i(n){if(p===clearTimeout)return clearTimeout(n);if((p===o||!p)&&clearTimeout)return p=clearTimeout,clearTimeout(n);try{return p(n)}catch(t){try{return p.call(null,n)}catch(t){return p.call(this,n)}}}function u(){m&&h&&(m=!1,h.length?g=h.concat(g):d=-1,g.length&&c())}function c(){if(!m){var n=e(u);m=!0;for(var t=g.length;t;){for(h=g,g=[];++d<t;)h&&h[d].run();d=-1,t=g.length}h=null,m=!1,i(n)}}function a(n,t){this.fun=n,this.array=t}function s(){}var f,p,l=n.exports={};!function(){try{f="function"==typeof setTimeout?setTimeout:r}catch(n){f=r}try{p="function"==typeof clearTimeout?clearTimeout:o}catch(n){p=o}}();var h,g=[],m=!1,d=-1;l.nextTick=function(n){var t=new Array(arguments.length-1);if(arguments.length>1)for(var r=1;r<arguments.length;r++)t[r-1]=arguments[r];g.push(new a(n,t)),1!==g.length||m||e(c)},a.prototype.run=function(){this.fun.apply(null,this.array)},l.title="browser",l.browser=!0,l.env={},l.argv=[],l.version="",l.versions={},l.on=s,l.addListener=s,l.once=s,l.off=s,l.removeListener=s,l.removeAllListeners=s,l.emit=s,l.binding=function(n){throw new Error("process.binding is not supported")},l.cwd=function(){return"/"},l.chdir=function(n){throw new Error("process.chdir is not supported")},l.umask=function(){return 0}},function(n,t){n.exports=function(n){return n.webpackPolyfill||(n.deprecate=function(){},n.paths=[],n.children||(n.children=[]),Object.defineProperty(n,"loaded",{enumerable:!0,configurable:!1,get:function(){return n.l}}),Object.defineProperty(n,"id",{enumerable:!0,configurable:!1,get:function(){return n.i}}),n.webpackPolyfill=1),n}},function(n,t,r){"use strict";function o(n){for(var r in n)t.hasOwnProperty(r)||(t[r]=n[r])}o(r(3))}]);
+var AureliaLoggingColor =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId])
+/******/ 			return installedModules[moduleId].exports;
+/******/
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// identity function for calling harmony imports with the correct context
+/******/ 	__webpack_require__.i = function(value) { return value; };
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+exports.rainbow = [
+    { index: 0, rgb: [150, 0, 90] },
+    { index: 0.125, rgb: [0, 0, 200] },
+    { index: 0.25, rgb: [0, 25, 255] },
+    { index: 0.375, rgb: [0, 152, 255] },
+    { index: 0.5, rgb: [44, 255, 150] },
+    { index: 0.625, rgb: [151, 255, 0] },
+    { index: 0.75, rgb: [255, 234, 0] },
+    { index: 0.875, rgb: [255, 111, 0] },
+    { index: 1, rgb: [255, 0, 0] }
+];
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = createColors;
+function createColors(from, to, shades, alpha) {
+    const rgba = [];
+    const start = [...from];
+    const diff = [
+        to[0] - from[0],
+        to[1] - from[1],
+        to[2] - from[2]
+    ];
+    if (alpha) {
+        start.push(alpha[0]);
+        diff.push(alpha[1] - alpha[0]);
+    }
+    for (let i = 0; i < shades; i++) {
+        const inc = 1 /
+            Math.max(shades - 1, 1);
+        const color = [
+            Math.round(start[0] + i * diff[0] * inc),
+            Math.round(start[1] + i * diff[1] * inc),
+            Math.round(start[2] + i * diff[2] * inc),
+            alpha ? start[3] + i * diff[3] * inc : 1
+        ];
+        rgba.push(color);
+    }
+    return rgba;
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createColors__ = __webpack_require__(1);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "createColors", function() { return __WEBPACK_IMPORTED_MODULE_0__createColors__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createColorsFromMap__ = __webpack_require__(9);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "createColorsFromMap", function() { return __WEBPACK_IMPORTED_MODULE_1__createColorsFromMap__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rgbHex__ = __webpack_require__(10);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "rgbHex", function() { return __WEBPACK_IMPORTED_MODULE_2__rgbHex__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rgbaString__ = __webpack_require__(11);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "rgbaString", function() { return __WEBPACK_IMPORTED_MODULE_3__rgbaString__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var createBrush_1 = __webpack_require__(7);
+/**
+ * A colored console log.
+ * Color only apply to Chrome, Firefox, and NodeJS.
+ * Other will behave like `ConsoleAppender`
+ */
+var ColorAppender = (function () {
+    function ColorAppender(option) {
+        this.brush = createBrush_1.createBrush(option);
+    }
+    ColorAppender.prototype.error = function (logger) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        console.error.apply(console, (_a = this.brush).color.apply(_a, [logger.id].concat(rest)));
+        var _a;
+    };
+    ColorAppender.prototype.warn = function (logger) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        console.warn.apply(console, (_a = this.brush).color.apply(_a, [logger.id].concat(rest)));
+        var _a;
+    };
+    ColorAppender.prototype.info = function (logger) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        console.info.apply(console, (_a = this.brush).color.apply(_a, [logger.id].concat(rest)));
+        var _a;
+    };
+    ColorAppender.prototype.debug = function (logger) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        (console.debug || console.log).apply(console, (_a = this.brush).color.apply(_a, [logger.id].concat(rest)));
+        var _a;
+    };
+    return ColorAppender;
+}());
+exports.ColorAppender = ColorAppender;
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var color_map_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(0);
+var Ansi16mBrush = (function () {
+    function Ansi16mBrush(option) {
+        if (option === void 0) { option = {}; }
+        this.count = 0;
+        this.map = {};
+        this.option = {
+            maxColor: option.maxColor || 20,
+            coloringText: option.coloringText || false
+        };
+        // For background color, the light green make it hard to read text.
+        // Dim green a bit to make it more readable.
+        var colormap = this.option.coloringText ? colors_1.rainbow : colors_1.rainbow.map(function (m) {
+            return {
+                index: m.index,
+                rgb: [m.rgb[0], m.rgb[1] * 0.7, m.rgb[2]]
+            };
+        });
+        this.colors = color_map_1.createColorsFromMap(colormap, option.maxColor || 20);
+        this.color = this.option.coloringText ? this.colorAnsi16m : this.getAnsi16mBackgroundString;
+    }
+    Ansi16mBrush.prototype.getRgb = function (text) {
+        // It is ok to overlep color.
+        // Not trying to be too smart about it.
+        return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor];
+    };
+    Ansi16mBrush.prototype.colorAnsi16m = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        var rgb = this.getRgb(id);
+        return [this.wrapAnsi16m(id, rgb)].concat(rest);
+    };
+    Ansi16mBrush.prototype.getAnsi16mBackgroundString = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        var rgb = this.getRgb(id);
+        return [this.wrapAnsi16m(" " + id + " ", rgb, 10)].concat(rest);
+    };
+    Ansi16mBrush.prototype.wrapAnsi16m = function (id, rgb, offset) {
+        if (offset === void 0) { offset = 0; }
+        return "\u001B[" + (38 + offset) + ";2;" + rgb[0] + ";" + rgb[1] + ";" + rgb[2] + "m" + id + ("\u001B[" + (39 + offset) + "m");
+    };
+    return Ansi16mBrush;
+}());
+exports.Ansi16mBrush = Ansi16mBrush;
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var AnsiBrush = (function () {
+    function AnsiBrush(option) {
+        if (option === void 0) { option = {}; }
+        this.count = 0;
+        this.map = {};
+        this.codes = calculatedCodes = calculatedCodes || createColorCodes();
+        this.option = {
+            maxColor: option.maxColor || this.codes.length,
+            coloringText: option.coloringText || false
+        };
+    }
+    AnsiBrush.prototype.color = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        var codes = this.getCodes(id);
+        return [this.wrapAnsi(id, codes)].concat(rest);
+    };
+    AnsiBrush.prototype.getCodes = function (text) {
+        return this.map[text] = this.map[text] || this.codes[this.count++ % this.option.maxColor];
+    };
+    AnsiBrush.prototype.wrapAnsi = function (id, codes) {
+        var code = codes.join(';');
+        if (codes.some(function (x) { return x > 40; })) {
+            // Pad id when there is a background color in use.
+            id = " " + id + " ";
+        }
+        return "\u001B[" + code + "m" + id + "\u001B[0m";
+    };
+    return AnsiBrush;
+}());
+exports.AnsiBrush = AnsiBrush;
+// Bright, dim, underscore
+// const styles = [1, 2, 4]
+// const foregroundColors = [31, 32, 33, 34, 35, 36]
+var backgroundColors = [41, 42, 43, 44, 45, 46];
+var calculatedCodes;
+function createColorCodes() {
+    var baseCodes = backgroundColors.map(function (x) { return [x]; });
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 31]; }));
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 32]; }));
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 33]; }));
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 34]; }));
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 35]; }));
+    baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 36]; }));
+    baseCodes = baseCodes.filter(function (x) { return x.length === 1 || x[0] !== x[1] + 10; });
+    var brighten = baseCodes.map(function (x) { return x.concat([1]); });
+    var dimmed = baseCodes.map(function (x) { return x.concat([2]); });
+    var underscored = baseCodes.map(function (x) { return x.concat([4]); });
+    return baseCodes.concat(brighten, dimmed, underscored);
+}
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var color_map_1 = __webpack_require__(2);
+var colors_1 = __webpack_require__(0);
+var CSSBrush = (function () {
+    function CSSBrush(option) {
+        if (option === void 0) { option = {}; }
+        this.count = 0;
+        this.map = {};
+        this.option = {
+            maxColor: option.maxColor || 20,
+            coloringText: option.coloringText || false
+        };
+        this.colors = color_map_1.createColorsFromMap(colors_1.rainbow, option.maxColor || 20);
+    }
+    CSSBrush.prototype.color = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        // TODO style (italic, bold, underscore) rotation
+        var rgb = this.getRgb(id);
+        var background = color_map_1.rgbHex(rgb);
+        var border = color_map_1.rgbHex(rgb.map(function (x) { return Math.max(0, x - 32); }));
+        var color = rgb.every(function (x) { return x < 220; }) ? '#ffffff' : '#000000';
+        return ["%c " + id + " ", "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";bother: 1px solid " + border + ";color: " + color + ";"].concat(rest);
+    };
+    CSSBrush.prototype.getRgb = function (text) {
+        // It is ok to overlep color.
+        // Not trying to be too smart about it.
+        return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor];
+    };
+    return CSSBrush;
+}());
+exports.CSSBrush = CSSBrush;
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var environments_1 = __webpack_require__(8);
+var Ansi16mBrush_1 = __webpack_require__(4);
+var AnsiBrush_1 = __webpack_require__(5);
+var CSSBrush_1 = __webpack_require__(6);
+function createBrush(option) {
+    if (option === void 0) { option = {}; }
+    var colorMode = option.colorMode || environments_1.getSupportedColorMode();
+    var brush;
+    switch (colorMode) {
+        case 'CSS':
+            brush = new CSSBrush_1.CSSBrush(option);
+            break;
+        case 'ANSI':
+            brush = new AnsiBrush_1.AnsiBrush(option);
+            break;
+        case 'ANSI16M':
+            brush = new Ansi16mBrush_1.Ansi16mBrush(option);
+            break;
+        default:
+        case 'NONE':
+            brush = new PlainBrush();
+            break;
+    }
+    return brush;
+}
+exports.createBrush = createBrush;
+var PlainBrush = (function () {
+    function PlainBrush() {
+    }
+    PlainBrush.prototype.color = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        return [id].concat(rest);
+    };
+    return PlainBrush;
+}());
+exports.PlainBrush = PlainBrush;
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined;
+var vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined;
+// alternatively check `!!window.chrome`
+var isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false;
+var isFirefox = userAgent ? /firefox/i.test(userAgent) : false;
+function getSupportedColorMode() {
+    // Not checking specific version support, but should work as
+    // most people update their chrome and firefox.
+    return isChrome || isFirefox ? 'CSS' : 'NONE';
+}
+exports.getSupportedColorMode = getSupportedColorMode;
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createColors__ = __webpack_require__(1);
+/* harmony export (immutable) */ __webpack_exports__["a"] = createColorsFromMap;
+
+/**
+ * Create colors with specified color map.
+ */
+function createColorsFromMap(colormap, shades, alpha) {
+    if (shades < colormap.length) {
+        throw new Error(`Requires at least ${colormap.length} shades.`);
+    }
+    const result = [];
+    const steps = [];
+    for (let i = 0; i < colormap.length; i++) {
+        steps.push(Math.round(colormap[i].index * shades));
+    }
+    for (let i = 0; i < colormap.length - 1; i++) {
+        const n = steps[i + 1] - steps[i];
+        const from = colormap[i].rgb;
+        const to = colormap[i + 1].rgb;
+        result.push(...__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__createColors__["a" /* createColors */])(from, to, n, alpha));
+    }
+    return result;
+}
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = rgbHex;
+/**
+ * Convert `RGB` to `#rgb`
+ * JavaScript note: no check for array length, use it properly.
+ */
+function rgbHex(rgb) {
+    let hex = '#';
+    for (let i = 0; i < 3; i++) {
+        hex += d2h(rgb[i]);
+    }
+    return hex;
+}
+function d2h(d) {
+    let s = (+d).toString(16);
+    return s.length < 2 ? '0' + s : s;
+}
+
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = rgbaString;
+function rgbaString(rgba) {
+    return 'rgba(' + rgba.join(',') + ')';
+}
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+__export(__webpack_require__(3));
+
+
+/***/ })
+/******/ ]);
 //# sourceMappingURL=aurelia-logging-color.es5.js.map
