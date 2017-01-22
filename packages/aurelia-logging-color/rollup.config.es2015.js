@@ -30,7 +30,7 @@ export default {
   plugins: [
     sourcemaps(),
     nodeResolve({
-      jsnext: true
+      browser: true
     }),
     nodeGlobals(),
     nodeBuiltins(),
