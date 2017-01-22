@@ -1,4 +1,4 @@
-# @unional/aurelia-logging-color
+# aurelia-logging-color
 
 [![unstable][unstable-image]][unstable-url]
 [![NPM version][npm-image]][npm-url]
