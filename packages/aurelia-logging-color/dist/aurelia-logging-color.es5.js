@@ -339,7 +339,11 @@ var CSSBrush = (function () {
         var background = color_map_1.rgbHex(rgb);
         var border = color_map_1.rgbHex(rgb.map(function (x) { return Math.max(0, x - 32); }));
         var color = rgb.every(function (x) { return x < 220; }) ? '#ffffff' : '#000000';
-        return ["%c " + id + " ", "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";bother: 1px solid " + border + ";color: " + color + ";"].concat(rest);
+        var idStr = "%c " + id + " ";
+        if (rest.length > 1 && rest[0].indexOf('%c') !== -1) {
+            idStr += rest.shift();
+        }
+        return [idStr, "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";bother: 1px solid " + border + ";color: " + color + ";"].concat(rest);
     };
     CSSBrush.prototype.getRgb = function (text) {
         // It is ok to overlep color.
