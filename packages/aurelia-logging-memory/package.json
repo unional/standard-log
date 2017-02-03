@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "aurelia-logging": "^1.2.0",
-    "ava": "^0.17.0",
+    "ava": "^0.18.1",
     "browser-env": "^2.0.19",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
