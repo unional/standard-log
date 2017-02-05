@@ -14,7 +14,7 @@ test('MemoryAppender', t => {
   logger.info('info')
   logger.warn('warn')
   t.is(appender.logs.length, 1)
-  t.deepEqual(appender.logs[0], { id: 'Memory', level: logLevel.error, rest: ['error', 'something wrong'] })
+  t.deepEqual(appender.logs[0], { id: 'Memory', level: logLevel.error, messages: ['error', 'something wrong'] })
 
   setLevel(logLevel.info)
   logger.debug('debug')

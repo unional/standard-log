@@ -3,22 +3,22 @@ import { Logger, logLevel } from 'aurelia-logging'
 export interface LogEntry {
   id: string
   level: number
-  rest: any[]
+  messages: any[]
 }
 
 export class MemoryAppender {
   public logs: LogEntry[] = []
-  debug(logger: Logger, ...rest) {
-    this.logs.push({ id: logger.id, level: logLevel.debug, rest})
+  debug(logger: Logger, ...messages) {
+    this.logs.push({ id: logger.id, level: logLevel.debug, messages})
   }
-  info(logger: Logger, ...rest) {
-    this.logs.push({ id: logger.id, level: logLevel.info, rest})
+  info(logger: Logger, ...messages) {
+    this.logs.push({ id: logger.id, level: logLevel.info, messages})
   }
-  warn(logger: Logger, ...rest) {
-    this.logs.push({ id: logger.id, level: logLevel.warn, rest})
+  warn(logger: Logger, ...messages) {
+    this.logs.push({ id: logger.id, level: logLevel.warn, messages})
   }
-  error(logger: Logger, ...rest) {
-    this.logs.push({ id: logger.id, level: logLevel.error, rest})
+  error(logger: Logger, ...messages) {
+    this.logs.push({ id: logger.id, level: logLevel.error, messages})
   }
 }
 
