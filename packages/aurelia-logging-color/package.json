@@ -6,6 +6,11 @@
   "browser": {
     "./dist/es5/environments.js": "./dist/es5/environments-browser.js"
   },
+  "map": {
+    "./dist/es5/environments": {
+      "browser": "./dist/es5/environments-browser.js"
+    }
+  },
   "module": "dist/es2015/index.js",
   "typings": "dist/es5/index.d.ts",
   "files": [
