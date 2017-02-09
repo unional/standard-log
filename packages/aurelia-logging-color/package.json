@@ -1,7 +1,7 @@
 {
   "name": "aurelia-logging-color",
   "description": "ColorAppender for `aurelia-logging`",
-  "version": "0.4.12",
+  "version": "0.4.13",
   "main": "dist/es5/index.js",
   "browser": {
     "./dist/es5/environments.js": "./dist/es5/environments-browser.js"
