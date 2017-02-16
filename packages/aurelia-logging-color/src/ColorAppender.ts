@@ -1,17 +1,9 @@
 import { Logger } from 'aurelia-logging'
 
-import { BrushOption, Brush, ColorMode } from './interfaces'
+import { BrushOption, Brush, ColorModeOption } from './interfaces'
 import { createBrush } from './createBrush'
 
-export interface ColorAppenderOption extends BrushOption {
-  /**
-   * Choose which color mode to use.
-   * For browser usage, you should choose 'CSS',
-   * For NodeJS, you should choose 'ANSI'
-   * For NodeJS with no support of Windows, you can choose 'ANSI16M'
-   * Choose 'NONE' if you want to disable color.
-   */
-  colorMode: ColorMode
+export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 }
 
 /**

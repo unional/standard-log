@@ -1,12 +1,12 @@
 import { getSupportedColorMode } from './environments'
 
-import { Brush, BrushOption, ColorMode } from './interfaces'
+import { Brush, BrushOption, ColorMode, ColorModeOption } from './interfaces'
 
 import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
 import { CSSBrush } from './CSSBrush'
 
-export function createBrush(option: Partial<BrushOption> = {}) {
+export function createBrush(option: Partial<BrushOption> & Partial<ColorModeOption> = {}) {
   const colorMode: ColorMode = option.colorMode || getSupportedColorMode()
 
   let brush;

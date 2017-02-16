@@ -6,7 +6,6 @@
     "target": "es2015"
   },
   "files": [
-    "src/index.ts",
-    "src/environments-browser.ts"
+    "src/index.ts"
   ]
 }
