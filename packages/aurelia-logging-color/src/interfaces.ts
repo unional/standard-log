@@ -12,7 +12,6 @@ export interface BrushOption {
    */
   coloringText: boolean
 }
-
 export interface Brush {
   color(id: string, ...rest: string[]): string[]
 }

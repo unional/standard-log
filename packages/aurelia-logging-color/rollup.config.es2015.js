@@ -29,9 +29,7 @@ export default {
   // },
   plugins: [
     sourcemaps(),
-    nodeResolve({
-      browser: true
-    }),
+    nodeResolve(),
     nodeGlobals(),
     nodeBuiltins(),
     commonjs()

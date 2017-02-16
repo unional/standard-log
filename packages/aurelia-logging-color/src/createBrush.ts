@@ -6,11 +6,7 @@ import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
 import { CSSBrush } from './CSSBrush'
 
-export interface InternalBrushOption {
-  colorMode: ColorMode
-}
-
-export function createBrush(option: Partial<BrushOption> & Partial<InternalBrushOption> = {}) {
+export function createBrush(option: Partial<BrushOption> = {}) {
   const colorMode: ColorMode = option.colorMode || getSupportedColorMode()
 
   let brush;

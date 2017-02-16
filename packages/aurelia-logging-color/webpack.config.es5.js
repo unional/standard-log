@@ -35,8 +35,5 @@ module.exports = {
         return `webpack:///${info.resourcePath}`
       }
     }
-  },
-  resolve: {
-    aliasFields: ['browser']
   }
 }
