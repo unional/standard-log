@@ -64,7 +64,7 @@ var AureliaLoggingColor =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 12);
+/******/ 	return __webpack_require__(__webpack_require__.s = 13);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -407,19 +407,26 @@ exports.PlainBrush = PlainBrush;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
+/* WEBPACK VAR INJECTION */(function(module) {
 var userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined;
 var vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined;
 // alternatively check `!!window.chrome`
 var isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false;
 var isFirefox = userAgent ? /firefox/i.test(userAgent) : false;
+// use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
+var isNode = typeof module !== 'undefined' && module['e' + 'xports'];
 function getSupportedColorMode() {
-    // Not checking specific version support, but should work as
-    // most people update their chrome and firefox.
-    return isChrome || isFirefox ? 'CSS' : 'NONE';
+    // Only support 'ANSI' to avoid checking Windows version.
+    // This eliminate the need of 'os' module thus not getting into
+    // browser-field-spec problem with webpack.
+    return isNode ? 'ANSI' :
+        // Not checking specific version support, but should work as
+        // most people update their chrome and firefox.
+        isChrome || isFirefox ? 'CSS' : 'NONE';
 }
 exports.getSupportedColorMode = getSupportedColorMode;
 
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
 
 /***/ }),
 /* 9 */
@@ -487,6 +494,34 @@ function rgbaString(rgba) {
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
