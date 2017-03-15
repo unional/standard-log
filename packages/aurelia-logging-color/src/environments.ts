@@ -8,7 +8,8 @@ const isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.
 const isFirefox = userAgent ? /firefox/i.test(userAgent) : false
 
 // use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
-const isNode = typeof module !== 'undefined' && module['e' + 'xports']
+// webpack provides a fake `module`. Need to exclude it by checking `webpackPolyfill`
+const isNode = typeof module !== 'undefined' && module['e' + 'xports'] && !module['webpackPolyfill']
 
 export function getSupportedColorMode(): ColorMode {
   // Only support 'ANSI' to avoid checking Windows version.
