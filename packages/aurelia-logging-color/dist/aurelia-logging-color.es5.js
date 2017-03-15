@@ -414,7 +414,8 @@ var vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined;
 var isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false;
 var isFirefox = userAgent ? /firefox/i.test(userAgent) : false;
 // use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
-var isNode = typeof module !== 'undefined' && module['e' + 'xports'];
+// webpack provides a fake `module`. Need to exclude it by checking `webpackPolyfill`
+var isNode = typeof module !== 'undefined' && module['e' + 'xports'] && !module['webpackPolyfill'];
 function getSupportedColorMode() {
     // Only support 'ANSI' to avoid checking Windows version.
     // This eliminate the need of 'os' module thus not getting into
