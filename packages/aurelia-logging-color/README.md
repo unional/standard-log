@@ -8,7 +8,7 @@
 ![badge-size-es5-url]
 ![badge-size-es2015-url]
 
-`ColorAppender` for `aurelia-logging`.
+`ColorAppender` for [`aurelia-logging`](https://github.com/aurelia/logging).
 
 ## Why color
 
