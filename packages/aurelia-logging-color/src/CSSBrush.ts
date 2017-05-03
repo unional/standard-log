@@ -24,7 +24,7 @@ export class CSSBrush implements Brush {
     const border = rgbHex(rgb.map(x => Math.max(0, x - 32)))
     const color = rgb.every(x => x < 220) ? '#ffffff' : '#000000'
     let idStr = `%c ${id} `
-    if (rest.length > 1 && rest[0].toString().indexOf('%c') !== -1) {
+    if (rest.length > 1 && typeof rest[0] === 'string' && rest[0].indexOf('%c') !== -1) {
       idStr += rest.shift()
     }
     return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};bother: 1px solid ${border};color: ${color};`, ...rest]
