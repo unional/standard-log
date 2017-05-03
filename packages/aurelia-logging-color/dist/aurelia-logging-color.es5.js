@@ -340,7 +340,7 @@ var CSSBrush = (function () {
         var border = color_map_1.rgbHex(rgb.map(function (x) { return Math.max(0, x - 32); }));
         var color = rgb.every(function (x) { return x < 220; }) ? '#ffffff' : '#000000';
         var idStr = "%c " + id + " ";
-        if (rest.length > 1 && rest[0].indexOf('%c') !== -1) {
+        if (rest.length > 1 && rest[0].toString().indexOf('%c') !== -1) {
             idStr += rest.shift();
         }
         return [idStr, "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";bother: 1px solid " + border + ";color: " + color + ";"].concat(rest);
