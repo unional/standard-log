@@ -14,3 +14,15 @@ test('color cycling', _t => {
     log.error('   x', Date.now())
   }
 })
+
+test('log error', _t => {
+  addAppender(new ColorAppender({
+    colorMode: 'CSS',
+    coloringText: true,
+    maxColor: 10
+  }))
+  const log = getLogger('logError')
+  log.error(new Error('oh??') as any)
+
+  // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: oh?? ...stack"
+})
