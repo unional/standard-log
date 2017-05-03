@@ -13,7 +13,7 @@ export interface BrushOption {
   coloringText: boolean
 }
 export interface Brush {
-  color(id: string, ...rest: string[]): string[]
+  color(id: string, ...rest: any[]): string[]
 }
 
 export type ColorMode = 'CSS' | 'ANSI' | 'ANSI16M' | 'NONE'

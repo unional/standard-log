@@ -4,7 +4,7 @@ import { rainbow } from './colors'
 import { BrushOption, Brush } from './interfaces'
 
 export class Ansi16mBrush implements Brush {
-  public color: (id: string, ...rest: string[]) => string[]
+  public color: (id: string, ...rest: any[]) => string[]
   private count = 0
   private colors: RGB[]
   private map: { [index: string]: RGB } = {}

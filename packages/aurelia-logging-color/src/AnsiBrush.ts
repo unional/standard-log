@@ -14,7 +14,7 @@ export class AnsiBrush implements Brush {
     }
   }
 
-  public color(id: string, ...rest: string[]) {
+  public color(id: string, ...rest: any[]) {
     const codes = this.getCodes(id)
     return [this.wrapAnsi(id, codes), ...rest]
   }
