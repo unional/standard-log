@@ -1,6 +1,13 @@
+// tslint:disable quotemark
 import test from 'ava'
 
 import { CSSBrush } from './CSSBrush'
+
+test('work with null', t => {
+  const brush = new CSSBrush({ maxColor: 10 })
+  const actual = brush.color('a', null)
+  t.deepEqual(actual, ["%c a ", "padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff;", null])
+})
 
 test('background', t => {
   const brush = new CSSBrush({ maxColor: 10 })
