@@ -8,9 +8,6 @@ notifications:
 node_js:
   - "stable"
 
-before_install:
-  - npm install -g npm
-
 script:
   - npm run verify
 
