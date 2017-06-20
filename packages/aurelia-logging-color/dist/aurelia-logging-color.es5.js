@@ -7,9 +7,9 @@ var AureliaLoggingColor =
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -64,7 +64,7 @@ var AureliaLoggingColor =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 13);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -73,6 +73,7 @@ var AureliaLoggingColor =
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.rainbow = [
     { index: 0, rgb: [150, 0, 90] },
     { index: 0.125, rgb: [0, 0, 200] },
@@ -127,11 +128,11 @@ function createColors(from, to, shades, alpha) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createColors__ = __webpack_require__(1);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "createColors", function() { return __WEBPACK_IMPORTED_MODULE_0__createColors__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createColorsFromMap__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__createColorsFromMap__ = __webpack_require__(10);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "createColorsFromMap", function() { return __WEBPACK_IMPORTED_MODULE_1__createColorsFromMap__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rgbHex__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__rgbHex__ = __webpack_require__(11);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "rgbHex", function() { return __WEBPACK_IMPORTED_MODULE_2__rgbHex__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rgbaString__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__rgbaString__ = __webpack_require__(12);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "rgbaString", function() { return __WEBPACK_IMPORTED_MODULE_3__rgbaString__["a"]; });
 
 
@@ -145,6 +146,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var createBrush_1 = __webpack_require__(7);
 /**
  * A colored console log.
@@ -198,6 +200,7 @@ exports.ColorAppender = ColorAppender;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var color_map_1 = __webpack_require__(2);
 var colors_1 = __webpack_require__(0);
 var Ansi16mBrush = (function () {
@@ -256,6 +259,7 @@ exports.Ansi16mBrush = Ansi16mBrush;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var AnsiBrush = (function () {
     function AnsiBrush(option) {
         if (option === void 0) { option = {}; }
@@ -316,6 +320,7 @@ function createColorCodes() {
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var color_map_1 = __webpack_require__(2);
 var colors_1 = __webpack_require__(0);
 var CSSBrush = (function () {
@@ -361,6 +366,7 @@ exports.CSSBrush = CSSBrush;
 
 "use strict";
 
+Object.defineProperty(exports, "__esModule", { value: true });
 var environments_1 = __webpack_require__(8);
 var Ansi16mBrush_1 = __webpack_require__(4);
 var AnsiBrush_1 = __webpack_require__(5);
@@ -408,6 +414,7 @@ exports.PlainBrush = PlainBrush;
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {
+Object.defineProperty(exports, "__esModule", { value: true });
 var userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined;
 var vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined;
 // alternatively check `!!window.chrome`
@@ -427,15 +434,28 @@ function getSupportedColorMode() {
 }
 exports.getSupportedColorMode = getSupportedColorMode;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(12)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
+Object.defineProperty(exports, "__esModule", { value: true });
+__export(__webpack_require__(3));
+
+
+/***/ }),
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createColors__ = __webpack_require__(1);
 /* harmony export (immutable) */ __webpack_exports__["a"] = createColorsFromMap;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__createColors__ = __webpack_require__(1);
 
 /**
  * Create colors with specified color map.
@@ -460,7 +480,7 @@ function createColorsFromMap(colormap, shades, alpha) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -483,7 +503,7 @@ function d2h(d) {
 
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -494,7 +514,7 @@ function rgbaString(rgba) {
 
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -519,18 +539,6 @@ module.exports = function(module) {
 	}
 	return module;
 };
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-__export(__webpack_require__(3));
 
 
 /***/ })
