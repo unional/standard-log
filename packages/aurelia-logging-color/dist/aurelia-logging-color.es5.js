@@ -215,6 +215,19 @@ var environments_1 = __webpack_require__(6);
 var Ansi16mBrush_1 = __webpack_require__(8);
 var AnsiBrush_1 = __webpack_require__(12);
 var CSSBrush_1 = __webpack_require__(13);
+var PlainBrush = (function () {
+    function PlainBrush() {
+    }
+    PlainBrush.prototype.color = function (id) {
+        var rest = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            rest[_i - 1] = arguments[_i];
+        }
+        return [id].concat(rest);
+    };
+    return PlainBrush;
+}());
+exports.PlainBrush = PlainBrush;
 function createBrush(option) {
     if (option === void 0) { option = {}; }
     var colorMode = option.colorMode || environments_1.getSupportedColorMode();
@@ -237,19 +250,6 @@ function createBrush(option) {
     return brush;
 }
 exports.createBrush = createBrush;
-var PlainBrush = (function () {
-    function PlainBrush() {
-    }
-    PlainBrush.prototype.color = function (id) {
-        var rest = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            rest[_i - 1] = arguments[_i];
-        }
-        return [id].concat(rest);
-    };
-    return PlainBrush;
-}());
-exports.PlainBrush = PlainBrush;
 
 
 /***/ }),
@@ -259,13 +259,16 @@ exports.PlainBrush = PlainBrush;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(module) {
 Object.defineProperty(exports, "__esModule", { value: true });
+// tslint:disable-next-line strict-type-predicates
 var userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined;
+// tslint:disable-next-line strict-type-predicates
 var vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined;
 // alternatively check `!!window.chrome`
 var isChrome = userAgent && vendor ? /Chrome/.test(userAgent) && /Google Inc/.test(vendor) : false;
 var isFirefox = userAgent ? /firefox/i.test(userAgent) : false;
 // use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
 // webpack provides a fake `module`. Need to exclude it by checking `webpackPolyfill`
+// tslint:disable-next-line strict-type-predicates
 var isNode = typeof module !== 'undefined' && module['e' + 'xports'] && !module['webpackPolyfill'];
 function getSupportedColorMode() {
     // Only support 'ANSI' to avoid checking Windows version.
@@ -438,6 +441,7 @@ function rgbaString(rgba) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var calculatedCodes;
 var AnsiBrush = (function () {
     function AnsiBrush(option) {
         if (option === void 0) { option = {}; }
@@ -475,7 +479,6 @@ exports.AnsiBrush = AnsiBrush;
 // const styles = [1, 2, 4]
 // const foregroundColors = [31, 32, 33, 34, 35, 36]
 var backgroundColors = [41, 42, 43, 44, 45, 46];
-var calculatedCodes;
 function createColorCodes() {
     var baseCodes = backgroundColors.map(function (x) { return [x]; });
     baseCodes.push.apply(baseCodes, backgroundColors.map(function (x) { return [x, 31]; }));
@@ -501,6 +504,12 @@ function createColorCodes() {
 Object.defineProperty(exports, "__esModule", { value: true });
 var color_map_1 = __webpack_require__(0);
 var colors_1 = __webpack_require__(2);
+var gammaMap = {
+    rc: 0.2126,
+    gc: 0.7152,
+    bc: 0.0722,
+    lowc: 1 / 12.92
+};
 var CSSBrush = (function () {
     function CSSBrush(option) {
         if (option === void 0) { option = {}; }
@@ -521,17 +530,49 @@ var CSSBrush = (function () {
         var rgb = this.getRgb(id);
         var background = color_map_1.rgbHex(rgb);
         var border = color_map_1.rgbHex(rgb.map(function (x) { return Math.max(0, x - 32); }));
-        var color = rgb.every(function (x) { return x < 220; }) ? '#ffffff' : '#000000';
+        var foreground = this.getForeground(rgb);
         var idStr = "%c " + id + " ";
         if (rest.length > 1 && typeof rest[0] === 'string' && rest[0].indexOf('%c') !== -1) {
             idStr += rest.shift();
         }
-        return [idStr, "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";bother: 1px solid " + border + ";color: " + color + ";"].concat(rest);
+        return [idStr, "padding: 2px; margin: 2px; line-height: 1.8em;background: " + background + ";border: 1px solid " + border + ";color: " + foreground + ";"].concat(rest);
     };
     CSSBrush.prototype.getRgb = function (text) {
-        // It is ok to overlep color.
+        // It is ok to overlap color.
         // Not trying to be too smart about it.
         return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor];
+    };
+    CSSBrush.prototype.getForeground = function (background) {
+        // Setting the contrasting color as default
+        var color = this.getComplementary(background);
+        var bgLuminance = this.getRelativeLuminance(background);
+        var fgLuminance = (color === '#ffffff') ?
+            this.getRelativeLuminance([255, 255, 255]) :
+            this.getRelativeLuminance([0, 0, 0]);
+        var relativeL = bgLuminance > fgLuminance ? (bgLuminance + 0.05) / (fgLuminance + 0.05) : (fgLuminance + 0.05) / (bgLuminance + 0.05);
+        // Can set the contrast ratio based on text size later.
+        if (relativeL < 4.5) {
+            var avgLuminance = background[0] * gammaMap['rc'] + background[1] * gammaMap['gc'] + background[2] * gammaMap['bc'];
+            // If the relative contrast is lower than standard, we switch color to black/white
+            color = (avgLuminance < 220) ? '#ffffff' : '#000000';
+        }
+        return color;
+    };
+    CSSBrush.prototype.getComplementary = function (rgb) {
+        var r = 255 - rgb[0];
+        var g = 255 - rgb[1];
+        var b = 255 - rgb[2];
+        return color_map_1.rgbHex([r, g, b]);
+    };
+    CSSBrush.prototype.getRelativeLuminance = function (rgb) {
+        // https://www.w3.org/TR/WCAG/#relativeluminancedef
+        var rsrgb = rgb[0] / 255;
+        var gsrgb = rgb[1] / 255;
+        var bsrgb = rgb[2] / 255;
+        var r = rsrgb <= 0.03928 ? rsrgb * gammaMap['lowc'] : Math.pow((rsrgb + 0.055) / 1.055, 2.4);
+        var g = gsrgb <= 0.03928 ? gsrgb * gammaMap['lowc'] : Math.pow((gsrgb + 0.055) / 1.055, 2.4);
+        var b = bsrgb <= 0.03928 ? bsrgb * gammaMap['lowc'] : Math.pow((bsrgb + 0.055) / 1.055, 2.4);
+        return r * gammaMap['rc'] + g * gammaMap['gc'] + b * gammaMap['bc'];
     };
     return CSSBrush;
 }());
