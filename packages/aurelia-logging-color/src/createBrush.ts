@@ -6,6 +6,12 @@ import { Ansi16mBrush } from './Ansi16mBrush'
 import { AnsiBrush } from './AnsiBrush'
 import { CSSBrush } from './CSSBrush'
 
+export class PlainBrush implements Brush {
+  color(id: string, ...rest: string[]) {
+    return [id, ...rest]
+  }
+}
+
 export function createBrush(option: Partial<BrushOption> & Partial<ColorModeOption> = {}) {
   const colorMode: ColorMode = option.colorMode || getSupportedColorMode()
 
@@ -26,10 +32,4 @@ export function createBrush(option: Partial<BrushOption> & Partial<ColorModeOpti
       break
   }
   return brush
-}
-
-export class PlainBrush implements Brush {
-  color(id: string, ...rest: string[]) {
-    return [id, ...rest]
-  }
 }

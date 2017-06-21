@@ -1,5 +1,7 @@
 import { BrushOption, Brush } from './interfaces'
 
+let calculatedCodes: number[][]
+
 export class AnsiBrush implements Brush {
   private count = 0
   private codes: number[][]
@@ -37,7 +39,6 @@ export class AnsiBrush implements Brush {
 // const styles = [1, 2, 4]
 // const foregroundColors = [31, 32, 33, 34, 35, 36]
 const backgroundColors = [41, 42, 43, 44, 45, 46]
-let calculatedCodes: number[][]
 
 function createColorCodes() {
   let baseCodes: number[][] = backgroundColors.map(x => [x])

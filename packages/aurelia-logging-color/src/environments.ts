@@ -1,6 +1,9 @@
 import { ColorMode } from './interfaces'
 
+// tslint:disable-next-line strict-type-predicates
 const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined
+
+// tslint:disable-next-line strict-type-predicates
 const vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined
 
 // alternatively check `!!window.chrome`
@@ -9,6 +12,7 @@ const isFirefox = userAgent ? /firefox/i.test(userAgent) : false
 
 // use `module['e' + 'xports']` to avoid triggering failure in webpack during consumption.
 // webpack provides a fake `module`. Need to exclude it by checking `webpackPolyfill`
+// tslint:disable-next-line strict-type-predicates
 const isNode = typeof module !== 'undefined' && module['e' + 'xports'] && !module['webpackPolyfill']
 
 export function getSupportedColorMode(): ColorMode {
