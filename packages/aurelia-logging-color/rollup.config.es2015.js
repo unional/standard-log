@@ -15,7 +15,7 @@ export default {
   entry: 'dist/es2015/index.js',
   exports: 'named',
   format: 'iife',
-  moduleId: pkg.name,
+  amd: { id: pkg.name },
   moduleName,
   // This may comes handy
   // onwarn(warning) {
