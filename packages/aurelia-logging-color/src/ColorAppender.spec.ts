@@ -3,7 +3,7 @@ import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
 
 import { ColorAppender } from './ColorAppender'
 
-test('color cycling', _t => {
+test('color cycling', t => {
   addAppender(new ColorAppender())
   setLevel(logLevel.debug)
   for (let i = 0; i < 25; i++) {
@@ -13,9 +13,10 @@ test('color cycling', _t => {
     log.warn('  x ', Date.now())
     log.error('   x', Date.now())
   }
+  t.pass()
 })
 
-test('log error', _t => {
+test('log error', t => {
   addAppender(new ColorAppender({
     colorMode: 'CSS',
     coloringText: true,
@@ -23,6 +24,6 @@ test('log error', _t => {
   }))
   const log = getLogger('logError')
   log.error(new Error('oh??') as any)
-
+  t.pass()
   // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: oh?? ...stack"
 })
