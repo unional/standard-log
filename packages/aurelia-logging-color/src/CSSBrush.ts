@@ -29,12 +29,12 @@ export class CSSBrush implements Brush {
     const rgb = this.getRgb(id)
     const background = rgbHex(rgb)
     const border = rgbHex(rgb.map(x => Math.max(0, x - 32)))
-    const foreground = this.getForeground(rgb)
+    const color = this.getForegroundColor(rgb)
     let idStr = `%c ${id} `
     if (rest.length > 1 && typeof rest[0] === 'string' && rest[0].indexOf('%c') !== -1) {
       idStr += rest.shift()
     }
-    return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${foreground};`, ...rest]
+    return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...rest]
   }
 
   private getRgb(text: string) {
@@ -43,7 +43,7 @@ export class CSSBrush implements Brush {
     return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor]
   }
 
-  private getForeground(background) {
+  private getForegroundColor(background) {
     // Setting the contrasting color as default
     let color = this.getComplementary(background)
     const bgLuminance = this.getRelativeLuminance(background)
