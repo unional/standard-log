@@ -16,7 +16,7 @@
     "bundle-es2015": "rollup --config rollup.config.es2015.js",
     "bundle-es5": "webpack --config webpack.config.es5.js",
     "clean": "rimraf dist/es5 dist/es2015",
-    "coverage": "nyc --check-coverage --branches 80 --functions 85 --lines 85 npm test",
+    "coverage": "nyc --check-coverage npm test",
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dc": "npm run dependency-check",
     "demo": "npm run prepare && node scripts/demo.js",
