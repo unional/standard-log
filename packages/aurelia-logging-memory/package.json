@@ -73,7 +73,7 @@
     "browser-env": "^2.0.19",
     "core-js": "^2.4.1",
     "dependency-check": "^2.7.0",
-    "eslint": "^3.14.0",
+    "eslint": "^4.0.0",
     "eslint-config-unional": "^0.2.3",
     "nyc": "^11.0.2",
     "param-case": "^2.1.0",
