@@ -1,5 +1,7 @@
 # aurelia-logging-color
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/unional/aurelia-logging-color.svg)](https://greenkeeper.io/)
+
 [![unstable][unstable-image]][unstable-url]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
