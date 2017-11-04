@@ -38,6 +38,8 @@ export class AnsiBrush implements Brush {
 // Bright, dim, underscore
 // const styles = [1, 2, 4]
 // const foregroundColors = [31, 32, 33, 34, 35, 36]
+
+// red, green, yellow, blue, pink, sky
 const backgroundColors = [41, 42, 43, 44, 45, 46]
 
 function createColorCodes() {
@@ -50,10 +52,26 @@ function createColorCodes() {
   baseCodes.push(...backgroundColors.map(x => [x, 35]))
   baseCodes.push(...backgroundColors.map(x => [x, 36]))
 
-  baseCodes = baseCodes.filter(x => x.length === 1 || x[0] !== x[1] + 10)
+  baseCodes = filterSameForegroundBackgroundColors(baseCodes)
+  baseCodes = filterHandPickedColors(baseCodes)
 
   const brighten = baseCodes.map(x => [...x, 1])
   const dimmed = baseCodes.map(x => [...x, 2])
   const underscored = baseCodes.map(x => [...x, 4])
   return [...baseCodes, ...brighten, ...dimmed, ...underscored]
+}
+
+function filterSameForegroundBackgroundColors(baseCodes) {
+  return baseCodes.filter(x => x.length === 1 || x[0] !== x[1] + 10)
+}
+
+function filterHandPickedColors(baseCodes) {
+  return baseCodes.filter(x => !(
+    (x.length === 1 && x[0] === 43)
+    || (x.length === 2 && x[0] === 45 && x[1] === 31)
+    || (x.length === 2 && x[0] === 46 && x[1] === 32)
+    || (x.length === 2 && x[0] === 41 && x[1] === 34)
+    || (x.length === 2 && x[0] === 45 && x[1] === 35)
+    || (x.length === 2 && x[0] === 41 && x[1] === 35)
+  ))
 }
