@@ -2,7 +2,7 @@ import { Logger } from 'aurelia-logging'
 
 import { BrushOption, Brush, ColorModeOption } from './interfaces'
 import { createBrush } from './createBrush'
-
+import { isNode } from './environments'
 export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 }
 
@@ -26,6 +26,7 @@ export class ColorAppender {
     console.info.apply(console, this.brush.color(logger.id, ...rest))
   }
   debug(logger: Logger, ...rest: any[]) {
-    (console.debug || console.log).apply(console, this.brush.color(logger.id, ...rest))
+    const method = isNode || !console.debug ? console.log : console.debug;
+    method.apply(console, this.brush.color(logger.id, ...rest))
   }
 }
