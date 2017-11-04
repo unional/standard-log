@@ -3,6 +3,7 @@ import { Logger } from 'aurelia-logging'
 import { BrushOption, Brush, ColorModeOption } from './interfaces'
 import { createBrush } from './createBrush'
 import { isNode } from './environments'
+
 export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 }
 
