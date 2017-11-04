@@ -21,7 +21,7 @@
     "dc": "npm run dependency-check",
     "demo": "npm run prepublish && node scripts/demo.js",
     "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json --type-check \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "postpublish": "git push",
     "prepublish": "npm run build && npm run bundle",
     "preversion": "git pull && npm run verify && npm run build-es2015 && npm run bundle && git add -f dist/aurelia-logging-color*",
