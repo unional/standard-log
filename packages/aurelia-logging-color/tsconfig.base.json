@@ -3,7 +3,6 @@
     "declaration": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "inlineSources": true,
     "lib": [
       "dom",
       "es2015",
@@ -18,5 +17,8 @@
     "removeComments": false,
     "sourceMap": true,
     "strictNullChecks": true
-  }
+  },
+  "files": [
+    "src/index.ts"
+  ]
 }

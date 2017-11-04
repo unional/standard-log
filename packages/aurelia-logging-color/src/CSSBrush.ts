@@ -28,7 +28,7 @@ export class CSSBrush implements Brush {
     // TODO style (italic, bold, underscore) rotation
     const rgb = this.getRgb(id)
     const background = rgbHex(rgb)
-    const border = rgbHex(rgb.map(x => Math.max(0, x - 32)))
+    const border = rgbHex(rgb.map(x => Math.max(0, x - 32)) as any)
     const color = this.getForegroundColor(rgb)
     let idStr = `%c ${id} `
     if (rest.length > 1 && typeof rest[0] === 'string' && rest[0].indexOf('%c') !== -1) {
