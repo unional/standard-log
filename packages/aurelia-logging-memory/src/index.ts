@@ -1,4 +1,15 @@
-import { Logger, logLevel } from 'aurelia-logging'
+import { Logger, LogLevel } from 'aurelia-logging'
+
+/**
+ * Specifies the available logging levels.
+ */
+const logLevel: LogLevel = {
+  none: 0,
+  error: 1,
+  warn: 2,
+  info: 3,
+  debug: 4
+};
 
 export interface LogEntry {
   id: string
@@ -9,16 +20,16 @@ export interface LogEntry {
 export class MemoryAppender {
   public logs: LogEntry[] = []
   debug(logger: Logger, ...messages) {
-    this.logs.push({ id: logger.id, level: logLevel.debug, messages})
+    this.logs.push({ id: logger.id, level: logLevel.debug, messages })
   }
   info(logger: Logger, ...messages) {
-    this.logs.push({ id: logger.id, level: logLevel.info, messages})
+    this.logs.push({ id: logger.id, level: logLevel.info, messages })
   }
   warn(logger: Logger, ...messages) {
-    this.logs.push({ id: logger.id, level: logLevel.warn, messages})
+    this.logs.push({ id: logger.id, level: logLevel.warn, messages })
   }
   error(logger: Logger, ...messages) {
-    this.logs.push({ id: logger.id, level: logLevel.error, messages})
+    this.logs.push({ id: logger.id, level: logLevel.error, messages })
   }
 }
 
