@@ -21,7 +21,7 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "dc": "npm run dependency-check",
     "demo": "npm run prepare && node scripts/demo.js",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "postpublish": "git push",
     "prepare": "npm run build && npm run bundle",
