@@ -25,7 +25,15 @@ import { getLogger } from '@unional/logging'
 
 const log = getLogger('mylogger')
 
-log.onDebug(log => log(getLogMessageThatIsTimeConsumingToCreate()))
+log.error(...)
+log.warn(...)
+log.info(...)
+log.debug(...)
+
+log.onError(log => log(getLogMessageThatIsTimeConsumingToCreate()))
+log.onWarn(...)
+log.onInfo(...)
+log.onDebug(...)
 
 function getLogMessageThatIsTimeConsumingToCreate() {
   ...
