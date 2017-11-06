@@ -8,7 +8,8 @@
   "files": [
     "dist",
     "dist-es5",
-    "dist-es2015"
+    "dist-es2015",
+    "src"
   ],
   "scripts": {
     "build": "npm run clean && npm run build-es5",
@@ -17,9 +18,10 @@
     "bundle": "webpack",
     "clean": "rimraf dist dist-es5 dist-es2015",
     "dc": "npm run dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i plugin-typescript -i systemjs -i @types/systemjs -i @types/jsdom && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "postpublish": "git push",
+    "prepublish": "npm run build && npm run bundle",
     "preversion": "git pull && npm run verify",
     "version": "npm run remove-spec",
     "verify": "npm run lint && npm run coverage && npm run dependency-check",
