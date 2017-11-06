@@ -36,7 +36,7 @@ function getLogMessageThatIsTimeConsumingToCreate() {
 [unstable-url]: http://github.com/badges/stability-badges
 [npm-image]: https://img.shields.io/npm/v/@unional/logging.svg?style=flat
 [npm-url]: https://npmjs.org/package/@unional/logging
-[downloads-image]: https://img.shields.io/npm/dm/@unional/logging.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dt/@unional/logging.svg?style=flat
 [downloads-url]: https://npmjs.org/package/@unional/logging
 [travis-image]: https://img.shields.io/travis/unional/logging/master.svg?style=flat
 [travis-url]: https://travis-ci.org/unional/logging?branch=master
