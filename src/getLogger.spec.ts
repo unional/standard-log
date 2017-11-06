@@ -2,8 +2,9 @@ import { test } from 'ava'
 import { MemoryAppender } from 'aurelia-logging-memory'
 
 import { getLogger, addAppender, removeAppender, setLevel, logLevel } from './index'
+import { logLevelNameMap } from './utils'
 
-let appender
+let appender: MemoryAppender
 test.before(() => {
   appender = new MemoryAppender()
   addAppender(appender)
@@ -74,13 +75,6 @@ function assertLogFunctionNotCalledAtLocalLevel(t, log, globalLevel, localLevel)
   log.setLevel(localLevel)
   t.plan(0)
   log[log.id](() => t.fail())
-}
-
-const logLevelNameMap = {
-  0: 'none',
-  1: 'error',
-  2: 'warn',
-  3: 'info'
 }
 
 function shouldLog(method, level) {
@@ -258,3 +252,18 @@ shouldNotCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.error)
 shouldNotCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.warn)
 shouldNotCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.info)
 shouldCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.debug)
+
+test('on???() logs to corresponding log', t => {
+  const log = getLogger('onXXX')
+  log.setLevel(logLevel.debug)
+  log.onDebug(log => log('debug'))
+  log.onInfo(log => log('info'))
+  log.onWarn(log => log('warn'))
+  log.onError(log => log('error'))
+  t.deepEqual(appender.logs.map(l => l.messages[0]), [
+    'debug',
+    'info',
+    'warn',
+    'error'
+  ])
+})

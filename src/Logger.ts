@@ -1,5 +1,6 @@
 import { Logger as ALogger, logLevel } from 'aurelia-logging'
 import { logMethod } from './interfaces'
+import { logLevelNameMap } from './utils'
 
 export class LoggerImpl implements ALogger {
   get id() {
@@ -50,6 +51,6 @@ export class LoggerImpl implements ALogger {
 
   private on(logLevel, logFunction) {
     if (this.level >= logLevel)
-      logFunction(this.logger)
+      logFunction(this.logger[logLevelNameMap[logLevel]].bind(this.logger))
   }
 }
