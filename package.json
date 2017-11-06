@@ -1,7 +1,7 @@
 {
   "name": "@unional/logging",
   "description": "A logging library that doesn't suck",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "dist-es5/index.js",
   "module": "dist-es2015/index.js",
   "typings": "dist-es5/index.d.ts",
