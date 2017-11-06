@@ -1,0 +1,26 @@
+language: node_js
+
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+
+node_js:
+  - "stable"
+
+branches:
+  only:
+    - "master"
+
+before_install:
+- npm install -g greenkeeper-lockfile@1
+
+before_script: greenkeeper-lockfile-update
+
+script:
+  - npm run verify
+
+after_script: greenkeeper-lockfile-upload
+
+after_success:
+  - npm install coveralls && npm run coveralls

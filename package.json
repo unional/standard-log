@@ -1,0 +1,86 @@
+{
+  "name": "@unional/logging",
+  "description": "A logging library that doesn't suck",
+  "version": "0.1.8",
+  "main": "dist-es5/index.js",
+  "module": "dist-es2015/index.js",
+  "typings": "dist-es5/index.d.ts",
+  "files": [
+    "dist",
+    "dist-es5",
+    "dist-es2015"
+  ],
+  "scripts": {
+    "build": "npm run clean && npm run build-es5",
+    "build-es2015": "tsc -p tsconfig.es2015.json",
+    "build-es5": "tsc -p tsconfig.es5.json",
+    "bundle": "webpack",
+    "clean": "rimraf dist dist-es5 dist-es2015",
+    "dc": "npm run dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev -i plugin-typescript -i systemjs -i @types/systemjs -i @types/jsdom && dependency-check . --missing --no-dev",
+    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
+    "postpublish": "git push",
+    "preversion": "git pull && npm run verify",
+    "version": "npm run remove-spec",
+    "verify": "npm run lint && npm run coverage && npm run dependency-check",
+    "coverage": "nyc npm test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "remove-spec": "rimraf dist-es5/**/*.spec.*",
+    "test": "npm run clean && tsc && ava",
+    "watch": "npm run clean && node scripts/watch.js"
+  },
+  "author": {
+    "name": "Homa Wong",
+    "email": "homawong@gmail.com"
+  },
+  "homepage": "https://github.com/unional/logging",
+  "bugs": {
+    "url": "https://github.com/unional/logging/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/unional/logging.git"
+  },
+  "license": "MIT",
+  "ava": {
+    "files": [
+      "dist-es5/**/*.spec.js"
+    ],
+    "source": [
+      "scripts/*.js",
+      "dist-es5/**/*.js",
+      "fixtures/**/*",
+      "*.json"
+    ]
+  },
+  "nyc": {
+    "exclude": [
+      "scripts",
+      "**/*.spec.*",
+      "**/fixtures/**/*"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.47",
+    "aurelia-logging-color": "^0.5.9",
+    "aurelia-logging-memory": "^0.2.1",
+    "ava": "^0.23.0",
+    "dependency-check": "^2.9.1",
+    "eslint": "^4.10.0",
+    "eslint-config-unional": "^0.2.3",
+    "nyc": "^11.3.0",
+    "param-case": "^2.1.1",
+    "pascal-case": "^2.0.1",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^3.1.1",
+    "tslint": "^5.8.0",
+    "tslint-config-unional": "^0.8.0",
+    "typescript": "^2.6.1",
+    "uglifyjs-webpack-plugin": "^1.0.1",
+    "webpack": "^3.8.1"
+  },
+  "dependencies": {
+    "aurelia-logging": "^1.3.1",
+    "global-store": "^0.7.2"
+  }
+}
