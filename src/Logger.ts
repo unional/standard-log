@@ -11,7 +11,7 @@ export class LoggerImpl implements ALogger {
     return this.logger.level
   }
 
-  constructor(protected logger: ALogger) { }
+  constructor(private logger: ALogger) { }
 
   debug(...args: any[]): void {
     this.logger.debug.apply(this.logger, args)
