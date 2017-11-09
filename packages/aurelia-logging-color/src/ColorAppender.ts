@@ -18,16 +18,31 @@ export class ColorAppender {
     this.brush = createBrush(option)
   }
   error(logger: Logger, ...rest: any[]) {
-    console.error.apply(console, this.brush.color(logger.id, ...rest))
+    // the `typeof` guards against IE where `console.log.apply()`
+    // results in error `Object doesn't support property or method 'apply'`
+    // istanbul ignore next
+    // tslint:disable-next-line
+    if (typeof console.error === 'function')
+      console.error.apply(console, this.brush.color(logger.id, ...rest))
   }
   warn(logger: Logger, ...rest: any[]) {
-    console.warn.apply(console, this.brush.color(logger.id, ...rest))
+    // istanbul ignore next
+    // tslint:disable-next-line
+    if (typeof console.warn === 'function')
+      console.warn.apply(console, this.brush.color(logger.id, ...rest))
   }
   info(logger: Logger, ...rest: any[]) {
-    console.info.apply(console, this.brush.color(logger.id, ...rest))
+    // istanbul ignore next
+    // tslint:disable-next-line
+    if (typeof console.info === 'function')
+      console.info.apply(console, this.brush.color(logger.id, ...rest))
   }
   debug(logger: Logger, ...rest: any[]) {
-    const method = isNode || !console.debug ? console.log : console.debug;
-    method.apply(console, this.brush.color(logger.id, ...rest))
+    // istanbul ignore next
+    // tslint:disable-next-line
+    if (typeof console.debug === 'function') {
+      const method = isNode || !console.debug ? console.log : console.debug;
+      method.apply(console, this.brush.color(logger.id, ...rest))
+    }
   }
 }
