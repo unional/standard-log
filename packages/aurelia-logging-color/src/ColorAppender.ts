@@ -38,10 +38,13 @@ export class ColorAppender {
       console.info.apply(console, this.brush.color(logger.id, ...rest))
   }
   debug(logger: Logger, ...rest: any[]) {
+    // Node@7 or below has `console.debug = undefined`
+    // Should use `console.log()` in that case.
+    // istanbul ignore next
+    const method = isNode || !console.debug ? console.log : console.debug;
     // istanbul ignore next
     // tslint:disable-next-line
-    if (typeof console.debug === 'function') {
-      const method = isNode || !console.debug ? console.log : console.debug;
+    if (typeof method === 'function') {
       method.apply(console, this.brush.color(logger.id, ...rest))
     }
   }
