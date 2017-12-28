@@ -1,3 +1,5 @@
+import './console-polyfill'
+
 import { addAppender, Appender, getLevel, LogLevel, logLevel, removeAppender, setLevel } from 'aurelia-logging'
 
 export { addAppender, Appender, getLevel, LogLevel, logLevel, removeAppender, setLevel }
