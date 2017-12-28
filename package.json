@@ -1,7 +1,7 @@
 {
   "name": "@unional/logging",
   "description": "A logging library that doesn't suck",
-  "version": "0.2.3",
+  "version": "0.0.0-development",
   "main": "dist-es5/index.js",
   "module": "dist-es2015/index.js",
   "typings": "dist-es5/index.d.ts",
@@ -30,7 +30,8 @@
     "coveralls": "nyc report --reporter=text-lcov | coveralls",
     "remove-spec": "rimraf dist-es5/**/*.spec.*",
     "test": "npm run clean && tsc && ava",
-    "watch": "npm run clean && node scripts/watch.js"
+    "watch": "npm run clean && node scripts/watch.js",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "author": {
     "name": "Homa Wong",
@@ -42,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/unional/logging.git"
+    "url": "https://github.com/unional/logging.git"
   },
   "license": "MIT",
   "ava": {
@@ -81,7 +82,8 @@
     "tslint-config-unional": "^0.8.0",
     "typescript": "^2.6.1",
     "uglifyjs-webpack-plugin": "^1.0.1",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "semantic-release": "^11.0.2"
   },
   "dependencies": {
     "aurelia-logging": "^1.3.1",
