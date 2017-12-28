@@ -1,7 +1,7 @@
 export const logLevelNameMap = {
   0: 'none',
-  10: 'error',
-  20: 'warn',
-  30: 'info',
-  40: 'debug'
+  1: 'error',
+  2: 'warn',
+  3: 'info',
+  4: 'debug'
 }
