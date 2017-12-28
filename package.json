@@ -64,7 +64,7 @@
   "devDependencies": {
     "@types/node": "^8.0.47",
     "aurelia-logging-color": "^0.5.9",
-    "aurelia-logging-memory": "^0.2.1",
+    "aurelia-logging-memory": "^0.3.0",
     "ava": "^0.24.0",
     "browser-sync": "^2.18.13",
     "dependency-check": "^2.9.1",
