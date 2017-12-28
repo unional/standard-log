@@ -1,5 +1,5 @@
 import test from 'ava'
-import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
+import { addAppender, setLevel, getLogger, logLevel, addCustomLevel } from 'aurelia-logging'
 import { MemoryAppender, stringifyLogLevel } from './index'
 
 test('MemoryAppender', t => {
@@ -34,4 +34,26 @@ test('stringifyLogLevel', t => {
   t.is(stringifyLogLevel(logLevel.info), 'INFO')
   t.is(stringifyLogLevel(logLevel.warn), 'WARN')
   t.is(stringifyLogLevel(logLevel.error), 'ERROR')
+})
+
+test('add custom level will log entry', t => {
+  const appender = new MemoryAppender()
+  addAppender(appender)
+
+  addCustomLevel('trace', 35)
+  MemoryAppender.addCustomLevel('trace', 35)
+
+  const log = getLogger('custom level')
+  setLevel(34)
+  log['trace']('should not trace')
+  setLevel(36)
+  log['trace']('tracing')
+
+  t.is(appender.logs.length, 1)
+  t.deepEqual(appender.logs[0], { id: 'custom level', level: 35, messages: ['tracing'] })
+})
+
+test('add custom level will stringify', t => {
+  addCustomLevel('trace2', 45)
+  t.is(stringifyLogLevel(45), 'TRACE2')
 })

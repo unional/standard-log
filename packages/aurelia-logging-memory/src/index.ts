@@ -1,15 +1,5 @@
-import { Logger, LogLevel } from 'aurelia-logging'
-
-/**
- * Specifies the available logging levels.
- */
-const logLevel: LogLevel = {
-  none: 0,
-  error: 1,
-  warn: 2,
-  info: 3,
-  debug: 4
-};
+import { Logger, logLevel } from 'aurelia-logging'
+import upperCase = require('upper-case')
 
 export interface LogEntry {
   id: string
@@ -17,8 +7,15 @@ export interface LogEntry {
   messages: any[]
 }
 
+
 export class MemoryAppender {
-  public logs: LogEntry[] = []
+  static addCustomLevel(name, level) {
+    MemoryAppender.prototype[name] = function (logger: Logger, ...messages) {
+      this.logs.push({ id: logger.id, level, messages })
+    }
+  }
+  public logs: LogEntry[] = [];
+
   debug(logger: Logger, ...messages) {
     this.logs.push({ id: logger.id, level: logLevel.debug, messages })
   }
@@ -34,14 +31,5 @@ export class MemoryAppender {
 }
 
 export function stringifyLogLevel(level: number) {
-  switch (level) {
-    case logLevel.debug:
-      return 'DEBUG'
-    case logLevel.error:
-      return 'ERROR'
-    case logLevel.info:
-      return 'INFO'
-    case logLevel.warn:
-      return 'WARN'
-  }
+  return upperCase(Object.keys(logLevel).find(n => logLevel[n] === level) || level.toString())
 }
