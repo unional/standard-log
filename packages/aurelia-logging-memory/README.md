@@ -6,7 +6,6 @@
 [![Build status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
 ![badge-size-es5-url]
-![badge-size-es2015-url]
 [![Greenkeeper badge](https://badges.greenkeeper.io/unional/aurelia-logging-memory.svg)](https://greenkeeper.io/)
 
 `MemoryAppender` for `aurelia-logging`.
