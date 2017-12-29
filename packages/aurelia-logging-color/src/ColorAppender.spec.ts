@@ -1,5 +1,5 @@
 import test from 'ava'
-import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
+import { addAppender, setLevel, getLogger, logLevel, addCustomLevel } from 'aurelia-logging'
 
 import { ColorAppender } from './ColorAppender'
 
@@ -26,4 +26,16 @@ test('log error', t => {
   log.error(new Error('oh??') as any)
   t.pass()
   // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: oh?? ...stack"
+})
+
+test('support custom level', t => {
+  addCustomLevel('trace', 35)
+  ColorAppender.addCustomLevel('trace', 35)
+  const log = getLogger('custom level')
+  setLevel(34)
+  log['trace']('should not trace')
+  setLevel(36)
+  log['trace']('tracing')
+  t.pass()
+  // Inspect visually
 })
