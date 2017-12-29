@@ -62,28 +62,28 @@
     ]
   },
   "devDependencies": {
-    "@types/node": "^8.0.47",
-    "aurelia-logging-color": "^0.5.9",
+    "@types/node": "^8.5.2",
+    "aurelia-logging-color": "^0.5.12",
     "aurelia-logging-memory": "^0.3.0",
     "ava": "^0.24.0",
-    "browser-sync": "^2.18.13",
-    "dependency-check": "^2.9.1",
-    "eslint": "^4.10.0",
+    "browser-sync": "^2.22.0",
+    "dependency-check": "^2.9.2",
+    "eslint": "^4.14.0",
     "eslint-config-unional": "^0.2.3",
-    "nyc": "^11.3.0",
+    "nyc": "^11.4.1",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
     "rimraf": "^2.6.2",
-    "ts-loader": "^3.1.1",
+    "semantic-release": "^11.1.0",
+    "ts-loader": "^3.2.0",
     "tslint": "^5.8.0",
     "tslint-config-unional": "^0.8.0",
-    "typescript": "^2.6.1",
-    "uglifyjs-webpack-plugin": "^1.0.1",
-    "webpack": "^3.8.1",
-    "semantic-release": "^11.0.2"
+    "typescript": "^2.6.2",
+    "uglifyjs-webpack-plugin": "^1.1.5",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
-    "aurelia-logging": "^1.3.1",
+    "aurelia-logging": "^1.4.0",
     "global-store": "^0.7.2"
   }
 }
