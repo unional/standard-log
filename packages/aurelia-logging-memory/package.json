@@ -12,7 +12,7 @@
     "src"
   ],
   "scripts": {
-    "build": "npm run clean && npm run build-es5",
+    "build": "npm run clean && npm run build-es5 && npm run bundle",
     "build-es2015": "tsc -p tsconfig.es2015.json",
     "build-es5": "tsc -p tsconfig.es5.json",
     "bundle": "webpack",
@@ -25,7 +25,7 @@
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build && npm run bundle",
     "remove-spec": "rimraf dist-es5/**/*.spec.*",
-    "test": "npm run clean && tsc && ava",
+    "test": "npm run clean && tsc && ava && npm run bundle",
     "verify": "npm run lint && npm run coverage && npm run remove-spec && npm run dependency-check",
     "watch": "npm run clean && node scripts/watch.js",
     "semantic-release": "semantic-release"
