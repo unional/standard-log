@@ -64,7 +64,7 @@
     ]
   },
   "peerDependencies": {
-    "aurelia-logging": ">=1.2.0"
+    "aurelia-logging": ">=1.4.0"
   },
   "dependencies": {
     "color-map": "^0.5.11"
