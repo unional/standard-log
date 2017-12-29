@@ -1,7 +1,7 @@
 {
   "name": "aurelia-logging-color",
   "description": "ColorAppender for `aurelia-logging`",
-  "version": "0.5.11",
+  "version": "0.0.0-development",
   "main": "dist-es5/index.js",
   "module": "dist-es2015/index.js",
   "typings": "dist-es5/index.d.ts",
@@ -27,7 +27,8 @@
     "remove-spec": "rimraf dist-es5/**/*.spec.*",
     "test": "npm run clean && tsc && ava && npm run bundle",
     "verify": "npm run lint && npm run coverage && npm run remove-spec && npm run dependency-check",
-    "watch": "npm run clean && node scripts/watch.js"
+    "watch": "npm run clean && node scripts/watch.js",
+    "semantic-release": "semantic-release"
   },
   "author": {
     "name": "Homa Wong",
@@ -39,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/unional/aurelia-logging-color.git"
+    "url": "https://github.com/unional/aurelia-logging-color.git"
   },
   "license": "MIT",
   "ava": {
@@ -88,6 +89,7 @@
     "tslint-config-unional": "^0.8.0",
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.5",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "semantic-release": "^11.0.2"
   }
 }
