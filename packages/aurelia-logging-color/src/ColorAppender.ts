@@ -33,6 +33,9 @@ function getLogMethod(level: number) {
 
 // istanbul ignore next
 function nodeVersionBelow(major: number, minor = 0, patch = 0) {
+  // without this, systemjs will complain `process is not defined`
+  if (!global.process)
+    return false
   const versionString = process.version.startsWith('v') ? process.version.slice(1) : process.version
   const [actualMajor, actualMinor, actualPatch] = versionString.split('.').map(s => parseInt(s, 10))
   const checking = major * 1000 * 1000 + minor * 1000 + patch
