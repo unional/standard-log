@@ -32,14 +32,17 @@ addAppender(new ColorAppender())
 // turn on logging (this example do it globally)
 setLevel(logLevel.info)
 
-const logger = getLogger('something')
+const loggerA = getLogger('Logger A')
 
-logger.warn('Pretty Color')
+loggerA.warn('Pretty Color')
 
-const anotherLogger = getLogger('something else')
+const loggerB = getLogger('Logger B')
 
-logger.info('Nother pretty color!')
+loggerB.info('Nother pretty color!')
 ```
+
+Gives you:
+![](2018-01-01-20-32-59.png)
 
 Note that on windows 8 or below the constructor option is not in effect because there are not many color available.
 
