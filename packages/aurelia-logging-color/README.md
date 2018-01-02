@@ -42,6 +42,7 @@ loggerB.info('Nother pretty color!')
 ```
 
 Gives you:
+
 ![](2018-01-01-20-32-59.png)
 
 Note that on windows 8 or below the constructor option is not in effect because there are not many color available.
