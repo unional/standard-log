@@ -40,7 +40,7 @@ function nodeVersionBelow(major: number, minor = 0, patch = 0) {
   const [actualMajor, actualMinor, actualPatch] = versionString.split('.').map(s => parseInt(s, 10))
   const checking = major * 1000 * 1000 + minor * 1000 + patch
   const actual = actualMajor * 1000 * 1000 + actualMinor * 1000 + actualPatch
-  return checking <= actual
+  return checking >= actual
 }
 
 /**
