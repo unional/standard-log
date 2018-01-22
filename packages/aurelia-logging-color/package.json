@@ -90,6 +90,6 @@
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0",
-    "semantic-release": "^11.0.2"
+    "semantic-release": "^12.2.4"
   }
 }
