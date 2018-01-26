@@ -65,7 +65,7 @@
     "@types/node": "^8.5.2",
     "aurelia-logging-color": "^0.5.12",
     "aurelia-logging-memory": "^0.3.0",
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "browser-sync": "^2.22.0",
     "dependency-check": "^3.0.0",
     "eslint": "^4.14.0",
