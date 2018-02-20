@@ -35,6 +35,9 @@ log.onWarn(...)
 log.onInfo(...)
 log.onDebug(...)
 
+// or
+log.onError(() => getLogMessageThatIsTimeConsumingToCreate())
+
 function getLogMessageThatIsTimeConsumingToCreate() {
   ...
 }

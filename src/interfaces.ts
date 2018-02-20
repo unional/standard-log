@@ -9,8 +9,8 @@ export interface Logger extends ALogger {
   error(...args: any[]): void
   setLevel(level: number): void
 
-  onError(logFunction: (log: logMethod) => void): void
-  onWarn(logFunction: (log: logMethod) => void): void
-  onInfo(logFunction: (log: logMethod) => void): void
-  onDebug(logFunction: (log: logMethod) => void): void
+  onError(logFunction: ((log: logMethod) => void) | (() => string)): void
+  onWarn(logFunction: ((log: logMethod) => void) | (() => string)): void
+  onInfo(logFunction: ((log: logMethod) => void) | (() => string)): void
+  onDebug(logFunction: ((log: logMethod) => void) | (() => string)): void
 }

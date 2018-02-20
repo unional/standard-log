@@ -50,7 +50,10 @@ export class LoggerImpl implements ALogger {
   }
 
   private on(logLevel, logFunction) {
-    if (this.level >= logLevel)
-      logFunction(this.logger[logLevelNameMap[logLevel]].bind(this.logger))
+    if (this.level >= logLevel) {
+      const logFn = this.logger[logLevelNameMap[logLevel]].bind(this.logger)
+      const result = logFunction(logFn)
+      if (result) logFn(result)
+    }
   }
 }

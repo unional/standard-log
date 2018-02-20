@@ -1,14 +1,6 @@
 {
-  "extends": "unional",
-  "root": true,
+  "extends": "plugin:unional/latest",
   "env": {
-    "node": true,
-    "es6": true
-  },
-  "rules": {
-    "func-names": 0,
-    "no-console": [
-      0
-    ]
+    "node": true
   }
 }

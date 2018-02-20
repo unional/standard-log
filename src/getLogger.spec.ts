@@ -267,3 +267,18 @@ test('on???() logs to corresponding log', t => {
     'error'
   ])
 })
+
+test(`pass '() => string' into on???() will log the result`, t => {
+  const log = getLogger('onXXX with () => string')
+  log.setLevel(logLevel.debug)
+  log.onDebug(() => 'debug')
+  log.onInfo(() => 'info')
+  log.onWarn(() => 'warn')
+  log.onError(() => 'error')
+  t.deepEqual(appender.logs.map(l => l.messages[0]), [
+    'debug',
+    'info',
+    'warn',
+    'error'
+  ])
+})
