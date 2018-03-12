@@ -1,5 +1,8 @@
 import { Logger as ALogger, logLevel } from 'aurelia-logging'
+
+import { hasAppender, addAppender } from './Appender'
 import { logMethod } from './interfaces'
+import { store } from './store'
 import { logLevelNameMap } from './utils'
 
 export class LoggerImpl implements ALogger {
@@ -14,18 +17,22 @@ export class LoggerImpl implements ALogger {
   constructor(private logger: ALogger) { }
 
   debug(...args: any[]): void {
+    addDefaultAppenderIfNeeded()
     this.logger.debug.apply(this.logger, args)
   }
 
   info(...args: any[]): void {
+    addDefaultAppenderIfNeeded()
     this.logger.info.apply(this.logger, args)
   }
 
   warn(...args: any[]): void {
+    addDefaultAppenderIfNeeded()
     this.logger.warn.apply(this.logger, args)
   }
 
   error(...args: any[]): void {
+    addDefaultAppenderIfNeeded()
     this.logger.error.apply(this.logger, args)
   }
 
@@ -55,5 +62,13 @@ export class LoggerImpl implements ALogger {
       const result = logFunction(logFn)
       if (result) logFn(result)
     }
+  }
+}
+
+function addDefaultAppenderIfNeeded() {
+  if (!hasAppender()) {
+    const defAppender = store.get().defaultAppender
+    if (defAppender)
+      addAppender(defAppender)
   }
 }

@@ -1,7 +1,9 @@
-import { addAppender, Appender, getLevel, LogLevel, logLevel, removeAppender, setLevel } from 'aurelia-logging'
+import { getLevel, LogLevel, logLevel, setLevel } from 'aurelia-logging'
 
-export { addAppender, Appender, getLevel, LogLevel, logLevel, removeAppender, setLevel }
+export { getLevel, LogLevel, logLevel, setLevel }
 
+export * from './Appender'
 export * from './getLogger'
 export * from './interfaces'
+export * from './setDefaultAppender'
 export * from './setLevels'

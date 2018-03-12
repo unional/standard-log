@@ -15,6 +15,7 @@ module.exports = {
   externals: {
     'global-store': 'GlobalStore'
   },
+  mode: 'production',
   module: {
     rules: [
       {
@@ -30,12 +31,7 @@ module.exports = {
   output: {
     path: path.resolve('dist'),
     filename: `${filename}.es5.js`,
-    library: globalVariable,
-    devtoolModuleFilenameTemplate: (info) => {
-      if (info.identifier.lastIndexOf('.ts') === info.identifier.length - 3) {
-        return `webpack:///${pjson.name}/${info.resource.slice(6)}`
-      }
-    }
+    library: globalVariable
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
