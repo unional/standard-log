@@ -78,7 +78,7 @@
     "rimraf": "^2.6.2",
     "ts-loader": "^3.2.0",
     "tslint": "^5.8.0",
-    "tslint-config-unional": "^0.8.0",
+    "tslint-config-unional": "^0.9.3",
     "typescript": "^2.6.2",
     "uglifyjs-webpack-plugin": "^1.1.5",
     "webpack": "^3.10.0",
