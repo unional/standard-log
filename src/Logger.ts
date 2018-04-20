@@ -14,7 +14,11 @@ export class LoggerImpl implements ALogger {
     return this.logger.level
   }
 
-  constructor(private logger: ALogger) { }
+  constructor(private logger: ALogger, defaultLogLevel?: number) {
+    if (defaultLogLevel !== undefined) {
+      logger.setLevel(defaultLogLevel)
+    }
+  }
 
   debug(...args: any[]): void {
     addDefaultAppenderIfNeeded()

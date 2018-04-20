@@ -282,3 +282,11 @@ test(`pass '() => string' into on???() will log the result`, t => {
     'error'
   ])
 })
+
+test(`set default log level`, t => {
+  let log = getLogger('defaultLogLevelDebug', logLevel.debug)
+  t.is(log.level, logLevel.debug)
+
+  log = getLogger('defaultLogLevelError', logLevel.error)
+  t.is(log.level, logLevel.error)
+})

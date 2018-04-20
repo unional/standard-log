@@ -4,11 +4,11 @@ import { Logger } from './interfaces'
 import { LoggerImpl } from './Logger'
 import { store } from './store'
 
-export function getLogger(id: string): Logger {
+export function getLogger(id: string, defaultLogLevel?: number): Logger {
   const { logs } = store.get()
 
   if (logs[id]) return logs[id]
 
-  return logs[id] = new LoggerImpl(getALogger(id))
+  return logs[id] = new LoggerImpl(getALogger(id), defaultLogLevel)
 }
 

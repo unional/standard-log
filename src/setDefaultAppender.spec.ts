@@ -7,6 +7,12 @@ test.afterEach(() => {
   clearAppenders()
 })
 
+test('no default and no appender, nothing happens', t => {
+  const log = getLogger('noAppender')
+  log.info('no info')
+  t.pass()
+})
+
 test('no effect if there is an appender', t => {
   const def = new MemoryAppender()
   setDefaultAppender(def)
