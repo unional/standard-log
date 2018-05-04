@@ -21,7 +21,7 @@ export class CSSBrush implements Brush {
       maxColor: option.maxColor || 20,
       coloringText: option.coloringText || false
     }
-    this.colors = createColorsFromMap(rainbow, option.maxColor || 20)
+    this.colors = createColorsFromMap(rainbow, option.maxColor || 20) as any
   }
 
   color(id: string, ...rest: any[]) {

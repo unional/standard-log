@@ -1,17 +1,7 @@
 {
-  "extends": "unional",
+  "extends": "plugin:harmony/latest",
   "root": true,
-  "parserOptions": {
-    "sourceType": "module"
-  },
   "env": {
-    "node": true,
-    "es6": true
-  },
-  "rules": {
-    "func-names": 0,
-    "no-console": [
-      0
-    ]
+    "node": true
   }
 }

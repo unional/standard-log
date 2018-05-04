@@ -10,6 +10,7 @@ const filename = paramCase(pjson.name)
 const globalVariable = pascalCase(filename)
 
 module.exports = {
+  mode: 'production',
   devtool: 'source-map',
   entry: './src/index.ts',
   externals: {
@@ -17,6 +18,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        use: ['source-map-loader'],
+        test: /\.js?$/
+      },
       {
         loader: 'ts-loader',
         test: /\.tsx?$/,
@@ -30,16 +36,11 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: `${filename}.es5.js`,
-    library: globalVariable,
-    devtoolModuleFilenameTemplate: (info) => {
-      if (info.identifier.lastIndexOf('.ts') === info.identifier.length - 3) {
-        return `webpack:///${pjson.name}/${info.resource.slice(6)}`
-      }
-    }
+    library: globalVariable
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    mainFields: ['jsnext:main', 'browser', 'main']
+    mainFields: ['browser', 'main']
   },
   plugins: [
     new UglifyJSPlugin({

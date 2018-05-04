@@ -25,7 +25,7 @@ export class Ansi16mBrush implements Brush {
       }
     })
 
-    this.colors = createColorsFromMap(colormap, option.maxColor || 20)
+    this.colors = createColorsFromMap(colormap, option.maxColor || 20) as any
 
     this.color = this.option.coloringText ? this.colorAnsi16m : this.getAnsi16mBackgroundString
   }
