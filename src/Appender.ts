@@ -1,10 +1,8 @@
 import { addAppender as addAL, Appender, removeAppender as rmAL, clearAppenders as clearAL, getAppenders } from 'aurelia-logging'
 
-
-let hasAppenders: boolean
-
 export { Appender, getAppenders }
 
+let hasAppenders: boolean
 export function hasAppender() {
   return hasAppenders
 }

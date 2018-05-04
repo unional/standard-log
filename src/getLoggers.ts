@@ -1,7 +1,3 @@
-/*
- * Copyright(c) Palo Alto Networks, Inc.
- * Created by hwong on 01/09/2016
- */
 import { store } from './store'
 import { Logger } from './interfaces'
 
