@@ -8,7 +8,8 @@
   "files": [
     "dist",
     "dist-es5",
-    "dist-es2015"
+    "dist-es2015",
+    "src"
   ],
   "scripts": {
     "build": "npm run clean && npm run build-es5 && npm run bundle",
@@ -21,7 +22,7 @@
     "dc": "npm run dependency-check",
     "demo": "npm run prepare && node scripts/demo.js",
     "dependency-check": "dependency-check . --unused --no-dev -i aurelia-logging && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
+    "lint": "tslint -p tsconfig.json 'src/**/*.ts' && eslint scripts",
     "prepublishOnly": "npm run build && npm run bundle",
     "remove-spec": "rimraf dist-es5/**/*.spec.*",
     "test": "npm run clean && tsc && ava && npm run bundle",
@@ -58,6 +59,7 @@
   },
   "nyc": {
     "exclude": [
+      "*.js",
       "scripts",
       "**/*.spec.*",
       "**/fixtures/**/*"
@@ -69,20 +71,21 @@
   "devDependencies": {
     "aurelia-logging": "^1.4.0",
     "ava": "^0.25.0",
-    "dependency-check": "^3.0.0",
+    "dependency-check": "^3.1.0",
     "eslint": "^4.19.1",
-    "eslint-config-unional": "^0.3.0",
+    "eslint-plugin-harmony": "^1.0.3",
     "nyc": "^11.7.1",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
     "rimraf": "^2.6.2",
-    "semantic-release": "^15.0.3",
-    "ts-loader": "^3.5.0",
+    "semantic-release": "^15.2.0",
+    "ts-loader": "^4.2.0",
     "tslint": "^5.10.0",
     "tslint-config-unional": "^0.9.3",
     "typescript": "^2.8.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^3.11.0"
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.1.2"
   },
   "dependencies": {
     "upper-case": "^1.1.3"

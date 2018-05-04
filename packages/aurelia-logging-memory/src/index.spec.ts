@@ -1,6 +1,6 @@
 import test from 'ava'
 import { addAppender, setLevel, getLogger, logLevel, addCustomLevel } from 'aurelia-logging'
-import { MemoryAppender, stringifyLogLevel } from './index'
+import { MemoryAppender, stringifyLogLevel } from '.'
 
 test('MemoryAppender', t => {
   const appender = new MemoryAppender()

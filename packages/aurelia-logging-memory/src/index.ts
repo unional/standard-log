@@ -1,12 +1,11 @@
 import { Logger, logLevel } from 'aurelia-logging'
-import upperCase = require('upper-case')
+import upperCase from 'upper-case'
 
 export interface LogEntry {
   id: string
   level: number
   messages: any[]
 }
-
 
 export class MemoryAppender {
   static addCustomLevel(name, level) {
