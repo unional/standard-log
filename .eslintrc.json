@@ -1,5 +1,5 @@
 {
-  "extends": "plugin:unional/latest",
+  "extends": "plugin:harmony/latest",
   "env": {
     "node": true
   }

@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "inlineSources": true,
     "lib": [
       "es2015"
     ],
     "module": "commonjs",
     "moduleResolution": "node",
     "newLine": "LF",
-    "noImplicitAny": false,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "removeComments": false,
     "sourceMap": true,
     "strictNullChecks": true
   },

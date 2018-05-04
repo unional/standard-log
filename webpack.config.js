@@ -19,6 +19,11 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        use: ['source-map-loader'],
+        test: /\.js?$/
+      },
+      {
         loader: 'ts-loader',
         test: /\.tsx?$/,
         options: {
@@ -35,7 +40,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    mainFields: ['jsnext:main', 'browser', 'main']
+    mainFields: ['browser', 'main']
   },
   plugins: [
     new UglifyJSPlugin({

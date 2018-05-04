@@ -1,7 +1,7 @@
 import test from 'ava'
 import { MemoryAppender } from 'aurelia-logging-memory'
 
-import { getLogger, setLevels, setLevel, logLevel, addAppender, removeAppender } from './index'
+import { getLogger, setLevels, setLevel, logLevel, addAppender, removeAppender } from '.'
 
 function createFilterLoggers() {
   for (let i = 0; i < 20; i++) {
