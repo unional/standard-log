@@ -23,9 +23,9 @@ test('log error', t => {
     maxColor: 10
   }))
   const log = getLogger('logError')
-  log.error(new Error('oh??') as any)
+  log.error(new Error('expected error') as any)
   t.pass()
-  // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: oh?? ...stack"
+  // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: expected error ...stack"
 })
 
 test('support custom level', t => {
