@@ -15,23 +15,40 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Description for `@unional/logging`
+A logging library that doesn't suck.
 
-## Contribute
+This library builds on top of [`aurelia-logging`](https://github.com/aurelia/logging).
 
-```sh
-# after fork and clone
-npm install
+You can use any Aurelia log appender with this library.
+e.g.:
 
-# begin making changes
-git checkout -b <branch>
-npm run watch
+- [`aurelia-logging-color`](https://github.com/unional/aurelia-logging-color)
+- [`aurelia-logging-memory`](https://github.com/unional/aurelia-logging-memory)
+- [`aurelia-logging-console`](https://github.com/aurelia/logging-console)
 
-# after making change(s)
-git commit -m "<commit message>"
-git push
+## Usage
 
-# create PR
+```ts
+import { getLogger } from '@unional/logging'
+
+const log = getLogger('mylogger')
+
+log.error(...)
+log.warn(...)
+log.info(...)
+log.debug(...)
+
+log.onError(log => log(getLogMessageThatIsTimeConsumingToCreate()))
+log.onWarn(...)
+log.onInfo(...)
+log.onDebug(...)
+
+// or
+log.onError(() => getLogMessageThatIsTimeConsumingToCreate())
+
+function getLogMessageThatIsTimeConsumingToCreate() {
+  ...
+}
 ```
 
 [circleci-image]: https://circleci.com/gh/unional/logging/tree/master.svg?style=shield
