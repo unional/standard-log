@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "aurelia-logging": "^1.5.0",
-    "global-store": "^0.7.3"
+    "global-store": "^0.7.3",
+    "type-plus": "^1.1.2"
   }
 }

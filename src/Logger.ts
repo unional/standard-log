@@ -1,8 +1,9 @@
-import { Logger as ALogger, logLevel } from 'aurelia-logging';
+import { Logger as ALogger } from 'aurelia-logging';
 import { addAppender, hasAppender } from './Appender';
 import { logMethod } from './interfaces';
+import { logLevel } from './logLevel';
 import { store } from './store';
-import { logLevelNameMap } from './utils';
+import { getLogMethodName } from './getLogMethodName';
 
 export class LoggerImpl {
   get id() {
@@ -61,14 +62,15 @@ export class LoggerImpl {
 
   private on(logLevel: number, logFunction: any) {
     if (this.level >= logLevel) {
-      const id = (logLevelNameMap as any)[logLevel]
-      const logFn = (this.logger as any)[id].bind(this.logger)
-      const result = logFunction(logFn)
-      if (result) logFn(result)
+      const methodName = getLogMethodName(logLevel)
+      if (methodName !== 'none') {
+        const logFn = this.logger[methodName].bind(this.logger)
+        const result = logFunction(logFn)
+        if (result) logFn(result)
+      }
     }
   }
 }
-
 function addDefaultAppenderIfNeeded() {
   if (!hasAppender()) {
     const defAppender = store.get().defaultAppender
