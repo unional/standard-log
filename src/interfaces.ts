@@ -1,8 +1,9 @@
-import { Logger as ALogger } from 'aurelia-logging'
 
 export type logMethod = (...args: any[]) => void
 
-export interface Logger extends ALogger {
+export interface Logger {
+  id: string
+  level: number
   debug(...args: any[]): void
   info(...args: any[]): void
   warn(...args: any[]): void

@@ -2,38 +2,6 @@
   "name": "@unional/logging",
   "description": "A logging library that doesn't suck",
   "version": "0.0.0-development",
-  "main": "dist-es5/index.js",
-  "module": "dist-es2015/index.js",
-  "typings": "dist-es5/index.d.ts",
-  "files": [
-    "dist",
-    "dist-es5",
-    "dist-es2015",
-    "src"
-  ],
-  "scripts": {
-    "build": "npm run clean && npm run build-es5",
-    "build-es2015": "tsc -p tsconfig.es2015.json",
-    "build-es5": "tsc -p tsconfig.es5.json",
-    "bundle": "webpack",
-    "clean": "rimraf dist dist-es5 dist-es2015",
-    "dc": "npm run dependency-check",
-    "demo": "node scripts/demo.js",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
-    "prepublishOnly": "npm run build && npm run bundle",
-    "verify": "npm run lint && npm run coverage && npm run dependency-check",
-    "coverage": "nyc npm test",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls",
-    "remove-spec": "rimraf dist-es5/**/*.spec.*",
-    "test": "npm run clean && tsc && ava",
-    "watch": "npm run clean && node scripts/watch.js",
-    "semantic-release": "semantic-release"
-  },
-  "author": {
-    "name": "Homa Wong",
-    "email": "homawong@gmail.com"
-  },
   "homepage": "https://github.com/unional/logging",
   "bugs": {
     "url": "https://github.com/unional/logging/issues"
@@ -43,49 +11,39 @@
     "url": "https://github.com/unional/logging.git"
   },
   "license": "MIT",
-  "ava": {
-    "files": [
-      "dist-es5/**/*.spec.js"
-    ],
-    "source": [
-      "scripts/*.js",
-      "dist-es5/**/*.js",
-      "fixtures/**/*",
-      "*.json"
-    ]
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
   },
-  "nyc": {
-    "exclude": [
-      "scripts",
-      "**/*.spec.*",
-      "**/fixtures/**/*"
-    ]
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.es2015.json",
+    "bundle": "webpack",
+    "clean": "rimraf lib",
+    "dc": "npm run dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "lint": "tslint -p tsconfig.json",
+    "prepublishOnly": "npm run build && npm run bundle",
+    "test": "jest",
+    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage",
+    "watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/node": "^9.6.6",
-    "aurelia-logging-color": "^0.5.15",
-    "aurelia-logging-memory": "^0.3.0",
-    "ava": "^0.25.0",
-    "browser-sync": "^2.23.7",
-    "dependency-check": "^3.1.0",
-    "eslint": "^4.19.1",
-    "eslint-plugin-harmony": "^1.0.3",
-    "nyc": "^11.7.1",
+    "@unional/devpkg-node": "^1.1.4",
+    "assertron": "^6.0.0",
+    "aurelia-logging-color": "^0.5.16",
+    "aurelia-logging-memory": "^0.3.2",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
-    "rimraf": "^2.6.2",
-    "semantic-release": "^15.1.7",
-    "source-map-loader": "^0.2.3",
-    "ts-loader": "^4.2.0",
-    "tslint": "^5.9.1",
-    "tslint-config-unional": "^0.9.3",
-    "typescript": "^2.8.3",
-    "uglifyjs-webpack-plugin": "^1.2.5",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.14"
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.2",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "aurelia-logging": "^1.4.0",
+    "aurelia-logging": "^1.5.0",
     "global-store": "^0.7.3"
   }
 }

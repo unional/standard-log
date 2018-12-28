@@ -1,7 +1,6 @@
-import test from 'ava'
-import { MemoryAppender } from 'aurelia-logging-memory'
-
-import { getLogger, setLevels, setLevel, logLevel, addAppender, removeAppender } from '.'
+import t from 'assert';
+import { MemoryAppender } from 'aurelia-logging-memory';
+import { addAppender, getLogger, logLevel, removeAppender, setLevel, setLevels } from '.';
 
 function createFilterLoggers() {
   for (let i = 0; i < 20; i++) {
@@ -11,35 +10,35 @@ function createFilterLoggers() {
 }
 
 let appender: MemoryAppender
-test.before(() => {
+beforeAll(() => {
   createFilterLoggers()
   appender = new MemoryAppender()
   addAppender(appender)
 })
 
-test.beforeEach(() => {
+beforeEach(() => {
   setLevel(logLevel.none)
 })
 
-test.afterEach(() => {
+afterEach(() => {
   appender.logs = []
 })
 
-test.after(() => {
+afterAll(() => {
   removeAppender(appender)
 })
 
-test('no matched logger do no harm', t => {
+test('no matched logger do no harm', () => {
   setLevels(/x/, logLevel.debug)
   const log = getLogger('filter1')
   log.debug('abc')
 
-  t.deepEqual(appender.logs, [])
+  t.deepStrictEqual(appender.logs, [])
 })
 
-test('only filtered log are affected', t => {
+test('only filtered log are affected', () => {
   const logs = setLevels(/filter1/, logLevel.debug)
-  t.deepEqual(logs.map(l => l.id), [
+  t.deepStrictEqual(logs.map(l => l.id), [
     'filter1',
     'filter10',
     'filter11',
@@ -57,5 +56,5 @@ test('only filtered log are affected', t => {
   getLogger('filter2').debug('filter2')
   getLogger('filter11').debug('filter11')
 
-  t.is(appender.logs.length, 2)
+  t.strictEqual(appender.logs.length, 2)
 })

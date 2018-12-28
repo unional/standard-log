@@ -1,8 +1,8 @@
-import { getLogger as getALogger } from 'aurelia-logging'
+import { getLogger as getALogger } from 'aurelia-logging';
+import { Logger } from './interfaces';
+import { LoggerImpl } from './Logger';
+import { store } from './store';
 
-import { Logger } from './interfaces'
-import { LoggerImpl } from './Logger'
-import { store } from './store'
 
 export function getLogger(id: string, defaultLogLevel?: number): Logger {
   const { logs } = store.get()

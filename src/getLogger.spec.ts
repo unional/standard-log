@@ -1,166 +1,168 @@
-import { test } from 'ava'
-import { MemoryAppender } from 'aurelia-logging-memory'
+import t from 'assert';
+import { MemoryAppender } from 'aurelia-logging-memory';
+import { addAppender, getLogger, logLevel, removeAppender, setLevel } from './index';
+import { logLevelNameMap } from './utils';
 
-import { getLogger, addAppender, removeAppender, setLevel, logLevel } from './index'
-import { logLevelNameMap } from './utils'
 
 let appender: MemoryAppender
-test.before(() => {
+beforeAll(() => {
   appender = new MemoryAppender()
   addAppender(appender)
 })
 
-test.beforeEach(() => {
+beforeEach(() => {
   setLevel(logLevel.error)
 })
 
-test.afterEach(() => {
+afterEach(() => {
   appender.logs = []
 })
 
-test.after(() => {
+afterAll(() => {
   removeAppender(appender)
 })
 
-function assertLoggedAtLevel(t, log, level) {
+function assertLoggedAtLevel(log: any, level: any) {
   setLevel(level)
   const msg = `should log on level: ${level}`
   log[log.id](msg)
-  t.deepEqual(appender.logs, [{ id: log.id, level: logLevel[log.id], messages: [msg] }])
+  t.deepStrictEqual(appender.logs, [{ id: log.id, level: logLevel[log.id], messages: [msg] }])
 }
 
-function assertNotLoggedAtLevel(t, log, level) {
+function assertNotLoggedAtLevel(log: any, level: any) {
   setLevel(level)
   log[log.id](`should not log on level: ${level}`)
-  t.deepEqual(appender.logs, [])
+  t.deepStrictEqual(appender.logs, [])
 }
 
-function assertLoggedAtLocalLevel(t, log, globalLevel, localLevel) {
+function assertLoggedAtLocalLevel(log: any, globalLevel: any, localLevel: any) {
   setLevel(globalLevel)
   log.setLevel(localLevel)
 
   const msg = `should log on level: ${localLevel}`
   log[log.id](msg)
-  t.deepEqual(appender.logs, [{ id: log.id, level: logLevel[log.id], messages: [msg] }])
+  t.deepStrictEqual(appender.logs, [{ id: log.id, level: logLevel[log.id], messages: [msg] }])
 }
 
-function assertNotLoggedAtLocalLevel(t, log, globalLevel, localLevel) {
+function assertNotLoggedAtLocalLevel(log: any, globalLevel: any, localLevel: any) {
   setLevel(globalLevel)
   log.setLevel(localLevel)
   log[log.id](`should not log on level: ${localLevel}`)
-  t.deepEqual(appender.logs, [])
+  t.deepStrictEqual(appender.logs, [])
 }
 
-function assertLogFunctionCalledAtLevel(t, log, level) {
+function assertLogFunctionCalledAtLevel(log: any, level: any) {
   setLevel(level)
-  t.plan(1)
-  log[log.id](() => t.pass())
+  let actual = false
+  log[log.id](() => actual = true)
+  t.strictEqual(actual, true)
 }
 
-function assertLogFunctionCalledAtLocalLevel(t, log, globalLevel, localLevel) {
+function assertLogFunctionCalledAtLocalLevel(log: any, globalLevel: any, localLevel: any) {
   setLevel(globalLevel)
   log.setLevel(localLevel)
-  t.plan(1)
-  log[log.id](() => t.pass())
+  let actual = false
+  log[log.id](() => actual = true)
+  t.strictEqual(actual, true)
 }
 
-function assertLogFunctionNotCalledAtLevel(t, log, level) {
+function assertLogFunctionNotCalledAtLevel(log: any, level: any) {
   setLevel(level)
-  t.plan(0)
+  // t.plan(0)
   log[log.id](() => t.fail())
 }
 
-function assertLogFunctionNotCalledAtLocalLevel(t, log, globalLevel, localLevel) {
+function assertLogFunctionNotCalledAtLocalLevel(log: any, globalLevel: any, localLevel: any) {
   setLevel(globalLevel)
   log.setLevel(localLevel)
-  t.plan(0)
+  // t.plan(0)
   log[log.id](() => t.fail())
 }
 
-function shouldLog(method, level) {
-  const name = logLevelNameMap[level]
-  test(`${method}() should log on level: ${name} (${level})`, t => {
+function shouldLog(method: string, level: any) {
+  const name = (logLevelNameMap as any)[level]
+  test(`${method}() should log on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
-    assertLoggedAtLevel(t, log, level)
+    assertLoggedAtLevel(log, level)
   })
 }
 
-function shouldNotLog(method, level) {
-  const name = logLevelNameMap[level]
-  test(`${method}() should not log on level: ${name} (${level})`, t => {
+function shouldNotLog(method: string, level: any) {
+  const name = (logLevelNameMap as any)[level]
+  test(`${method}() should not log on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
-    assertNotLoggedAtLevel(t, log, level)
+    assertNotLoggedAtLevel(log, level)
   })
 }
 
-function shouldLogWithLocalLevelOverride(method, localLevel) {
-  const localName = logLevelNameMap[localLevel];
+function shouldLogWithLocalLevelOverride(method: string, localLevel: any) {
+  const localName = (logLevelNameMap as any)[localLevel];
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = logLevelNameMap[globalLevel]
-    test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, t => {
+    const globalName = (logLevelNameMap as any)[globalLevel]
+    test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
-      assertLoggedAtLocalLevel(t, log, globalLevel, localLevel)
+      assertLoggedAtLocalLevel(log, globalLevel, localLevel)
     })
   })
 }
 
-function shouldNotLogWithLocalLevelOverride(method, localLevel) {
-  const localName = logLevelNameMap[localLevel];
+function shouldNotLogWithLocalLevelOverride(method: string, localLevel: any) {
+  const localName = (logLevelNameMap as any)[localLevel];
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = logLevelNameMap[globalLevel]
-    test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, t => {
+    const globalName = (logLevelNameMap as any)[globalLevel]
+    test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
-      assertNotLoggedAtLocalLevel(t, log, globalLevel, localLevel)
+      assertNotLoggedAtLocalLevel(log, globalLevel, localLevel)
     })
   })
 }
 
-function shouldCallLogFunction(method, level) {
-  const name = logLevelNameMap[level]
-  test(`${method}() should call log function on level: ${name} (${level})`, t => {
+function shouldCallLogFunction(method: string, level: any) {
+  const name = (logLevelNameMap as any)[level]
+  test(`${method}() should call log function on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
-    assertLogFunctionCalledAtLevel(t, log, level)
+    assertLogFunctionCalledAtLevel(log, level)
   })
 }
 
-function shouldNotCallLogFunction(method, level) {
-  const name = logLevelNameMap[level]
-  test(`${method}() should not call log function on level: ${name} (${level})`, t => {
+function shouldNotCallLogFunction(method: string, level: any) {
+  const name = (logLevelNameMap as any)[level]
+  test(`${method}() should not call log function on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
-    assertLogFunctionNotCalledAtLevel(t, log, level)
+    assertLogFunctionNotCalledAtLevel(log, level)
   })
 }
 
-function shouldCallLogFunctionWithLocalLevelOverride(method, localLevel) {
-  const localName = logLevelNameMap[localLevel];
+function shouldCallLogFunctionWithLocalLevelOverride(method: string, localLevel: any) {
+  const localName = (logLevelNameMap as any)[localLevel];
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = logLevelNameMap[globalLevel]
-    test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, t => {
+    const globalName = (logLevelNameMap as any)[globalLevel]
+    test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
-      assertLogFunctionCalledAtLocalLevel(t, log, globalLevel, localLevel)
+      assertLogFunctionCalledAtLocalLevel(log, globalLevel, localLevel)
     })
   })
 }
 
-function shouldNotCallLogFunctionWithLocalLevelOverride(method, localLevel) {
-  const localName = logLevelNameMap[localLevel];
+function shouldNotCallLogFunctionWithLocalLevelOverride(method: string, localLevel: any) {
+  const localName = (logLevelNameMap as any)[localLevel];
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = logLevelNameMap[globalLevel]
-    test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, t => {
+    const globalName = (logLevelNameMap as any)[globalLevel]
+    test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
-      assertLogFunctionNotCalledAtLocalLevel(t, log, globalLevel, localLevel)
+      assertLogFunctionNotCalledAtLocalLevel(log, globalLevel, localLevel)
     })
   })
 }
@@ -253,14 +255,14 @@ shouldNotCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.warn)
 shouldNotCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.info)
 shouldCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.debug)
 
-test('on???() logs to corresponding log', t => {
+test('on???() logs to corresponding log', () => {
   const log = getLogger('onXXX')
   log.setLevel(logLevel.debug)
   log.onDebug(log => log('debug'))
   log.onInfo(log => log('info'))
   log.onWarn(log => log('warn'))
   log.onError(log => log('error'))
-  t.deepEqual(appender.logs.map(l => l.messages[0]), [
+  t.deepStrictEqual(appender.logs.map(l => l.messages[0]), [
     'debug',
     'info',
     'warn',
@@ -268,14 +270,14 @@ test('on???() logs to corresponding log', t => {
   ])
 })
 
-test(`pass '() => string' into on???() will log the result`, t => {
+test(`pass '() => string' into on???() will log the result`, () => {
   const log = getLogger('onXXX with () => string')
   log.setLevel(logLevel.debug)
   log.onDebug(() => 'debug')
   log.onInfo(() => 'info')
   log.onWarn(() => 'warn')
   log.onError(() => 'error')
-  t.deepEqual(appender.logs.map(l => l.messages[0]), [
+  t.deepStrictEqual(appender.logs.map(l => l.messages[0]), [
     'debug',
     'info',
     'warn',
@@ -283,10 +285,10 @@ test(`pass '() => string' into on???() will log the result`, t => {
   ])
 })
 
-test(`set default log level`, t => {
+test(`set default log level`, () => {
   let log = getLogger('defaultLogLevelDebug', logLevel.debug)
-  t.is(log.level, logLevel.debug)
+  t.strictEqual(log.level, logLevel.debug)
 
   log = getLogger('defaultLogLevelError', logLevel.error)
-  t.is(log.level, logLevel.error)
+  t.strictEqual(log.level, logLevel.error)
 })

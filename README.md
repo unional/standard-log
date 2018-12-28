@@ -1,55 +1,57 @@
 # @unional/logging
 
-[![unstable][unstable-image]][unstable-url]
+![unstable][unstable-image]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
-[![Build status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
-[![Greenkeeper badge](https://badges.greenkeeper.io/unional/logging.svg)](https://greenkeeper.io/)
 
-A logging library that doesn't suck.
+[![Circle CI][circleci-image]][circleci-url]
+[![Travis CI][travis-image]][travis-url]
+[![Codecov][codecov-image]][codecov-url]
+[![Coveralls Status][coveralls-image]][coveralls-url]
 
-This library builds on top of [`aurelia-logging`](https://github.com/aurelia/logging).
+[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
+[![Semantic Release][semantic-release-image]][semantic-release-url]
 
-You can use any Aurelia log appender with this library.
-e.g.:
+[![Visual Studio Code][vscode-image]][vscode-url]
+[![Wallaby.js][wallaby-image]][wallaby-url]
 
-- [`aurelia-logging-color`](https://github.com/unional/aurelia-logging-color)
-- [`aurelia-logging-memory`](https://github.com/unional/aurelia-logging-memory)
-- [`aurelia-logging-console`](https://github.com/aurelia/logging-console)
+Description for `@unional/logging`
 
-## Usage
+## Contribute
 
-```ts
-import { getLogger } from '@unional/logging'
+```sh
+# after fork and clone
+npm install
 
-const log = getLogger('mylogger')
+# begin making changes
+git checkout -b <branch>
+npm run watch
 
-log.error(...)
-log.warn(...)
-log.info(...)
-log.debug(...)
+# after making change(s)
+git commit -m "<commit message>"
+git push
 
-log.onError(log => log(getLogMessageThatIsTimeConsumingToCreate()))
-log.onWarn(...)
-log.onInfo(...)
-log.onDebug(...)
-
-// or
-log.onError(() => getLogMessageThatIsTimeConsumingToCreate())
-
-function getLogMessageThatIsTimeConsumingToCreate() {
-  ...
-}
+# create PR
 ```
 
-[unstable-image]: http://badges.github.io/stability-badges/dist/unstable.svg
-[unstable-url]: http://github.com/badges/stability-badges
-[npm-image]: https://img.shields.io/npm/v/@unional/logging.svg?style=flat
-[npm-url]: https://npmjs.org/package/@unional/logging
-[downloads-image]: https://img.shields.io/npm/dt/@unional/logging.svg?style=flat
-[downloads-url]: https://npmjs.org/package/@unional/logging
-[travis-image]: https://img.shields.io/travis/unional/logging/master.svg?style=flat
-[travis-url]: https://travis-ci.org/unional/logging?branch=master
+[circleci-image]: https://circleci.com/gh/unional/logging/tree/master.svg?style=shield
+[circleci-url]: https://circleci.com/gh/unional/logging/tree/master
+[codecov-image]: https://codecov.io/gh/unional/logging/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/unional/logging
 [coveralls-image]: https://coveralls.io/repos/github/unional/logging/badge.svg
 [coveralls-url]: https://coveralls.io/github/unional/logging
+[downloads-image]: https://img.shields.io/npm/dm/@unional/logging.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@unional/logging
+[greenkeeper-image]: https://badges.greenkeeper.io/unional/logging.svg
+[greenkeeper-url]: https://greenkeeper.io/
+[npm-image]: https://img.shields.io/npm/v/@unional/logging.svg?style=flat
+[npm-url]: https://npmjs.org/package/@unional/logging
+[semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
+[semantic-release-url]: https://github.com/semantic-release/semantic-release
+[travis-image]: https://img.shields.io/travis/unional/logging/master.svg?style=flat
+[travis-url]: https://travis-ci.org/unional/logging?branch=master
+[unstable-image]: https://img.shields.io/badge/stability-unstable-yellow.svg
+[vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
+[vscode-url]: https://code.visualstudio.com/
+[wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
+[wallaby-url]: https://wallabyjs.com
