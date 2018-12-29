@@ -1,49 +1,20 @@
 {
-  "name": "@unional/logging",
-  "description": "A logging library that doesn't suck",
-  "version": "0.0.0-development",
-  "homepage": "https://github.com/unional/logging",
-  "bugs": {
-    "url": "https://github.com/unional/logging/issues"
+  "name": "root",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unional/logging.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Homa Wong (unional)",
-    "email": "homawong@gmail.com"
-  },
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.es2015.json",
-    "bundle": "webpack",
-    "clean": "rimraf lib",
-    "dc": "npm run dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm run build && npm run bundle",
-    "test": "jest",
-    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage",
-    "watch": "jest --watch"
-  },
-  "devDependencies": {
-    "@unional/devpkg-node": "^1.1.4",
-    "assertron": "^6.0.0",
-    "aurelia-logging-color": "^0.5.16",
-    "aurelia-logging-memory": "^0.3.2",
-    "param-case": "^2.1.1",
-    "pascal-case": "^2.0.1",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.3.2",
-    "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "test": "yarn jest",
+    "verify": "yarn test",
+    "watch": "yarn jest --watch"
   },
   "dependencies": {
-    "global-store": "^0.7.3",
-    "type-plus": "^1.1.2"
+    "@unional/devpkg-node": "^1.1.6"
+  },
+  "devDependencies": {
+    "lerna": "^3.8.0"
   }
 }
