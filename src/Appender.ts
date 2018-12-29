@@ -1,6 +1,5 @@
-import { addAppender as addAL, Appender, removeAppender as rmAL, clearAppenders as clearAL, getAppenders } from 'aurelia-logging'
-
-export { Appender, getAppenders }
+import { store } from './store';
+import { Appender } from './interfaces';
 
 let hasAppenders: boolean
 export function hasAppender() {
@@ -8,17 +7,20 @@ export function hasAppender() {
 }
 
 export function addAppender(appender: Appender) {
-  addAL(appender)
+  store.get().appenders.push(appender)
   hasAppenders = true
 }
 
 export function removeAppender(appender: Appender) {
-  rmAL(appender)
-  const apps = getAppenders()
+  const apps = store.get().appenders = store.get().appenders.filter(a => a !== appender)
   hasAppenders = apps && apps.length > 0
 }
 
 export function clearAppenders() {
-  clearAL()
+  store.get().appenders = []
   hasAppenders = false
+}
+
+export function getAppenders() {
+  return store.get().appenders
 }

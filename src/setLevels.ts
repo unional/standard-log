@@ -7,7 +7,7 @@ import { Logger } from './interfaces'
  */
 export function setLevels(filter: RegExp, logLevel: number): Logger[] {
   return getLoggers(filter).map(log => {
-    log.setLevel(logLevel)
+    log.level = logLevel
     return log
   })
 }

@@ -1,15 +1,17 @@
-import { Appender } from 'aurelia-logging';
 import { create } from 'global-store';
-import { Logger } from './interfaces';
+import { Appender, Logger } from './interfaces';
 
-
+import { ConsoleAppender } from 'aurelia-logging-console'
 export interface LoggingStore {
-  defaultAppender?: Appender
+  defaultAppender: Appender
   logs: { [id: string]: Logger },
+  appenders: Appender[]
 }
 
 const defaultValue: LoggingStore = {
-  logs: {}
+  defaultAppender: new ConsoleAppender(),
+  logs: {},
+  appenders: []
 }
 
 export const store = create('@unional/logging', defaultValue)

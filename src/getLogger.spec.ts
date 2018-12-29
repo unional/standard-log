@@ -255,7 +255,7 @@ shouldCallLogFunctionWithLocalLevelOverride('onDebug', logLevel.debug)
 
 test('on???() logs to corresponding log', () => {
   const log = getLogger('onXXX')
-  log.setLevel(logLevel.debug)
+  log.level = logLevel.debug
   log.onDebug(log => log('debug'))
   log.onInfo(log => log('info'))
   log.onWarn(log => log('warn'))
@@ -270,7 +270,7 @@ test('on???() logs to corresponding log', () => {
 
 test(`pass '() => string' into on???() will log the result`, () => {
   const log = getLogger('onXXX with () => string')
-  log.setLevel(logLevel.debug)
+  log.level = logLevel.debug
   log.onDebug(() => 'debug')
   log.onInfo(() => 'info')
   log.onWarn(() => 'warn')
