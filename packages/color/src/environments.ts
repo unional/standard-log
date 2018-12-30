@@ -4,9 +4,11 @@ import { ColorMode } from './interfaces'
 export { isNode }
 
 // @ts-ignore
+// tslint:disable-next-line: strict-type-predicates
 const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined
 
 // @ts-ignore
+// tslint:disable-next-line: strict-type-predicates
 const vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined
 
 // alternatively check `!!window.chrome`

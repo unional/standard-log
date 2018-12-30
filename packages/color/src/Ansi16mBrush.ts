@@ -2,7 +2,6 @@ import { createColorsFromMap, RGB } from 'color-map';
 import { rainbow } from './colors';
 import { Brush, BrushOption } from './interfaces';
 
-
 export class Ansi16mBrush implements Brush {
   public color: (id: string, ...rest: any[]) => string[]
   private count = 0

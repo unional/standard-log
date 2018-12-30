@@ -1,5 +1,5 @@
 {
-  "name": "root",
+  "name": "logging",
   "private": true,
   "workspaces": {
     "packages": [
@@ -11,11 +11,12 @@
     "build:watch": "tsc -b -w",
     "coverage": "yarn jest --coverage",
     "test": "yarn jest",
-    "verify": "yarn coverage && yarn build",
+    "verify": "yarn build && yarn coverage",
     "watch": "yarn jest --watch"
   },
   "devDependencies": {
     "@unional/devpkg-node": "^1.1.6",
+    "jest-junit": "^5.2.0",
     "lerna": "^3.8.0",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
