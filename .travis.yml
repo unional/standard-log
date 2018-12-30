@@ -2,6 +2,7 @@ language: node_js
 cache:
   directories:
     - ~/.npm
+  yarn: true
 notifications:
   email: false
 node_js:
@@ -14,10 +15,11 @@ branches:
   only:
     - master
     - /^greenkeeper.*$/
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH="$HOME/.yarn/bin:$PATH"
 script:
-  - npm install -g yarn
   - yarn install
-  - npm i --no-save jest-junit
   - yarn verify
   - ./scripts/run-on-node-version.sh 11 "npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage"
   - ./scripts/run-on-node-version.sh 11 "npm install -g coveralls && cat ./coverage/lcov.info | coveralls"

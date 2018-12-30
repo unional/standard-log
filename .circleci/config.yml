@@ -32,7 +32,7 @@ jobs:
       - image: circleci/node:11
     steps:
       - checkout
-      - run: npm run verify
+      - run: yarn verify
   node-latest:
     docker:
       - image: circleci/node:11
@@ -40,17 +40,16 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore node_modules cache
-          key: node_modules-{{ checksum "yarn.json" }}
+          key: node_modules2-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
           command: |
             if [ ! -d node_modules ]; then
               yarn install
-              npm i --no-save jest-junit
             fi
       - save_cache:
           name: Save node modules cache
-          key: node_modules-{{ checksum "yarn.json" }}
+          key: node_modules2-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
       - persist_to_workspace:
