@@ -1,7 +1,6 @@
-import { RGB, createColorsFromMap, rgbHex } from 'color-map'
-
-import { rainbow } from './colors'
-import { BrushOption, Brush } from './interfaces'
+import { createColorsFromMap, RGB, rgbHex } from 'color-map';
+import { rainbow } from './colors';
+import { Brush, BrushOption } from './interfaces';
 
 const gammaMap = {
   rc: 0.2126,

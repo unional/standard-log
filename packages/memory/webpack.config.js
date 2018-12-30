@@ -19,7 +19,7 @@ module.exports = {
         loader: 'ts-loader',
         test: /\.tsx?$/,
         options: {
-          configFile: 'tsconfig.es5.json',
+          configFile: 'tsconfig.dist.json',
           transpileOnly: true
         }
       }
@@ -27,7 +27,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('dist'),
-    filename: `${filename}.es5.js`,
+    filename: `${filename}.js`,
     library: globalVariable
   },
   plugins: [

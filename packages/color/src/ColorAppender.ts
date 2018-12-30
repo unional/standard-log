@@ -1,8 +1,7 @@
-import { Logger, logLevel } from 'aurelia-logging'
-
-import { BrushOption, Brush, ColorModeOption } from './interfaces'
-import { createBrush } from './createBrush'
-import { isNode } from './environments'
+import { logLevel } from 'aurelia-logging';
+import { createBrush } from './createBrush';
+import { isNode } from './environments';
+import { Brush, BrushOption, ColorModeOption } from './interfaces';
 
 export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 }
@@ -34,8 +33,7 @@ function getLogMethod(level: number) {
 // istanbul ignore next
 function nodeVersionBelow(major: number, minor = 0, patch = 0) {
   // without this, systemjs will complain `process is not defined`
-  if (!global.process)
-    return false
+  if (!global.process) return false
   const versionString = process.version.startsWith('v') ? process.version.slice(1) : process.version
   const [actualMajor, actualMinor, actualPatch] = versionString.split('.').map(s => parseInt(s, 10))
   const checking = major * 1000 * 1000 + minor * 1000 + patch
@@ -50,7 +48,7 @@ function nodeVersionBelow(major: number, minor = 0, patch = 0) {
  */
 export class ColorAppender {
   static addCustomLevel(name: string, level: number) {
-    (ColorAppender as any).prototype[name] = function (logger: Logger, ...rest: any[]) {
+    (ColorAppender as any).prototype[name] = function (logger: { id: string }, ...rest: any[]) {
       const logMethod = getLogMethod(level)
       if (logMethod)
         logMethod.apply(console, this.brush.color(logger.id, ...rest))
@@ -60,16 +58,16 @@ export class ColorAppender {
   constructor(option?: ColorAppenderOption) {
     this.brush = createBrush(option)
   }
-  error(logger: Logger, ...rest: any[]) {
+  error(logger: { id: string }, ...rest: any[]) {
     error.call(console, ...this.brush.color(logger.id, ...rest))
   }
-  warn(logger: Logger, ...rest: any[]) {
+  warn(logger: { id: string }, ...rest: any[]) {
     warn.call(console, ...this.brush.color(logger.id, ...rest))
   }
-  info(logger: Logger, ...rest: any[]) {
+  info(logger: { id: string }, ...rest: any[]) {
     info.call(console, ...this.brush.color(logger.id, ...rest))
   }
-  debug(logger: Logger, ...rest: any[]) {
+  debug(logger: { id: string }, ...rest: any[]) {
     debug.call(console, ...this.brush.color(logger.id, ...rest))
   }
 }

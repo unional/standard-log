@@ -1,10 +1,8 @@
-import { getSupportedColorMode } from './environments'
-
-import { Brush, BrushOption, ColorMode, ColorModeOption } from './interfaces'
-
-import { Ansi16mBrush } from './Ansi16mBrush'
-import { AnsiBrush } from './AnsiBrush'
-import { CSSBrush } from './CSSBrush'
+import { Ansi16mBrush } from './Ansi16mBrush';
+import { AnsiBrush } from './AnsiBrush';
+import { CSSBrush } from './CSSBrush';
+import { getSupportedColorMode } from './environments';
+import { Brush, BrushOption, ColorMode, ColorModeOption } from './interfaces';
 
 export class PlainBrush implements Brush {
   color(id: string, ...rest: string[]) {

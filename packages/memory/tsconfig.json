@@ -1,11 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
-  "atom": {
-    "rewriteTsconfig": false
-  },
-  "buildOnSave": false,
-  "compileOnSave": false,
   "include": [
-    "src"
+    "src",
+    "typings"
   ]
 }

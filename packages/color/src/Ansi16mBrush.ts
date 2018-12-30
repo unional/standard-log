@@ -1,7 +1,7 @@
-import { RGB, createColorsFromMap } from 'color-map'
+import { createColorsFromMap, RGB } from 'color-map';
+import { rainbow } from './colors';
+import { Brush, BrushOption } from './interfaces';
 
-import { rainbow } from './colors'
-import { BrushOption, Brush } from './interfaces'
 
 export class Ansi16mBrush implements Brush {
   public color: (id: string, ...rest: any[]) => string[]

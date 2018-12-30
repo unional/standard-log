@@ -26,6 +26,8 @@
     "bundle": "webpack",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "prepublishOnly": "yarn build && yarn bundle"
+    "prepublishOnly": "yarn build && yarn bundle",
+    "test": "jest",
+    "watch": "jest --watch"
   }
 }

@@ -1,4 +1,4 @@
-import { BrushOption, Brush } from './interfaces'
+import { Brush, BrushOption } from './interfaces';
 
 let calculatedCodes: number[][]
 
