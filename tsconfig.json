@@ -1,18 +1,17 @@
 {
-  "extends": "./tsconfig.setting.json",
   "files": [],
   "references": [
     {
-      "path": "packages/color"
+      "path": "packages/color/tsconfig.lib.json"
     },
     {
-      "path": "packages/logging"
+      "path": "packages/logging/tsconfig.lib.json"
     },
     {
-      "path": "packages/memory"
+      "path": "packages/memory/tsconfig.lib.json"
     },
     {
-      "path": "packages/simple-console"
+      "path": "packages/simple-console/tsconfig.lib.json"
     }
   ]
 }

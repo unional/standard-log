@@ -7,7 +7,7 @@
     ]
   },
   "scripts": {
-    "build": "tsc -v",
+    "build": "tsc -b",
     "build:watch": "tsc -b -w",
     "coverage": "yarn jest --coverage",
     "test": "yarn jest",

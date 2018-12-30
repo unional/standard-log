@@ -5,6 +5,7 @@
       "dom",
       "es2015"
     ],
+    "outDir": "out",
     "rootDir": "src"
   },
   "include": [
