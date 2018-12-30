@@ -7,9 +7,12 @@ afterEach(() => {
   clearAppenders()
 })
 
-test('no default and no appender, nothing happens', () => {
-  const log = getLogger('noAppender')
-  log.info('no info')
+test('no appender will invoke the default appender', () => {
+  const log = getLogger('noAppender', logLevel.debug)
+  log.error('error message to default appender (SimpleConsoleAppender)')
+  log.info('info message to default appender (SimpleConsoleAppender)')
+  log.warn('warn message to default appender (SimpleConsoleAppender)')
+  log.debug('debug message to default appender (SimpleConsoleAppender)')
 })
 
 test('no effect if there is an appender', () => {

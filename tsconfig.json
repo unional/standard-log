@@ -1,5 +1,5 @@
 {
-  "extends": "./packages/tsconfig.setting.json",
+  "extends": "./tsconfig.setting.json",
   "files": [],
   "references": [
     {
