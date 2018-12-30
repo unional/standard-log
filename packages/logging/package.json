@@ -15,32 +15,27 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
+  "files": [
+    "dist",
+    "lib"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.es2015.json",
+    "build": "tsc -p tsconfig.lib.json",
     "bundle": "webpack",
-    "clean": "rimraf lib",
-    "dc": "npm run dependency-check",
+    "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json",
-    "prepublishOnly": "npm run build && npm run bundle",
-    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage"
+    "preversion": "yarn test && yarn build && yarn dc",
+    "prepublishOnly": "rimraf dist lib && yarn build && yarn bundle",
+    "test": "jest",
+    "watch": "jest --watch"
   },
   "devDependencies": {
-    "@unional/devpkg-node": "^1.1.5",
-    "assertron": "^6.0.0",
-    "aurelia-logging-color": "^0.5.16",
-    "aurelia-logging-memory": "^0.3.2",
-    "param-case": "^2.1.1",
-    "pascal-case": "^2.0.1",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^5.3.2",
-    "uglifyjs-webpack-plugin": "^2.1.1",
-    "webpack": "^4.28.2",
-    "webpack-cli": "^3.1.2"
+    "aurelia-logging-memory": "^1.0.1"
   },
   "dependencies": {
+    "aurelia-logging": "^1.5.0",
     "global-store": "^0.7.3",
     "type-plus": "^1.1.2"
   }

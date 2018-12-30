@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "noUnusedLocals": true,
+    "outDir": "dist",
+    "removeComments": false,
+    "rootDir": "src",
+    "sourceRoot": "src",
+    "sourceMap": true,
+    "strict": true,
+    "target": "es5"
+  },
+  "include": [
+    "typings"
+  ],
+  "files": [
+    "src/index.ts"
+  ]
+}

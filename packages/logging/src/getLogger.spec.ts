@@ -1,7 +1,7 @@
 import t from 'assert';
 import { MemoryAppender } from 'aurelia-logging-memory';
 import { getLogMethodName } from './getLogMethodName';
-import { addAppender, getLogger, logLevel, removeAppender, setLevel } from './index';
+import { addAppender, getLogger, logLevel, removeAppender, setLevel } from '.';
 
 
 let appender: MemoryAppender
@@ -37,7 +37,7 @@ function assertNotLoggedAtLevel(log: any, level: number) {
 
 function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
   setLevel(globalLevel)
-  log.setLevel(localLevel)
+  log.level = localLevel
 
   const msg = `should log on level: ${localLevel}`
   log[log.id](msg)
@@ -46,7 +46,7 @@ function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: num
 
 function assertNotLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
   setLevel(globalLevel)
-  log.setLevel(localLevel)
+  log.level = localLevel
   log[log.id](`should not log on level: ${localLevel}`)
   t.deepStrictEqual(appender.logs, [])
 }
@@ -60,7 +60,7 @@ function assertLogFunctionCalledAtLevel(log: any, level: number) {
 
 function assertLogFunctionCalledAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
   setLevel(globalLevel)
-  log.setLevel(localLevel)
+  log.level = localLevel
   let actual = false
   log[log.id](() => actual = true)
   t.strictEqual(actual, true)
@@ -73,7 +73,7 @@ function assertLogFunctionNotCalledAtLevel(log: any, level: number) {
 
 function assertLogFunctionNotCalledAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
   setLevel(globalLevel)
-  log.setLevel(localLevel)
+  log.level = localLevel
   log[log.id](() => t.fail())
 }
 
@@ -99,7 +99,7 @@ function shouldLogWithLocalLevelOverride(method: string, localLevel: number) {
   const localName = getLogMethodName(localLevel);
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = getLogMethodName(globalLevel)
+    const globalName = getLogMethodName(globalLevel) || 'none'
     test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
@@ -112,7 +112,7 @@ function shouldNotLogWithLocalLevelOverride(method: string, localLevel: number) 
   const localName = getLogMethodName(localLevel);
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = getLogMethodName(globalLevel)
+    const globalName = getLogMethodName(globalLevel) || 'none'
     test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
@@ -122,7 +122,7 @@ function shouldNotLogWithLocalLevelOverride(method: string, localLevel: number) 
 }
 
 function shouldCallLogFunction(method: string, level: number) {
-  const name = getLogMethodName(level)
+  const name = getLogMethodName(level) || 'none'
   test(`${method}() should call log function on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
@@ -131,7 +131,7 @@ function shouldCallLogFunction(method: string, level: number) {
 }
 
 function shouldNotCallLogFunction(method: string, level: number) {
-  const name = getLogMethodName(level)
+  const name = getLogMethodName(level) || 'none'
   test(`${method}() should not call log function on level: ${name} (${level})`, () => {
     const log = getLogger(method)
 
@@ -143,7 +143,7 @@ function shouldCallLogFunctionWithLocalLevelOverride(method: string, localLevel:
   const localName = getLogMethodName(localLevel);
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = getLogMethodName(globalLevel)
+    const globalName = getLogMethodName(globalLevel) || 'none'
     test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 
@@ -156,7 +156,7 @@ function shouldNotCallLogFunctionWithLocalLevelOverride(method: string, localLev
   const localName = getLogMethodName(localLevel);
 
   [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-    const globalName = getLogMethodName(globalLevel)
+    const globalName = getLogMethodName(globalLevel) || 'none'
     test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
       const log = getLogger(method)
 

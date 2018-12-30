@@ -1,7 +1,9 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "skipLibCheck": true,
-    "target": "es5"
-  }
+    "outDir": "lib"
+  },
+  "exclude": [
+    "src/*.spec.ts"
+  ]
 }

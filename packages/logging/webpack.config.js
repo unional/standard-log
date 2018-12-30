@@ -2,7 +2,7 @@
 const paramCase = require('param-case')
 const pascalCase = require('pascal-case')
 const path = require('path')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const UglifyJS = require('uglifyjs-webpack-plugin')
 
 const pjson = require('./package.json')
 
@@ -10,32 +10,26 @@ const filename = paramCase(pjson.name)
 const globalVariable = pascalCase(filename)
 
 module.exports = {
+  mode: 'production',
   devtool: 'source-map',
   entry: './src/index.ts',
   externals: {
-    'global-store': 'GlobalStore'
+    'color-map': 'ColorMap'
   },
-  mode: 'production',
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        use: ['source-map-loader'],
-        test: /\.js?$/
-      },
       {
         loader: 'ts-loader',
         test: /\.tsx?$/,
         options: {
-          configFile: 'tsconfig.es5.json',
-          transpileOnly: true
+          configFile: 'tsconfig.dist.json'
         }
       }
     ]
   },
   output: {
     path: path.resolve('dist'),
-    filename: `${filename}.es5.js`,
+    filename: `${filename}.js`,
     library: globalVariable
   },
   resolve: {
@@ -43,7 +37,7 @@ module.exports = {
     mainFields: ['browser', 'main']
   },
   plugins: [
-    new UglifyJSPlugin({
+    new UglifyJS({
       sourceMap: true
     })
   ]

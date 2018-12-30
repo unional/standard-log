@@ -1,5 +1,5 @@
-import { store } from './store';
 import { Appender } from './interfaces';
+import { store } from './store';
 
 let hasAppenders: boolean
 export function hasAppender() {

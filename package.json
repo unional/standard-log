@@ -9,14 +9,20 @@
   "scripts": {
     "build": "tsc -v",
     "build:watch": "tsc -b -w",
+    "coverage": "yarn jest --coverage",
     "test": "yarn jest",
-    "verify": "yarn test",
+    "verify": "yarn coverage && yarn build",
     "watch": "yarn jest --watch"
   },
-  "dependencies": {
-    "@unional/devpkg-node": "^1.1.6"
-  },
   "devDependencies": {
-    "lerna": "^3.8.0"
+    "@unional/devpkg-node": "^1.1.6",
+    "lerna": "^3.8.0",
+    "param-case": "^2.1.1",
+    "pascal-case": "^2.0.1",
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.2",
+    "uglifyjs-webpack-plugin": "^2.1.1",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
   }
 }

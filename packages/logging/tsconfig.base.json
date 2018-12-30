@@ -1,23 +1,20 @@
 {
-  "extends": "../tsconfig.setting.json",
+  "extends": "../../tsconfig.setting.json",
   "compilerOptions": {
     "lib": [
       "dom",
       "es2015"
     ],
-    "rootDir": "src",
-    "skipLibCheck": true
+    "rootDir": "src"
   },
   "references": [
     {
-      "path": "../color"
-    },
-    {
       "path": "../memory"
-    },
-    {
-      "path": "../simple-console"
     }
+  ],
+  "include": [
+    "src",
+    "typings"
   ],
   "files": [
     "src/index.ts"
