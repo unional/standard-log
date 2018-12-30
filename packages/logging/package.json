@@ -1,7 +1,7 @@
 {
   "name": "@unional/logging",
   "description": "A logging library that doesn't suck",
-  "version": "0.0.0-development",
+  "version": "0.5.5",
   "homepage": "https://github.com/unional/logging",
   "bugs": {
     "url": "https://github.com/unional/logging/issues"
@@ -25,9 +25,7 @@
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "npm run build && npm run bundle",
-    "test": "jest",
-    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage",
-    "watch": "jest --watch"
+    "verify": "npm run lint && npm run build && npm run dependency-check && jest --coverage"
   },
   "devDependencies": {
     "@unional/devpkg-node": "^1.1.5",
@@ -43,7 +41,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "@unional/devpkg-node": "^1.1.2",
     "global-store": "^0.7.3",
     "type-plus": "^1.1.2"
   }

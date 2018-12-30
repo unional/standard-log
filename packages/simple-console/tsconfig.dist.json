@@ -9,15 +9,18 @@
     "moduleResolution": "node",
     "newLine": "LF",
     "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "outDir": "lib",
+    "outDir": "dist",
+    "plugins": [
+      {
+        "name": "tslint-language-service"
+      }
+    ],
     "removeComments": false,
+    "rootDir": "src",
     "sourceMap": true,
     "strict": true,
+    "target": "es5"
   },
-  "include": [
-    "typings"
-  ],
   "files": [
     "src/index.ts"
   ]

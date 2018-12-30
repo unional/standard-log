@@ -1,16 +1,29 @@
 {
   "name": "aurelia-logging-color",
+  "version": "0.5.16",
   "description": "ColorAppender for `aurelia-logging`",
-  "version": "0.0.0-development",
-  "main": "dist-es5/index.js",
-  "module": "dist-es2015/index.js",
-  "typings": "dist-es5/index.d.ts",
+  "homepage": "https://github.com/unional/logging",
+  "bugs": {
+    "url": "https://github.com/unional/logging/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/logging.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong",
+    "email": "homawong@gmail.com"
+  },
   "files": [
     "dist",
     "dist-es5",
     "dist-es2015",
     "src"
   ],
+  "main": "dist-es5/index.js",
+  "module": "dist-es2015/index.js",
+  "typings": "dist-es5/index.d.ts",
   "scripts": {
     "build": "npm run clean && npm run build-es5 && npm run build-es2015 && npm run bundle",
     "build-es2015": "tsc -p tsconfig.es2015.json",
@@ -25,72 +38,22 @@
     "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
     "prepublishOnly": "npm run build && npm run bundle",
     "remove-spec": "rimraf dist-es5/**/*.spec.*",
+    "semantic-release": "semantic-release",
     "test": "npm run clean && tsc && ava && npm run bundle",
     "verify": "npm run lint && npm run coverage && npm run remove-spec && npm run dependency-check",
-    "watch": "npm run clean && node scripts/watch.js",
-    "semantic-release": "semantic-release"
-  },
-  "author": {
-    "name": "Homa Wong",
-    "email": "homawong@gmail.com"
-  },
-  "homepage": "https://github.com/unional/aurelia-logging-color",
-  "bugs": {
-    "url": "https://github.com/unional/aurelia-logging-color/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unional/aurelia-logging-color.git"
-  },
-  "license": "MIT",
-  "ava": {
-    "files": [
-      "dist-es5/**/*.spec.js"
-    ],
-    "source": [
-      "scripts/*.js",
-      "dist-es5/**/*.js",
-      "*.json"
-    ],
-    "require": [
-      "./scripts/setup-browser-env.js",
-      "./scripts/setup-test-env.js"
-    ]
-  },
-  "nyc": {
-    "exclude": [
-      "scripts",
-      "**/*.spec.*",
-      "**/fixtures/**/*"
-    ]
-  },
-  "peerDependencies": {
-    "aurelia-logging": ">=1.4.0"
+    "watch": "npm run clean && node scripts/watch.js"
   },
   "dependencies": {
     "color-map": "^1.1.0",
     "is-node": "^1.0.2"
   },
   "devDependencies": {
-    "@types/jsdom": "^11.0.6",
-    "@types/node": "^9.6.25",
     "aurelia-logging": "^1.5.0",
     "aurelia-polyfills": "^1.3.0",
-    "ava": "^0.25.0",
-    "browser-env": "^3.2.5",
-    "dependency-check": "^3.2.0",
-    "eslint": "^5.2.0",
-    "eslint-plugin-harmony": "^1.0.3",
-    "nyc": "^13.0.1",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
-    "rimraf": "^2.6.2",
-    "semantic-release": "^15.9.3",
     "source-map-loader": "^0.2.3",
     "ts-loader": "^4.4.2",
-    "tslint": "^5.11.0",
-    "tslint-config-unional": "^0.9.6",
-    "typescript": "^2.9.2",
     "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.16.3",
     "webpack-cli": "^3.1.0"

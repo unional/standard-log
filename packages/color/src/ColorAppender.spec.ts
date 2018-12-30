@@ -1,9 +1,7 @@
-import test from 'ava'
-import { addAppender, setLevel, getLogger, logLevel, addCustomLevel } from 'aurelia-logging'
+import { addAppender, addCustomLevel, getLogger, logLevel, setLevel } from 'aurelia-logging';
+import { ColorAppender } from './ColorAppender';
 
-import { ColorAppender } from './ColorAppender'
-
-test('color cycling', t => {
+test('color cycling', () => {
   addAppender(new ColorAppender())
   setLevel(logLevel.debug)
   for (let i = 0; i < 25; i++) {
@@ -13,10 +11,9 @@ test('color cycling', t => {
     log.warn('  x ', Date.now())
     log.error('   x', Date.now())
   }
-  t.pass()
 })
 
-test('log error', t => {
+test('log error', () => {
   addAppender(new ColorAppender({
     colorMode: 'CSS',
     coloringText: true,
@@ -24,18 +21,16 @@ test('log error', t => {
   }))
   const log = getLogger('logError')
   log.error(new Error('expected error') as any)
-  t.pass()
   // Inspect visually for "%c logError  padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;bother: 1px solid #76003a;color: #ffffff; Error: expected error ...stack"
 })
 
-test('support custom level', t => {
+test('support custom level', () => {
   addCustomLevel('trace', 35)
   ColorAppender.addCustomLevel('trace', 35)
   const log = getLogger('custom level')
   setLevel(34)
-  log['trace']('should not trace')
+    ; (log as any)['trace']('should not trace')
   setLevel(36)
-  log['trace']('tracing')
-  t.pass()
+    ; (log as any)['trace']('tracing')
   // Inspect visually
 })

@@ -1,9 +1,8 @@
 import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
-import test from 'ava'
 
 import { ColorAppender } from './index'
 
-test('demo', t => {
+test('demo', () => {
 
   addAppender(new ColorAppender())
 
@@ -17,5 +16,4 @@ test('demo', t => {
   const loggerB = getLogger('Logger B')
 
   loggerB.info('Nother pretty color!')
-  t.pass()
 })

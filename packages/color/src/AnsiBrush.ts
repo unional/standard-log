@@ -61,11 +61,11 @@ function createColorCodes() {
   return [...baseCodes, ...brighten, ...dimmed, ...underscored]
 }
 
-function filterSameForegroundBackgroundColors(baseCodes) {
+function filterSameForegroundBackgroundColors(baseCodes: number[][]) {
   return baseCodes.filter(x => x.length === 1 || x[0] !== x[1] + 10)
 }
 
-function filterHandPickedColors(baseCodes) {
+function filterHandPickedColors(baseCodes: number[][]) {
   return baseCodes.filter(x => !(
     (x.length === 1 && x[0] === 43)
     || (x.length === 2 && x[0] === 45 && x[1] === 31)

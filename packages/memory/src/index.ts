@@ -1,5 +1,5 @@
-import { Logger, logLevel } from 'aurelia-logging'
-import upperCase from 'upper-case'
+import { logLevel } from 'aurelia-logging';
+import upperCase from 'upper-case';
 
 export interface LogEntry {
   id: string
@@ -8,23 +8,23 @@ export interface LogEntry {
 }
 
 export class MemoryAppender {
-  static addCustomLevel(name, level) {
-    MemoryAppender.prototype[name] = function (logger: Logger, ...messages) {
+  static addCustomLevel(name: string, level: number) {
+    (MemoryAppender as any).prototype[name] = function (logger: { id: string }, ...messages: any[]) {
       this.logs.push({ id: logger.id, level, messages })
     }
   }
   public logs: LogEntry[] = [];
 
-  debug(logger: Logger, ...messages) {
+  debug(logger: { id: string }, ...messages: any[]) {
     this.logs.push({ id: logger.id, level: logLevel.debug, messages })
   }
-  info(logger: Logger, ...messages) {
+  info(logger: { id: string }, ...messages: any[]) {
     this.logs.push({ id: logger.id, level: logLevel.info, messages })
   }
-  warn(logger: Logger, ...messages) {
+  warn(logger: { id: string }, ...messages: any[]) {
     this.logs.push({ id: logger.id, level: logLevel.warn, messages })
   }
-  error(logger: Logger, ...messages) {
+  error(logger: { id: string }, ...messages: any[]) {
     this.logs.push({ id: logger.id, level: logLevel.error, messages })
   }
 }

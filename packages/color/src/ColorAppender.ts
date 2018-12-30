@@ -50,7 +50,7 @@ function nodeVersionBelow(major: number, minor = 0, patch = 0) {
  */
 export class ColorAppender {
   static addCustomLevel(name: string, level: number) {
-    ColorAppender.prototype[name] = function (logger: Logger, ...rest: any[]) {
+    (ColorAppender as any).prototype[name] = function (logger: Logger, ...rest: any[]) {
       const logMethod = getLogMethod(level)
       if (logMethod)
         logMethod.apply(console, this.brush.color(logger.id, ...rest))
@@ -61,15 +61,15 @@ export class ColorAppender {
     this.brush = createBrush(option)
   }
   error(logger: Logger, ...rest: any[]) {
-    error.apply(console, this.brush.color(logger.id, ...rest))
+    error.call(console, ...this.brush.color(logger.id, ...rest))
   }
   warn(logger: Logger, ...rest: any[]) {
-    warn.apply(console, this.brush.color(logger.id, ...rest))
+    warn.call(console, ...this.brush.color(logger.id, ...rest))
   }
   info(logger: Logger, ...rest: any[]) {
-    info.apply(console, this.brush.color(logger.id, ...rest))
+    info.call(console, ...this.brush.color(logger.id, ...rest))
   }
   debug(logger: Logger, ...rest: any[]) {
-    debug.apply(console, this.brush.color(logger.id, ...rest))
+    debug.call(console, ...this.brush.color(logger.id, ...rest))
   }
 }

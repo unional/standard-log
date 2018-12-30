@@ -43,7 +43,7 @@ export class CSSBrush implements Brush {
     return this.map[text] = this.map[text] || this.colors[this.count++ % this.option.maxColor]
   }
 
-  private getForegroundColor(background) {
+  private getForegroundColor(background: RGB) {
     // Setting the contrasting color as default
     let color = this.getComplementary(background)
     const bgLuminance = this.getRelativeLuminance(background)

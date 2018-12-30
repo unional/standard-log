@@ -1,12 +1,12 @@
-import * as isNode from 'is-node'
+import isNode from 'is-node'
 import { ColorMode } from './interfaces'
 
 export { isNode }
 
-// tslint:disable-next-line strict-type-predicates
+// @ts-ignore
 const userAgent = typeof navigator !== 'undefined' ? navigator.userAgent : undefined
 
-// tslint:disable-next-line strict-type-predicates
+// @ts-ignore
 const vendor = typeof navigator !== 'undefined' ? navigator.vendor : undefined
 
 // alternatively check `!!window.chrome`

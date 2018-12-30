@@ -1,8 +1,8 @@
-import test from 'ava'
+import t from 'assert'
 import { addAppender, setLevel, getLogger, logLevel, addCustomLevel } from 'aurelia-logging'
 import { MemoryAppender, stringifyLogLevel } from '.'
 
-test('MemoryAppender', t => {
+test('MemoryAppender', () => {
   const appender = new MemoryAppender()
   addAppender(appender)
 
@@ -13,30 +13,30 @@ test('MemoryAppender', t => {
   logger.error('error', 'something wrong')
   logger.info('info')
   logger.warn('warn')
-  t.is(appender.logs.length, 1)
-  t.deepEqual(appender.logs[0], { id: 'Memory', level: logLevel.error, messages: ['error', 'something wrong'] })
+  t.strictEqual(appender.logs.length, 1)
+  t.deepStrictEqual(appender.logs[0], { id: 'Memory', level: logLevel.error, messages: ['error', 'something wrong'] })
 
   setLevel(logLevel.info)
   logger.debug('debug')
   logger.error('error')
   logger.info('info')
   logger.warn('warn')
-  t.is(appender.logs.length, 4)
+  t.strictEqual(appender.logs.length, 4)
 
   setLevel(logLevel.debug)
   logger.debug('debug')
-  t.is(appender.logs.length, 5)
+  t.strictEqual(appender.logs.length, 5)
 })
 
-test('stringifyLogLevel', t => {
+test('stringifyLogLevel', () => {
   // logLevel.none is not cover as it is not available in the log.
-  t.is(stringifyLogLevel(logLevel.debug), 'DEBUG')
-  t.is(stringifyLogLevel(logLevel.info), 'INFO')
-  t.is(stringifyLogLevel(logLevel.warn), 'WARN')
-  t.is(stringifyLogLevel(logLevel.error), 'ERROR')
+  t.strictEqual(stringifyLogLevel(logLevel.debug), 'DEBUG')
+  t.strictEqual(stringifyLogLevel(logLevel.info), 'INFO')
+  t.strictEqual(stringifyLogLevel(logLevel.warn), 'WARN')
+  t.strictEqual(stringifyLogLevel(logLevel.error), 'ERROR')
 })
 
-test('add custom level will log entry', t => {
+test('add custom level will log entry', () => {
   const appender = new MemoryAppender()
   addAppender(appender)
 
@@ -45,15 +45,15 @@ test('add custom level will log entry', t => {
 
   const log = getLogger('custom level')
   setLevel(34)
-  log['trace']('should not trace')
+    ; (log as any)['trace']('should not trace')
   setLevel(36)
-  log['trace']('tracing')
+    ; (log as any)['trace']('tracing')
 
-  t.is(appender.logs.length, 1)
-  t.deepEqual(appender.logs[0], { id: 'custom level', level: 35, messages: ['tracing'] })
+  t.strictEqual(appender.logs.length, 1)
+  t.deepStrictEqual(appender.logs[0], { id: 'custom level', level: 35, messages: ['tracing'] })
 })
 
-test('add custom level will stringify', t => {
+test('add custom level will stringify', () => {
   addCustomLevel('trace2', 45)
-  t.is(stringifyLogLevel(45), 'TRACE2')
+  t.strictEqual(stringifyLogLevel(45), 'TRACE2')
 })

@@ -7,7 +7,7 @@ export function getLogger(id: string, level = logLevel.info) {
   const { logs } = store.get()
   if (logs[id]) return logs[id]
 
-  const logger: Logger = {
+  const logger = {
     id,
     level,
     error(...args: any[]) {
@@ -61,6 +61,6 @@ export function getLogger(id: string, level = logLevel.info) {
       }
     }
   }
-  return logger
+  return logger as Logger
 }
 

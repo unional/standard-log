@@ -1,15 +1,14 @@
-// tslint:disable quotemark
-import test from 'ava'
+import t from 'assert'
 
 import { CSSBrush } from './CSSBrush'
 
-test('work with null', t => {
+test('work with null', () => {
   const brush = new CSSBrush({ maxColor: 10 });
   const actual = brush.color('a', null);
-  t.deepEqual(actual, ['%c a ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;', null])
+  t.deepStrictEqual(actual, ['%c a ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;', null])
 })
 
-test('background', t => {
+test('background', () => {
   const brush = new CSSBrush({ maxColor: 10 })
 
   let actual: string[][] = []
@@ -17,7 +16,7 @@ test('background', t => {
     actual.push(brush.color(i.toString()))
   }
 
-  t.deepEqual(actual, [
+  t.deepStrictEqual(actual, [
     ['%c 0 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;'],
     ['%c 1 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #0000c8;border: 1px solid #0000a8;color: #ffffff;'],
     ['%c 2 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #0019ff;border: 1px solid #0000df;color: #ffffff;'],
@@ -31,14 +30,14 @@ test('background', t => {
     ['%c 10 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;']])
 })
 
-test('text', t => {
+test('text', () => {
   const brush = new CSSBrush({ maxColor: 10 })
 
   let actual: string[][] = []
   for (let i = 0; i <= 10; i++) {
     actual.push(brush.color(i.toString()))
   }
-  t.deepEqual(actual, [
+  t.deepStrictEqual(actual, [
     ['%c 0 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;'],
     ['%c 1 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #0000c8;border: 1px solid #0000a8;color: #ffffff;'],
     ['%c 2 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #0019ff;border: 1px solid #0000df;color: #ffffff;'],
@@ -52,8 +51,8 @@ test('text', t => {
     ['%c 10 ', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;']])
 })
 
-test('multiple colors', t => {
+test('multiple colors', () => {
   const brush = new CSSBrush()
   const actual = brush.color('myLogger', '%c SomeColored Text %c AnotherColor', 'color:blue;', 'color:red;', 'not colored')
-  t.deepEqual(actual, ['%c myLogger %c SomeColored Text %c AnotherColor', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;', 'color:blue;', 'color:red;', 'not colored'])
+  t.deepStrictEqual(actual, ['%c myLogger %c SomeColored Text %c AnotherColor', 'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;', 'color:blue;', 'color:red;', 'not colored'])
 })

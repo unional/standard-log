@@ -10,11 +10,14 @@
   },
   "references": [
     {
+      "path": "../color"
+    },
+    {
       "path": "../memory"
+    },
+    {
+      "path": "../simple-console"
     }
-  ],
-  "include": [
-    "typings"
   ],
   "files": [
     "src/index.ts"

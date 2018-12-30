@@ -45,3 +45,4 @@ node_modules
 dist*
 lib
 out*
+.nowhere

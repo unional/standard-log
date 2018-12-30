@@ -1,21 +1,6 @@
 {
-  "extends": "@unional/devpkg-node/monorepo/typescript/tsconfig.setting.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "lib",
-    "rootDir": "src",
-    "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "es2015"
-    ]
-  },
-  "references": [
-  ],
-  "include": [
-    "typings",
-    "src"
-  ],
-  "files": [
-    "src/index.ts"
-  ]
+    "outDir": "lib"
+  }
 }

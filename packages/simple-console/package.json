@@ -1,0 +1,31 @@
+{
+  "name": "aurelia-logging-simple-console",
+  "version": "0.0.0",
+  "description": "simple console support for aurelia-logging",
+  "homepage": "https://github.com/unional/logging",
+  "bugs": {
+    "url": "https://github.com/unional/logging/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/logging.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong",
+    "email": "homawong@gmail.com"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json",
+    "bundle": "webpack",
+    "dc": "yarn dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "prepublishOnly": "yarn build && yarn bundle"
+  }
+}

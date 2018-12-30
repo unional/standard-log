@@ -1,3 +1,9 @@
-const common = require('@unional/devpkg-node/simple/config/jest.common')
-module.exports = Object.assign(common, {
-})
+module.exports = {
+  projects: [
+    '<rootDir>/packages/*'
+  ],
+  testMatch: [
+    '**/*.spec.ts',
+    '**/*.node-spec.ts'
+  ]
+}

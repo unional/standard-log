@@ -44,7 +44,7 @@ export class Ansi16mBrush implements Brush {
     const rgb = this.getRgb(id)
     return [this.wrapAnsi16m(` ${id} `, rgb, 10), ...rest]
   }
-  private wrapAnsi16m(id: string, rgb, offset: number = 0) {
+  private wrapAnsi16m(id: string, rgb: any, offset: number = 0) {
     return `\u001B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m` + id + `\u001B[${39 + offset}m`
   }
 }

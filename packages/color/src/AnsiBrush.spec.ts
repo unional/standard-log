@@ -1,8 +1,8 @@
-import test from 'ava'
+import t from 'assert'
 
 import { AnsiBrush } from './AnsiBrush'
 
-test('background', t => {
+test('background', () => {
   const brush = new AnsiBrush()
 
   let actual: string[] = []
@@ -11,7 +11,7 @@ test('background', t => {
   }
   // console.log(actual)
 
-  t.deepEqual(actual, ['\u001b[41m 0 \u001b[0m',
+  t.deepStrictEqual(actual, ['\u001b[41m 0 \u001b[0m',
     '\u001b[42m 1 \u001b[0m',
     '\u001b[44m 2 \u001b[0m',
     '\u001b[45m 3 \u001b[0m',

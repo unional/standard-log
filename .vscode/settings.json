@@ -5,6 +5,10 @@
         "tsconfig.*.json"
       ],
       "url": "http://json.schemastore.org/tsconfig"
+    },
+    {
+      "fileMatch": ["tslint.json"],
+      "url": "http://json.schemastore.org/tslint"
     }
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
