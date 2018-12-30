@@ -1,6 +1,5 @@
 # @unional/logging
 
-![unstable][unstable-image]
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
@@ -9,22 +8,20 @@
 [![Codecov][codecov-image]][codecov-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 
-[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
-[![Semantic Release][semantic-release-image]][semantic-release-url]
-
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
 A logging library that doesn't suck.
 
-This library builds on top of [`aurelia-logging`](https://github.com/aurelia/logging).
+This library was based on [`aurelia-logging`](https://github.com/aurelia/logging).
+In 1.0, the coupling is mostly eliminated and the only thing shared is the `logLevel` and the general design.
 
-You can use any Aurelia log appender with this library.
-e.g.:
+You can use any of the following appender with this library:
 
-- [`aurelia-logging-color`](https://github.com/unional/aurelia-logging-color)
-- [`aurelia-logging-memory`](https://github.com/unional/aurelia-logging-memory)
-- [`aurelia-logging-console`](https://github.com/aurelia/logging-console)
+- [`aurelia-logging-simple-console](https://github.com/unional/logging/tree/master/packages/simple-console) (this is the default appender)
+- [`aurelia-logging-color`](https://github.com/unional/logging/tree/master/packages/color)
+- [`aurelia-logging-memory`](https://github.com/unional/logging/tree/master/packages/memory)
+- [`aurelia-logging-console`](https://github.com/aurelia/logging-console) (pending on this [PR](https://github.com/aurelia/logging-console/pull/17))
 
 ## Usage
 
@@ -59,15 +56,10 @@ function getLogMessageThatIsTimeConsumingToCreate() {
 [coveralls-url]: https://coveralls.io/github/unional/logging
 [downloads-image]: https://img.shields.io/npm/dm/@unional/logging.svg?style=flat
 [downloads-url]: https://npmjs.org/package/@unional/logging
-[greenkeeper-image]: https://badges.greenkeeper.io/unional/logging.svg
-[greenkeeper-url]: https://greenkeeper.io/
 [npm-image]: https://img.shields.io/npm/v/@unional/logging.svg?style=flat
 [npm-url]: https://npmjs.org/package/@unional/logging
-[semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release-url]: https://github.com/semantic-release/semantic-release
 [travis-image]: https://img.shields.io/travis/unional/logging/master.svg?style=flat
 [travis-url]: https://travis-ci.org/unional/logging?branch=master
-[unstable-image]: https://img.shields.io/badge/stability-unstable-yellow.svg
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg

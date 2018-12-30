@@ -15,6 +15,7 @@ branches:
     - master
     - /^greenkeeper.*$/
 script:
+  - npm install -g yarn
   - yarn install
   - npm i --no-save jest-junit
   - yarn verify
