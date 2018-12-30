@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging-color",
-  "version": "0.5.16",
+  "version": "1.0.0",
   "description": "ColorAppender for `aurelia-logging`",
   "homepage": "https://github.com/unional/logging",
   "bugs": {
