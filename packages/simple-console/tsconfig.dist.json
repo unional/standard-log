@@ -10,17 +10,15 @@
     "newLine": "LF",
     "noUnusedLocals": true,
     "outDir": "dist",
-    "plugins": [
-      {
-        "name": "tslint-language-service"
-      }
-    ],
     "removeComments": false,
     "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "target": "es5"
   },
+  "exclude": [
+    "src/*.spec.ts"
+  ],
   "files": [
     "src/index.ts"
   ]

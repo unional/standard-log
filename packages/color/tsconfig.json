@@ -1,10 +1,5 @@
 {
-  "extends": "../tsconfig.setting.json",
-  "references": [
-    {
-      "path": "../logging"
-    }
-  ],
+  "extends": "./tsconfig.base.json",
   "include": [
     "src",
     "typings"

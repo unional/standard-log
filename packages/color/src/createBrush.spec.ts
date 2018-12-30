@@ -1,9 +1,8 @@
-import t from 'assert'
-
-import { Ansi16mBrush } from './Ansi16mBrush'
-import { AnsiBrush } from './AnsiBrush'
-import { CSSBrush } from './CSSBrush'
-import { createBrush, PlainBrush } from './createBrush'
+import t from 'assert';
+import { Ansi16mBrush } from './Ansi16mBrush';
+import { AnsiBrush } from './AnsiBrush';
+import { createBrush, PlainBrush } from './createBrush';
+import { CSSBrush } from './CSSBrush';
 
 test('create correct brushes', () => {
   let brush = createBrush({

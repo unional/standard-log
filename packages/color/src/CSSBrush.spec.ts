@@ -1,6 +1,5 @@
-import t from 'assert'
-
-import { CSSBrush } from './CSSBrush'
+import t from 'assert';
+import { CSSBrush } from './CSSBrush';
 
 test('work with null', () => {
   const brush = new CSSBrush({ maxColor: 10 });

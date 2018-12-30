@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging-color",
-  "version": "1.0.0",
+  "version": "0.5.16",
   "description": "ColorAppender for `aurelia-logging`",
   "homepage": "https://github.com/unional/logging",
   "bugs": {
@@ -26,11 +26,13 @@
     "bundle": "webpack",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "prepublishOnly": "yarn build && yarn bundle && yarn dc",
+    "preversion": "yarn test && yarn dc",
+    "prepublishOnly": "rimraf dist lib && yarn build && yarn bundle",
     "test": "jest",
     "watch": "jest --watch"
   },
   "dependencies": {
+    "aurelia-logging": "^1.5.0",
     "color-map": "^1.1.0",
     "is-node": "^1.0.2"
   }

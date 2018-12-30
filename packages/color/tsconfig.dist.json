@@ -3,6 +3,7 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
+      "dom",
       "es2015"
     ],
     "module": "commonjs",
@@ -12,12 +13,13 @@
     "outDir": "dist",
     "removeComments": false,
     "rootDir": "src",
+    "sourceRoot": "src",
     "sourceMap": true,
     "strict": true,
     "target": "es5"
   },
-  "exclude": [
-    "src/*.spec.ts"
+  "include": [
+    "typings"
   ],
   "files": [
     "src/index.ts"

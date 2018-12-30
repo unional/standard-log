@@ -1,6 +1,6 @@
 import { addAppender, setLevel, getLogger, logLevel } from 'aurelia-logging'
 
-import { ColorAppender } from './index'
+import { ColorAppender } from '.'
 
 test('demo', () => {
 

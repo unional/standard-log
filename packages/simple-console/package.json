@@ -26,8 +26,15 @@
     "bundle": "webpack",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "prepublishOnly": "yarn build && yarn bundle && yarn dc",
+    "preversion": "yarn test && yarn dc",
+    "prepublishOnly": "rimraf dist lib && yarn build && yarn bundle",
     "test": "jest",
     "watch": "jest --watch"
+  },
+  "devDependencies": {
+    "source-map-loader": "^0.2.4",
+    "ts-loader": "^5.3.2",
+    "webpack": "^4.28.3",
+    "webpack-cli": "^3.1.2"
   }
 }

@@ -19,8 +19,7 @@ module.exports = {
         loader: 'ts-loader',
         test: /\.tsx?$/,
         options: {
-          configFile: 'tsconfig.dist.json',
-          transpileOnly: true
+          configFile: 'tsconfig.dist.json'
         }
       }
     ]
@@ -29,6 +28,10 @@ module.exports = {
     path: path.resolve('dist'),
     filename: `${filename}.js`,
     library: globalVariable
+  },
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js'],
+    mainFields: ['browser', 'main']
   },
   plugins: [
     new UglifyJS({
