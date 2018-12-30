@@ -2,6 +2,7 @@ import { logLevel } from 'aurelia-logging';
 import { createBrush } from './createBrush';
 import { isNode } from './environments';
 import { Brush, BrushOption, ColorModeOption } from './interfaces';
+import semver from 'semver'
 
 export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 }
@@ -10,7 +11,7 @@ export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 // Should use `console.log()` in those case.
 // tslint:disable-next-line
 // istanbul ignore next
-const debug = isNode && nodeVersionBelow(9, 3) ? console.log : console.debug
+const debug = isConsoleDebugAvailable() ? console.debug : console.log
 // the `typeof` guards against IE where `console.log.apply()`
 // results in error `Object doesn't support property or method 'apply'`
 // istanbul ignore next
@@ -31,14 +32,12 @@ function getLogMethod(level: number) {
 }
 
 // istanbul ignore next
-function nodeVersionBelow(major: number, minor = 0, patch = 0) {
+function isConsoleDebugAvailable() {
+  if (!isNode) return true
   // without this, systemjs will complain `process is not defined`
-  if (!global.process) return false
+  if (!global.process) return true
   const versionString = process.version.startsWith('v') ? process.version.slice(1) : process.version
-  const [actualMajor, actualMinor, actualPatch] = versionString.split('.').map(s => parseInt(s, 10))
-  const checking = major * 1000 * 1000 + minor * 1000 + patch
-  const actual = actualMajor * 1000 * 1000 + actualMinor * 1000 + actualPatch
-  return checking >= actual
+  return semver.gt(versionString, '9.3.0')
 }
 
 /**

@@ -30,5 +30,12 @@
     "prepublishOnly": "rimraf dist lib && yarn build && yarn bundle",
     "test": "jest",
     "watch": "jest --watch"
+  },
+  "dependencies": {
+    "is-node": "^1.0.2",
+    "semver": "^5.6.0"
+  },
+  "devDependencies": {
+    "semver": "^5.6.0"
   }
 }

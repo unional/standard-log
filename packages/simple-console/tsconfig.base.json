@@ -4,6 +4,10 @@
     "outDir": "out",
     "rootDir": "src"
   },
+  "include": [
+    "src",
+    "typings"
+  ],
   "files": [
     "src/index.ts"
   ]
