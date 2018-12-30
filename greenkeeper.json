@@ -1,0 +1,13 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "packages/color/package.json",
+        "packages/logging/package.json",
+        "packages/memory/package.json",
+        "packages/simple-console/package.json"
+      ]
+    }
+  }
+}

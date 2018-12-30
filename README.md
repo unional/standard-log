@@ -1,5 +1,7 @@
 # @unional/logging
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/unional/logging.svg)](https://greenkeeper.io/)
+
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
