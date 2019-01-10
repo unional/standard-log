@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@unional/devpkg-node": "^1.1.6",
-    "jest-junit": "^5.2.0",
+    "jest-junit": "^6.0.0",
     "lerna": "^3.8.0",
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
