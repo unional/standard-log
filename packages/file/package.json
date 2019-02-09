@@ -1,6 +1,6 @@
 {
   "name": "aurelia-logging-file",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "File appender for `aurelia-logging`",
   "homepage": "https://github.com/unional/logging",
   "bugs": {
