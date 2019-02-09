@@ -1,10 +1,13 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true
+    "outDir": "lib"
   },
   "include": [
     "src",
     "typings"
+  ],
+  "exclude": [
+    "src/*.spec.ts"
   ]
 }

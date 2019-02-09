@@ -7,9 +7,9 @@ workflows:
       - node10:
           requires:
             - node-latest
-      - node9:
-          requires:
-            - node-latest
+      # - node9:
+      #     requires:
+      #       - node-latest
       - node8:
           requires:
             - node-latest

@@ -42,6 +42,6 @@ node_modules
 .idea
 
 # project folders
-lib
+lib*
 out*
 .nowhere

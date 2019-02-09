@@ -1,10 +1,15 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true
+    "module": "esnext",
+    "outDir": "libm",
+    "target": "esnext"
   },
   "include": [
     "src",
     "typings"
+  ],
+  "exclude": [
+    "src/*.spec.ts"
   ]
 }
