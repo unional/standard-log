@@ -20,11 +20,11 @@ In 1.0, the coupling is mostly eliminated and the only thing shared is the `logL
 
 You can use any of the following appender with this library:
 
-- [`aurelia-logging-simple-console](https://github.com/unional/logging/tree/master/packages/simple-console) (this is the default appender)
+- [`aurelia-logging-simple-console`](https://github.com/unional/logging/tree/master/packages/simple-console) (this is the default appender)
 - [`aurelia-logging-color`](https://github.com/unional/logging/tree/master/packages/color)
 - [`aurelia-logging-file`](https://github.com/unional/logging/tree/master/packages/file)
 - [`aurelia-logging-memory`](https://github.com/unional/logging/tree/master/packages/memory)
-- [`aurelia-logging-console`](https://github.com/aurelia/logging-console) (pending on this [PR](https://github.com/aurelia/logging-console/pull/17))
+- [`aurelia-logging-console`](https://github.com/aurelia/logging-console)
 
 ## Usage
 
