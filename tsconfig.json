@@ -5,6 +5,9 @@
       "path": "packages/color/tsconfig.lib.json"
     },
     {
+      "path": "packages/file/tsconfig.lib.json"
+    },
+    {
       "path": "packages/logging/tsconfig.lib.json"
     },
     {
@@ -12,6 +15,9 @@
     },
     {
       "path": "packages/simple-console/tsconfig.lib.json"
+    },
+    {
+      "path": "packages/standard-log/tsconfig.lib.json"
     }
   ]
 }

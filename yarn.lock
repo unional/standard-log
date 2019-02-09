@@ -1325,6 +1325,23 @@ assert@^1.1.1:
   dependencies:
     util "0.10.3"
 
+assertion-error@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/assertion-error/-/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
+  integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
+
+assertron@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/assertron/-/assertron-6.1.0.tgz#0930c5218ea95183cafe9c4589f35d1a59707b4f"
+  integrity sha512-/obpEDVhtU4znjhKn8kG6gPZ3n9DMG2XSmroQQmAbOHvZ9yfCtLKIS0vGxYxa3iAM32agRKQjqzuZO6L+dwRYg==
+  dependencies:
+    assertion-error "^1.1.0"
+    is-node "^1.0.2"
+    is-promise "^2.1.0"
+    path-equal "^1.1.1"
+    satisfier "^4.5.1"
+    tersify "^1.2.6"
+
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -5858,6 +5875,11 @@ path-dirname@^1.0.0:
   resolved "https://registry.yarnpkg.com/path-dirname/-/path-dirname-1.0.2.tgz#cc33d24d525e099a5388c0336c6e32b9160609e0"
   integrity sha1-zDPSTVJeCZpTiMAzbG4yuRYGCeA=
 
+path-equal@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/path-equal/-/path-equal-1.1.1.tgz#7a2cb914cc5366623d0e9c34570fc0fbe99bca3c"
+  integrity sha512-4mkD8QLM/A+dr1u/a8qDuGgjEBFflJ9rvuoG9aesMMHMWBBIaYLKGhQX15dQEpM6f6K+rKI3Ven2q/I6Fo+4nw==
+
 path-exists@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-2.1.0.tgz#0feb6c64f0fc518d9a754dd5efb62c7022761f4b"
@@ -6634,6 +6656,13 @@ sane@^3.0.0:
     watch "~0.18.0"
   optionalDependencies:
     fsevents "^1.2.3"
+
+satisfier@^4.5.1:
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/satisfier/-/satisfier-4.5.1.tgz#4cab4e08b3a9b74a417db8f5aba938e7fb3ccbb3"
+  integrity sha512-JrwJ/Ilrukrrnu5cYAzZOp/SqOCyU07WPr0UNJzPy9eL86XoU2Rx/BzvdVanku1Klj2NwhxTIa4g7S56yY7yqQ==
+  dependencies:
+    tersify "^1.2.6"
 
 sax@^1.2.4:
   version "1.2.4"
