@@ -1,9 +1,9 @@
 import { addCustomLogLevel, LogLevel } from 'standard-log-core';
-import { createMemoryWriter } from './MemoryWriter';
+import { createMemoryLogWriter } from './MemoryLogWriter';
 
 test('log at all predefined levels', () => {
   const logger = { id: 'log' }
-  const writer = createMemoryWriter()
+  const writer = createMemoryLogWriter()
   writer.alert(logger, ['alert'])
   writer.critical(logger, ['critical'])
   writer.debug(logger, ['debug'])
@@ -29,7 +29,7 @@ test('log at all predefined levels', () => {
 test('can write custom level log', () => {
   addCustomLogLevel('cust_mem', 33)
   const logger = { id: 'log' }
-  const writer = createMemoryWriter<LogLevel | 'cust_mem'>()
+  const writer = createMemoryLogWriter<LogLevel | 'cust_mem'>()
   writer.cust_mem(logger, ['cust_mem'])
   expect(writer.logs).toEqual([{ id: 'log', level: 33, messages: ['cust_mem'] }])
 })

@@ -1,1 +1,1 @@
-export * from './MemoryWriter'
+export * from './MemoryLogWriter'

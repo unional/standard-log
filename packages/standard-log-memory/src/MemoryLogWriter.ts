@@ -1,6 +1,6 @@
 import { getLogLevel, LogLevel, LogWriter } from 'standard-log-core';
 
-export type MemoryWriter<T extends string> = {
+export type MemoryLogWriter<T extends string> = {
   logs: LogEntry[]
 } & LogWriter<T>
 
@@ -10,7 +10,7 @@ export type LogEntry = {
   messages: any[]
 }
 
-export function createMemoryWriter<T extends string = LogLevel>(): MemoryWriter<T> {
+export function createMemoryLogWriter<T extends string = LogLevel>(): MemoryLogWriter<T> {
   return new Proxy({ logs: [] as LogEntry[] }, {
     get(target, prop) {
       if (prop === 'logs') return target.logs
