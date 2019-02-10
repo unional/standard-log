@@ -36,6 +36,6 @@
     "assertron": "^6.1.0"
   },
   "dependencies": {
-    "standard-log-core": "^1.0.0"
+    "standard-log-core": "^1.1.0"
   }
 }
