@@ -13,4 +13,3 @@ test('logger id supports unicode', () => {
 test.each('`~!@#$%^&*()=+\\/|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
   a.throws(() => getLogger(char), InvalidId)
 })
-

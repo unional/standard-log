@@ -2,5 +2,8 @@
   "extends": "../../tsconfig.setting.json",
   "compilerOptions": {
     "rootDir": "src"
-  }
+  },
+  "references": [{
+    "path": "../standard-log-core"
+  }]
 }
