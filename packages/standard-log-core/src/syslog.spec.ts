@@ -10,7 +10,7 @@ describe('toSyslogSeverity()', () => {
     ...rangeEntries(50, 59, 'warning'),
     ...rangeEntries(60, 69, 'notice'),
     ...rangeEntries(70, 79, 'informational'),
-    ...rangeEntries(80, 90, 'debug'),
+    ...rangeEntries(80, 90, 'debug')
   ])('convert %i to %s', (level: number, severity: string) => {
     expect(toSyslogSeverity(level)).toBe(severity)
   })
@@ -25,7 +25,7 @@ describe('toSyslogKeyword()', () => {
     ...rangeEntries(50, 59, 'warning'),
     ...rangeEntries(60, 69, 'notice'),
     ...rangeEntries(70, 79, 'info'),
-    ...rangeEntries(80, 90, 'debug'),
+    ...rangeEntries(80, 90, 'debug')
   ])('convert %i to %s', (level: number, keyword: string) => {
     expect(toSyslogKeyword(level)).toBe(keyword)
   })
