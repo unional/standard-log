@@ -1,0 +1,40 @@
+{
+  "name": "standard-log-core",
+  "version": "0.0.0",
+  "description": "Core library for standard-log",
+  "homepage": "https://github.com/unional/logging",
+  "bugs": {
+    "url": "https://github.com/unional/logging/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/logging.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong",
+    "email": "homawong@gmail.com"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "module": "libm/index.js",
+  "jsnext:main": "libm/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
+    "dc": "yarn dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "preversion": "yarn verify",
+    "verify": "rimraf dist lib && yarn test && yarn build && yarn dc",
+    "test": "jest",
+    "watch": "jest --watch"
+  },
+  "devDependencies": {
+    "@types/ramda": "^0.25.48",
+    "assertron": "^6.1.0",
+    "ramda": "^0.26.1"
+  }
+}
