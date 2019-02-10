@@ -36,5 +36,8 @@
     "@types/ramda": "^0.25.48",
     "assertron": "^6.1.0",
     "ramda": "^0.26.1"
+  },
+  "dependencies": {
+    "global-store": "^0.7.3"
   }
 }

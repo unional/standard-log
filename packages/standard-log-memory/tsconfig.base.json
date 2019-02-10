@@ -8,7 +8,8 @@
       "path": "../standard-log-core"
     }
   ],
-  "files": [
-    "src/index.ts"
+  "include": [
+    "src",
+    "typings"
   ]
 }
