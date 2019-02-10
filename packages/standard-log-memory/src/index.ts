@@ -1,1 +1,1 @@
-export * from './MemoryAppender'
+export * from './MemoryWriter'
