@@ -9,8 +9,8 @@ export interface ColorAppenderOption extends BrushOption, ColorModeOption {
 
 // Node@9.3 or below has `console.debug = undefined` or it doesn't log
 // Should use `console.log()` in those case.
-// tslint:disable-next-line
 // istanbul ignore next
+// tslint:disable-next-line
 const debug = isConsoleDebugAvailable() ? console.debug : console.log
 // the `typeof` guards against IE where `console.log.apply()`
 // results in error `Object doesn't support property or method 'apply'`
