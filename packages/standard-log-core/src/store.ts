@@ -1,6 +1,6 @@
-import { create } from 'global-store';
+import { createStore } from 'global-store';
 
-export const store = create('standard-log-core', {
+export const store = createStore('standard-log-core', {
   customLevels: new Map<string, number>(),
   customLevelsReverse: [] as string[]
 })

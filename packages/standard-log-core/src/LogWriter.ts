@@ -1,3 +1,3 @@
-export type LogWriter<T extends string> = {
-  [k in T]: (logger: { id: string }, messages: any[]) => void
+export type LogWriter = {
+  write(logger: { id: string }, level: number, messages: any[]): void
 }

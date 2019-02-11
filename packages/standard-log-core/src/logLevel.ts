@@ -1,6 +1,6 @@
 import { store } from './store';
 
-const logLevel = {
+export const logLevel = {
   emergency: 10,
   alert: 20,
   critical: 30,
@@ -21,11 +21,17 @@ export function addCustomLogLevel(name: string, level: number) {
   customLevelsReverse[level] = name
 }
 
-export function getLogLevel(name: string): number | undefined {
+export function clearCustomLogLevel() {
+  const { customLevels, customLevelsReverse } = store.get()
+  customLevels.clear()
+  customLevelsReverse.splice(0, customLevelsReverse.length)
+}
+
+export function toLogLevel(name: string): number | undefined {
   return store.get().customLevels.get(name) || (logLevel as any)[name]
 }
 
-export function toLogLevel(level: number) {
+export function toLogLevelName(level: number) {
   const custom = store.get().customLevelsReverse[level]
   if (custom) return custom
   switch (true) {

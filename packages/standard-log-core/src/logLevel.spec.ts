@@ -1,8 +1,9 @@
-import { toLogLevel } from '.';
+import { addCustomLogLevel, toLogLevel, toLogLevelName } from '.';
 import { rangeEntries } from './testUtil';
-import { getLogLevel, addCustomLogLevel } from './LogLevel';
+import { clearCustomLogLevel } from './logLevel';
+import { store } from './store';
 
-describe('toLogLevel()', () => {
+describe('toLogLevelName()', () => {
   test.each([
     ...rangeEntries(1, 19, 'emergency'),
     ...rangeEntries(20, 29, 'alert'),
@@ -14,26 +15,27 @@ describe('toLogLevel()', () => {
     ...rangeEntries(80, 89, 'debug'),
     ...rangeEntries(90, 100, 'trace')
   ])('convert %i to %s', (level: number, logLevel: string) => {
-    expect(toLogLevel(level)).toBe(logLevel)
+    expect(toLogLevelName(level)).toBe(logLevel)
   })
   test('get custom log level name', () => {
     addCustomLogLevel('cust-name', 30)
-    expect(toLogLevel(30)).toBe('cust-name')
+    expect(toLogLevelName(30)).toBe('cust-name')
   })
 })
 
-describe('getLogLevel()', () => {
+describe('toLogLevel()', () => {
+  afterEach(() => clearCustomLogLevel())
   test('get default log levels', () => {
     const actual = [
-      getLogLevel('emergency'),
-      getLogLevel('alert'),
-      getLogLevel('critical'),
-      getLogLevel('error'),
-      getLogLevel('warn'),
-      getLogLevel('notice'),
-      getLogLevel('info'),
-      getLogLevel('debug'),
-      getLogLevel('trace')]
+      toLogLevel('emergency'),
+      toLogLevel('alert'),
+      toLogLevel('critical'),
+      toLogLevel('error'),
+      toLogLevel('warn'),
+      toLogLevel('notice'),
+      toLogLevel('info'),
+      toLogLevel('debug'),
+      toLogLevel('trace')]
     expect(actual).toEqual([
       10, 20, 30, 40, 50, 60, 70, 80, 90
     ])
@@ -41,6 +43,17 @@ describe('getLogLevel()', () => {
 
   test('get custom log level', () => {
     addCustomLogLevel('cust-get', 123)
-    expect(getLogLevel('cust-get')).toBe(123)
+    expect(toLogLevel('cust-get')).toBe(123)
+  })
+})
+
+describe('clearCustomLogLevel()', () => {
+  test('clear all custom levels', () => {
+    addCustomLogLevel('c1', 1)
+    addCustomLogLevel('c2', 2)
+    clearCustomLogLevel()
+    const { customLevels, customLevelsReverse } = store.get()
+    expect(customLevels.size).toBe(0)
+    expect(customLevelsReverse.length).toBe(0)
   })
 })
