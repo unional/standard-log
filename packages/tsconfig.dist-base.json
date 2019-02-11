@@ -1,8 +1,5 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "declaration": true,
-    "declarationMap": true,
     "esModuleInterop": true,
     "lib": [
       "es2015"
@@ -11,15 +8,9 @@
     "moduleResolution": "node",
     "newLine": "LF",
     "noUnusedLocals": true,
-    "outDir": ".nowhere",
-    "plugins": [
-      {
-        "name": "tslint-language-service"
-      }
-    ],
     "removeComments": false,
     "sourceMap": true,
     "strict": true,
-    "target": "es2015"
+    "target": "es5"
   }
 }

@@ -27,7 +27,7 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "test": "jest",
-    "verify": "rimraf dist lib libm && yarn test && yarn build && yarn dc && yarn bundle",
+    "verify": "rimraf dist lib libm && yarn test -- --reporters=default && yarn build && yarn dc && yarn bundle",
     "preversion": "yarn verify",
     "watch": "jest --watch"
   },

@@ -1,22 +1,11 @@
 {
+  "extends": "../tsconfig.dist-base.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "lib": [
-      "es2015"
-    ],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "newLine": "LF",
-    "noUnusedLocals": true,
-    "outDir": "dist",
-    "removeComments": false,
     "rootDir": "src",
-    "sourceMap": true,
-    "strict": true,
-    "target": "es5"
+    "outDir": "dist"
   },
-  "exclude": [
-    "src/*.spec.ts"
+  "include": [
+    "typings"
   ],
   "files": [
     "src/index.ts"

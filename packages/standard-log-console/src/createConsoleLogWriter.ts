@@ -1,5 +1,5 @@
 import { logLevel, LogWriter, toLogLevelName } from 'standard-log-core';
-import uppercase from 'upper-case'
+import uppercase from 'upper-case';
 
 export type ConsoleLogWriter = {
 } & LogWriter

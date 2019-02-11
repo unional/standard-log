@@ -29,7 +29,7 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "test": "jest",
-    "verify": "yarn clean && yarn test && yarn build && yarn dc",
+    "verify": "yarn clean && yarn test -- --reporters=default && yarn build && yarn dc",
     "preversion": "yarn verify",
     "watch": "jest --watch"
   },

@@ -28,14 +28,15 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core && dependency-check . --missing --no-dev",
     "preversion": "yarn verify",
-    "verify": "rimraf dist lib && yarn test && yarn build && yarn dc",
-    "test": "jest",
+    "verify": "rimraf dist lib && yarn test -- --reporters=default && yarn build && yarn dc",
+    "test": "jest --coverage",
     "watch": "jest --watch"
   },
   "devDependencies": {
     "assertron": "^6.1.0"
   },
   "dependencies": {
+    "global-store": "^0.8.1",
     "standard-log-core": "^1.1.0"
   }
 }

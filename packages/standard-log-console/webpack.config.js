@@ -2,7 +2,7 @@
 const paramCase = require('param-case')
 const pascalCase = require('pascal-case')
 const path = require('path')
-const UglifyJS = require('uglifyjs-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const pjson = require('./package.json')
 
@@ -33,9 +33,7 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js'],
     mainFields: ['browser', 'main']
   },
-  plugins: [
-    new UglifyJS({
-      sourceMap: true
-    })
-  ]
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  }
 }
