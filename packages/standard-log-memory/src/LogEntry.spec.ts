@@ -14,13 +14,13 @@ test('convert log entries to string', () => {
     { id: 'log', level: logLevel.trace, messages: ['trace'] }
   ])
 
-  expect(actual).toEqual(`log emergency emergency
-log critical critical
-log alert alert
-log error error
-log warn warn
-log notice notice
-log info info
-log debug debug
-log trace trace`)
+  expect(actual).toEqual(`log EMERGENCY emergency
+log CRITICAL critical
+log ALERT alert
+log ERROR error
+log WARN warn
+log NOTICE notice
+log INFO info
+log DEBUG debug
+log TRACE trace`)
 })
