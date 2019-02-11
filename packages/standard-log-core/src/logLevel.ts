@@ -1,6 +1,7 @@
 import { store } from './store';
 
 export const logLevel = {
+  none: 0,
   emergency: 10,
   alert: 20,
   critical: 30,
@@ -12,7 +13,7 @@ export const logLevel = {
   trace: 90
 }
 
-export type LogLevel = keyof typeof logLevel
+export type LogLevel = Exclude<keyof typeof logLevel, 'none'>
 
 export function addCustomLogLevel(name: string, level: number) {
   const { customLevels, customLevelsReverse } = store.get()

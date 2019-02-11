@@ -1,7 +1,6 @@
-import { addCustomLogLevel, toLogLevel, toLogLevelName } from '.';
-import { rangeEntries } from './testUtil';
-import { clearCustomLogLevel } from './logLevel';
+import { addCustomLogLevel, clearCustomLogLevel, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
+import { rangeEntries } from './testUtil';
 
 describe('toLogLevelName()', () => {
   test.each([
