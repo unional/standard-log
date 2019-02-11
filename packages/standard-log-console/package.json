@@ -1,6 +1,6 @@
 {
   "name": "standard-log-console",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Console writer for `standard-log`",
   "homepage": "https://github.com/unional/logging",
   "bugs": {
