@@ -3,8 +3,9 @@ import uppercase from 'upper-case';
 
 export type ConsoleLogReporter = LogReporter<string>
 
-export function createConsoleLogReporter(): ConsoleLogReporter {
+export function createConsoleLogReporter({ id } = { id: 'console' }): ConsoleLogReporter {
   return {
+    id,
     console: console,
     write({ loggerId, level, messages, timestamp }: LogEntry) {
       const method = toConsoleMethod(level)

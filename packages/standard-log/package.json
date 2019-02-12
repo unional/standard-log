@@ -33,10 +33,13 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "assertron": "^6.1.0"
+    "assertron": "^6.1.0",
+    "satisfier": "^4.5.1"
   },
   "dependencies": {
     "global-store": "^0.8.1",
-    "standard-log-core": "^1.1.0"
+    "standard-log-console": "^1.1.0",
+    "standard-log-core": "^1.1.0",
+    "type-plus": "^1.13.0"
   }
 }

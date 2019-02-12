@@ -7552,6 +7552,11 @@ type-plus@^1.1.2:
   resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.12.1.tgz#5fa68e4c50744c3bbe96f981dbf9c7ba47611acd"
   integrity sha512-97ECbrVkE3N5h98UNqFHLCGOYm0aMf0hP6M8IjhG7juEUqmW5vBfZPSeZG+JrQEqAU45O6EGgmqpc4q1nliccw==
 
+type-plus@^1.13.0:
+  version "1.13.0"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.13.0.tgz#612242886c47bb6da2a6cf644d832ef64d71170c"
+  integrity sha512-xgjmwpJwLE2+DQIS/K6GAFy05ztv3Ve/I483VdKUWmh/BQQXKqxNBDaFHScacW0V7Jcn4il7/Ea6R+ZZCwTLJQ==
+
 typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
