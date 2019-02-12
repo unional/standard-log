@@ -1,15 +1,14 @@
-import { logLevel, LogWriter, toLogLevelName } from 'standard-log-core';
+import { LogEntry, logLevel, LogReporter, toLogLevelName } from 'standard-log-core';
 import uppercase from 'upper-case';
 
-export type ConsoleLogWriter = {
-} & LogWriter
+export type ConsoleLogReporter = LogReporter<string>
 
-export function createConsoleLogWriter(): ConsoleLogWriter {
+export function createConsoleLogReporter(): ConsoleLogReporter {
   return {
     console: console,
-    write({ id }: { id: string }, level: number, messages: any[]) {
+    write({ loggerId, level, messages, timestamp }: LogEntry) {
       const method = toConsoleMethod(level)
-      this.console[method](id, `(${uppercase(toLogLevelName(level))})`, ...messages)
+      this.console[method](loggerId, `(${uppercase(toLogLevelName(level))})`, ...messages, timestamp)
     }
   } as any
 }

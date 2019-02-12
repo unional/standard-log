@@ -1,2 +1,2 @@
-export * from './createConsoleLogWriter';
+export * from './createConsoleLogReporter';
 export * from './interfaces';
