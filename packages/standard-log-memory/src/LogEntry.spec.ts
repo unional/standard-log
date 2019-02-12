@@ -1,5 +1,5 @@
-import { LogEntry } from './LogEntry';
 import { logLevel } from 'standard-log-core';
+import { LogEntry } from './LogEntry';
 
 test('convert log entries to string', () => {
   const actual = LogEntry.toString([

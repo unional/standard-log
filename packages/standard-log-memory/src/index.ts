@@ -1,2 +1,1 @@
-export * from './LogEntry';
-export * from './MemoryLogWriter';
+export * from './MemoryLogReporter';
