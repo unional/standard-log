@@ -4,15 +4,16 @@ import { rangeEntries } from './testUtil';
 
 describe('toLogLevelName()', () => {
   test.each([
-    ...rangeEntries(1, 19, 'emergency'),
-    ...rangeEntries(20, 29, 'alert'),
-    ...rangeEntries(30, 39, 'critical'),
-    ...rangeEntries(40, 49, 'error'),
-    ...rangeEntries(50, 59, 'warn'),
-    ...rangeEntries(60, 69, 'notice'),
-    ...rangeEntries(70, 79, 'info'),
-    ...rangeEntries(80, 89, 'debug'),
-    ...rangeEntries(90, 100, 'trace')
+    ...rangeEntries(99, 100, 'emergency'),
+    ...rangeEntries(199, 200, 'alert'),
+    ...rangeEntries(299, 300, 'critical'),
+    ...rangeEntries(399, 400, 'error'),
+    ...rangeEntries(499, 500, 'warn'),
+    ...rangeEntries(599, 600, 'notice'),
+    ...rangeEntries(699, 700, 'info'),
+    ...rangeEntries(799, 800, 'debug'),
+    ...rangeEntries(899, 900, 'trace'),
+    ...rangeEntries(9999999, 10000000, 'planck')
   ])('convert %i to %s', (level: number, logLevel: string) => {
     expect(toLogLevelName(level)).toBe(logLevel)
   })
@@ -34,9 +35,11 @@ describe('toLogLevel()', () => {
       toLogLevel('notice'),
       toLogLevel('info'),
       toLogLevel('debug'),
-      toLogLevel('trace')]
+      toLogLevel('trace'),
+      toLogLevel('planck')
+    ]
     expect(actual).toEqual([
-      10, 20, 30, 40, 50, 60, 70, 80, 90
+      100, 200, 300, 400, 500, 600, 700, 800, 900, Infinity
     ])
   })
 

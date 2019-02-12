@@ -2,18 +2,20 @@ import { store } from './store';
 
 export const logLevel = {
   none: 0,
-  emergency: 10,
-  alert: 20,
-  critical: 30,
-  error: 40,
-  warn: 50,
-  notice: 60,
-  info: 70,
-  debug: 80,
-  trace: 90
+  emergency: 100,
+  alert: 200,
+  critical: 300,
+  error: 400,
+  warn: 500,
+  notice: 600,
+  info: 700,
+  debug: 800,
+  trace: 900,
+  planck: Infinity,
+  all: Infinity
 }
 
-export type LogLevel = Exclude<keyof typeof logLevel, 'none'>
+export type LogLevel = Exclude<keyof typeof logLevel, 'none' | 'all'>
 
 export function addCustomLogLevel(name: string, level: number) {
   const { customLevels, customLevelsReverse } = store.get()
@@ -36,23 +38,25 @@ export function toLogLevelName(level: number) {
   const custom = store.get().customLevelsReverse[level]
   if (custom) return custom
   switch (true) {
-    case (level < 20):
+    case (level <= 100):
       return 'emergency'
-    case (level < 30):
+    case (level <= 200):
       return 'alert'
-    case (level < 40):
+    case (level <= 300):
       return 'critical'
-    case (level < 50):
+    case (level <= 400):
       return 'error'
-    case (level < 60):
+    case (level <= 500):
       return 'warn'
-    case (level < 70):
+    case (level <= 600):
       return 'notice'
-    case (level < 80):
+    case (level <= 700):
       return 'info'
-    case (level < 90):
+    case (level <= 800):
       return 'debug'
-    default:
+    case (level <= 900):
       return 'trace'
+    default:
+      return 'planck'
   }
 }

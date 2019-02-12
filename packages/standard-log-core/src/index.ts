@@ -1,4 +1,3 @@
-export * from './Logger';
+export * from './interfaces';
 export * from './logLevel';
-export * from './LogWriter';
 export * from './syslog';
