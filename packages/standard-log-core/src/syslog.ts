@@ -1,3 +1,5 @@
+// TODO: this should go to Syslog Reporter package
+
 /**
  * Convert log level to syslog severity
  * @see <https://en.wikipedia.org/wiki/Syslog>
