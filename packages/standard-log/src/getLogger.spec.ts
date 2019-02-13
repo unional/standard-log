@@ -41,3 +41,15 @@ test('get logger with same name gets the same instance', () => {
   const actual = getLogger('same-inst')
   expect(actual).toBe(expected)
 })
+
+test('new logger will get custom level', () => {
+  addCustomLogLevel('to_logger', 1234)
+  const actual = getLogger<LogLevel | 'to_logger'>('to_logger_logger')
+  expect(typeof actual.to_logger).toBe('function')
+})
+
+test('existing logger will get custom level', () => {
+  const actual = getLogger<LogLevel | 'old_logger'>('old_logger')
+  addCustomLogLevel('old_logger', 122)
+  expect(typeof actual.old_logger).toBe('function')
+})

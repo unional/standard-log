@@ -1,5 +1,7 @@
 import { addCustomLogLevel, clearCustomLogLevel, toLogLevel, toLogLevelName } from '.';
 import { rangeEntries } from './testUtil';
+import { getAllLogLevels, logLevel } from './logLevel';
+import { forEachKey } from 'type-plus';
 
 describe('toLogLevelName()', () => {
   test.each([
@@ -46,5 +48,26 @@ describe('toLogLevel()', () => {
   test('get custom log level', () => {
     addCustomLogLevel('cust-get', 123)
     expect(toLogLevel('cust-get')).toBe(123)
+  })
+})
+
+describe('getAllLogLevels', () => {
+  test('get all default log levels except none and all', () => {
+    const actual = getAllLogLevels()
+    forEachKey(logLevel, name => {
+      if (name === 'none' || name === 'all') {
+        expect(actual.find(x => x.name === name)).toBeUndefined()
+      }
+      else {
+        expect(actual.find(x => x.name === name)).toEqual({ name, level: logLevel[name] })
+      }
+    })
+  })
+  test('include custom level (even if they have the same level value as one of the default level)', () => {
+    addCustomLogLevel('info_a', 301)
+    addCustomLogLevel('info_b', logLevel.info)
+    const actual = getAllLogLevels()
+    expect(actual.find(x => x.name === 'info_a')).toEqual({ name: 'info_a', level: 301 })
+    expect(actual.find(x => x.name === 'info_b')).toEqual({ name: 'info_b', level: logLevel.info })
   })
 })

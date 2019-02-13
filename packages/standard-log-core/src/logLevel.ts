@@ -1,4 +1,5 @@
-import { getCustomLevel, getCustomLevelName } from './customLogLevel';
+import { reduceKey } from 'type-plus';
+import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 
 export const logLevel = {
   none: 0,
@@ -46,4 +47,12 @@ export function toLogLevelName(level: number) {
     default:
       return 'planck'
   }
+}
+
+export function getAllLogLevels() {
+  return reduceKey(logLevel, (result, name) => {
+    if (name !== 'none' && name !== 'all') result.push({ name, level: logLevel[name] })
+
+    return result
+  }, getCustomLevels())
 }

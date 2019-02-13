@@ -4,7 +4,7 @@ import { Logger, logLevel, LogReporter } from 'standard-log-core';
 
 function createStoreDefault() {
   return {
-    loggers: {} as Record<string, Logger>,
+    loggers: {} as Record<string, Logger<any>>,
     reporters: [createConsoleLogReporter({ id: 'default' })] as LogReporter<any>[],
     logLevel: logLevel.warn
   }
