@@ -1,6 +1,12 @@
 import { addCustomLogLevel, clearCustomLogLevel, logLevel } from 'standard-log-core';
 import { createConsoleLogReporter } from './createConsoleLogReporter';
 
+const writer = createConsoleLogReporter()
+writer.write({ loggerId: 'kk', level: logLevel.emergency, messages: ['emergency'], timestamp: new Date() })
+writer.write({ loggerId: 'kk', level: logLevel.info, messages: ['emergency'], timestamp: new Date() })
+writer.write({ loggerId: 'kk', level: logLevel.warn, messages: ['emergency'], timestamp: new Date() })
+writer.write({ loggerId: 'kk', level: logLevel.debug, messages: ['emergency'], timestamp: new Date() })
+
 test('error, alert, critical and emergency logs are written to console.error', () => {
   const logger = { id: 'log' }
   const writer = createConsoleLogReporter()

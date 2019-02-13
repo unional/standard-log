@@ -1,15 +1,22 @@
-import { LogEntry, logLevel, LogReporter, toLogLevelName } from 'standard-log-core';
-import uppercase from 'upper-case';
+import { LogEntry, LogFormatter, logLevel, LogReporter } from 'standard-log-core';
+import { plainFormatter } from './plainFormatter';
+import { polyfilledConsole } from './polyfilledConsole';
 
-export type ConsoleLogReporter = LogReporter<string>
+export type ConsoleLogReporter = LogReporter<string[]>
 
-export function createConsoleLogReporter({ id } = { id: 'console' }): ConsoleLogReporter {
+export type ConsoleLogReporterOptions = {
+  id: string,
+  formatter: LogFormatter<string[]>
+}
+
+export function createConsoleLogReporter({ id, formatter }: Partial<ConsoleLogReporterOptions> = { id: 'console', formatter: plainFormatter }): ConsoleLogReporter {
   return {
     id,
-    console: console,
-    write({ loggerId, level, messages, timestamp }: LogEntry) {
-      const method = toConsoleMethod(level)
-      this.console[method](loggerId, `(${uppercase(toLogLevelName(level))})`, ...messages, timestamp)
+    formatter,
+    console: polyfilledConsole,
+    write(entry: LogEntry) {
+      const method = toConsoleMethod(entry.level)
+      this.console[method](...this.formatter(entry))
     }
   } as any
 }
