@@ -1,4 +1,4 @@
-import { getLogReporter } from './getLogReporter';
+import { getLogReporter } from '.';
 
 test('get reporter by id', () => {
   const reporter = getLogReporter('default')

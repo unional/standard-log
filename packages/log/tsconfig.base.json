@@ -4,10 +4,10 @@
     "rootDir": "src"
   },
   "references": [{
-    "path": "../standard-log-core"
+    "path": "../core"
   }, {
-    "path": "../standard-log-memory"
+    "path": "../memory"
   }, {
-    "path": "../standard-log-console"
+    "path": "../console"
   }]
 }

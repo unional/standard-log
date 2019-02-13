@@ -1,10 +1,8 @@
 import a from 'assertron';
-import { getLogger } from '.';
-import { InvalidId } from './errors';
-import { LogLevel, addCustomLogLevel, clearCustomLogLevel } from 'standard-log-core';
+import { addCustomLogLevel, clearCustomLogLevel, LogLevel } from 'standard-log-core';
+import { createMemoryLogReporter } from 'standard-log-memory';
+import { config, getLogger, InvalidId } from '.';
 import { resetStore } from './store';
-import { config } from './config';
-import { createMemoryLogReporter } from '../../standard-log-memory/lib';
 
 afterEach(() => {
   clearCustomLogLevel()

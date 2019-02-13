@@ -2,13 +2,13 @@
   "name": "standard-log",
   "version": "0.0.1",
   "description": "The standard log library",
-  "homepage": "https://github.com/unional/logging",
+  "homepage": "https://github.com/unional/standard-log",
   "bugs": {
-    "url": "https://github.com/unional/logging/issues"
+    "url": "https://github.com/unional/standard-log/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/unional/logging.git"
+    "url": "https://github.com/unional/standard-log.git"
   },
   "license": "MIT",
   "author": {

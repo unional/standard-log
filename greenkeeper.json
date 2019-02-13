@@ -3,10 +3,10 @@
     "default": {
       "packages": [
         "package.json",
-        "packages/color/package.json",
-        "packages/logging/package.json",
-        "packages/memory/package.json",
-        "packages/simple-console/package.json"
+        "packages/log/package.json",
+        "packages/console/package.json",
+        "packages/core/package.json",
+        "packages/memory/package.json"
       ]
     }
   }
