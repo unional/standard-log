@@ -1,5 +1,4 @@
 import { addCustomLogLevel, clearCustomLogLevel, toLogLevel, toLogLevelName } from '.';
-import { store } from './store';
 import { rangeEntries } from './testUtil';
 
 describe('toLogLevelName()', () => {
@@ -17,9 +16,10 @@ describe('toLogLevelName()', () => {
   ])('convert %i to %s', (level: number, logLevel: string) => {
     expect(toLogLevelName(level)).toBe(logLevel)
   })
+
   test('get custom log level name', () => {
-    addCustomLogLevel('cust-name', 30)
-    expect(toLogLevelName(30)).toBe('cust-name')
+    addCustomLogLevel('cust-name', 144)
+    expect(toLogLevelName(144)).toBe('cust-name')
   })
 })
 
@@ -46,16 +46,5 @@ describe('toLogLevel()', () => {
   test('get custom log level', () => {
     addCustomLogLevel('cust-get', 123)
     expect(toLogLevel('cust-get')).toBe(123)
-  })
-})
-
-describe('clearCustomLogLevel()', () => {
-  test('clear all custom levels', () => {
-    addCustomLogLevel('c1', 1)
-    addCustomLogLevel('c2', 2)
-    clearCustomLogLevel()
-    const { customLevels, customLevelsReverse } = store.get()
-    expect(customLevels.size).toBe(0)
-    expect(customLevelsReverse.length).toBe(0)
   })
 })

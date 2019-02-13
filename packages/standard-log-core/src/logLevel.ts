@@ -1,4 +1,4 @@
-import { store } from './store';
+import { getCustomLevel, getCustomLevelName } from './customLogLevel';
 
 export const logLevel = {
   none: 0,
@@ -17,25 +17,12 @@ export const logLevel = {
 
 export type LogLevel = Exclude<keyof typeof logLevel, 'none' | 'all'>
 
-export function addCustomLogLevel(name: string, level: number) {
-  const { customLevels, customLevelsReverse } = store.get()
-
-  customLevels.set(name, level)
-  customLevelsReverse[level] = name
-}
-
-export function clearCustomLogLevel() {
-  const { customLevels, customLevelsReverse } = store.get()
-  customLevels.clear()
-  customLevelsReverse.splice(0, customLevelsReverse.length)
-}
-
 export function toLogLevel(name: string): number | undefined {
-  return store.get().customLevels.get(name) || (logLevel as any)[name]
+  return getCustomLevel(name) || (logLevel as any)[name]
 }
 
 export function toLogLevelName(level: number) {
-  const custom = store.get().customLevelsReverse[level]
+  const custom = getCustomLevelName(level)
   if (custom) return custom
   switch (true) {
     case (level <= 100):

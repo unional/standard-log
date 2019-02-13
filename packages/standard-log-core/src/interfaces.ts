@@ -24,9 +24,12 @@ export type LogFormatter<T = string> = (entry: LogEntry) => T
  */
 export type LogFilter = (entry: LogEntry) => boolean
 
+export type LogLevelEntry = { name: string, level: number }
+
 export type LogReporter<T = string> = {
   id: string
   formatter?: LogFormatter<T>
   filter?: LogFilter
   write(entry: LogEntry): void
 }
+export type LogLevelListener = (logLevelEntry: LogLevelEntry) => void
