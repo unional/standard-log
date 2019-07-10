@@ -6,7 +6,7 @@ import { forEachKey } from 'type-plus'
 export type ConfigOptions = {
   customLevels: Record<string, number>,
   logLevel: number,
-  reporters: ('default' | LogReporter)[]
+  reporters: ('default' | LogReporter<any> | [string, Record<string, any>])[]
 }
 export function config(options: Partial<ConfigOptions>) {
   const value = store.get()
@@ -30,6 +30,10 @@ function buildReporters(reporters: ConfigOptions['reporters']) {
   return reporters.map(reporter => {
     if (reporter === 'default') {
       return createConsoleLogReporter({ id: 'default' })
+    }
+    if (Array.isArray(reporter)) {
+      const [id, options] = reporter
+      return createConsoleLogReporter({ id, ...options })
     }
     else {
       return reporter

@@ -1,65 +1,71 @@
 import { addCustomLogLevel, clearCustomLogLevel, logLevel } from 'standard-log-core';
-import { createConsoleLogReporter } from './createConsoleLogReporter';
+import { createConsoleLogReporter } from '.';
 
-const writer = createConsoleLogReporter()
-writer.write({ loggerId: 'kk', level: logLevel.emergency, messages: ['emergency'], timestamp: new Date() })
-writer.write({ loggerId: 'kk', level: logLevel.info, messages: ['emergency'], timestamp: new Date() })
-writer.write({ loggerId: 'kk', level: logLevel.warn, messages: ['emergency'], timestamp: new Date() })
-writer.write({ loggerId: 'kk', level: logLevel.debug, messages: ['emergency'], timestamp: new Date() })
+test('default id is "console"', () => {
+  const reporter = createConsoleLogReporter()
+
+  expect(reporter.id).toBe('console')
+})
+
+test('default to color rendering', () => {
+  const reporter = createConsoleLogReporter();
+  ['emergency', 'info', 'warn', 'debug'].forEach(level => {
+    reporter.write({ id: 'color', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
+  })
+})
+
+test('plain rendering', () => {
+  const reporter = createConsoleLogReporter({ useColor: false });
+  ['emergency', 'info', 'warn', 'debug'].forEach(level => {
+    reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
+  })
+})
 
 test('error, alert, critical and emergency logs are written to console.error', () => {
-  const logger = { id: 'log' }
-  const writer = createConsoleLogReporter()
+  const id = 'log'
+  const reporter = createConsoleLogReporter()
+  const fakeConsole = reporter.console = createFakeConsole();
 
-  const fakeConsole = createFakeConsole();
-
-  (writer as any).console = fakeConsole
-
-  writer.write({ loggerId: logger.id, level: logLevel.emergency, messages: ['emergency'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.critical, messages: ['critical'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.alert, messages: ['alert'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.error, messages: ['error'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.critical, args: ['critical'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.alert, args: ['alert'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.error, args: ['error'], timestamp: new Date() })
 
   expect(fakeConsole.errors.length).toBe(4)
 })
 
 test('warn logs are written to console.warn', () => {
-  const logger = { id: 'log' }
-  const writer = createConsoleLogReporter()
+  const id = 'log'
+  const reporter = createConsoleLogReporter()
 
-  const fakeConsole = createFakeConsole();
+  const fakeConsole = reporter.console = createFakeConsole();
 
-  (writer as any).console = fakeConsole
-
-  writer.write({ loggerId: logger.id, level: logLevel.warn, messages: ['warn'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.warn, args: ['warn'], timestamp: new Date() })
 
   expect(fakeConsole.warns.length).toBe(1)
 })
 
 test('notice and info logs are written to console.info', () => {
-  const logger = { id: 'log' }
-  const writer = createConsoleLogReporter()
+  const id = 'log'
+  const reporter = createConsoleLogReporter()
 
-  const fakeConsole = createFakeConsole();
+  const fakeConsole = reporter.console = createFakeConsole();
 
-  (writer as any).console = fakeConsole
-
-  writer.write({ loggerId: logger.id, level: logLevel.notice, messages: ['notice'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.info, messages: ['info'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.notice, args: ['notice'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.info, args: ['info'], timestamp: new Date() })
 
   expect(fakeConsole.infos.length).toBe(2)
 })
 
 
 test('debug, trace, and planck logs are written to console.debug', () => {
-  const logger = { id: 'log' }
-  const writer = createConsoleLogReporter()
-  const fakeConsole = createFakeConsole();
-  (writer as any).console = fakeConsole
+  const id = 'log'
+  const reporter = createConsoleLogReporter()
+  const fakeConsole = reporter.console = createFakeConsole();
 
-  writer.write({ loggerId: logger.id, level: logLevel.debug, messages: ['debug'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.trace, messages: ['trace'], timestamp: new Date() })
-  writer.write({ loggerId: logger.id, level: logLevel.planck, messages: ['planck'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.debug, args: ['debug'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.trace, args: ['trace'], timestamp: new Date() })
+  reporter.write({ id, level: logLevel.planck, args: ['planck'], timestamp: new Date() })
 
   expect(fakeConsole.debugs.length).toBe(3)
 })
@@ -73,15 +79,14 @@ describe('custom logs', () => {
     addCustomLogLevel('interest', 650)
     addCustomLogLevel('silly', 1000)
 
-    const logger = { id: 'log' }
-    const writer = createConsoleLogReporter()
-    const fakeConsole = createFakeConsole();
-    (writer as any).console = fakeConsole
+    const id = 'log'
+    const reporter = createConsoleLogReporter()
+    const fakeConsole = reporter.console = createFakeConsole();
 
-    writer.write({ loggerId: logger.id, level: 50, messages: ['a'], timestamp: new Date() })
-    writer.write({ loggerId: logger.id, level: 450, messages: ['b'], timestamp: new Date() })
-    writer.write({ loggerId: logger.id, level: 650, messages: ['c'], timestamp: new Date() })
-    writer.write({ loggerId: logger.id, level: 1000, messages: ['d'], timestamp: new Date() })
+    reporter.write({ id, level: 50, args: ['a'], timestamp: new Date() })
+    reporter.write({ id, level: 450, args: ['b'], timestamp: new Date() })
+    reporter.write({ id, level: 650, args: ['c'], timestamp: new Date() })
+    reporter.write({ id, level: 1000, args: ['d'], timestamp: new Date() })
 
     expect(fakeConsole.errors.length).toBe(1)
     expect(fakeConsole.warns.length).toBe(1)
@@ -91,17 +96,16 @@ describe('custom logs', () => {
 })
 
 test('write multiple messages', () => {
-  const logger = { id: 'log' }
-  const writer = createConsoleLogReporter()
-  const fakeConsole = createFakeConsole();
-  (writer as any).console = fakeConsole
+  const id = 'log'
+  const reporter = createConsoleLogReporter({ useColor: false })
+  const fakeConsole = reporter.console = createFakeConsole();
 
-  const entry = { loggerId: logger.id, level: logLevel.info, messages: ['a', 'b', 'c'], timestamp: new Date() }
+  const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }
 
-  writer.write(entry)
+  reporter.write(entry)
 
   expect(fakeConsole.infos).toEqual([
-    ['log', '(INFO)', 'a', 'b', 'c', entry.timestamp]
+    [entry.timestamp.toISOString(), 'log', '(INFO)', 'a', 'b', 'c']
   ])
 })
 

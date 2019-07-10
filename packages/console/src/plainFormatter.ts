@@ -1,6 +1,6 @@
-import { LogEntry, toLogLevelName } from 'standard-log-core';
-import uppercase from 'upper-case';
+import { LogEntry } from 'standard-log-core';
+import { toLogLevelDisplay } from './utils';
 
-export function plainFormatter({ loggerId, level, messages, timestamp }: LogEntry) {
-  return [loggerId, `(${uppercase(toLogLevelName(level))})`, ...messages, timestamp]
+export function plainFormatter({ id, level, args, timestamp }: LogEntry) {
+  return [timestamp.toISOString(), id, toLogLevelDisplay(level), ...args]
 }

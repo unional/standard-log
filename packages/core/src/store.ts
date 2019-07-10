@@ -1,5 +1,5 @@
 import { createStore } from 'global-store';
-import { LogLevelListener } from './interfaces';
+import { LogLevelListener } from './types';
 
 export const store = createStore('standard-log-core', {
   customLevels: {} as Record<string, number>,

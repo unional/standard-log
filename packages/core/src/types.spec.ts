@@ -1,11 +1,11 @@
 import { Stream } from 'stream';
-import { tryAssign, typeAssert } from 'type-plus';
-import { LogFormatter, LogReporter } from './interfaces';
+import { assertType, tryAssign } from 'type-plus';
+import { LogFormatter, LogReporter } from './types';
 
 test('LogReporter can specify what kind of LogFormatter it accepts', () => {
   let reporter: LogReporter<string> = {} as any
 
   let byteFormatter: LogFormatter<Stream> = {} as any
 
-  typeAssert.isNever(tryAssign(byteFormatter, reporter.formatter))
+  assertType.isNever(tryAssign(byteFormatter, reporter.formatter))
 })

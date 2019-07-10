@@ -1,38 +1,54 @@
-import { LogEntry, LogFormatter, logLevel, LogReporter } from 'standard-log-core';
+import { LogEntry, LogFormatter, LogReporter } from 'standard-log-core';
+import { getField } from 'type-plus';
+import { createAnsiFormatter } from './ansi/ansiFormatter';
+import { createCssFormatter } from './css/cssFormatter';
+import { isBrowser, supportColor } from './environment';
 import { plainFormatter } from './plainFormatter';
 import { polyfilledConsole } from './polyfilledConsole';
+import { toConsoleMethod } from './utils';
 
-export type ConsoleLogReporter = LogReporter<string[]>
+export type ConsoleLogReporter = LogReporter<any[]>
 
-export type ConsoleLogReporterOptions = {
+export type ConsoleLogReporterFormatterOptions = {
   id: string,
-  formatter: LogFormatter<string[]>
+  formatter: LogFormatter<any[]>
 }
 
-export function createConsoleLogReporter({ id, formatter }: Partial<ConsoleLogReporterOptions> = { id: 'console', formatter: plainFormatter }): ConsoleLogReporter {
+export type ConsoleLogReporterTemplateOptions = {
+  id: string,
+  useColor: boolean,
+  template: string
+}
+
+export type ConsoleLogReporterOptions = ConsoleLogReporterFormatterOptions | ConsoleLogReporterTemplateOptions
+
+export function createConsoleLogReporter(options: Partial<ConsoleLogReporterOptions> = {}) {
+  const id = getField(options, 'id', 'console')
+  const formatter = getFormatter(options)
   return {
     id,
     formatter,
     console: polyfilledConsole,
     write(entry: LogEntry) {
+      if (this.filter && !this.filter(entry)) return
+      const values = (this.formatter || formatter)(entry)
       const method = toConsoleMethod(entry.level)
-      this.console[method](...this.formatter(entry))
+      this.console[method](...values)
     }
-  } as any
+  } as LogReporter<any[]> & { console: typeof polyfilledConsole }
 }
 
-function toConsoleMethod(level: number) {
-  switch (true) {
-    case (level === 0):
-      // edge case in case none is somehow written
-      return 'debug'
-    case (level <= logLevel.error):
-      return 'error'
-    case (level <= logLevel.warn):
-      return 'warn'
-    case (level <= logLevel.info):
-      return 'info'
-    default:
-      return 'debug'
+function getFormatter(options: any) {
+  if (options.formatter) return options.formatter
+
+  if (options.useColor === false || !supportColor()) {
+    return plainFormatter
+  }
+  if (isBrowser()) {
+    // istanbul ignore next
+    return createCssFormatter(options)
+  }
+  else {
+    return createAnsiFormatter(options)
   }
 }

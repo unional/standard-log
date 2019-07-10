@@ -1,5 +1,5 @@
 import { forEachKey, mapKey } from 'type-plus';
-import { LogLevelListener, LogLevelEntry } from './interfaces';
+import { LogLevelListener, LogLevelEntry } from './types';
 import { store } from './store';
 
 export function addCustomLogLevel(name: string, level: number) {

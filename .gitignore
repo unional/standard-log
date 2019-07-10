@@ -41,6 +41,9 @@ node_modules
 # webstorm
 .idea
 
+# typescript
+.tsbuildinfo
+
 # project folders
 lib*
 out*

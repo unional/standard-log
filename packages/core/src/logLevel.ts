@@ -12,6 +12,7 @@ export const logLevel = {
   info: 700,
   debug: 800,
   trace: 900,
+  // `planck unit`: https://en.wikipedia.org/wiki/Planck_units
   planck: Infinity,
   all: Infinity
 }

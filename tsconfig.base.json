@@ -11,5 +11,6 @@
     "removeComments": false,
     "sourceMap": true,
     "strict": true,
+    "tsBuildInfoFile": ".tsbuildinfo"
   }
 }

@@ -41,6 +41,15 @@ test('configure to use a reporter instance', () => {
   expect(store.get().reporters.length).toBe(1)
 })
 
+test('config default with tempalte', () => {
+  clearReporters()
+  config({
+    reporters: [
+      ['default', { useColor: false }]
+    ]
+  })
+})
+
 test('add custom levels', () => {
   config({
     customLevels: {
