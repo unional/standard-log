@@ -48,8 +48,7 @@ jobs:
           name: Install Dependencies
           command: |
             if [ ! -d node_modules ]; then
-              yarn install
-              yarn bootstrap
+              yarn
             fi
       - save_cache:
           name: Save node modules cache
@@ -121,4 +120,6 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
+      - run: yarn build
+      - run: yarn bundle
       - run: npx semantic-release
