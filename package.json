@@ -7,6 +7,7 @@
     ]
   },
   "scripts": {
+    "bootstrap": "lerna bootstrap",
     "build": "tsc -b",
     "build-storybook": "build-storybook",
     "build:watch": "tsc -b -w",

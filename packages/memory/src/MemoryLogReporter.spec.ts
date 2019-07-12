@@ -1,4 +1,4 @@
-import { createMemoryLogReporter } from './MemoryLogReporter';
+import { createMemoryLogReporter } from '.';
 
 test('log entries are saved in the `logs` property', () => {
   const writer = createMemoryLogReporter()

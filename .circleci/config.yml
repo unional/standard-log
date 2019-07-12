@@ -46,6 +46,7 @@ jobs:
           command: |
             if [ ! -d node_modules ]; then
               yarn install
+              yarn bootstrap
             fi
       - save_cache:
           name: Save node modules cache
