@@ -1,36 +1,35 @@
 import { storiesOf } from '@storybook/react';
 import { Console, Decode, Hook, Unhook } from 'console-feed';
 import React from 'react';
-import { getLogger } from 'standard-log';
+import { config, getLogger } from 'standard-log';
+import { Console as StdConsole, createConsoleLogReporter } from 'standard-log-console';
 
 storiesOf('Console', module)
-  .add('test', () => {
+  .add('hello world', () => {
+    const reporter = createConsoleLogReporter()
+    config({ reporters: [reporter], logLevel: Infinity })
+    const log = getLogger('testing')
     setImmediate(() => {
-      const logger = getLogger('testing')
-      console.log(logger, getLogger)
-      console.log('test 1')
+      log.debug('hello world')
+      log.info('hello world')
+      log.warn('hello world')
+      log.error('hello world')
     })
-    return <ConsolePanel />
-  })
-  .add('tes23', () => {
-    setImmediate(() => {
-      console.log('te3333st 1')
-    })
-    return <ConsolePanel />
+    return <ConsolePanel console={reporter.console} />
   })
 
-class ConsolePanel extends React.Component<{}, { logs: any[]}> {
+class ConsolePanel extends React.Component<{ console?: StdConsole }, { logs: any[] }> {
   state = {
     logs: []
   }
   hookedConsole
   componentDidMount() {
-    this.hookedConsole = Hook(window.console, (log: any) => {
+    this.hookedConsole = Hook(this.props.console || window.console, (log: any) => {
       this.setState(({ logs }) => ({ logs: [...logs, Decode(log)] }))
     })
   }
   componentWillUnmount() {
-    Unhook(this.hookedConsole)
+    return Unhook(this.hookedConsole)
   }
   render() {
     return (

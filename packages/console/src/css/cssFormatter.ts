@@ -19,11 +19,15 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
     const border = rgbHex(rgb.map(x => Math.max(0, x - 32)) as RGB)
     const color = getForegroundColor(rgb)
     let idStr = `%c ${entry.id} `
+    let args: any[]
     if (firstArgIsColorTemplate(entry.args)) {
       idStr += entry.args[0]
-      return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...entry.args.slice(1), entry.timestamp]
+      args = [...entry.args.slice(1)]
     }
-    return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...entry.args, entry.timestamp]
+    else {
+      args = [...entry.args]
+    }
+    return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...args, entry.timestamp.toISOString()]
   }
 
   function firstArgIsColorTemplate(args: any[]) {
