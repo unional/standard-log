@@ -5,6 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "module": "esnext",
-    "target": "esnext"
+    "target": "esnext",
+    "tsBuildInfoFile": ".tsbuildinfo"
   }
 }

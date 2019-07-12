@@ -10,7 +10,6 @@
     "outDir": ".nowhere",
     "removeComments": false,
     "sourceMap": true,
-    "strict": true,
-    "tsBuildInfoFile": ".tsbuildinfo"
+    "strict": true
   }
 }
