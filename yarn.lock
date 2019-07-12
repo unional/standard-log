@@ -2612,10 +2612,10 @@
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.5.2.tgz#690a1475b84f2a884fd07cd797c00f5f31356ea8"
   integrity sha512-ce5d3q03Ex0sy4R14722Rmt6MT07Ua+k4FwDfdcToYJcMKNtRVQvJ6JCAPdAmAnbRb6CsX6aYb9m96NGod9uTw==
 
-"@types/ramda@^0.25.48":
-  version "0.25.51"
-  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.25.51.tgz#d5421d0e190c56c64c112a761a85782fc971409d"
-  integrity sha512-xcmtfHIgF9SYjhGdsZR1nQslxG4hu0cIpFfLQ4CWdw3KzHvl7ki1AzFLQUkbDTG42ZN3ZsQfdRzXRlkAvbIy5Q==
+"@types/ramda@^0.26.15":
+  version "0.26.15"
+  resolved "https://registry.yarnpkg.com/@types/ramda/-/ramda-0.26.15.tgz#217d9d2133f55040bd5db0e67dbbf6ec8509446f"
+  integrity sha512-kmIO8GVOLv0A8UxFr5lJaqp4g8jbXNhH0grBaPL6NgkOqSirRKpV9+5DTmIDXTyq2G18YMdxDhnScEZtY4brtQ==
 
 "@types/react@*", "@types/react@^16.8.23":
   version "16.8.23"
@@ -3251,18 +3251,6 @@ assertion-error@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/assertion-error/-/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
   integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
-
-assertron@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/assertron/-/assertron-6.1.0.tgz#0930c5218ea95183cafe9c4589f35d1a59707b4f"
-  integrity sha512-/obpEDVhtU4znjhKn8kG6gPZ3n9DMG2XSmroQQmAbOHvZ9yfCtLKIS0vGxYxa3iAM32agRKQjqzuZO6L+dwRYg==
-  dependencies:
-    assertion-error "^1.1.0"
-    is-node "^1.0.2"
-    is-promise "^2.1.0"
-    path-equal "^1.1.1"
-    satisfier "^4.5.1"
-    tersify "^1.2.6"
 
 assertron@^7.1.2:
   version "7.1.2"
@@ -6437,7 +6425,7 @@ global-prefix@^3.0.0:
     kind-of "^6.0.2"
     which "^1.3.1"
 
-global-store@^0.8.1:
+global-store@^0.8.1, global-store@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/global-store/-/global-store-0.8.2.tgz#5ff5ed2652bfcee1a6ccd6c4a8cc58df0d90242c"
   integrity sha512-h/BzICq/3wAw+VeNnb8WY4fqe1SI7fec5b7RWmaOue2lBY4cSfhNL4TgdySWxCu8btkmZu0IBzyPGEcUn53IlA==
@@ -8235,11 +8223,6 @@ lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
-
-lodash.merge@^4.6.0:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.2.tgz#558aa53b43b661e1925a0afdfa36a9a1085fe57a"
-  integrity sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==
 
 lodash.set@^4.3.2:
   version "4.3.2"
@@ -10969,13 +10952,6 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-satisfier@^4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/satisfier/-/satisfier-4.5.1.tgz#4cab4e08b3a9b74a417db8f5aba938e7fb3ccbb3"
-  integrity sha512-JrwJ/Ilrukrrnu5cYAzZOp/SqOCyU07WPr0UNJzPy9eL86XoU2Rx/BzvdVanku1Klj2NwhxTIa4g7S56yY7yqQ==
-  dependencies:
-    tersify "^1.2.6"
-
 satisfier@^5.0.2:
   version "5.0.2"
   resolved "https://registry.yarnpkg.com/satisfier/-/satisfier-5.0.2.tgz#8b102a860b9a8b756f2f841a5b31f022325e36b4"
@@ -11805,13 +11781,6 @@ terser@^4.0.0:
     source-map "~0.6.1"
     source-map-support "~0.5.12"
 
-tersify@^1.2.6:
-  version "1.2.6"
-  resolved "https://registry.yarnpkg.com/tersify/-/tersify-1.2.6.tgz#05788b03504b78198a329119cbb14d02fd248f80"
-  integrity sha512-MU0uxPzyD+Syo4PLMB8IiaGroQdfk3iFGvoYS6fceKeD4Wj+UsNEmvJoGupP1nB19/HtWAE1AbNI0mZaU7eyKg==
-  dependencies:
-    unpartial "^0.4.1"
-
 tersify@^3.0.0, tersify@^3.0.1:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.0.3.tgz#9a02d25206c3aba6edaa9eafe9e3556f6b0fd258"
@@ -12160,7 +12129,7 @@ type-name@^2.0.1:
   resolved "https://registry.yarnpkg.com/type-name/-/type-name-2.0.2.tgz#efe7d4123d8ac52afff7f40c7e4dec5266008fb4"
   integrity sha1-7+fUEj2KxSr/9/QMfk3sUmYAj7Q=
 
-type-plus@^1.24.0, type-plus@^1.26.1, type-plus@^1.26.2:
+type-plus@^1.26.2:
   version "1.26.2"
   resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.26.2.tgz#149fa43609fed4b41b9f7e689acdc9a874143c1a"
   integrity sha512-DGMdK8xoWxxjFIdkE27ecuYjt9nKu0laZX+VjMZNENRXYJI0e1CxWiksXFcqZXHSVIj8S3iuosKq3eYeH/Jsrw==
@@ -12323,13 +12292,6 @@ universalify@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
   integrity sha512-rBJeI5CXAlmy1pV+617WB9J63U6XcazHHF2f2dbJix4XzpUF0RS3Zbj0FGIOCAva5P/d/GBOYaACQ1w+0azUkg==
-
-unpartial@^0.4.1:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.4.1.tgz#698ca0fbaa060b2a11c369350062fa93e0c8de82"
-  integrity sha512-0FeUzDmi7b1s5h/inbOFIBOcnTMP549lAjOxsJtAFbUaFYwoOhINL1Z9s4lO36qFXB5JsYF7Np+FtRomcZpU0Q==
-  dependencies:
-    lodash.merge "^4.6.0"
 
 unpartial@^0.6.1, unpartial@^0.6.3:
   version "0.6.3"

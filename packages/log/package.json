@@ -20,29 +20,29 @@
     "lib"
   ],
   "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
     "bundle": "webpack",
     "clean": "rimraf dist lib libm",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core && dependency-check . --missing --no-dev",
-    "preversion": "yarn verify",
-    "verify": "rimraf dist lib && yarn test -- --reporters=default && yarn build && yarn dc",
     "test": "jest --coverage",
+    "verify": "rimraf dist lib && yarn test -- --reporters=default && yarn build && yarn dc",
+    "preversion": "yarn verify",
     "watch": "jest --watch"
+  },
+  "dependencies": {
+    "global-store": "^0.8.2",
+    "iso-error": "^2.1.4",
+    "standard-log-console": "^1.1.0",
+    "standard-log-core": "^1.1.1",
+    "type-plus": "^1.26.2"
   },
   "devDependencies": {
     "assertron": "^7.1.2",
     "satisfier": "^5.0.2"
-  },
-  "dependencies": {
-    "global-store": "^0.8.1",
-    "iso-error": "^2.1.4",
-    "standard-log-console": "^1.1.0",
-    "standard-log-core": "^1.1.0",
-    "type-plus": "^1.24.0"
   }
 }

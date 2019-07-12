@@ -1,7 +1,7 @@
-import { addCustomLogLevel, clearCustomLogLevel, toLogLevel, toLogLevelName } from '.';
-import { rangeEntries } from './testUtil';
-import { getAllLogLevels, logLevel } from './logLevel';
 import { forEachKey } from 'type-plus';
+import { addCustomLogLevel, clearCustomLogLevel, toLogLevel, toLogLevelName } from '.';
+import { getAllLogLevels, logLevel } from './logLevel';
+import { rangeEntries } from './testUtil';
 
 describe('toLogLevelName()', () => {
   test.each([
