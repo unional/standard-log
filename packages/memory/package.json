@@ -24,6 +24,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
     "bundle": "webpack",
+    "clean": "rimraf dist lib libm",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "test": "jest",

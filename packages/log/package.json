@@ -25,6 +25,8 @@
   "jsnext:main": "libm/index.js",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
+    "bundle": "webpack",
+    "clean": "rimraf dist lib libm",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core && dependency-check . --missing --no-dev",
     "preversion": "yarn verify",
