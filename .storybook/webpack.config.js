@@ -1,16 +1,13 @@
 module.exports = ({ config }) => {
   config.module.rules.push({
-    test: /\.(ts|tsx)$/,
+    test: /\.tsx$/,
     use: [
       {
         loader: require.resolve('ts-loader'),
         options: {
+          transpileOnly: true,
           configFile: 'tsconfig.storybook.json'
         }
-      },
-      // Optional
-      {
-        loader: require.resolve('react-docgen-typescript-loader'),
       },
     ],
   });

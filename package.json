@@ -8,15 +8,16 @@
   },
   "scripts": {
     "build": "tsc -b",
+    "build-storybook": "build-storybook",
     "build:watch": "tsc -b -w",
     "coverage": "yarn jest --coverage",
+    "storybook": "start-storybook -p 6006",
     "test": "yarn jest",
     "test:watch": "yarn jest --watch",
     "verify": "yarn build && yarn coverage",
-    "watch": "yarn jest --watch",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "watch": "yarn jest --watch"
   },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@storybook/addon-actions": "^5.1.9",
@@ -32,13 +33,11 @@
     "param-case": "^2.1.1",
     "pascal-case": "^2.0.1",
     "react": "^16.8.6",
-    "react-docgen-typescript-loader": "^3.1.0",
     "react-dom": "^16.8.6",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.0.4",
     "uglifyjs-webpack-plugin": "^2.1.3",
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
-  },
-  "dependencies": {}
+  }
 }

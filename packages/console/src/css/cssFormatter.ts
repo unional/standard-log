@@ -1,6 +1,6 @@
 import { RGB, rgbHex, createColorsFromMap, RGBA } from 'color-map';
 import { LogEntry } from 'standard-log-core';
-import { unpartial } from 'unpartial';
+import { required } from 'unpartial';
 import { rainbow } from './colors';
 
 export type CssFormatterOptions = {
@@ -8,7 +8,7 @@ export type CssFormatterOptions = {
 }
 
 export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
-  const { maxColor } = unpartial({ maxColor: 20 }, options)
+  const { maxColor } = required({ maxColor: 20 }, options)
   const loggerMap: Record<string, RGB> = {}
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)
   let count = 0
