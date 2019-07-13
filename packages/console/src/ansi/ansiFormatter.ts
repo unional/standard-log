@@ -1,5 +1,4 @@
 import { LogEntry } from 'standard-log-core';
-import { getField } from 'type-plus';
 import { toConsoleMethod } from '../utils';
 import { adjustCodes } from './adjustCodes';
 import { colorize, colorizeId } from './colorize';
@@ -9,20 +8,14 @@ import { createColorCodes } from './createColorCodes';
 type Context = {
   colorMap: number[][],
   idMap: Record<string, number[]>
-  maxColor: number
   counter: number
 }
 
-export type AnsiFormatterOptions = {
-  maxColor: number
-}
-
-export function createAnsiFormatter(options?: Partial<AnsiFormatterOptions>) {
+export function createAnsiFormatter() {
   const colorMap = getColorMap()
   const context: Context = {
     colorMap,
     idMap: {},
-    maxColor: getField(options, 'maxColor', colorMap.length),
     counter: 0
   }
 
@@ -41,7 +34,7 @@ export function createAnsiFormatter(options?: Partial<AnsiFormatterOptions>) {
 }
 
 function getCodes(context: Context, id: string) {
-  return context.idMap[id] = context.idMap[id] || context.colorMap[context.counter++ % context.maxColor]
+  return context.idMap[id] = context.idMap[id] || context.colorMap[context.counter++ % context.colorMap.length]
 }
 
 function getColorMap() {

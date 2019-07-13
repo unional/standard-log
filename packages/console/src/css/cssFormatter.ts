@@ -4,6 +4,11 @@ import { required } from 'type-plus';
 import { rainbow } from './colors';
 
 export type CssFormatterOptions = {
+  /**
+   * How many colors available.
+   * Recommend at least 10.
+   * Default to 20.
+   */
   maxColor: number
 }
 
