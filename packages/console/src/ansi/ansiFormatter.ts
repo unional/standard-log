@@ -17,7 +17,7 @@ export type AnsiFormatterOptions = {
   maxColor: number
 }
 
-export function createAnsiFormatter(options: Partial<AnsiFormatterOptions>) {
+export function createAnsiFormatter(options?: Partial<AnsiFormatterOptions>) {
   const colorMap = getColorMap()
   const context: Context = {
     colorMap,

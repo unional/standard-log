@@ -1,4 +1,4 @@
-import { LogEntry, LogFormatter, LogReporter } from 'standard-log-core';
+import { LogEntry, LogFilter, LogFormatter, LogReporter } from 'standard-log-core';
 import { getField } from 'type-plus';
 import { createAnsiFormatter } from './ansi/ansiFormatter';
 import { createCssFormatter } from './css/cssFormatter';
@@ -9,25 +9,19 @@ import { toConsoleMethod } from './utils';
 
 export type ConsoleLogReporter = LogReporter<any[]>
 
-export type ConsoleLogReporterFormatterOptions = {
-  id: string,
-  formatter: LogFormatter<any[]>
+export type ConsoleLogReporterOptions = {
+  id?: string,
+  formatter?: LogFormatter<any[]>,
+  filter?: LogFilter
 }
 
-export type ConsoleLogReporterTemplateOptions = {
-  id: string,
-  useColor: boolean,
-  template: string
-}
-
-export type ConsoleLogReporterOptions = ConsoleLogReporterFormatterOptions | ConsoleLogReporterTemplateOptions
-
-export function createConsoleLogReporter(options: Partial<ConsoleLogReporterOptions> = {}) {
+export function createConsoleLogReporter(options: ConsoleLogReporterOptions = {}) {
   const id = getField(options, 'id', 'console')
-  const formatter = getFormatter(options)
+  const formatter = options.formatter || getFormatter()
   return {
     id,
     formatter,
+    filter: options.filter,
     console: polyfilledConsole,
     write(entry: LogEntry) {
       if (this.filter && !this.filter(entry)) return
@@ -38,17 +32,9 @@ export function createConsoleLogReporter(options: Partial<ConsoleLogReporterOpti
   } as LogReporter<any[]> & { console: typeof polyfilledConsole }
 }
 
-function getFormatter(options: any) {
-  if (options.formatter) return options.formatter
+function getFormatter() {
+  if (!supportColor()) return plainFormatter
 
-  if (options.useColor === false || !supportColor()) {
-    return plainFormatter
-  }
-  if (isBrowser()) {
-    // istanbul ignore next
-    return createCssFormatter(options)
-  }
-  else {
-    return createAnsiFormatter(options)
-  }
+  // istanbul ignore next
+  return isBrowser() ? createCssFormatter() : createAnsiFormatter()
 }

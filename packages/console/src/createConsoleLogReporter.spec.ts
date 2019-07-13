@@ -1,5 +1,6 @@
 import { addCustomLogLevel, clearCustomLogLevel, logLevel } from 'standard-log-core';
 import { createConsoleLogReporter } from '.';
+import { plainFormatter } from './plainFormatter';
 
 test('default id is "console"', () => {
   const reporter = createConsoleLogReporter()
@@ -15,7 +16,7 @@ test('default to color rendering', () => {
 })
 
 test('plain rendering', () => {
-  const reporter = createConsoleLogReporter({ useColor: false });
+  const reporter = createConsoleLogReporter({ formatter: plainFormatter });
   ['emergency', 'info', 'warn', 'debug'].forEach(level => {
     reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
   })
@@ -97,7 +98,7 @@ describe('custom logs', () => {
 
 test('write multiple messages', () => {
   const id = 'log'
-  const reporter = createConsoleLogReporter({ useColor: false })
+  const reporter = createConsoleLogReporter({ formatter: plainFormatter })
   const fakeConsole = reporter.console = createFakeConsole();
 
   const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }
