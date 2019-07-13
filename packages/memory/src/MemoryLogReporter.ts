@@ -1,15 +1,17 @@
-import { LogEntry, LogReporter } from 'standard-log-core';
+import { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from 'standard-log-core';
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[]
 }
 
-export function createMemoryLogReporter(): MemoryLogReporter {
+export type MemoryLogFormatter = LogFormatter<LogEntry>
+
+export function createMemoryLogReporter(options: Pick<LogReporterOptions, 'formatter'> = {}): MemoryLogReporter {
   return {
     id: 'memory',
     logs: [] as LogEntry[],
     write(entry) {
-      this.logs.push(entry)
+      this.logs.push(options.formatter ? options.formatter(entry) : entry)
     }
   }
 }
