@@ -25,7 +25,7 @@ function createLogger<T extends string>(id: string): Logger<T> {
     id
   } as any)
 
-  logger.inc = (...args: any[]) => writeToReporters({
+  logger.count = (...args: any[]) => writeToReporters({
     id,
     level: logLevel.debug,
     args: [++counter, ...args],

@@ -51,13 +51,13 @@ test('existing logger will get custom level', () => {
   expect(typeof actual.old_logger).toBe('function')
 })
 
-describe('inc()', () => {
-  test('inc() will increment the counter', () => {
+describe('count()', () => {
+  test('will increment the counter', () => {
     const reporter = createMemoryLogReporter()
     config({ reporters: [reporter], logLevel: logLevel.debug })
     const logger = getLogger('inc counter')
-    logger.inc()
-    logger.inc()
+    logger.count()
+    logger.count()
 
     a.satisfies(reporter.logs, [
       { id: 'inc counter', level: logLevel.debug, args: [1] },
@@ -65,17 +65,15 @@ describe('inc()', () => {
     ])
   })
 
-  test('inc() will append args after the counter', () => {
+  test('append args after the counter', () => {
     const reporter = createMemoryLogReporter()
     config({ reporters: [reporter], logLevel: logLevel.debug })
     const id = 'inc with args';
     const logger = getLogger(id)
-    logger.inc('msg1', 'msg2')
-    logger.inc('msg3', 'msg4')
+    logger.count('msg1', 'msg2')
 
     a.satisfies(reporter.logs, [
-      { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] },
-      { id, level: logLevel.debug, args: [2, 'msg3', 'msg4'] }
+      { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
     ])
   })
 })

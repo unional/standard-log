@@ -6,7 +6,7 @@ export type Logger<T extends string = LogLevel> = {
    * Logs with an increment counter.
    * This is useful during debugging to check for steps executed.
    */
-  inc(...args: any[]): void
+  count(...args: any[]): void
 } & {
     [k in T]: (...args: any[]) => void
   }
