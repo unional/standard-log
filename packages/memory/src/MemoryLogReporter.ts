@@ -1,12 +1,12 @@
 import { LogEntry, LogReporter } from 'standard-log-core';
 
-export type MemoryLogReporter = LogReporter<never> & {
+export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[]
 }
 
-export function createMemoryLogReporter({ id } = { id: 'memory' }): MemoryLogReporter {
+export function createMemoryLogReporter(): MemoryLogReporter {
   return {
-    id,
+    id: 'memory',
     logs: [] as LogEntry[],
     write(entry) {
       this.logs.push(entry)
