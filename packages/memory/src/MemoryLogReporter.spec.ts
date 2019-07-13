@@ -10,7 +10,6 @@ test('log entries are saved in the `logs` property', () => {
 test('formatter can be used to pre-process the log', () => {
   const reporter = createMemoryLogReporter({
     formatter: (entry) => ({
-      ...entry,
       args: entry.args.map(arg => arg === 'secret' ? '<censored>' : arg)
     })
   })
