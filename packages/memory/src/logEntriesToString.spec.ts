@@ -15,13 +15,14 @@ test('convert log entries to string', () => {
     { id: 'log', level: logLevel.trace, args: ['trace'], timestamp }
   ])
 
-  expect(actual).toEqual(`2019-07-01T07:00:00.000Z,log,(EMERGENCY),emergency
-2019-07-01T07:00:00.000Z,log,(CRITICAL),critical
-2019-07-01T07:00:00.000Z,log,(ALERT),alert
-2019-07-01T07:00:00.000Z,log,(ERROR),error
-2019-07-01T07:00:00.000Z,log,(WARN),warn
-2019-07-01T07:00:00.000Z,log,(NOTICE),notice
-2019-07-01T07:00:00.000Z,log,(INFO),info
-2019-07-01T07:00:00.000Z,log,(DEBUG),debug
-2019-07-01T07:00:00.000Z,log,(TRACE),trace`)
+  const iso = timestamp.toISOString()
+  expect(actual).toEqual(`${iso},log,(EMERGENCY),emergency
+${iso},log,(CRITICAL),critical
+${iso},log,(ALERT),alert
+${iso},log,(ERROR),error
+${iso},log,(WARN),warn
+${iso},log,(NOTICE),notice
+${iso},log,(INFO),info
+${iso},log,(DEBUG),debug
+${iso},log,(TRACE),trace`)
 })
