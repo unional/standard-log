@@ -2,16 +2,23 @@
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
-[![Build status][travis-image]][travis-url]
-[![Coverage Status][coveralls-image]][coveralls-url]
 
-Core library for standard-log.
+[![Circle CI][circleci-image]][circleci-url]
+[![Travis CI][travis-image]][travis-url]
+[![Codecov][codecov-image]][codecov-url]
+[![Coveralls Status][coveralls-image]][coveralls-url]
 
-[npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
-[npm-url]: https://npmjs.org/package/standard-log
-[downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
-[downloads-url]: https://npmjs.org/package/standard-log
-[travis-image]: https://img.shields.io/travis/unional/logging/master.svg?style=flat
-[travis-url]: https://travis-ci.org/unional/logging?branch=master
-[coveralls-image]: https://coveralls.io/repos/github/unional/logging/badge.svg
-[coveralls-url]: https://coveralls.io/github/unional/logging
+Core library for [`standard-log`](https://github.com/unional/standard-log).
+
+[circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
+[circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
+[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/unional/standard-log
+[coveralls-image]: https://coveralls.io/repos/github/unional/standard-log/badge.svg
+[coveralls-url]: https://coveralls.io/github/unional/standard-log
+[downloads-image]: https://img.shields.io/npm/dm/standard-log-core.svg?style=flat
+[downloads-url]: https://npmjs.org/package/standard-log-core
+[npm-image]: https://img.shields.io/npm/v/standard-log-core.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/standard-log-core
+[travis-image]: https://img.shields.io/travis/unional/standard-log/master.svg?style=flat
+[travis-url]: https://travis-ci.com/unional/standard-log?branch=master

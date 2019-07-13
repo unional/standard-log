@@ -10,9 +10,6 @@ workflows:
       - node10:
           requires:
             - node-latest
-      # - node9:
-      #     requires:
-      #       - node-latest
       - node8:
           requires:
             - node-latest
@@ -25,8 +22,8 @@ workflows:
       #         only: master
       #     requires:
       #       - node-latest
+      #       - node11
       #       - node10
-      #       - node9
       #       - node8
       #       - node6
 jobs:
