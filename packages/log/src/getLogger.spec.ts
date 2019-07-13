@@ -1,7 +1,7 @@
 import a from 'assertron';
 import { addCustomLogLevel, clearCustomLogLevel, LogLevel, logLevel } from 'standard-log-core';
 import { createMemoryLogReporter } from 'standard-log-memory';
-import { config, getLogger, InvalidId } from '.';
+import { addLogReporter, config, getLogger, InvalidId } from '.';
 import { resetStore } from './store';
 
 afterEach(() => {
@@ -22,8 +22,9 @@ test.each('`~!@#$%^&*()=+\\/|[]{}<>,?'.split(''))('throws if id has unsupported 
 })
 
 test('logger with custom level', () => {
+  config({ mode: 'devel' })
   const reporter = createMemoryLogReporter()
-  config({ reporters: [reporter] })
+  addLogReporter(reporter)
   addCustomLogLevel('cust_lvl', 100)
   const logger = getLogger<LogLevel | 'cust_lvl'>('cust')
 
@@ -65,7 +66,7 @@ describe('inc()', () => {
   })
 
   test('inc() will append args after the counter', () => {
-    const reporter = createMemoryLogReporter({ id: 'dum' })
+    const reporter = createMemoryLogReporter()
     config({ reporters: [reporter], logLevel: logLevel.debug })
     const id = 'inc with args';
     const logger = getLogger(id)

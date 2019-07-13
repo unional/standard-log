@@ -1,12 +1,16 @@
 import a from 'assertron';
 import { clearCustomLogLevel, logLevel, toLogLevelName } from 'standard-log-core';
 import { createMemoryLogReporter } from 'standard-log-memory';
-import { config } from '.';
+import { clearLogReporters, config } from '.';
 import { resetStore, store } from './store';
 
 afterEach(() => {
   clearCustomLogLevel()
   resetStore()
+})
+
+test('in production mode by default', () => {
+  expect(store.get().mode).toBe('prod')
 })
 
 test('configure default logLevel', () => {
@@ -15,39 +19,6 @@ test('configure default logLevel', () => {
   })
 
   expect(store.get().logLevel).toBe(logLevel.planck)
-})
-
-test('configue to use default reporter', () => {
-  clearReporters()
-
-  config({
-    reporters: [
-      'default'
-    ]
-  })
-  a.satisfies(store.get().reporters, [{ id: 'default' }])
-  expect(store.get().reporters.length).toBe(1)
-})
-
-test('configure to use a reporter instance', () => {
-  clearReporters()
-
-  config({
-    reporters: [
-      createMemoryLogReporter()
-    ]
-  })
-  a.satisfies(store.get().reporters, [{ id: 'memory' }])
-  expect(store.get().reporters.length).toBe(1)
-})
-
-test('config default with tempalte', () => {
-  clearReporters()
-  config({
-    reporters: [
-      ['default', { useColor: false }]
-    ]
-  })
 })
 
 test('add custom levels', () => {
@@ -60,7 +31,14 @@ test('add custom levels', () => {
   expect(toLogLevelName(80)).toBe('urgent')
 })
 
-function clearReporters() {
-  const reporters = store.get().reporters
-  reporters.splice(0, reporters.length)
-}
+test('configure to use a reporter instance', () => {
+  clearLogReporters()
+
+  config({
+    reporters: [
+      createMemoryLogReporter()
+    ]
+  })
+  a.satisfies(store.get().reporters, [{ id: 'memory' }])
+  expect(store.get().reporters.length).toBe(1)
+})

@@ -10,3 +10,9 @@ export class InvalidId extends StandardLogError {
     super(`logger id only supports alphanumeric, unicode characters, and [:_-.]. Received ${id}`)
   }
 }
+
+export class ProhibitedDuringProduction extends StandardLogError {
+  constructor(public action: string) {
+    super(`Cannot perform ${action} during production`)
+  }
+}
