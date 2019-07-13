@@ -3,9 +3,9 @@
     "default": {
       "packages": [
         "package.json",
-        "packages/log/package.json",
         "packages/console/package.json",
         "packages/core/package.json",
+        "packages/log/package.json",
         "packages/memory/package.json"
       ]
     }
