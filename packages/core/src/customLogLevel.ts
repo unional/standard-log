@@ -2,6 +2,10 @@ import { forEachKey, mapKey } from 'type-plus';
 import { LogLevelListener, LogLevelEntry } from './types';
 import { store } from './store';
 
+/**
+ * @param level the `logLevel` number.
+ * You can specify this in the form of `logLevel.<x> + n` to make it more readable.
+ */
 export function addCustomLogLevel(name: string, level: number) {
   const { customLevels, customLevelsReverse, addCustomLogLevelListeners } = store.get()
   customLevels[name] = level

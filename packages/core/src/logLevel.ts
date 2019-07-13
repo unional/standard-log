@@ -1,19 +1,56 @@
 import { reduceKey } from 'type-plus';
+import uppercase from 'upper-case';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 
 export const logLevel = {
+  /**
+   * none: 0
+   */
   none: 0,
+  /**
+   * emergency: 100
+   */
   emergency: 100,
+  /**
+   * alert: 200
+   */
   alert: 200,
+  /**
+   * critical: 300
+   */
   critical: 300,
+  /**
+   * error: 400
+   */
   error: 400,
+  /**
+   * warn: 500
+   */
   warn: 500,
+  /**
+   * notice: 600
+   */
   notice: 600,
+  /**
+   * info: 700
+   */
   info: 700,
+  /**
+   * debug: 800
+   */
   debug: 800,
+  /**
+   * trace: 900
+   */
   trace: 900,
-  // `planck unit`: https://en.wikipedia.org/wiki/Planck_units
+  /**
+   * planck: Infinity
+   * `planck unit` is a very small unit <https://en.wikipedia.org/wiki/Planck_units>.
+   */
   planck: Infinity,
+  /**
+   * all: Infinity
+   */
   all: Infinity
 }
 
@@ -56,4 +93,8 @@ export function getAllLogLevels() {
 
     return result
   }, getCustomLevels())
+}
+
+export function toLogLevelDisplay(level: number) {
+  return `(${uppercase(toLogLevelName(level))})`
 }

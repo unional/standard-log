@@ -1,4 +1,4 @@
 export * from './customLogLevel';
 export * from './logLevel';
-export * from './syslog';
+export * from './plainFormatter';
 export * from './types';

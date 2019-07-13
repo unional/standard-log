@@ -1,9 +1,10 @@
 import { addCustomLogLevel, clearCustomLogLevel, getCustomLevels, LogLevelEntry, onAddCustomLogLevel } from '.';
+import { logLevel } from '../lib';
 
 describe('clearCustomLogLevel()', () => {
   test('clear all custom levels', () => {
-    addCustomLogLevel('c1', 1)
-    addCustomLogLevel('c2', 2)
+    addCustomLogLevel('c1', logLevel.none + 1)
+    addCustomLogLevel('c2', logLevel.none + 2)
     expect(getCustomLevels().length).toBe(2)
 
     clearCustomLogLevel()
@@ -17,9 +18,10 @@ describe('onAddCustomLogLevel()', () => {
     let actual: LogLevelEntry
     onAddCustomLogLevel(entry => actual = entry)
 
-    addCustomLogLevel('add-listener', 777)
+    const level = logLevel.info + 77
+    addCustomLogLevel('add-listener', level)
 
-    expect(actual!).toEqual({ name: 'add-listener', level: 777 })
+    expect(actual!).toEqual({ name: 'add-listener', level })
   })
 
   test('unsubscribe listener', () => {
