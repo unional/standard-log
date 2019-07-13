@@ -140,15 +140,6 @@ describe('filter', () => {
 
     expect(fakeConsole.errors).toEqual([['normal']])
   })
-  test('filter can be changed afterward', () => {
-    const reporter = createConsoleLogReporter({ formatter: idFormatter, filter })
-    const fakeConsole = reporter.console = createFakeConsole();
-
-    reporter.write({ id: 'normal', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-    reporter.write({ id: 'secret', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-
-    expect(fakeConsole.errors).toEqual([['normal']])
-  })
 })
 
 test('write log entry with multiple arguments', () => {

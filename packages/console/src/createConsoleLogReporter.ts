@@ -1,30 +1,22 @@
-import { LogEntry, LogFilter, LogFormatter, LogReporter, plainFormatter } from 'standard-log-core';
-import { getField } from 'type-plus';
+import { LogEntry, LogFormatter, LogReporter, LogReporterOptions, plainFormatter } from 'standard-log-core';
+import { required } from 'type-plus';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 import { polyfilledConsole } from './polyfilledConsole';
 import { isBrowser, supportColor, toConsoleMethod } from './utils';
 
 export type ConsoleLogReporter = LogReporter<any[]>
-
 export type ConsoleLogFormatter = LogFormatter<any[]>
+export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
-export type ConsoleLogReporterOptions = {
-  id?: string,
-  formatter?: ConsoleLogFormatter,
-  filter?: LogFilter
-}
-
-export function createConsoleLogReporter(options: ConsoleLogReporterOptions = {}) {
-  const id = getField(options, 'id', 'console')
-  const formatter = options.formatter || getFormatter()
+export function createConsoleLogReporter(options?: ConsoleLogReporterOptions) {
+  const { id, formatter, filter } = required({ id: 'console', formatter: getFormatter() }, options)
   return {
     id,
     formatter,
-    filter: options.filter,
     console: polyfilledConsole,
     write(entry: LogEntry) {
-      if (this.filter && !this.filter(entry)) return
+      if (filter && !filter(entry)) return
       const values = (this.formatter || formatter)(entry)
       const method = toConsoleMethod(entry.level)
       this.console[method](...values)
