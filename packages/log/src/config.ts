@@ -2,6 +2,7 @@ import { addCustomLogLevel, LogReporter } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
 import { store } from './store';
 import { RuntimeMode } from './types';
+import { ProhibitedDuringProduction } from './errors';
 
 export type ConfigOptions = {
   mode: RuntimeMode,
@@ -11,6 +12,16 @@ export type ConfigOptions = {
 }
 export function config(options: Partial<ConfigOptions>) {
   const s = store.get()
+
+  if (s.configured) {
+    if (s.mode === 'devel') {
+      console.warn('standard-log has been configured before. Overriding. `config()` should only be called once by the application')
+    }
+    else {
+      throw new ProhibitedDuringProduction('config')
+    }
+  }
+
   if (options.mode) {
     s.mode = options.mode
   }
@@ -29,4 +40,5 @@ export function config(options: Partial<ConfigOptions>) {
   if (options.reporters) {
     s.reporters = options.reporters
   }
+  s.configured = true
 }

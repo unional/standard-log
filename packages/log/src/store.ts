@@ -8,7 +8,8 @@ function createStoreDefault() {
     mode: 'prod' as RuntimeMode,
     loggers: {} as Record<string, Logger<any>>,
     reporters: [createConsoleLogReporter()] as LogReporter[],
-    logLevel: logLevel.warn
+    logLevel: logLevel.warn,
+    configured: false
   }
 }
 
