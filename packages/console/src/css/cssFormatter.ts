@@ -39,8 +39,6 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
   }
 }
 
-export const cssFormatter = createCssFormatter()
-
 const gammaMap = {
   rc: 0.2126,
   gc: 0.7152,
