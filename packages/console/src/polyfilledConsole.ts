@@ -1,4 +1,4 @@
-import { isConsoleDebugAvailable } from './isConsoleDebugAvailable';
+import { isConsoleDebugAvailable } from './utils';
 
 // Node@9.3 or below has `console.debug = undefined` or it doesn't log
 // Should use `console.log()` in those case.

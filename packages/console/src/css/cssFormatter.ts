@@ -1,6 +1,6 @@
 import { RGB, rgbHex, createColorsFromMap, RGBA } from 'color-map';
 import { LogEntry } from 'standard-log-core';
-import { required } from 'unpartial';
+import { required } from 'type-plus';
 import { rainbow } from './colors';
 
 export type CssFormatterOptions = {
