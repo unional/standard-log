@@ -4,7 +4,7 @@ import { adjustCodes } from './adjustCodes';
 import { wrapAnsi, wrapAnsiId } from './wrapAnsi';
 import { ANSI_FOREGROUND, ANSI_RED, ANSI_YELLOW } from './constants';
 import { createColorCodes } from './createColorCodes';
-import { TimestampFormat } from '../types';
+import { TimestampFormat } from '../createTimestampFormatter';
 
 type Context = {
   colorMap: number[][],

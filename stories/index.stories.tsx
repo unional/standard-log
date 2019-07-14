@@ -2,12 +2,12 @@ import { storiesOf } from '@storybook/react';
 import { Console, Decode, Hook, Unhook } from 'console-feed';
 import React from 'react';
 import { config, getLogger } from 'standard-log';
-import { Console as StdConsole, createConsoleLogReporter } from 'standard-log-console';
+import { createConsoleLogReporter } from 'standard-log-console';
 
 storiesOf('Console', module)
   .add('hello world', () => {
     const reporter = createConsoleLogReporter()
-    config({ reporters: [reporter], logLevel: Infinity })
+    config({ mode: 'devel', reporters: [reporter], logLevel: Infinity })
     const log = getLogger('testing')
     setImmediate(() => {
       log.debug('hello world')
@@ -18,7 +18,7 @@ storiesOf('Console', module)
     return <ConsolePanel console={reporter.console} />
   })
 
-class ConsolePanel extends React.Component<{ console?: StdConsole }, { logs: any[] }> {
+class ConsolePanel extends React.Component<{ console?: any }, { logs: any[] }> {
   state = {
     logs: []
   }

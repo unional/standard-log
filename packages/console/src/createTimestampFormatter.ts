@@ -1,5 +1,6 @@
-import ms from 'ms'
-import { TimestampFormat } from '../types';
+import ms from 'ms';
+
+export type TimestampFormat = 'none' | 'iso' | 'elasped'
 
 export function createTimestampFormatter(format: TimestampFormat) {
   switch (format) {
