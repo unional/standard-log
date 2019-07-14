@@ -1,18 +1,18 @@
-import { BACKGROUND, BRIGHT, FOREGROUND, RED, WHITE } from './constants';
+import { ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_FOREGROUND, ANSI_RED, ANSI_WHITE } from './constants';
 import { isColor } from './isColor';
 
 test('support duo code', () => {
-  expect(isColor([RED + BACKGROUND, WHITE + FOREGROUND], WHITE, RED)).toBe(true)
+  expect(isColor([ANSI_RED + ANSI_BACKGROUND, ANSI_WHITE + ANSI_FOREGROUND], ANSI_WHITE, ANSI_RED)).toBe(true)
 })
 
 test('support single code', () => {
-  expect(isColor([RED + BACKGROUND], WHITE, RED)).toBe(true)
+  expect(isColor([ANSI_RED + ANSI_BACKGROUND], ANSI_WHITE, ANSI_RED)).toBe(true)
 })
 
 test('support triple code', () => {
-  expect(isColor([RED + BACKGROUND, WHITE + FOREGROUND, BRIGHT], WHITE, RED)).toBe(true)
+  expect(isColor([ANSI_RED + ANSI_BACKGROUND, ANSI_WHITE + ANSI_FOREGROUND, ANSI_BRIGHT], ANSI_WHITE, ANSI_RED)).toBe(true)
 })
 
 test('specific style', () => {
-  expect(isColor([RED + BACKGROUND, WHITE + FOREGROUND, BRIGHT], WHITE, RED, BRIGHT)).toBe(true)
+  expect(isColor([ANSI_RED + ANSI_BACKGROUND, ANSI_WHITE + ANSI_FOREGROUND, ANSI_BRIGHT], ANSI_WHITE, ANSI_RED, ANSI_BRIGHT)).toBe(true)
 })

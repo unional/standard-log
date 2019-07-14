@@ -2,6 +2,8 @@ import { RGB, rgbHex, createColorsFromMap, RGBA } from 'color-map';
 import { LogEntry } from 'standard-log-core';
 import { required } from 'type-plus';
 import { rainbow } from './colors';
+import { TimestampFormat } from '../types';
+import { createTimestampFormatter } from '../utils';
 
 export type CssFormatterOptions = {
   /**
@@ -9,20 +11,19 @@ export type CssFormatterOptions = {
    * Recommend at least 10.
    * Default to 20.
    */
-  maxColor: number
+  maxColor: number,
+  timestamp: TimestampFormat
 }
 
 export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
-  const { maxColor } = required({ maxColor: 20 }, options)
+  const { maxColor, timestamp } = required({ maxColor: 20, timestamp: 'none' }, options)
   const loggerMap: Record<string, RGB> = {}
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)
   let count = 0
 
+  const timestampFormatter = createTimestampFormatter(timestamp)
+
   return function cssFormatter(entry: LogEntry) {
-    const rgb = getRgb(entry.id)
-    const background = rgbHex(rgb)
-    const border = rgbHex(rgb.map(x => Math.max(0, x - 32)) as RGB)
-    const color = getForegroundColor(rgb)
     let idStr = `%c ${entry.id} `
     let args: any[]
     if (firstArgIsColorTemplate(entry.args)) {
@@ -32,7 +33,14 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
     else {
       args = [...entry.args]
     }
-    return [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...args, entry.timestamp.toISOString()]
+    const rgb = getRgb(entry.id)
+    const background = rgbHex(rgb)
+    const border = rgbHex(rgb.map(x => Math.max(0, x - 32)) as RGB)
+    const color = getForegroundColor(rgb)
+    const result = [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...args]
+    const t = timestampFormatter(entry.timestamp)
+    if (t !== undefined) result.push(t)
+    return result
   }
 
   function firstArgIsColorTemplate(args: any[]) {

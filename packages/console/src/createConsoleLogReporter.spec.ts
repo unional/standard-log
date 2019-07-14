@@ -1,6 +1,7 @@
 import { addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainFormatter } from 'standard-log-core';
 import { createConsoleLogReporter } from '.';
 import { ConsoleLogFormatter } from './createConsoleLogReporter';
+import { createAnsiFormatter } from './ansi';
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
@@ -13,6 +14,15 @@ describe('rendering tests', () => {
     const reporter = createConsoleLogReporter({ formatter: plainFormatter });
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
+    })
+  })
+
+  test('different timestamp settings', () => {
+    const reporter = createConsoleLogReporter();
+
+    ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
+      reporter.formatter = createAnsiFormatter({ timestamp })
+      reporter.write({ id: timestamp, level: logLevel.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
 })

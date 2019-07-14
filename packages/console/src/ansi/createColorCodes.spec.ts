@@ -1,9 +1,9 @@
 import { createColorCodes } from './createColorCodes';
-import { colorize } from './colorize';
+import { wrapAnsi } from './wrapAnsi';
 
 test('inspect actual color in console', () => {
   const actual = createColorCodes()
-  actual.forEach(color => console.info(colorize(`${describeColor(color)} ${color.join()}`, color)))
+  actual.forEach(color => console.info(wrapAnsi(`${describeColor(color)} ${color.join()}`, color)))
 })
 
 function describeColor(color: number[]) {

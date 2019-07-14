@@ -13,9 +13,76 @@ Console support for [`standard-log`](https://github.com/unional/standard-log).
 
 This is the default reporter of [`standard-log`](https://github.com/unional/standard-log).
 
+## Installation
+
 In normal use case you don't need to reference this library directly.
 
-[badge-size-url]: http://img.badgesize.io/unional/logging/master/packages/console/dist/aurelia-logging-console.js.gz.svg?label=bundle_size
+[`standard-log`](https://github.com/unional/standard-log) exports the main features from `standard-log-console`.
+
+```sh
+yarn add standard-log
+```
+
+If you want to access other features from `stand-log-console`, you can install it directly:
+
+```sh
+yarn add standard-log-console
+```
+
+## Usage
+
+By default, [`standard-log`](https://github.com/unional/standard-log) will use this reporter by default.
+
+If you want to configure `standard-log` to use other reporters programatically,
+you can use the `createConsoleLogReporter()` to create the reporter for console:
+
+```ts
+import {
+  createConsoleLogReporter,
+  config, // by `standard-log`
+} from 'standard-log'
+
+config({ reporters: [createConsoleLogReporter(), /* other reporters */] })
+```
+
+By default, it will use ansi formatter in NodeJS and css formatter in browser.
+
+If you want to change that, or use your own formatter:
+
+```ts
+import { createConsoleLogReporter } from 'standard-log'
+
+createConsoleLogReporter({
+  formatter: yourFormatter
+})
+```
+
+For `createCssFormatter()`, you can specify how many colors to use:
+
+```ts
+import { createCssFormatter } from 'standard-log'
+
+createCssFormatter({ maxColor: 30 })
+```
+![](2019-07-13-17-19-12.png)
+
+You can also configure the `timestamp` format:
+
+```ts
+import { createAnsiFormatter, createCssFormatter } from 'standard-log'
+
+createAnsiFormatter({ timestamp: 'none' })
+createAnsiFormatter({ timestamp: 'iso' })
+createAnsiFormatter({ timestamp: 'elasped' })
+
+createCssFormatter({ timestamp: 'none' })
+createCssFormatter({ timestamp: 'iso' })
+createCssFormatter({ timestamp: 'elasped' })
+```
+
+![](2019-07-13-17-18-14.png)
+
+[badge-size-url]: http://img.badgesize.io/unional/standard-log/master/packages/console/dist/standard-log-console.js.gz.svg?label=bundle_size
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg

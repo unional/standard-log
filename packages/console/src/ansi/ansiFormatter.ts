@@ -1,9 +1,10 @@
 import { LogEntry } from 'standard-log-core';
-import { toConsoleMethod } from '../utils';
+import { toConsoleMethod, createTimestampFormatter } from '../utils';
 import { adjustCodes } from './adjustCodes';
-import { colorize, colorizeId } from './colorize';
-import { FOREGROUND, RED, YELLOW } from './constants';
+import { wrapAnsi, wrapAnsiId } from './wrapAnsi';
+import { ANSI_FOREGROUND, ANSI_RED, ANSI_YELLOW } from './constants';
 import { createColorCodes } from './createColorCodes';
+import { TimestampFormat } from '../types';
 
 type Context = {
   colorMap: number[][],
@@ -11,24 +12,31 @@ type Context = {
   counter: number
 }
 
-export function createAnsiFormatter() {
+export type AnsiFormatterOptions = {
+  timestamp: TimestampFormat
+}
+
+export function createAnsiFormatter(options: AnsiFormatterOptions = { timestamp: 'none' }) {
   const colorMap = getColorMap()
   const context: Context = {
     colorMap,
     idMap: {},
     counter: 0
   }
+  const timestampFormatter = createTimestampFormatter(options.timestamp)
 
   return function ansiFormatter(entry: LogEntry) {
     const consoleMethod = toConsoleMethod(entry.level)
     const codes = adjustCodes(getCodes(context, entry.id), consoleMethod)
-    const id = colorizeId(entry.id, codes)
-    const rest = [...entry.args, entry.timestamp.toISOString()]
-    const textCodes = consoleMethod === 'error' ? [RED + FOREGROUND] :
-      consoleMethod === 'warn' ? [YELLOW + FOREGROUND] : undefined
+    const id = wrapAnsiId(entry.id, codes)
+    const rest = [...entry.args]
+    const timestamp = timestampFormatter(entry.timestamp)
+    if (timestamp !== undefined) rest.push(timestamp)
+    const textCodes = consoleMethod === 'error' ? [ANSI_RED + ANSI_FOREGROUND] :
+      consoleMethod === 'warn' ? [ANSI_YELLOW + ANSI_FOREGROUND] : undefined
 
     return textCodes ?
-      [id, ...rest.map(x => colorize(x, textCodes))] :
+      [id, ...rest.map(x => wrapAnsi(x, textCodes))] :
       [id, ...rest]
   }
 }
