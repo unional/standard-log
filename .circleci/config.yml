@@ -13,9 +13,6 @@ workflows:
       - node8:
           requires:
             - node-latest
-      - node6:
-          requires:
-            - node-latest
       # - release:
       #     filters:
       #       branches:
@@ -93,16 +90,6 @@ jobs:
   node8:
     docker:
       - image: 'circleci/node:8'
-    steps:
-      - checkout
-      - attach_workspace:
-          at: '.'
-      - run: yarn verify
-      - store_test_results:
-          path: .reports/junit
-  node6:
-    docker:
-      - image: 'circleci/node:6'
     steps:
       - checkout
       - attach_workspace:

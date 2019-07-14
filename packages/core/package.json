@@ -29,16 +29,17 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "test": "jest",
-    "verify": "yarn clean && yarn test -- --reporters=default && yarn build && yarn dc",
+    "verify": "yarn test --reporters=default && yarn build && yarn dc",
     "preversion": "yarn verify",
     "watch": "jest --watch"
   },
   "dependencies": {
-    "global-store": "^0.8.2"
+    "global-store": "^0.8.2",
+    "type-plus": "^1.26.2",
+    "upper-case": "^1.1.3"
   },
   "devDependencies": {
     "@types/ramda": "^0.26.15",
-    "ramda": "^0.26.1",
-    "type-plus": "^1.26.2"
+    "ramda": "^0.26.1"
   }
 }

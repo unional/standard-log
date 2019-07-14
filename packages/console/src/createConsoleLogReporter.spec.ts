@@ -146,6 +146,17 @@ describe('formatter', () => {
 
     expect(fakeConsole.errors).toEqual([['id-only']])
   })
+
+  test('clearing formatter on report will fallback to original formatter', () => {
+    const id = 'id-only'
+    const reporter = createConsoleLogReporter({ formatter: idFormatter })
+    reporter.formatter = undefined
+    const fakeConsole = reporter.console = createFakeConsole();
+
+    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
+
+    expect(fakeConsole.errors).toEqual([['id-only']])
+  })
 })
 
 describe('filter', () => {
