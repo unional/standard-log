@@ -1,0 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+# 0.1.0 (2019-07-14)
+
+
+### Bug Fixes
+
+* use object.assign instead of spread for NodeJS6 ([#2](https://github.com/unional/standard-log/issues/2)) ([26ef224](https://github.com/unional/standard-log/commit/26ef224))
+
+
+### Features
+
+* prevent calling config() twice ([dc2bfb8](https://github.com/unional/standard-log/commit/dc2bfb8))
+* **core:** rename inc() to count() ([40bee67](https://github.com/unional/standard-log/commit/40bee67))
+* **log:** clean and add RuntimeMode ([d292342](https://github.com/unional/standard-log/commit/d292342))
+* **log:** improve getLogger type ([2f2495e](https://github.com/unional/standard-log/commit/2f2495e))
