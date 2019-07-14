@@ -16,6 +16,7 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 script:
   - yarn
+  - yarn build
   - yarn verify
   - npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage
   - npm install -g coveralls && cat ./coverage/lcov.info | coveralls
