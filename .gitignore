@@ -45,6 +45,7 @@ node_modules
 .tsbuildinfo
 
 # project folders
+dist
 lib*
 out*
 .nowhere

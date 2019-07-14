@@ -2,7 +2,6 @@
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
-![badge-size-url]
 
 [![Circle CI][circleci-image]][circleci-url]
 [![Travis CI][travis-image]][travis-url]
@@ -82,7 +81,6 @@ createCssFormatter({ timestamp: 'elasped' })
 
 ![](2019-07-13-17-18-14.png)
 
-[badge-size-url]: http://img.badgesize.io/unional/standard-log/master/packages/console/dist/standard-log-console.js.gz.svg?label=bundle_size
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
