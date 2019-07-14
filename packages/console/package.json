@@ -17,7 +17,8 @@
   },
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "libm"
   ],
   "main": "lib/index.js",
   "module": "libm/index.js",

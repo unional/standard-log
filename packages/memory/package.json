@@ -17,9 +17,12 @@
   },
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "libm"
   ],
   "main": "lib/index.js",
+  "module": "libm/index.js",
+  "jsnext:main": "libm/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
