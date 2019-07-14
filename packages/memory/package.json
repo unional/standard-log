@@ -1,6 +1,6 @@
 {
   "name": "standard-log-memory",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "In memory appender for `standard-log`",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -38,7 +38,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "standard-log-core": "^1.2.1"
+    "standard-log-core": "^1.2.2"
   },
   "devDependencies": {
     "compression-webpack-plugin": "^3.0.0"
