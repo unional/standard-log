@@ -30,7 +30,7 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core && dependency-check . --missing --no-dev",
     "test": "jest --coverage",
-    "verify": "rimraf dist lib && yarn test -- --reporters=default && yarn build && yarn dc",
+    "verify": "rimraf dist lib && yarn test -- --reporters=default && yarn build && yarn dc && yarn bundle",
     "preversion": "yarn verify",
     "watch": "jest --watch"
   },
