@@ -31,7 +31,6 @@
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "test": "jest",
     "verify": "yarn test --reporters=default && yarn build && yarn dc",
-    "preversion": "yarn verify",
     "watch": "jest --watch"
   },
   "dependencies": {
