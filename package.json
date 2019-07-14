@@ -13,14 +13,16 @@
     "build:watch": "tsc -b -w",
     "bundle": "lerna run bundle",
     "clean": "lerna run clean && rimraf .tsbuildinfo",
-    "coverage": "yarn jest --coverage",
+    "coverage": "jest --coverage",
+    "dc": "lerna run dc",
+    "lint": "lerna run lint",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
     "release": "lerna publish",
     "storybook": "start-storybook -p 6006",
-    "test": "yarn jest",
-    "test:watch": "yarn jest --watch",
-    "verify": "yarn coverage && lerna run dc",
-    "watch": "yarn jest --watch"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "verify": "yarn lint && yarn dc && yarn coverage",
+    "watch": "jest --watch"
   },
   "dependencies": {},
   "devDependencies": {
