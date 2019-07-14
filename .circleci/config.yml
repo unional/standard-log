@@ -50,17 +50,19 @@ jobs:
           paths:
             - node_modules
       - run: yarn build
+      - run: yarn verify
+      - run: npx codecov
+      - store_test_results:
+          path: .reports/junit
+      - run: yarn bundle
       - persist_to_workspace:
           root: '.'
           paths:
             - node_modules
             - .tsbuildinfo
+            - ./packages/*/dist/*
             - ./packages/*/lib/*
             - ./packages/*/libm/*
-      - run: yarn verify
-      - run: npx codecov
-      - store_test_results:
-          path: .reports/junit
   node11:
     docker:
       - image: 'circleci/node:11'
@@ -68,7 +70,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: yarn coverage
       - store_test_results:
           path: .reports/junit
   node10:
@@ -78,7 +80,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: yarn coverage
       - store_test_results:
           path: .reports/junit
   node9:
@@ -88,7 +90,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: yarn coverage
       - store_test_results:
           path: .reports/junit
   node8:
@@ -98,7 +100,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn verify
+      - run: yarn coverage
       - store_test_results:
           path: .reports/junit
   release:
@@ -108,5 +110,4 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn bundle
       - run: yarn release
