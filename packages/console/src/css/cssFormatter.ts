@@ -1,9 +1,8 @@
-import { RGB, rgbHex, createColorsFromMap, RGBA } from 'color-map';
+import { createColorsFromMap, RGB, RGBA, rgbHex } from 'color-map';
 import { LogEntry } from 'standard-log-core';
 import { required } from 'type-plus';
+import { createTimestampFormatter, TimestampFormat } from '../createTimestampFormatter';
 import { rainbow } from './colors';
-import { TimestampFormat } from '../createTimestampFormatter';
-import { createTimestampFormatter } from '../utils';
 
 export type CssFormatterOptions = {
   /**

@@ -2,9 +2,9 @@ import { logLevel } from 'standard-log-core';
 
 export function toConsoleMethod(level: number) {
   switch (true) {
+    // istanbul ignore next
     case (level === 0):
       // edge case in case none is somehow written
-      // istanbul ignore next
       return 'debug'
     case (level <= logLevel.error):
       return 'error'

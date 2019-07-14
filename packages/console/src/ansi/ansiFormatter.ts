@@ -1,10 +1,10 @@
 import { LogEntry } from 'standard-log-core';
-import { toConsoleMethod, createTimestampFormatter } from '../utils';
+import { createTimestampFormatter, TimestampFormat } from '../createTimestampFormatter';
+import { toConsoleMethod } from '../utils';
 import { adjustCodes } from './adjustCodes';
-import { wrapAnsi, wrapAnsiId } from './wrapAnsi';
 import { ANSI_FOREGROUND, ANSI_RED, ANSI_YELLOW } from './constants';
 import { createColorCodes } from './createColorCodes';
-import { TimestampFormat } from '../createTimestampFormatter';
+import { wrapAnsi, wrapAnsiId } from './wrapAnsi';
 
 type Context = {
   colorMap: number[][],
