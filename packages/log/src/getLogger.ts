@@ -3,13 +3,13 @@ import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
 import { store } from './store';
 
-export function getLogger<T extends string = LogLevel>(id: string): Logger<T> {
+export function getLogger<T extends string>(id: string): Logger<T | LogLevel> {
   validateId(id)
   const loggers = store.get().loggers
   const logger = loggers[id]
   if (logger) return logger as any
 
-  return loggers[id] = createLogger<T>(id)
+  return loggers[id] = createLogger<T | LogLevel>(id)
 }
 
 function validateId(id: string) {

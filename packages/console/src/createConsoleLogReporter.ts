@@ -3,6 +3,7 @@ import { required } from 'type-plus';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 import { polyfilledConsole } from './polyfilledConsole';
+import { Console } from './types';
 import { supportColor, toConsoleMethod } from './utils';
 
 export type ConsoleLogReporter = LogReporter<any[]>
@@ -21,7 +22,7 @@ export function createConsoleLogReporter(options?: ConsoleLogReporterOptions) {
       const method = toConsoleMethod(entry.level)
       this.console[method](...values)
     }
-  } as LogReporter<any[]> & { console: typeof polyfilledConsole }
+  } as LogReporter<any[]> & { console: Console }
 }
 
 function getFormatter() {

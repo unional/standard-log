@@ -26,7 +26,7 @@ test('logger with custom level', () => {
   const reporter = createMemoryLogReporter()
   addLogReporter(reporter)
   addCustomLogLevel('cust_lvl', 100)
-  const logger = getLogger<LogLevel | 'cust_lvl'>('cust')
+  const logger = getLogger<'cust_lvl'>('cust')
 
   logger.cust_lvl('a', 'b')
 

@@ -16,3 +16,9 @@ export class ProhibitedDuringProduction extends StandardLogError {
     super(`Cannot perform ${action} during production`)
   }
 }
+
+export class InvalidEnvVar extends StandardLogError {
+  constructor(public name: string, public value: string, public possibleValues?: string[]) {
+    super(`${name} contains invalid value '${value}'${possibleValues ? ` valid values: [${possibleValues.join()}]` : ''}`)
+  }
+}
