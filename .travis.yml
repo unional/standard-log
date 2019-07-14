@@ -11,6 +11,8 @@ branches:
   only:
     - master
     - /^greenkeeper.*$/
+before_script:
+  - npm i -g yarn
 script:
   - yarn
   - yarn verify

@@ -115,6 +115,13 @@ createConsoleLogReporter({
 })
 ```
 
+Here are some reporters:
+
+- [`standard-log-console`](https://github.com/unional/standard-log/tree/master/packages/console)
+- [`standard-log-memory`](https://github.com/unional/standard-log/tree/master/packages/memory)
+- `standard-log-file` (TODO)
+- `standard-log-syslog` (TODO)
+
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
