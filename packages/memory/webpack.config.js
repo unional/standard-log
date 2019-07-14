@@ -13,6 +13,9 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: './src/index.ts',
+  externals: {
+    'standard-log': 'StandardLog'
+  },
   module: {
     rules: [
       {

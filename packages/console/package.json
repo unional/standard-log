@@ -26,7 +26,6 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
-    "bundle": "webpack",
     "clean": "rimraf dist lib libm",
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
