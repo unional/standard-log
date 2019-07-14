@@ -1,4 +1,4 @@
-import { LogEntry, plainFormatter } from 'standard-log-core';
+import { LogEntry, plainFormatter } from 'standard-log';
 
 export function logEntriesToString(logs: LogEntry[]) {
   return logs.map(plainFormatter).join('\n')
