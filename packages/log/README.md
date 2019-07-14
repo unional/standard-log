@@ -50,7 +50,6 @@ Here are some differences between production mode and development mode:
 import { getLogger } from 'standard-log'
 
 const log = getLogger('x')
-log.none('msg')
 log.emergency('msg')
 log.alert('msg')
 log.critical('msg')
