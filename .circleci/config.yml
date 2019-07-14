@@ -108,8 +108,5 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn build
       - run: yarn bundle
-      - run: git config user.email $GIT_CONFIG_EMAIL
-      - run: git config user.name $GIT_CONFIG_NAME
       - run: yarn release
