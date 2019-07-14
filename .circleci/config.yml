@@ -112,4 +112,7 @@ jobs:
           at: '.'
       - run: git config user.email $GIT_CONFIG_EMAIL
       - run: git config user.name $GIT_CONFIG_NAME
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
       - run: yarn release

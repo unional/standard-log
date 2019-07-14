@@ -17,7 +17,7 @@
     "dc": "lerna run dc",
     "lint": "lerna run lint",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
-    "release": "lerna publish",
+    "release": "lerna publish --amend",
     "storybook": "start-storybook -p 6006",
     "test": "jest",
     "test:watch": "jest --watch",
