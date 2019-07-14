@@ -15,8 +15,6 @@ workflows:
             - node-latest
       - release:
           context: publish
-          environment:
-            GITHUB_TOKEN: $GH_TOKEN
           filters:
             branches:
               only: master
@@ -106,6 +104,8 @@ jobs:
   release:
     docker:
       - image: circleci/node:12
+        environment:
+          GITHUB_TOKEN: $GH_TOKEN
     steps:
       - checkout
       - attach_workspace:
