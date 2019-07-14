@@ -12,7 +12,7 @@ branches:
     - master
     - /^greenkeeper.*$/
 script:
-  - yarn install
+  - yarn
   - yarn verify
   - npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage
   - npm install -g coveralls && cat ./coverage/lcov.info | coveralls
