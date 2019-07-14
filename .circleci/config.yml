@@ -13,16 +13,15 @@ workflows:
       - node8:
           requires:
             - node-latest
-      # - release:
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - node-latest
-      #       - node11
-      #       - node10
-      #       - node8
-      #       - node6
+      - release:
+          filters:
+            branches:
+              only: master
+          requires:
+            - node-latest
+            - node11
+            - node10
+            - node8
 jobs:
   local:
     docker:
