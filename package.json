@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "test": "yarn jest",
     "test:watch": "yarn jest --watch",
-    "verify": "yarn build && yarn coverage && lerna run dc && lerna run bundle",
+    "verify": "yarn coverage && lerna run dc",
     "watch": "yarn jest --watch"
   },
   "dependencies": {},
