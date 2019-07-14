@@ -1,9 +1,9 @@
-import { LogEntry, LogFormatter, LogReporter, LogReporterOptions, plainFormatter } from 'standard-log-core';
+import { isBrowser, LogEntry, LogFormatter, LogReporter, LogReporterOptions, plainFormatter } from 'standard-log-core';
 import { required } from 'type-plus';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 import { polyfilledConsole } from './polyfilledConsole';
-import { isBrowser, supportColor, toConsoleMethod } from './utils';
+import { supportColor, toConsoleMethod } from './utils';
 
 export type ConsoleLogReporter = LogReporter<any[]>
 export type ConsoleLogFormatter = LogFormatter<any[]>
