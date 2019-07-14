@@ -91,5 +91,5 @@ createCssFormatter({ timestamp: 'elasped' })
 [downloads-url]: https://npmjs.org/package/standard-log-console
 [npm-image]: https://img.shields.io/npm/v/standard-log-console.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log-console
-[travis-image]: https://img.shields.io/travis/unional/standard-log/master.svg?style=flat
+[travis-image]: https://travis-ci.com/unional/standard-log.svg?branch=master
 [travis-url]: https://travis-ci.com/unional/standard-log?branch=master

@@ -125,5 +125,5 @@ Here are some reporters:
 [downloads-url]: https://npmjs.org/package/standard-log
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
-[travis-image]: https://img.shields.io/travis/unional/standard-log/master.svg?style=flat
+[travis-image]: https://travis-ci.com/unional/standard-log.svg?branch=master
 [travis-url]: https://travis-ci.com/unional/standard-log?branch=master
