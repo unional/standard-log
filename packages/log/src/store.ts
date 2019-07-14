@@ -6,12 +6,11 @@ import { getMode } from './env';
 
 function createStoreDefault() {
   const envDefaults = getEnvironmentDefaults()
-  return {
-    ...envDefaults,
+  return Object.assign(envDefaults, {
     loggers: {} as Record<string, Logger<any>>,
     reporters: [createConsoleLogReporter()] as LogReporter[],
     configured: false
-  }
+  })
 }
 
 export const store = createStore('standard-log:e53d0937-f420-40a0-9901-099725fa4a53', createStoreDefault())

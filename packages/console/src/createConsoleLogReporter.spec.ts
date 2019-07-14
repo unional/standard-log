@@ -2,6 +2,7 @@ import { addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainForma
 import { createConsoleLogReporter } from '.';
 import { ConsoleLogFormatter } from './createConsoleLogReporter';
 import { createAnsiFormatter } from './ansi';
+import { createCssFormatter } from './css';
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
@@ -22,6 +23,14 @@ describe('rendering tests', () => {
 
     ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
       reporter.formatter = createAnsiFormatter({ timestamp })
+      reporter.write({ id: timestamp, level: logLevel.info, args: ['hello', 'world'], timestamp: new Date() })
+    })
+  })
+  test('different timestamp settings for css', () => {
+    const reporter = createConsoleLogReporter();
+
+    ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
+      reporter.formatter = createCssFormatter({ timestamp })
       reporter.write({ id: timestamp, level: logLevel.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
