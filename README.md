@@ -51,7 +51,7 @@ Here are some differences between production mode and development mode:
 
 ### Log Level
 
-`standard-log` has many log level out of the box:
+`standard-log` comes with many log levels out of the box:
 
 ```ts
 import { getLogger } from 'standard-log'
@@ -70,7 +70,7 @@ log.trace('msg')
 log.planck('msg')
 ```
 
-When sending the logs to console, they are mapped to `info`, `warn`, `error`, and `debug` based on severity.
+When sending logs to console, they are mapped to `info`, `warn`, `error`, and `debug` based on severity.
 
 You can also add your own levels:
 
@@ -79,11 +79,13 @@ import { config, getLogger, logLevel } from 'standard-log'
 
 config({
   customLevels: {
+    'important': logLevel.warn + 1,
     'silly': logLevel.debug + 1
   }
 })
 
-const log = getLogger<'silly'>('custom')
+const log = getLogger<'silly' | 'important'>('custom')
+log.important('this is an important message')
 log.silly('oh silly')
 ```
 
