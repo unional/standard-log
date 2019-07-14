@@ -106,4 +106,4 @@ jobs:
           at: '.'
       - run: yarn build
       - run: yarn bundle
-      - run: npx semantic-release
+      - run: yarn release

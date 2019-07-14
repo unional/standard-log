@@ -15,6 +15,7 @@
     "clean": "lerna run clean && rimraf .tsbuildinfo",
     "coverage": "yarn jest --coverage",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
+    "release": "lerna publish",
     "storybook": "start-storybook -p 6006",
     "test": "yarn jest",
     "test:watch": "yarn jest --watch",
