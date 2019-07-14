@@ -10,7 +10,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 * use object.assign instead of spread for NodeJS6 ([#2](https://github.com/unional/standard-log/issues/2)) ([26ef224](https://github.com/unional/standard-log/commit/26ef224))
 
-
 ### Features
 
 * prevent calling config() twice ([dc2bfb8](https://github.com/unional/standard-log/commit/dc2bfb8))

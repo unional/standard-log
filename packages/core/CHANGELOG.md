@@ -8,7 +8,6 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Features
 
-* prevent calling config() twice ([dc2bfb8](https://github.com/unional/standard-log/commit/dc2bfb8))
 * **core:** move isBrowser ([dc36f47](https://github.com/unional/standard-log/commit/dc36f47))
 * **core:** move plainFormatter to core ([8b64e38](https://github.com/unional/standard-log/commit/8b64e38))
 * **core:** remove LogReporter.filter ([2abf9b9](https://github.com/unional/standard-log/commit/2abf9b9))
