@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/unional/standard-log/compare/standard-log-memory@1.2.0...standard-log-memory@1.2.1) (2019-07-14)
+
+
+### Bug Fixes
+
+* include libm in distribution ([f844b9c](https://github.com/unional/standard-log/commit/f844b9c))
+
+
+
+
+
 # 1.2.0 (2019-07-14)
 
 
