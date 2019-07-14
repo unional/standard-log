@@ -48,10 +48,14 @@ jobs:
           key: node_modules3-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - run: yarn build
       - persist_to_workspace:
           root: '.'
           paths:
             - node_modules
+            - .tsbuildinfo
+            - ./packages/*/lib/*
+            - ./packages/*/libm/*
       - run: yarn verify
       - run: npx codecov
       - store_test_results:
@@ -105,4 +109,6 @@ jobs:
           at: '.'
       - run: yarn build
       - run: yarn bundle
+      - run: git config user.email $GIT_CONFIG_EMAIL
+      - run: git config user.name $GIT_CONFIG_NAME
       - run: yarn release
