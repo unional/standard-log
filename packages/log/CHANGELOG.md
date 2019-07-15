@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/unional/standard-log/compare/standard-log@1.3.0...standard-log@1.4.0) (2019-07-15)
+
+
+### Features
+
+* **log:** export shouldLog() helper function ([f07a559](https://github.com/unional/standard-log/commit/f07a559))
+
+
+
+
+
 # [1.3.0](https://github.com/unional/standard-log/compare/standard-log@1.2.1...standard-log@1.3.0) (2019-07-15)
 
 
