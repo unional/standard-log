@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/unional/standard-log/compare/standard-log-core@1.3.1...standard-log-core@1.4.0) (2019-07-15)
+
+
+### Features
+
+* **core:** add test mode ([12a3e61](https://github.com/unional/standard-log/commit/12a3e61))
+
+
+
+
+
 ## [1.3.1](https://github.com/unional/standard-log/compare/standard-log-core@1.3.0...standard-log-core@1.3.1) (2019-07-15)
 
 
