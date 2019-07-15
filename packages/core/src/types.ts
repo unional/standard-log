@@ -6,6 +6,10 @@ export type LogFunction = ((log: LogMethod) => void) | (() => string)
 export type Logger<T extends string = LogMethodNames> = {
   id: string,
   /**
+   * Logger local log level.
+   */
+  level: number,
+  /**
    * Logs with an increment counter.
    * This is useful during debugging to check for steps executed.
    */
@@ -18,7 +22,7 @@ export type Logger<T extends string = LogMethodNames> = {
 export type LogEntry = {
   id: string
   level: number
-  // args instead of messages because it is `any[]` instead of `string[]`9p0[;o.l…÷' 6]
+  // args instead of messages because it is `any[]` instead of `string[]`
   args: any[]
   timestamp: Date
 }

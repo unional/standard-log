@@ -3,34 +3,42 @@ import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
 import { store } from './store';
 
-export function getLogger<T extends string>(id: string): Logger<T | LogMethodNames> {
+export function getLogger<T extends string>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
   const loggers = store.get().loggers
   const logger = loggers[id]
   if (logger) return logger as any
 
-  return loggers[id] = createLogger<T | LogMethodNames>(id)
+  return loggers[id] = createLogger<T | LogMethodNames>(id, defaultLogLevel)
 }
 
 function validateId(id: string) {
   if (/[`~!@#$%^&*()=+\[\]{}\\\/,|<>\?]/.test(id)) throw new InvalidId(id)
 }
 
-function createLogger<T extends string>(id: string): Logger<T> {
-  let counter = 0;
+function createLogger<T extends string>(id: string, defaultLogLevel?: number): Logger<T> {
+  const level = defaultLogLevel !== undefined ? defaultLogLevel : store.get().logLevel
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
-    logger[name] = (...args: any[]) => writeToReporters({ id, level, args, timestamp: new Date() })
+    logger[name] = (...args: any[]) => {
+      if (logger.level >= level) writeToReporters({ id, level, args, timestamp: new Date() })
+    }
     return logger
   }, {
-    id
+    id,
+    level
   } as any)
 
-  logger.count = (...args: any[]) => writeToReporters({
-    id,
-    level: logLevel.debug,
-    args: [++counter, ...args],
-    timestamp: new Date()
-  })
+  let counter = 0;
+  logger.count = (...args: any[]) => {
+    const level = logLevel.debug
+    if (logger.level >= level)
+      writeToReporters({
+        id,
+        level,
+        args: [++counter, ...args],
+        timestamp: new Date()
+      })
+  }
 
   return logger
 }
@@ -41,6 +49,5 @@ onAddCustomLogLevel(({ name, level }) => {
 })
 
 function writeToReporters(logEntry: LogEntry) {
-  if (store.get().logLevel >= logEntry.level)
-    store.get().reporters.forEach(r => r.write(logEntry))
+  store.get().reporters.forEach(r => r.write(logEntry))
 }
