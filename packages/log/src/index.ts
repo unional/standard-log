@@ -5,4 +5,3 @@ export * from './errors';
 export * from './getLogger';
 export * from './logLevel';
 export * from './LogReporter';
-export * from './types';

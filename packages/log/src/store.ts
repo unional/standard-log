@@ -1,8 +1,8 @@
 import { createStore } from 'global-store';
 import { createConsoleLogReporter } from 'standard-log-console';
-import { Logger, logLevel, LogReporter, isBrowser } from 'standard-log-core';
-import { RuntimeMode } from './types';
+import { Logger, logLevel, LogReporter, isBrowser, LogMode } from 'standard-log-core';
 import { getMode } from './env';
+import { getLogLevelByMode } from './getLogLevelByMode';
 
 function createStoreDefault() {
   const envDefaults = getEnvironmentDefaults()
@@ -23,7 +23,7 @@ function getEnvironmentDefaults() {
   // istanbul ignore next
   if (isBrowser()) {
     return {
-      mode: 'prod' as RuntimeMode,
+      mode: 'prod' as LogMode,
       logLevel: logLevel.warn
     }
   }
@@ -31,7 +31,7 @@ function getEnvironmentDefaults() {
     const mode = getMode(process.env)
     return {
       mode,
-      logLevel: mode === 'prod' ? logLevel.warn : logLevel.debug
+      logLevel: getLogLevelByMode(mode)
     }
   }
 }

@@ -15,12 +15,13 @@ export function getLogger<T extends string = LogMethodNames>(id: string, default
 function validateId(id: string) {
   if (/[`~!@#$%^&*()=+\[\]{}\\\/,|<>\?]/.test(id)) throw new InvalidId(id)
 }
-
-function createLogger<T extends string>(id: string, defaultLogLevel?: number): Logger<T> {
-  const level = defaultLogLevel !== undefined ? defaultLogLevel : store.get().logLevel
+function shouldLog(level: number, localLevel?: number) {
+  return level <= (localLevel !== undefined ? localLevel : store.get().logLevel)
+}
+function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
     logger[name] = (...args: any[]) => {
-      if (logger.level >= level) writeToReporters({ id, level, args, timestamp: new Date() })
+      if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() })
     }
     return logger
   }, {
@@ -31,7 +32,7 @@ function createLogger<T extends string>(id: string, defaultLogLevel?: number): L
   let counter = 0;
   logger.count = (...args: any[]) => {
     const level = logLevel.debug
-    if (logger.level >= level)
+    if (shouldLog(level, logger.level))
       writeToReporters({
         id,
         level,
@@ -41,7 +42,7 @@ function createLogger<T extends string>(id: string, defaultLogLevel?: number): L
   }
 
   logger.on = (level: number, logfn: LogFunction) => {
-    if (logger.level >= level) {
+    if (shouldLog(level, logger.level)) {
       const methodName = toLogLevelName(level)
       const bindedMethod = logger[methodName].bind(logger)
       const result = logfn(bindedMethod)

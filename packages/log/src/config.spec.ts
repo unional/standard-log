@@ -26,10 +26,8 @@ test('calling config twice emits a warning during development mode', () => {
   const warn = console.warn.bind(console)
   try {
     let actual: any[] = []
-    console.warn = (...args: any[]) => {
-      actual = args
-      warn(...args)
-    }
+    console.warn = (...args: any[]) => actual = args
+
     config({ mode: 'devel' })
     config({ mode: 'devel' })
     expect(actual).toEqual(['standard-log has been configured before. Overriding. `config()` should only be called once by the application'])

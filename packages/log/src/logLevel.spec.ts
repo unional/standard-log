@@ -1,6 +1,6 @@
 import t from 'assert';
 import { createMemoryLogReporter, MemoryLogReporter } from 'standard-log-memory';
-import { getLogger, logLevel, setLogLevel, setLogLevels } from '.';
+import { config, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels } from '.';
 import { resetStore, store } from './store';
 
 function createFilterLoggers() {
@@ -18,12 +18,12 @@ beforeAll(() => {
 beforeEach(() => {
   reporter = createMemoryLogReporter()
   store.get().reporters = [reporter]
-  setLogLevel(logLevel.none)
 })
 
 afterAll(() => {
   resetStore()
 })
+
 
 test('no matched logger do no harm', () => {
   setLogLevels(/x/, logLevel.debug)
@@ -33,25 +33,37 @@ test('no matched logger do no harm', () => {
   t.deepStrictEqual(reporter.logs, [])
 })
 
-test('only filtered log are affected', () => {
-  const logs = setLogLevels(/filter1/, logLevel.debug)
-  t.deepStrictEqual(logs.map(l => l.id), [
-    'filter1',
-    'filter10',
-    'filter11',
-    'filter12',
-    'filter13',
-    'filter14',
-    'filter15',
-    'filter16',
-    'filter17',
-    'filter18',
-    'filter19'
-  ])
+describe('getLogLevel', () => {
+  test('default to debug in test mode', () => {
+    config({ mode: 'test' })
+    expect(getLogLevel()).toBe(logLevel.debug)
+  })
+})
 
-  getLogger('filter1').debug('filter1')
-  getLogger('filter2').debug('filter2')
-  getLogger('filter11').debug('filter11')
+describe('setLogLevels()', () => {
+  beforeEach(() => {
+    setLogLevel(logLevel.none)
+  })
+  test('only filtered log are affected', () => {
+    const logs = setLogLevels(/filter1/, logLevel.debug)
+    t.deepStrictEqual(logs.map(l => l.id), [
+      'filter1',
+      'filter10',
+      'filter11',
+      'filter12',
+      'filter13',
+      'filter14',
+      'filter15',
+      'filter16',
+      'filter17',
+      'filter18',
+      'filter19'
+    ])
 
-  t.strictEqual(reporter.logs.length, 2)
+    getLogger('filter1').debug('filter1')
+    getLogger('filter2').debug('filter2')
+    getLogger('filter11').debug('filter11')
+
+    t.strictEqual(reporter.logs.length, 2)
+  })
 })

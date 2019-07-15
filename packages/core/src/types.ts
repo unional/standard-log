@@ -1,5 +1,7 @@
 import { LogMethodNames } from './logLevel';
 
+export type LogMode = 'devel' | 'prod' | 'test'
+
 export type LogMethod = (...args: any[]) => void
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
@@ -8,7 +10,7 @@ export type Logger<T extends string = LogMethodNames> = {
   /**
    * Logger local log level.
    */
-  level: number,
+  level?: number,
   /**
    * Logs with an increment counter.
    * This is useful during debugging to check for steps executed.

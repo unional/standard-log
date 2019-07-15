@@ -40,6 +40,11 @@ test('get logger with same name gets the same instance', () => {
   expect(actual).toBe(expected)
 })
 
+test('can specify local log level', () => {
+  const log = getLogger('local', logLevel.trace)
+  expect(log.level).toBe(logLevel.trace)
+})
+
 test('new logger will get custom level', () => {
   addCustomLogLevel('to_logger', 1234)
   const actual = getLogger<LogMethodNames | 'to_logger'>('to_logger_logger')
@@ -55,7 +60,7 @@ test('existing logger will get custom level', () => {
 describe('count()', () => {
   test('will increment the counter', () => {
     const reporter = createMemoryLogReporter()
-    config({ mode: 'devel', reporters: [reporter], logLevel: logLevel.debug })
+    config({ mode: 'test', reporters: [reporter] })
     const logger = getLogger('inc counter')
     logger.count()
     logger.count()

@@ -32,15 +32,21 @@ You can change it programmatically:
 ```ts
 import { config } from 'standard-log'
 
-config({ mode: 'prod' }) // or 'devel'
+config({ mode: 'prod' }) // or 'devel', 'test'
 ```
 
-or by setting the environment variable `STANDARD_LOG` to `prod` or `devel`.
+or by setting the environment variable `STANDARD_LOG`.
 
-Here are some differences between production mode and development mode:
+Production mode:
+- log level defaults to `warn`
+- `config()` can only be called once
 
-- log level defaults to `warn` in production and `debug` in development.
-- `config()` can only called once during production.
+Development mode:
+- log level defaults to `debug`
+- calling `config()` multiple times will emit a warning
+
+Test mode:
+- log level defaults to `debug`
 
 ### Log Level
 

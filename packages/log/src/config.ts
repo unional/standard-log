@@ -1,11 +1,11 @@
-import { addCustomLogLevel, LogReporter } from 'standard-log-core';
+import { addCustomLogLevel, LogMode, LogReporter } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
-import { store } from './store';
-import { RuntimeMode } from './types';
 import { ProhibitedDuringProduction } from './errors';
+import { getLogLevelByMode } from './getLogLevelByMode';
+import { store } from './store';
 
 export type ConfigOptions = {
-  mode: RuntimeMode,
+  mode: LogMode,
   customLevels: Record<string, number>,
   logLevel: number,
   reporters: LogReporter[]
@@ -14,11 +14,12 @@ export function config(options: Partial<ConfigOptions>) {
   const s = store.get()
 
   if (s.configured) {
-    if (s.mode === 'devel') {
-      console.warn('standard-log has been configured before. Overriding. `config()` should only be called once by the application')
-    }
-    else {
-      throw new ProhibitedDuringProduction('config')
+    switch (s.mode) {
+      case 'devel':
+        console.warn('standard-log has been configured before. Overriding. `config()` should only be called once by the application')
+        break;
+      case 'prod':
+        throw new ProhibitedDuringProduction('config')
     }
   }
 
@@ -26,9 +27,7 @@ export function config(options: Partial<ConfigOptions>) {
     s.mode = options.mode
   }
 
-  if (options.logLevel !== undefined) {
-    s.logLevel = options.logLevel
-  }
+  s.logLevel = options.logLevel !== undefined ? options.logLevel : getLogLevelByMode(s.mode)
 
   if (options.customLevels) {
     const customLevels = options.customLevels
