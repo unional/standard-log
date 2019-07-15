@@ -1,4 +1,4 @@
-import { getAllLogLevels, LogEntry, LogFunction, Logger, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevelName } from 'standard-log-core';
+import { getAllLogLevels, LogEntry, LogFunction, Logger, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevelName, toLogLevel } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
 import { shouldLog } from './shouldLog';
@@ -41,9 +41,11 @@ function createLogger<T extends string>(id: string, level?: number): Logger<T> {
       })
   }
 
-  logger.on = (level: number, logfn: LogFunction) => {
-    if (shouldLog(level, logger.level)) {
-      const methodName = toLogLevelName(level)
+  logger.on = (level: number | T, logfn: LogFunction) => {
+    // tslint:disable-next-line: strict-type-predicates
+    const logLevel = typeof level === 'string' ? toLogLevel(level)! : level
+    if (shouldLog(logLevel, logger.level)) {
+      const methodName = toLogLevelName(logLevel)
       const bindedMethod = logger[methodName].bind(logger)
       const result = logfn(bindedMethod)
       if (result) bindedMethod(result)

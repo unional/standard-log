@@ -332,3 +332,8 @@ describe('log level tests', () => {
   shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.info)
   shouldCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.debug)
 })
+
+test('on() can take log level name in first argument', () => {
+  const log = getLogger('string-on')
+  log.on('debug', () => { return })
+})
