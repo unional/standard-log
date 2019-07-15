@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/unional/standard-log/compare/standard-log-memory@1.3.1...standard-log-memory@1.3.2) (2019-07-15)
+
+**Note:** Version bump only for package standard-log-memory
+
+
+
+
+
 ## [1.3.1](https://github.com/unional/standard-log/compare/standard-log-memory@1.3.0...standard-log-memory@1.3.1) (2019-07-15)
 
 **Note:** Version bump only for package standard-log-memory

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/unional/standard-log/compare/standard-log-core@1.2.3...standard-log-core@1.3.0) (2019-07-15)
+
+
+### Features
+
+* **core:** rename LogLevel to LogMethodNames ([de09895](https://github.com/unional/standard-log/commit/de09895))
+* add logger local level ([f0bc937](https://github.com/unional/standard-log/commit/f0bc937))
+* add logger.on() ([bbd5eba](https://github.com/unional/standard-log/commit/bbd5eba))
+
+
+
+
+
 ## [1.2.3](https://github.com/unional/standard-log/compare/standard-log-core@1.2.2...standard-log-core@1.2.3) (2019-07-15)
 
 **Note:** Version bump only for package standard-log-core

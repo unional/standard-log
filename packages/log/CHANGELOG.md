@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/unional/standard-log/compare/standard-log@1.1.1...standard-log@1.2.0) (2019-07-15)
+
+
+### Bug Fixes
+
+* **log:** honor logLevel ([d11c8da](https://github.com/unional/standard-log/commit/d11c8da))
+
+
+### Features
+
+* add logger local level ([f0bc937](https://github.com/unional/standard-log/commit/f0bc937))
+* add logger.on() ([bbd5eba](https://github.com/unional/standard-log/commit/bbd5eba))
+* add setLogLevels ([90b3a20](https://github.com/unional/standard-log/commit/90b3a20))
+
+
+
+
+
 ## [1.1.1](https://github.com/unional/standard-log/compare/standard-log@1.1.0...standard-log@1.1.1) (2019-07-15)
 
 **Note:** Version bump only for package standard-log
