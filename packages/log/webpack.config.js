@@ -14,6 +14,9 @@ module.exports = {
   mode: 'production',
   devtool: 'source-map',
   entry: './src/index.ts',
+  externals: {
+    'global-store': 'GlobalStore'
+  },
   module: {
     rules: [
       {

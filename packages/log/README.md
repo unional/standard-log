@@ -120,6 +120,14 @@ Here are some reporters:
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
 
+## Browser usage
+
+The package comes with a pre-bundled file under `dist`.
+To use it, you also need to load [`global-store`](https://github.com/unional/global-store)
+
+If you are building a library and bundle it, make sure you mark `global-store` as externals.
+You can check out [`global-store`](https://github.com/unional/global-store) for more information.
+
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
