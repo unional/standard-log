@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/unional/standard-log/compare/standard-log-core@1.4.0...standard-log-core@1.5.0) (2019-07-15)
+
+
+### Features
+
+* on() supports log level name ([269839d](https://github.com/unional/standard-log/commit/269839d))
+
+
+
+
+
 # [1.4.0](https://github.com/unional/standard-log/compare/standard-log-core@1.3.1...standard-log-core@1.4.0) (2019-07-15)
 
 

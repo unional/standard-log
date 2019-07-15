@@ -1,6 +1,6 @@
 {
   "name": "standard-log-memory",
-  "version": "1.3.6",
+  "version": "1.3.7",
   "description": "In memory appender for `standard-log`",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -39,6 +39,6 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "standard-log": "^1.4.1"
+    "standard-log": "^1.5.0"
   }
 }
