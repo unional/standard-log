@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.1](https://github.com/unional/standard-log/compare/standard-log@1.2.0...standard-log@1.2.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* **log:** getLogger to properly reutrn logger with methods ([90f5e01](https://github.com/unional/standard-log/commit/90f5e01))
+
+
+
+
+
 # [1.2.0](https://github.com/unional/standard-log/compare/standard-log@1.1.1...standard-log@1.2.0) (2019-07-15)
 
 
