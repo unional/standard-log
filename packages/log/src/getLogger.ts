@@ -1,4 +1,4 @@
-import { getAllLogLevels, LogEntry, Logger, LogMethodNames, logLevel, onAddCustomLogLevel } from 'standard-log-core';
+import { getAllLogLevels, LogEntry, LogFunction, Logger, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevelName } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
 import { store } from './store';
@@ -38,6 +38,15 @@ function createLogger<T extends string>(id: string, defaultLogLevel?: number): L
         args: [++counter, ...args],
         timestamp: new Date()
       })
+  }
+
+  logger.on = (level: number, logfn: LogFunction) => {
+    if (logger.level >= level) {
+      const methodName = toLogLevelName(level)
+      const bindedMethod = logger[methodName].bind(logger)
+      const result = logfn(bindedMethod)
+      if (result) bindedMethod(result)
+    }
   }
 
   return logger

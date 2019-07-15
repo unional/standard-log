@@ -13,8 +13,8 @@ export type Logger<T extends string = LogMethodNames> = {
    * Logs with an increment counter.
    * This is useful during debugging to check for steps executed.
    */
-  count(...args: any[]): void
-  // on(level: T, logFunction: LogFunction): void
+  count(...args: any[]): void,
+  on(level: T, logFunction: LogFunction): void
 } & {
     [k in T]: (...args: any[]) => void
   }
