@@ -1,5 +1,10 @@
 import { store } from './store';
 
-export function shouldLog(level: number, localLevel?: number) {
-  return level <= (localLevel !== undefined ? localLevel : store.get().logLevel)
+/**
+ * Determines should you log.
+ * @param loggerLevel Log level of the logger.
+ * It can be undefined which the global log level will be used.
+ */
+export function shouldLog(targetLevel: number, loggerLevel: number | undefined) {
+  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.get().logLevel)
 }
