@@ -1,6 +1,7 @@
 import { getAllLogLevels, LogEntry, LogFunction, Logger, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevelName } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
+import { shouldLog } from './shouldLog';
 import { store } from './store';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
@@ -15,9 +16,8 @@ export function getLogger<T extends string = LogMethodNames>(id: string, default
 function validateId(id: string) {
   if (/[`~!@#$%^&*()=+\[\]{}\\\/,|<>\?]/.test(id)) throw new InvalidId(id)
 }
-function shouldLog(level: number, localLevel?: number) {
-  return level <= (localLevel !== undefined ? localLevel : store.get().logLevel)
-}
+
+
 function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
     logger[name] = (...args: any[]) => {
