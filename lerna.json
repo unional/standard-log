@@ -5,8 +5,7 @@
   "useWorkspaces": true,
   "command": {
     "publish": {
-      "conventionalCommits": true,
-      "yes": true
+      "conventionalCommits": true
     }
   }
 }
