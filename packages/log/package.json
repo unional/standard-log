@@ -1,6 +1,6 @@
 {
   "name": "standard-log",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The standard log library",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -39,8 +39,8 @@
   "dependencies": {
     "global-store": "^0.8.2",
     "iso-error": "^2.1.4",
-    "standard-log-console": "^1.3.0",
-    "standard-log-core": "^1.2.2",
+    "standard-log-console": "^1.3.1",
+    "standard-log-core": "^1.2.3",
     "type-plus": "^1.26.2"
   },
   "devDependencies": {

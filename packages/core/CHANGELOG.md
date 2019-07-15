@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/unional/standard-log/compare/standard-log-core@1.2.2...standard-log-core@1.2.3) (2019-07-15)
+
+**Note:** Version bump only for package standard-log-core
+
+
+
+
+
 ## [1.2.2](https://github.com/unional/standard-log/compare/standard-log-core@1.2.1...standard-log-core@1.2.2) (2019-07-14)
 
 **Note:** Version bump only for package standard-log-core
