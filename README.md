@@ -125,8 +125,8 @@ Here are some reporters:
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
-[coveralls-image]: https://coveralls.io/repos/github/unional/standard-log/badge.svg
-[coveralls-url]: https://coveralls.io/github/unional/standard-log
+[coveralls-image]: https://coveralls.io/repos/github/unional/standard-log/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/unional/standard-log?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
