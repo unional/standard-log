@@ -1,12 +1,16 @@
-import { LogLevel } from './logLevel';
+import { LogMethodNames } from './logLevel';
 
-export type Logger<T extends string = LogLevel> = {
+export type LogMethod = (...args: any[]) => void
+export type LogFunction = ((log: LogMethod) => void) | (() => string)
+
+export type Logger<T extends string = LogMethodNames> = {
   id: string,
   /**
    * Logs with an increment counter.
    * This is useful during debugging to check for steps executed.
    */
   count(...args: any[]): void
+  // on(level: T, logFunction: LogFunction): void
 } & {
     [k in T]: (...args: any[]) => void
   }

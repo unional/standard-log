@@ -2,6 +2,7 @@ import { reduceKey } from 'type-plus';
 import uppercase from 'upper-case';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 
+
 export const logLevel = {
   /**
    * none: 0
@@ -54,7 +55,7 @@ export const logLevel = {
   all: Infinity
 }
 
-export type LogLevel = Exclude<keyof typeof logLevel, 'none' | 'all'>
+export type LogMethodNames = Exclude<keyof typeof logLevel, 'none' | 'all'>
 
 export function toLogLevel(name: string): number | undefined {
   return getCustomLevel(name) || (logLevel as any)[name]
