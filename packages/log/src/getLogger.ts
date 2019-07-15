@@ -3,7 +3,7 @@ import { forEachKey } from 'type-plus';
 import { InvalidId } from './errors';
 import { store } from './store';
 
-export function getLogger<T extends string>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
+export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
   const loggers = store.get().loggers
   const logger = loggers[id]
