@@ -3,7 +3,6 @@
   "compilerOptions": {
     "module": "commonjs",
     "outDir": "lib",
-    "rootDir": "src",
     "target": "es5"
   },
   "include": [

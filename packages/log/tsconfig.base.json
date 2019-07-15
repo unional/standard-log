@@ -6,8 +6,6 @@
   "references": [{
     "path": "../core"
   }, {
-    "path": "../memory"
-  }, {
     "path": "../console"
   }]
 }
