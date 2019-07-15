@@ -49,6 +49,7 @@ jobs:
           key: node_modules3-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - run: yarn commitlint-circle
       - run: yarn build
       - run: yarn verify
       - run: npx codecov
