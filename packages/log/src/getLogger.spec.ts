@@ -79,7 +79,7 @@ describe('count()', () => {
   })
 })
 
-describe('on()', () => {
+describe('log level tests', () => {
   let reporter: MemoryLogReporter
 
   beforeEach(() => {
@@ -273,11 +273,11 @@ describe('on()', () => {
   shouldNotLog('debug', logLevel.warn)
   shouldNotLog('debug', logLevel.info)
   shouldLog('debug', logLevel.debug)
-  // shouldNotLogWithLocalLevelOverride('debug', logLevel.none)
-  // shouldNotLogWithLocalLevelOverride('debug', logLevel.error)
-  // shouldNotLogWithLocalLevelOverride('debug', logLevel.warn)
-  // shouldNotLogWithLocalLevelOverride('debug', logLevel.info)
-  // shouldLogWithLocalLevelOverride('debug', logLevel.debug)
+  shouldNotLogWithLocalLevelOverride('debug', logLevel.none)
+  shouldNotLogWithLocalLevelOverride('debug', logLevel.error)
+  shouldNotLogWithLocalLevelOverride('debug', logLevel.warn)
+  shouldNotLogWithLocalLevelOverride('debug', logLevel.info)
+  shouldLogWithLocalLevelOverride('debug', logLevel.debug)
 
   // shouldNotCallLogFunction('onError', logLevel.none)
   // shouldCallLogFunction('onError', logLevel.error)
