@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/unional/standard-log/compare/standard-log@1.4.0...standard-log@1.4.1) (2019-07-15)
+
+
+### Bug Fixes
+
+* **log:** shouldLog() params name. ([07d7e82](https://github.com/unional/standard-log/commit/07d7e82))
+
+
+
+
+
 # [1.4.0](https://github.com/unional/standard-log/compare/standard-log@1.3.0...standard-log@1.4.0) (2019-07-15)
 
 
