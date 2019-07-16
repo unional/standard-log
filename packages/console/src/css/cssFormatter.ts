@@ -1,5 +1,5 @@
 import { createColorsFromMap, RGB, RGBA, rgbHex } from 'color-map';
-import { LogEntry } from 'standard-log-core';
+import { LogEntry } from 'standard-log';
 import { required } from 'type-plus';
 import { createTimestampFormatter, TimestampFormat } from '../createTimestampFormatter';
 import { rainbow } from './colors';
