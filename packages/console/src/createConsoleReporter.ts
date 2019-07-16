@@ -1,5 +1,5 @@
 import { createConsoleReporter as createBaseReporter, isBrowser, plainFormatter, ConsoleReporterOptions } from 'standard-log';
-import { required } from 'type-plus';
+import { required } from 'unpartial';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 import { supportColor } from './utils';
