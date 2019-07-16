@@ -64,7 +64,7 @@ function getDefaultReporter() {
     // tricks webpack to not bundle standard-log-console
     const c = '-color'
     const consoleModule = require('standard-log' + c)
-    return consoleModule.createColorLogßReporter()
+    return consoleModule.createColorLogReporter()
   }
   catch (e) {
     return createConsoleLogReporter()
