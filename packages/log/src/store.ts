@@ -44,7 +44,7 @@ function getDefaultReporter() {
     const consoleModule = require('standard-log' + c)
     return consoleModule.createConsoleReporter()
   }
-  catch {
+  catch (e) {
     return createConsoleReporter()
   }
 }
