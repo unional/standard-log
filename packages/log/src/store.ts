@@ -1,8 +1,10 @@
 import { createStore } from 'global-store';
-import { Logger, logLevel, LogReporter, isBrowser, LogMode } from 'standard-log-core';
-import { getMode } from './env';
-import { getLogLevelByMode } from './getLogLevelByMode';
 import { createConsoleReporter } from './console';
+import { getMode } from './env';
+import { isBrowser } from './isBrowser';
+import { logLevel } from './log-level';
+import { getLogLevelByMode } from './log-level/getLogLevelByMode';
+import { Logger, LogLevelListener, LogMode, LogReporter } from './types';
 
 function createStoreDefault() {
   const envDefaults = getEnvironmentDefaults()
@@ -10,7 +12,10 @@ function createStoreDefault() {
   return Object.assign(envDefaults, {
     loggers: {} as Record<string, Logger<any>>,
     reporters: [reporter] as LogReporter[],
-    configured: false
+    configured: false,
+    customLevels: {} as Record<string, number>,
+    customLevelsReverse: [] as string[],
+    addCustomLogLevelListeners: [] as LogLevelListener[]
   })
 }
 

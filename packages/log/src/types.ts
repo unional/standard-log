@@ -1,4 +1,4 @@
-import { LogMethodNames } from './logLevel';
+import { LogMethodNames } from './log-level';
 
 export type LogMode = 'devel' | 'prod' | 'test'
 

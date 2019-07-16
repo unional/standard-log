@@ -1,3 +1,4 @@
-export * from './createConsoleReporter'
-export * from './toConsoleMethod'
-export * from './types'
+export * from './createConsoleReporter';
+export * from './plainFormatter';
+export * from './toConsoleMethod';
+export * from './types';

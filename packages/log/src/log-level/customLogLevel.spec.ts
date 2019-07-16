@@ -1,4 +1,4 @@
-import { addCustomLogLevel, clearCustomLogLevel, getCustomLevels, logLevel, LogLevelEntry, onAddCustomLogLevel } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, getCustomLevels, logLevel, LogLevelEntry, onAddCustomLogLevel } from '..';
 
 describe('clearCustomLogLevel()', () => {
   test('clear all custom levels', () => {

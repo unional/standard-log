@@ -1,5 +1,5 @@
 import { toSyslogKeyword, toSyslogSeverity } from './syslog';
-import { rangeEntries } from './testUtil';
+import { rangeEntries } from './test-util';
 
 describe('toSyslogSeverity()', () => {
   test.each([

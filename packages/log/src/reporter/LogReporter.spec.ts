@@ -1,10 +1,7 @@
 import a from 'assertron';
-import { createMemoryLogReporter } from 'standard-log-memory';
-import { getLogReporter } from '.';
-import { config } from './config';
-import { ProhibitedDuringProduction } from './errors';
-import { addLogReporter } from './LogReporter';
-import { resetStore } from './store';
+import { addLogReporter, config, getLogReporter, ProhibitedDuringProduction } from '..';
+import { resetStore } from '../store';
+import { createMemoryLogReporter } from '../test-util';
 
 describe('getLogReporter()', () => {
   test('get reporter by id', () => {

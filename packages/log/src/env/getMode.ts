@@ -1,5 +1,5 @@
-import { LogMode } from 'standard-log-core';
 import { InvalidEnvVar } from '../errors';
+import { LogMode } from '../types';
 
 export function getMode(env: any): LogMode {
   const mode = env.STANDARD_LOG

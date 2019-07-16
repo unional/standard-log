@@ -1,6 +1,6 @@
-import { Logger } from 'standard-log-core';
-import { store } from './store';
 import { filterKey } from 'type-plus';
+import { store } from '../store';
+import { Logger } from '../types';
 
 /**
  * Get loggers based on RegExp.

@@ -1,8 +1,9 @@
-import { addCustomLogLevel, LogMode, LogReporter } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
 import { ProhibitedDuringProduction } from './errors';
-import { getLogLevelByMode } from './getLogLevelByMode';
+import { addCustomLogLevel } from './log-level';
+import { getLogLevelByMode } from './log-level/getLogLevelByMode';
 import { store } from './store';
+import { LogMode, LogReporter } from './types';
 
 export type ConfigOptions = {
   mode: LogMode,

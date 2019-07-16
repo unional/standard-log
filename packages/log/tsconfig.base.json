@@ -4,8 +4,6 @@
     "rootDir": "src"
   },
   "references": [{
-    "path": "../core"
-  }, {
-    "path": "../console"
+    "path": "../memory"
   }]
 }

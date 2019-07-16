@@ -1,1 +1,1 @@
-export * from './getMode'
+export * from './getMode';

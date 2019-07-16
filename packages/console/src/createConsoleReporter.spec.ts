@@ -1,5 +1,4 @@
-import { ConsoleFormatter } from 'standard-log';
-import { addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainFormatter } from 'standard-log-core';
+import { ConsoleFormatter, addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainFormatter } from 'standard-log';
 import { createConsoleReporter } from '.';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';

@@ -1,5 +1,5 @@
-import { logLevel } from 'standard-log';
 import { logEntriesToString } from '.';
+import { logLevel } from '../log-level';
 
 test('convert log entries to string', () => {
   const timestamp = new Date(2019, 6)

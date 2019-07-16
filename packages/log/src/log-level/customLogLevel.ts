@@ -1,6 +1,6 @@
+import { store } from '../store';
 import { forEachKey, mapKey } from 'type-plus';
-import { LogLevelListener, LogLevelEntry } from './types';
-import { store } from './store';
+import { LogLevelEntry, LogLevelListener } from '../types';
 
 /**
  * @param level the `logLevel` number.

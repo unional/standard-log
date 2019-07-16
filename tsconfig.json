@@ -2,12 +2,6 @@
   "files": [],
   "references": [
     {
-      "path": "packages/core/tsconfig.lib.json"
-    },
-    {
-      "path": "packages/core/tsconfig.libm.json"
-    },
-    {
       "path": "packages/log/tsconfig.lib.json"
     },
     {

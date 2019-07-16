@@ -1,6 +1,6 @@
-import { LogReporter } from 'standard-log-core';
-import { store } from './store';
-import { ProhibitedDuringProduction } from './errors';
+import { ProhibitedDuringProduction } from '../errors';
+import { store } from '../store';
+import { LogReporter } from '../types';
 
 export function getLogReporter(id: string) {
   return store.get().reporters.find(r => r.id === id)

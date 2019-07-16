@@ -1,7 +1,7 @@
 {
-  "name": "standard-log-core",
+  "name": "standard-log-syslog",
   "version": "1.5.0",
-  "description": "Core library for standard-log",
+  "description": "syslog reporter library for standard-log",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
     "url": "https://github.com/unional/standard-log/issues"
@@ -38,9 +38,6 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "global-store": "^0.8.2",
-    "type-plus": "^1.26.2",
-    "upper-case": "^1.1.3"
   },
   "devDependencies": {
     "@types/ramda": "^0.26.15",

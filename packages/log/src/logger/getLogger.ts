@@ -1,8 +1,9 @@
-import { getAllLogLevels, LogEntry, LogFunction, Logger, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevelName, toLogLevel } from 'standard-log-core';
 import { forEachKey } from 'type-plus';
-import { InvalidId } from './errors';
-import { shouldLog } from './shouldLog';
-import { store } from './store';
+import { InvalidId } from '../errors';
+import { getAllLogLevels, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevel, toLogLevelName } from '../log-level';
+import { shouldLog } from '../log-level/shouldLog';
+import { store } from '../store';
+import { LogEntry, LogFunction, Logger } from '../types';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
