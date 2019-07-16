@@ -4,11 +4,11 @@ import { polyfilledConsole } from './polyfilledConsole';
 import { toConsoleMethod } from './toConsoleMethod';
 import { Console } from './types';
 
-export type ConsoleReporter = LogReporter<any[]> & { console: Console }
-export type ConsoleFormatter = LogFormatter<any[]>
-export type ConsoleReporterOptions = LogReporterOptions<any[]>
+export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
+export type ConsoleLogFormatter = LogFormatter<any[]>
+export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
-export function createConsoleReporter(options?: ConsoleReporterOptions) {
+export function createConsoleLogReporter(options?: ConsoleLogReporterOptions) {
   const { id, formatter, filter } = required({ id: 'console', formatter: plainFormatter }, options)
   return {
     id,
@@ -20,5 +20,5 @@ export function createConsoleReporter(options?: ConsoleReporterOptions) {
       const method = toConsoleMethod(entry.level)
       this.console[method](...values)
     }
-  } as ConsoleReporter
+  } as ConsoleLogReporter
 }
