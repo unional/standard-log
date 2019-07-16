@@ -7,6 +7,7 @@
     "publish": {
       "conventionalCommits": true,
       "githubRelease": true,
+      "message": "chore(release): publish %s",
       "yes": true
     }
   }
