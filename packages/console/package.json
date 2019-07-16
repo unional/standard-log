@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "color-map": "^1.1.0",
-    "is-node": "^1.0.2",
     "ms": "^2.1.2",
     "standard-log": "^1.5.2",
     "type-plus": "^1.26.2"
