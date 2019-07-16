@@ -32,8 +32,6 @@ export function setLogLevels(filter: RegExp, level: number): Logger<any>[] {
   })
 }
 
-export type LogMethodNames = Exclude<keyof typeof logLevel, 'none' | 'all'>
-
 export function toLogLevel(name: string): number | undefined {
   return getCustomLevel(name) || (logLevel as any)[name]
 }

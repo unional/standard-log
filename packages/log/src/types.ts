@@ -1,8 +1,11 @@
-import { LogMethodNames } from './log-level';
+import { logLevel } from './core';
 
 export type LogMode = 'devel' | 'prod' | 'test'
 
 export type LogMethod = (...args: any[]) => void
+
+export type LogMethodNames = Exclude<keyof typeof logLevel, 'none' | 'all'>
+
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
 export type Logger<T extends string = LogMethodNames> = {
