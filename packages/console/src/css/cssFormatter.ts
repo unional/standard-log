@@ -36,7 +36,11 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
     const background = rgbHex(rgb)
     const border = rgbHex(rgb.map(x => Math.max(0, x - 32)) as RGB)
     const color = getForegroundColor(rgb)
-    const result = [idStr, `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`, ...args]
+    const result = [
+      idStr,
+      `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`,
+      ...args
+    ]
     const t = timestampFormatter(entry.timestamp)
     if (t !== undefined) result.push(t)
     return result

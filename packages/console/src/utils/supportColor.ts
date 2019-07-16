@@ -1,11 +1,11 @@
 import { isBrowser } from 'standard-log-core';
 
 export function supportColor() {
-  return isBrowser() ? isBrowserSupportColor() : true
+  return isBrowser() ? doesBrowserSupportColor() : true
 }
 
 // istanbul ignore next
-function isBrowserSupportColor() {
+function doesBrowserSupportColor() {
   // NB: In an Electron preload script, document will be defined but not fully
   // initialized. Since we know we're in Chrome, we'll just detect this case
   // explicitly
