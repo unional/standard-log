@@ -1,6 +1,5 @@
-import { store } from '../store';
-import { LogEntry } from '../types';
+import { LogEntry, LogReporter } from '../types';
 
-export function writeToReporters(logEntry: LogEntry) {
-  store.get().reporters.forEach(r => r.write(logEntry))
+export function writeToReporters(reporters: LogReporter[], logEntry: LogEntry) {
+  reporters.forEach(r => r.write(logEntry))
 }

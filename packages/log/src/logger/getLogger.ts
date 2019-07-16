@@ -22,7 +22,7 @@ function validateId(id: string) {
 function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
     logger[name] = (...args: any[]) => {
-      if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() })
+      if (shouldLog(level, logger.level)) writeToReporters(store.get().reporters, { id, level, args, timestamp: new Date() })
     }
     return logger
   }, {
@@ -34,7 +34,7 @@ function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   logger.count = (...args: any[]) => {
     const level = logLevel.debug
     if (shouldLog(level, logger.level))
-      writeToReporters({
+      writeToReporters(store.get().reporters, {
         id,
         level,
         args: [++counter, ...args],

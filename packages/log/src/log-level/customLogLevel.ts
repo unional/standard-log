@@ -14,7 +14,7 @@ export function addCustomLogLevel(name: string, level: number) {
   customLevelsReverse[level] = name
 
   const { loggers } = store.get()
-  forEachKey(loggers, id => loggers[id][name] = (...args: any[]) => writeToReporters({ id, level, args, timestamp: new Date() }))
+  forEachKey(loggers, id => loggers[id][name] = (...args: any[]) => writeToReporters(store.get().reporters, { id, level, args, timestamp: new Date() }))
 }
 
 export function clearCustomLogLevel() {
