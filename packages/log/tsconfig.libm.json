@@ -5,10 +5,6 @@
     "outDir": "libm",
     "target": "esnext"
   },
-  "include": [
-    "src",
-    "typings"
-  ],
   "exclude": [
     "src/*.spec.ts"
   ]

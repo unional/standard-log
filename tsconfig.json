@@ -5,16 +5,16 @@
       "path": "packages/log/tsconfig.lib.json"
     },
     {
-      "path": "packages/log/tsconfig.libm.json"
-    },
-    {
       "path": "packages/memory/tsconfig.lib.json"
     },
     {
-      "path": "packages/memory/tsconfig.libm.json"
+      "path": "packages/console/tsconfig.lib.json"
     },
     {
-      "path": "packages/console/tsconfig.lib.json"
+      "path": "packages/log/tsconfig.libm.json"
+    },
+    {
+      "path": "packages/memory/tsconfig.libm.json"
     },
     {
       "path": "packages/console/tsconfig.libm.json"

@@ -3,5 +3,9 @@
   "compilerOptions": {
     "rootDir": "src"
   },
+  "include": [
+    "src",
+    "typings"
+  ],
   "references": []
 }
