@@ -80,6 +80,15 @@ describe('count()', () => {
       { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
     ])
   })
+
+  test('will not log if log level is less than debug', () => {
+    const reporter = createMemoryLogReporter()
+    config({ mode: 'test', reporters: [reporter], logLevel: logLevel.debug - 1 })
+    const logger = getLogger('counter less than debug')
+    logger.count()
+
+    expect(reporter.logs.length).toBe(0)
+  })
 })
 
 describe('log level tests', () => {
@@ -331,7 +340,26 @@ describe('log level tests', () => {
   shouldCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.debug)
 })
 
-test('on() can take log level name in first argument', () => {
-  const log = getLogger('string-on')
-  log.on('debug', () => { return })
+describe('on()', () => {
+  test('take log level name in first argument', () => {
+    const log = getLogger('string-on')
+    log.on('debug', () => { return })
+  })
+  test('return value will be logged', () => {
+    const reporter = createMemoryLogReporter()
+    config({ mode: 'test', reporters: [reporter] })
+    const logger = getLogger('return of logfn')
+    logger.on('error', () => 'abc')
+
+    expect(reporter.logs[0].args[0]).toBe('abc')
+  })
+
+  test('use the passed in log function to log', () => {
+    const reporter = createMemoryLogReporter()
+    config({ mode: 'test', reporters: [reporter] })
+    const logger = getLogger('return of logfn')
+    logger.on('error', log => log('abc'))
+
+    expect(reporter.logs[0].args[0]).toBe('abc')
+  })
 })
