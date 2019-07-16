@@ -58,6 +58,7 @@ function getEnvironmentDefaults() {
   }
 }
 
+// istanbul ignore next
 function getDefaultReporter() {
   try {
     // tricks webpack to not bundle standard-log-console
@@ -66,7 +67,6 @@ function getDefaultReporter() {
     return consoleModule.createColorLogßReporter()
   }
   catch (e) {
-    // istanbul ignore next
     return createConsoleLogReporter()
   }
 }
