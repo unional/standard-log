@@ -1,25 +1,25 @@
+import { ConsoleFormatter } from 'standard-log';
 import { addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainFormatter } from 'standard-log-core';
-import { createConsoleLogReporter } from '.';
-import { ConsoleLogFormatter } from './createConsoleLogReporter';
+import { createConsoleReporter } from '.';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
-    const reporter = createConsoleLogReporter();
+    const reporter = createConsoleReporter();
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'color', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
   })
   test('plain rendering', () => {
-    const reporter = createConsoleLogReporter({ formatter: plainFormatter });
+    const reporter = createConsoleReporter({ formatter: plainFormatter });
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
   })
 
   test('different timestamp settings', () => {
-    const reporter = createConsoleLogReporter();
+    const reporter = createConsoleReporter();
 
     ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
       reporter.formatter = createAnsiFormatter({ timestamp })
@@ -27,7 +27,7 @@ describe('rendering tests', () => {
     })
   })
   test('different timestamp settings for css', () => {
-    const reporter = createConsoleLogReporter();
+    const reporter = createConsoleReporter();
 
     ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
       reporter.formatter = createCssFormatter({ timestamp })
@@ -38,11 +38,11 @@ describe('rendering tests', () => {
 
 describe('id', () => {
   test('default is "console"', () => {
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
     expect(reporter.id).toBe('console')
   })
   test('can be overriden', () => {
-    const reporter = createConsoleLogReporter({ id: 'neo-console' })
+    const reporter = createConsoleReporter({ id: 'neo-console' })
     expect(reporter.id).toBe('neo-console')
   })
 })
@@ -50,7 +50,7 @@ describe('id', () => {
 describe('log level', () => {
   test('error, alert, critical and emergency logs are written to console.error', () => {
     const id = 'log'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -63,7 +63,7 @@ describe('log level', () => {
 
   test('warn logs are written to console.warn', () => {
     const id = 'log'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
 
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -74,7 +74,7 @@ describe('log level', () => {
 
   test('notice and info logs are written to console.info', () => {
     const id = 'log'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
 
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -87,7 +87,7 @@ describe('log level', () => {
 
   test('debug, trace, and planck logs are written to console.debug', () => {
     const id = 'log'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.debug, args: ['debug'], timestamp: new Date() })
@@ -108,7 +108,7 @@ describe('custom logs', () => {
     addCustomLogLevel('silly', 1000)
 
     const id = 'log'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: 50, args: ['a'], timestamp: new Date() })
@@ -123,12 +123,12 @@ describe('custom logs', () => {
   })
 })
 
-const idFormatter: ConsoleLogFormatter = (entry) => [entry.id]
+const idFormatter: ConsoleFormatter = (entry) => [entry.id]
 
 describe('formatter', () => {
   test('use specific formatter', () => {
     const id = 'id-only'
-    const reporter = createConsoleLogReporter({ formatter: idFormatter })
+    const reporter = createConsoleReporter({ formatter: idFormatter })
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -138,7 +138,7 @@ describe('formatter', () => {
 
   test('formatter can be changed afterward', () => {
     const id = 'id-only'
-    const reporter = createConsoleLogReporter()
+    const reporter = createConsoleReporter()
     reporter.formatter = idFormatter
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -149,7 +149,7 @@ describe('formatter', () => {
 
   test('clearing formatter on report will fallback to original formatter', () => {
     const id = 'id-only'
-    const reporter = createConsoleLogReporter({ formatter: idFormatter })
+    const reporter = createConsoleReporter({ formatter: idFormatter })
     reporter.formatter = undefined
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -162,7 +162,7 @@ describe('formatter', () => {
 describe('filter', () => {
   const filter: LogFilter = (entry) => entry.id !== 'secret'
   test('use specific filter', () => {
-    const reporter = createConsoleLogReporter({ formatter: idFormatter, filter })
+    const reporter = createConsoleReporter({ formatter: idFormatter, filter })
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id: 'normal', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -174,7 +174,7 @@ describe('filter', () => {
 
 test('write log entry with multiple arguments', () => {
   const id = 'log'
-  const reporter = createConsoleLogReporter({ formatter: plainFormatter })
+  const reporter = createConsoleReporter({ formatter: plainFormatter })
   const fakeConsole = reporter.console = createFakeConsole();
 
   const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }
