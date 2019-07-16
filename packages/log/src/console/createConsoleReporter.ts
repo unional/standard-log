@@ -9,7 +9,7 @@ export type ConsoleFormatter = LogFormatter<any[]>
 export type ConsoleReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleReporter(options?: ConsoleReporterOptions) {
-  const { id, formatter, filter } = required({ id: 'plain', formatter: plainFormatter }, options)
+  const { id, formatter, filter } = required({ id: 'console', formatter: plainFormatter }, options)
   return {
     id,
     formatter,
