@@ -1,6 +1,6 @@
-import { plainFormatter } from '../console';
+import { plainLogFormatter } from '../console';
 import { LogEntry } from '../types';
 
 export function logEntriesToString(logs: LogEntry[]) {
-  return logs.map(plainFormatter).join('\n')
+  return logs.map(plainLogFormatter).join('\n')
 }

@@ -6,9 +6,9 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
 
-export function createMemoryLogReporter(options: Pick<LogReporterOptions, 'formatter'> = {}): MemoryLogReporter {
+export function createMemoryLogReporter(options: LogReporterOptions<LogEntry> = {}): MemoryLogReporter {
   return {
-    id: 'memory',
+    id: options.id || 'memory',
     logs: [] as LogEntry[],
     write(entry) {
       this.logs.push(options.formatter ? options.formatter(entry) : entry)

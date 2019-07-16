@@ -11,11 +11,11 @@ type Context = {
   counter: number
 }
 
-export type AnsiFormatterOptions = {
+export type AnsiLogFormatterOptions = {
   timestamp: TimestampFormat
 }
 
-export function createAnsiFormatter(options: AnsiFormatterOptions = { timestamp: 'none' }) {
+export function createAnsiLogFormatter(options: AnsiLogFormatterOptions = { timestamp: 'none' }) {
   const colorMap = getColorMap()
   const context: Context = {
     colorMap,

@@ -93,11 +93,11 @@ Besides printing the logs to console,
 you can use different reporters to save the logs in memory, file, service, or others.
 
 ```ts
-import { config, createConsoleLogReporter } from 'standard-log'
-import { createMemoryLogReporter } from 'standard-log-memory'
+import { config, createConsoleReporter } from 'standard-log'
+import { createMemoryReporter } from 'standard-log-memory'
 
 config({
-  reporters: [createConsoleLogReporter(), createMemoryLogReporter()]
+  reporters: [createConsoleReporter(), createMemoryReporter()]
 })
 ```
 

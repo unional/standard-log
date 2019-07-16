@@ -4,7 +4,7 @@ import { required } from 'unpartial';
 import { createTimestampFormatter, TimestampFormat } from '../createTimestampFormatter';
 import { rainbow } from './colors';
 
-export type CssFormatterOptions = {
+export type CssLogFormatterOptions = {
   /**
    * How many colors available.
    * Recommend at least 10.
@@ -14,7 +14,7 @@ export type CssFormatterOptions = {
   timestamp: TimestampFormat
 }
 
-export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
+export function createCssLogFormatter(options?: Partial<CssLogFormatterOptions>) {
   const { maxColor, timestamp } = required({ maxColor: 20, timestamp: 'none' }, options)
   const loggerMap: Record<string, RGB> = {}
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)
@@ -22,7 +22,7 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
 
   const timestampFormatter = createTimestampFormatter(timestamp)
 
-  return function cssFormatter(entry: LogEntry) {
+  return function cssLogFormatter(entry: LogEntry) {
     let idStr = `%c ${entry.id} `
     let args: any[]
     if (firstArgIsColorTemplate(entry.args)) {

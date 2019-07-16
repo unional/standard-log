@@ -1,55 +1,55 @@
-import { ConsoleFormatter, addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainFormatter } from 'standard-log';
-import { createConsoleReporter } from '.';
-import { createAnsiFormatter } from './ansi';
-import { createCssFormatter } from './css';
+import { ConsoleLogFormatter, addCustomLogLevel, clearCustomLogLevel, LogFilter, logLevel, plainLogFormatter } from 'standard-log';
+import { createColorLogReporter } from '.';
+import { createAnsiLogFormatter } from './ansi';
+import { createCssLogFormatter } from './css';
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
-    const reporter = createConsoleReporter();
+    const reporter = createColorLogReporter();
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'color', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
   })
   test('plain rendering', () => {
-    const reporter = createConsoleReporter({ formatter: plainFormatter });
+    const reporter = createColorLogReporter({ formatter: plainLogFormatter });
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
   })
 
   test('different timestamp settings', () => {
-    const reporter = createConsoleReporter();
+    const reporter = createColorLogReporter();
 
     ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
-      reporter.formatter = createAnsiFormatter({ timestamp })
+      reporter.formatter = createAnsiLogFormatter({ timestamp })
       reporter.write({ id: timestamp, level: logLevel.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
   test('different timestamp settings for css', () => {
-    const reporter = createConsoleReporter();
+    const reporter = createColorLogReporter();
 
     ['none', 'iso', 'elasped'].forEach((timestamp: any) => {
-      reporter.formatter = createCssFormatter({ timestamp })
+      reporter.formatter = createCssLogFormatter({ timestamp })
       reporter.write({ id: timestamp, level: logLevel.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
 })
 
 describe('id', () => {
-  test('default is "console"', () => {
-    const reporter = createConsoleReporter()
-    expect(reporter.id).toBe('console')
+  test('default is "color"', () => {
+    const reporter = createColorLogReporter()
+    expect(reporter.id).toBe('color')
   })
   test('can be overriden', () => {
-    const reporter = createConsoleReporter({ id: 'neo-console' })
-    expect(reporter.id).toBe('neo-console')
+    const reporter = createColorLogReporter({ id: 'neo-color' })
+    expect(reporter.id).toBe('neo-color')
   })
 })
 
 describe('log level', () => {
   test('error, alert, critical and emergency logs are written to console.error', () => {
     const id = 'log'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -62,7 +62,7 @@ describe('log level', () => {
 
   test('warn logs are written to console.warn', () => {
     const id = 'log'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
 
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -73,7 +73,7 @@ describe('log level', () => {
 
   test('notice and info logs are written to console.info', () => {
     const id = 'log'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
 
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -86,7 +86,7 @@ describe('log level', () => {
 
   test('debug, trace, and planck logs are written to console.debug', () => {
     const id = 'log'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.debug, args: ['debug'], timestamp: new Date() })
@@ -107,7 +107,7 @@ describe('custom logs', () => {
     addCustomLogLevel('silly', 1000)
 
     const id = 'log'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: 50, args: ['a'], timestamp: new Date() })
@@ -122,12 +122,12 @@ describe('custom logs', () => {
   })
 })
 
-const idFormatter: ConsoleFormatter = (entry) => [entry.id]
+const idFormatter: ConsoleLogFormatter = (entry) => [entry.id]
 
 describe('formatter', () => {
   test('use specific formatter', () => {
     const id = 'id-only'
-    const reporter = createConsoleReporter({ formatter: idFormatter })
+    const reporter = createColorLogReporter({ formatter: idFormatter })
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -137,7 +137,7 @@ describe('formatter', () => {
 
   test('formatter can be changed afterward', () => {
     const id = 'id-only'
-    const reporter = createConsoleReporter()
+    const reporter = createColorLogReporter()
     reporter.formatter = idFormatter
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -148,7 +148,7 @@ describe('formatter', () => {
 
   test('clearing formatter on report will fallback to original formatter', () => {
     const id = 'id-only'
-    const reporter = createConsoleReporter({ formatter: idFormatter })
+    const reporter = createColorLogReporter({ formatter: idFormatter })
     reporter.formatter = undefined
     const fakeConsole = reporter.console = createFakeConsole();
 
@@ -161,7 +161,7 @@ describe('formatter', () => {
 describe('filter', () => {
   const filter: LogFilter = (entry) => entry.id !== 'secret'
   test('use specific filter', () => {
-    const reporter = createConsoleReporter({ formatter: idFormatter, filter })
+    const reporter = createColorLogReporter({ formatter: idFormatter, filter })
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id: 'normal', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
@@ -173,7 +173,7 @@ describe('filter', () => {
 
 test('write log entry with multiple arguments', () => {
   const id = 'log'
-  const reporter = createConsoleReporter({ formatter: plainFormatter })
+  const reporter = createColorLogReporter({ formatter: plainLogFormatter })
   const fakeConsole = reporter.console = createFakeConsole();
 
   const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }

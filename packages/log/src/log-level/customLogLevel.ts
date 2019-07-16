@@ -1,7 +1,7 @@
 import { forEachKey, mapKey } from 'type-plus';
-import { writeToReporters } from '../reporter';
 import { store } from '../store';
 import { LogLevelEntry } from '../types';
+import { writeToReporters } from '../util';
 
 /**
  * @param level the `logLevel` number.

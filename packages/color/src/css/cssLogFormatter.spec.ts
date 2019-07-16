@@ -1,9 +1,9 @@
 import a from 'assertron';
 import { anything } from 'satisfier';
 import { logLevel } from 'standard-log';
-import { createCssFormatter } from './cssFormatter';
+import { createCssLogFormatter } from './cssLogFormatter';
 
-const cssFormatter = createCssFormatter()
+const cssFormatter = createCssLogFormatter()
 
 test('same logger will get the same color', () => {
   const a = cssFormatter({ id: 'log', level: logLevel.critical, args: ['a'], timestamp: new Date() })

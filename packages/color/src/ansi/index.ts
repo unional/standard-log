@@ -1,3 +1,3 @@
-export * from './ansiFormatter';
+export * from './ansiLogFormatter';
 export * from './constants';
 export * from './wrapAnsi';

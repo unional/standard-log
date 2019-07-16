@@ -1,4 +1,4 @@
-# standard-log-console
+# standard-log-color
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
@@ -8,40 +8,27 @@
 [![Codecov][codecov-image]][codecov-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 
-Console support for [`standard-log`](https://github.com/unional/standard-log).
+Color console reporter for [`standard-log`](https://github.com/unional/standard-log).
 
-This is the default reporter of [`standard-log`](https://github.com/unional/standard-log).
 
 ## Installation
 
-In normal use case you don't need to reference this library directly.
-
-[`standard-log`](https://github.com/unional/standard-log) exports the main features from `standard-log-console`.
-
 ```sh
-yarn add standard-log
-```
-
-If you want to access other features from `stand-log-console`, you can install it directly:
-
-```sh
-yarn add standard-log-console
+yarn add standard-log-color
 ```
 
 ## Usage
 
-By default, [`standard-log`](https://github.com/unional/standard-log) will use this reporter by default.
+If installed, this will be the default reporter of [`standard-log`](https://github.com/unional/standard-log)
 
 If you want to configure `standard-log` to use other reporters programatically,
-you can use the `createConsoleLogReporter()` to create the reporter for console:
+you can use the `createConsoleReporter()` to create the reporter for console:
 
 ```ts
-import {
-  createConsoleLogReporter,
-  config, // by `standard-log`
-} from 'standard-log'
+import { config } from 'standard-log'
+import { createColorReporter } from 'standard-log-color'
 
-config({ reporters: [createConsoleLogReporter(), /* other reporters */] })
+config({ reporters: [createColorReporter(), /* other reporters if needed */] })
 ```
 
 By default, it will use ansi formatter in NodeJS and css formatter in browser.
@@ -49,9 +36,9 @@ By default, it will use ansi formatter in NodeJS and css formatter in browser.
 If you want to change that, or use your own formatter:
 
 ```ts
-import { createConsoleLogReporter } from 'standard-log'
+import { createColorReporter } from 'standard-log-color'
 
-createConsoleLogReporter({
+createColorReporter({
   formatter: yourFormatter
 })
 ```
@@ -59,7 +46,7 @@ createConsoleLogReporter({
 For `createCssFormatter()`, you can specify how many colors to use:
 
 ```ts
-import { createCssFormatter } from 'standard-log'
+import { createCssFormatter } from 'standard-log-color'
 
 createCssFormatter({ maxColor: 30 })
 ```
@@ -68,7 +55,7 @@ createCssFormatter({ maxColor: 30 })
 You can also configure the `timestamp` format:
 
 ```ts
-import { createAnsiFormatter, createCssFormatter } from 'standard-log'
+import { createAnsiFormatter, createCssFormatter } from 'standard-log-color'
 
 createAnsiFormatter({ timestamp: 'none' })
 createAnsiFormatter({ timestamp: 'iso' })
@@ -87,9 +74,9 @@ createCssFormatter({ timestamp: 'elasped' })
 [codecov-url]: https://codecov.io/gh/unional/standard-log
 [coveralls-image]: https://coveralls.io/repos/github/unional/standard-log/badge.svg
 [coveralls-url]: https://coveralls.io/github/unional/standard-log
-[downloads-image]: https://img.shields.io/npm/dm/standard-log-console.svg?style=flat
-[downloads-url]: https://npmjs.org/package/standard-log-console
-[npm-image]: https://img.shields.io/npm/v/standard-log-console.svg?style=flat
-[npm-url]: https://www.npmjs.com/package/standard-log-console
+[downloads-image]: https://img.shields.io/npm/dm/standard-log-color.svg?style=flat
+[downloads-url]: https://npmjs.org/package/standard-log-color
+[npm-image]: https://img.shields.io/npm/v/standard-log-color.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/standard-log-color
 [travis-image]: https://travis-ci.com/unional/standard-log.svg?branch=master
 [travis-url]: https://travis-ci.com/unional/standard-log?branch=master
