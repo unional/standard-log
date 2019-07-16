@@ -41,11 +41,14 @@
     "color-map": "^1.1.0",
     "is-node": "^1.0.2",
     "ms": "^2.1.2",
-    "standard-log-core": "^1.5.0",
+    "standard-log": "^1.5.2",
     "type-plus": "^1.26.2"
   },
   "devDependencies": {
     "@types/ms": "^0.7.30",
     "@types/semver": "^6.0.1"
+  },
+  "peerDependencies": {
+    "standard-log": "^1.5.2"
   }
 }
