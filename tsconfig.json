@@ -1,5 +1,8 @@
 {
   "files": [],
+  "exclude": [
+    "packages/*/lib*"
+  ],
   "references": [
     {
       "path": "packages/core/tsconfig.lib.json"
