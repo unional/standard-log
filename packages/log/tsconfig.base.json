@@ -3,7 +3,5 @@
   "compilerOptions": {
     "rootDir": "src"
   },
-  "references": [{
-    "path": "../memory"
-  }]
+  "references": []
 }
