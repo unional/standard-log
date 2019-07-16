@@ -109,7 +109,7 @@ import { createConsoleLogReporter } from 'standard-log'
 
 createConsoleLogReporter({
   formatter: (entry) => [...],
-  filter: (entry) => entry.args.some(arg => arg === 'secret')
+  filter: (entry) => entry.args.every(arg => arg !== 'secret')
 })
 ```
 
