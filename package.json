@@ -22,6 +22,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "verify": "yarn lint && yarn dc && yarn coverage",
+    "verify:ci": "yarn lint && yarn dc && yarn coverage --maxWorkers=2",
     "watch": "jest --watch"
   },
   "husky": {

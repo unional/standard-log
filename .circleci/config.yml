@@ -29,7 +29,7 @@ jobs:
       - image: circleci/node:12
     steps:
       - checkout
-      - run: yarn verify
+      - run: yarn verify:ci
   node-latest:
     docker:
       - image: circleci/node:12
@@ -51,7 +51,7 @@ jobs:
             - node_modules
       - run: yarn commitlint-circle
       - run: yarn build
-      - run: yarn verify
+      - run: yarn verify:ci
       - run: npx codecov
       - store_test_results:
           path: .reports/junit
