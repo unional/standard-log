@@ -122,7 +122,7 @@ createConsoleLogReporter({
 
 Here are some reporters:
 
-- [`standard-log-console`](https://github.com/unional/standard-log/tree/master/packages/console)
+- [`standard-log-color`](https://github.com/unional/standard-log/tree/master/packages/color)
 - [`standard-log-memory`](https://github.com/unional/standard-log/tree/master/packages/memory)
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)

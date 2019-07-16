@@ -21,14 +21,13 @@ yarn add standard-log-color
 
 If installed, this will be the default reporter of [`standard-log`](https://github.com/unional/standard-log)
 
-If you want to configure `standard-log` to use other reporters programatically,
-you can use the `createConsoleReporter()` to create the reporter for console:
+To customize:
 
 ```ts
 import { config } from 'standard-log'
-import { createColorReporter } from 'standard-log-color'
+import { createColorLogReporter } from 'standard-log-color'
 
-config({ reporters: [createColorReporter(), /* other reporters if needed */] })
+config({ reporters: [createColorLogReporter(), /* other reporters if needed */] })
 ```
 
 By default, it will use ansi formatter in NodeJS and css formatter in browser.
@@ -36,9 +35,9 @@ By default, it will use ansi formatter in NodeJS and css formatter in browser.
 If you want to change that, or use your own formatter:
 
 ```ts
-import { createColorReporter } from 'standard-log-color'
+import { createColorLogReporter } from 'standard-log-color'
 
-createColorReporter({
+createColorLogReporter({
   formatter: yourFormatter
 })
 ```
@@ -46,24 +45,24 @@ createColorReporter({
 For `createCssFormatter()`, you can specify how many colors to use:
 
 ```ts
-import { createCssFormatter } from 'standard-log-color'
+import { createCssLogFormatter } from 'standard-log-color'
 
-createCssFormatter({ maxColor: 30 })
+createCssLogFormatter({ maxColor: 30 })
 ```
 ![](2019-07-13-17-19-12.png)
 
 You can also configure the `timestamp` format:
 
 ```ts
-import { createAnsiFormatter, createCssFormatter } from 'standard-log-color'
+import { createAnsiLogFormatter, createCssLogFormatter } from 'standard-log-color'
 
-createAnsiFormatter({ timestamp: 'none' })
-createAnsiFormatter({ timestamp: 'iso' })
-createAnsiFormatter({ timestamp: 'elasped' })
+createAnsiLogFormatter({ timestamp: 'none' })
+createAnsiLogFormatter({ timestamp: 'iso' })
+createAnsiLogFormatter({ timestamp: 'elasped' })
 
-createCssFormatter({ timestamp: 'none' })
-createCssFormatter({ timestamp: 'iso' })
-createCssFormatter({ timestamp: 'elasped' })
+createCssLogFormatter({ timestamp: 'none' })
+createCssLogFormatter({ timestamp: 'iso' })
+createCssLogFormatter({ timestamp: 'elasped' })
 ```
 
 ![](2019-07-13-17-18-14.png)

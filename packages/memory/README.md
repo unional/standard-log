@@ -23,7 +23,7 @@ const log = getLogger('some logger')
 log.info('some log')
 
 console.info(reporter.logs) // contains all log entries
-console.info(logEntriesToString(reporter.logs)) // render log entries as string using `plainFormatter`
+console.info(logEntriesToString(reporter.logs)) // render log entries as string using `plainLogFormatter`
 ```
 
 You can supply a `formatter` to pre-process the log entries before they are saved.
