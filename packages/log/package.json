@@ -33,14 +33,13 @@
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "yarn build && yarn bundle",
     "test": "jest",
-    "verify": "yarn test --reporters=default && yarn build && yarn dc && yarn bundle",
+    "verify": "yarn lint && yarn build && yarn dc && yarn test --reporters=default && yarn bundle",
     "watch": "jest --watch"
   },
   "dependencies": {
     "global-store": "^0.8.2",
     "is-node": "^1.0.2",
     "iso-error": "^2.1.4",
-    "standard-log-console": "^1.3.6",
     "standard-log-core": "^1.5.0",
     "type-plus": "^1.26.2"
   },

@@ -39,7 +39,9 @@ function getEnvironmentDefaults() {
 
 function getDefaultReporter() {
   try {
-    const consoleModule = require('standard-log-console')
+    // tricks webpack to not bundle standard-log-console
+    const c = '-console'
+    const consoleModule = require('standard-log' + c)
     return consoleModule.createConsoleReporter()
   }
   catch {
