@@ -1,7 +1,7 @@
 import { forEachKey } from 'type-plus';
 import { ProhibitedDuringProduction } from './errors';
 import { addCustomLogLevel } from './log-level';
-import { getLogLevelByMode } from './log-level/getLogLevelByMode';
+import { getLogLevelByMode } from './util/getLogLevelByMode';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
 

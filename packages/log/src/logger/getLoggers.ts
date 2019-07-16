@@ -1,6 +1,6 @@
-import { filterKey } from 'type-plus';
 import { store } from '../store';
 import { Logger } from '../types';
+import { filterById } from '../util';
 
 /**
  * Get loggers based on RegExp.
@@ -8,5 +8,5 @@ import { Logger } from '../types';
  */
 export function getLoggers(filter: RegExp): Logger<any>[] {
   const { loggers } = store.get()
-  return filterKey(loggers, id => filter.test(id)).map(k => loggers[k])
+  return filterById(loggers, filter)
 }

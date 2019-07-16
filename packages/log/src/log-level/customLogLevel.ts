@@ -1,16 +1,20 @@
-import { store } from '../store';
 import { forEachKey, mapKey } from 'type-plus';
-import { LogLevelEntry, LogLevelListener } from '../types';
+import { writeToReporters } from '../reporter';
+import { store } from '../store';
+import { LogLevelEntry } from '../types';
 
 /**
  * @param level the `logLevel` number.
  * You can specify this in the form of `logLevel.<x> + n` to make it more readable.
  */
 export function addCustomLogLevel(name: string, level: number) {
-  const { customLevels, customLevelsReverse, addCustomLogLevelListeners } = store.get()
+  const { customLevels, customLevelsReverse } = store.get()
+
   customLevels[name] = level
   customLevelsReverse[level] = name
-  addCustomLogLevelListeners.forEach(l => l({ name, level }))
+
+  const { loggers } = store.get()
+  forEachKey(loggers, id => loggers[id][name] = (...args: any[]) => writeToReporters({ id, level, args, timestamp: new Date() }))
 }
 
 export function clearCustomLogLevel() {
@@ -33,13 +37,3 @@ export function getCustomLevels(): LogLevelEntry[] {
   return mapKey(customLevels, name => ({ name, level: customLevels[name] }))
 }
 
-export function onAddCustomLogLevel(listener: LogLevelListener) {
-  store.get().addCustomLogLevelListeners.push(listener)
-  return {
-    unsubscribe() {
-      const bag = store.get().addCustomLogLevelListeners
-      const i = bag.indexOf(listener)
-      if (i >= 0) bag.splice(i, 1)
-    }
-  }
-}

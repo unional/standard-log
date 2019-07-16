@@ -1,4 +1,4 @@
-import { logLevel } from '../log-level';
+import { logLevel } from '../core';
 
 export function toConsoleMethod(level: number) {
   switch (true) {

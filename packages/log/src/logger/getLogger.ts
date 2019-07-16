@@ -1,9 +1,9 @@
-import { forEachKey } from 'type-plus';
+import { logLevel } from '../core';
 import { InvalidId } from '../errors';
-import { getAllLogLevels, logLevel, LogMethodNames, onAddCustomLogLevel, toLogLevel, toLogLevelName } from '../log-level';
-import { shouldLog } from '../log-level/shouldLog';
+import { getAllLogLevels, LogMethodNames, shouldLog, toLogLevel, toLogLevelName } from '../log-level';
+import { writeToReporters } from '../reporter';
 import { store } from '../store';
-import { LogEntry, LogFunction, Logger } from '../types';
+import { LogFunction, Logger } from '../types';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
@@ -54,13 +54,4 @@ function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   }
 
   return logger
-}
-
-onAddCustomLogLevel(({ name, level }) => {
-  const { loggers } = store.get()
-  forEachKey(loggers, id => loggers[id][name] = (...args: any[]) => writeToReporters({ id, level, args, timestamp: new Date() }))
-})
-
-function writeToReporters(logEntry: LogEntry) {
-  store.get().reporters.forEach(r => r.write(logEntry))
 }
