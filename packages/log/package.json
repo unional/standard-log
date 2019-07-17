@@ -45,7 +45,6 @@
   },
   "devDependencies": {
     "assertron": "^7.1.2",
-    "satisfier": "^5.0.2",
-    "standard-log-memory": "^1.3.9"
+    "satisfier": "^5.0.2"
   }
 }
