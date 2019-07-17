@@ -1,4 +1,4 @@
-import { toSyslogKeyword, toSyslogSeverity } from './syslog';
+import { toSyslogKeyword, toSyslogSeverity } from '.';
 import { rangeEntries } from './test-util';
 
 describe('toSyslogSeverity()', () => {
