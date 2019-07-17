@@ -1,4 +1,4 @@
 export * from './ansi';
-export * from './createConsoleReporter';
+export * from './createColorLogReporter';
 export * from './createTimestampFormatter';
 export * from './css';

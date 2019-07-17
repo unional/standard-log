@@ -4,7 +4,7 @@ import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
 import { supportColor } from './utils';
 
-export function createConsoleReporter(options?: ConsoleLogReporterOptions) {
+export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
   return createBaseReporter(required({ id: 'console', formatter: getFormatter() }, options))
 }
 
