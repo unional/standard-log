@@ -39,8 +39,7 @@
   },
   "dependencies": {
     "global-store": "^0.8.2",
-    "type-plus": "^1.26.2",
-    "upper-case": "^1.1.3"
+    "type-plus": "^1.26.2"
   },
   "devDependencies": {}
 }

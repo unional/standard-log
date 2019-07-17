@@ -42,7 +42,8 @@
     "iso-error": "^2.2.0",
     "ms": "^2.1.2",
     "standard-log-core": "^1.5.0",
-    "type-plus": "^1.26.2"
+    "type-plus": "^1.26.2",
+    "upper-case": "^1.1.3"
   },
   "devDependencies": {
     "assertron": "^7.1.2",

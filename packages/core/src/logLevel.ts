@@ -1,8 +1,5 @@
 import { reduceKey } from 'type-plus';
-import uppercase from 'upper-case';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
-
-
 export const logLevel = {
   /**
    * none: 0
@@ -94,8 +91,4 @@ export function getAllLogLevels() {
 
     return result
   }, getCustomLevels())
-}
-
-export function toLogLevelDisplay(level: number) {
-  return `(${uppercase(toLogLevelName(level))})`
 }
