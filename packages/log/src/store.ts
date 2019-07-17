@@ -45,6 +45,7 @@ function getDefaultReporter() {
     return consoleModule.createColorLogReporter()
   }
   catch (e) {
+    // istanbul ignore next
     return createConsoleLogReporter()
   }
 }
