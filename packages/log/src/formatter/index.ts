@@ -1,1 +1,2 @@
-export * from './plainLogFormatter'
+export * from './createTimestampFormatter';
+export * from './plainLogFormatter';

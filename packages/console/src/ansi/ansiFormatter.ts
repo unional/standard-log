@@ -1,5 +1,4 @@
-import { LogEntry, toConsoleMethod } from 'standard-log';
-import { createTimestampFormatter, TimestampFormat } from '../createTimestampFormatter';
+import { createTimestampFormatter, LogEntry, TimestampFormat, toConsoleMethod } from 'standard-log';
 import { adjustCodes } from './adjustCodes';
 import { ANSI_FOREGROUND, ANSI_RED, ANSI_YELLOW } from './constants';
 import { createColorCodes } from './createColorCodes';

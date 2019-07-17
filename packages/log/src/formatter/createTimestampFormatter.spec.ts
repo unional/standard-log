@@ -1,4 +1,4 @@
-import { createTimestampFormatter } from './createTimestampFormatter';
+import { createTimestampFormatter } from '..';
 
 test('elasped', () => {
   const formatter = createTimestampFormatter('elasped')
