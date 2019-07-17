@@ -1,9 +1,7 @@
 import a from 'assertron';
 import { clearCustomLogLevel, logLevel, toLogLevelName } from 'standard-log-core';
-import { createMemoryLogReporter } from 'standard-log-memory';
-import { clearLogReporters, config } from '.';
+import { clearLogReporters, config, createMemoryLogReporter, ProhibitedDuringProduction } from '.';
 import { resetStore, store } from './store';
-import { ProhibitedDuringProduction } from './errors';
 
 afterEach(() => {
   clearCustomLogLevel()

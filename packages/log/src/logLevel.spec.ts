@@ -1,6 +1,5 @@
 import t from 'assert';
-import { createMemoryLogReporter, MemoryLogReporter } from 'standard-log-memory';
-import { config, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels } from '.';
+import { config, createMemoryLogReporter, getLogger, getLogLevel, logLevel, MemoryLogReporter, setLogLevel, setLogLevels } from '.';
 import { resetStore, store } from './store';
 
 function createFilterLoggers() {
