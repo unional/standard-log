@@ -39,10 +39,10 @@ function getEnvironmentDefaults() {
 
 function getDefaultReporter() {
   try {
-    // tricks webpack to not bundle standard-log-console
-    const c = '-console'
+    // tricks webpack to not bundle standard-log-color
+    const c = '-color'
     const consoleModule = require('standard-log' + c)
-    return consoleModule.createConsoleReporter()
+    return consoleModule.createColorLogReporter()
   }
   catch (e) {
     return createConsoleLogReporter()
