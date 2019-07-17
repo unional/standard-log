@@ -1,10 +1,9 @@
 import { addCustomLogLevel, clearCustomLogLevel, LogFilter } from 'standard-log-core';
-import { ConsoleLogFormatter, createConsoleLogReporter } from '.';
-import { logLevel, plainFormatter } from '..';
+import { ConsoleLogFormatter, createConsoleLogReporter, logLevel, plainLogFormatter } from '..';
 
 describe('rendering tests', () => {
   test('plain rendering', () => {
-    const reporter = createConsoleLogReporter({ formatter: plainFormatter });
+    const reporter = createConsoleLogReporter({ formatter: plainLogFormatter });
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
       reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
@@ -149,7 +148,7 @@ describe('filter', () => {
 
 test('write log entry with multiple arguments', () => {
   const id = 'log'
-  const reporter = createConsoleLogReporter({ formatter: plainFormatter })
+  const reporter = createConsoleLogReporter({ formatter: plainLogFormatter })
   const fakeConsole = reporter.console = createFakeConsole();
 
   const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }

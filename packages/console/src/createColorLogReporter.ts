@@ -1,4 +1,4 @@
-import { ConsoleLogReporterOptions, createConsoleLogReporter as createBaseReporter, isBrowser, plainFormatter } from 'standard-log';
+import { ConsoleLogReporterOptions, createConsoleLogReporter as createBaseReporter, isBrowser, plainLogFormatter } from 'standard-log';
 import { required } from 'unpartial';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
@@ -10,7 +10,7 @@ export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
 
 function getFormatter() {
   // istanbul ignore next
-  if (!supportColor()) return plainFormatter
+  if (!supportColor()) return plainLogFormatter
 
   // istanbul ignore next
   return isBrowser() ? createCssFormatter() : createAnsiFormatter()
