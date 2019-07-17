@@ -5,10 +5,6 @@
     "outDir": "lib",
     "target": "es5"
   },
-  "include": [
-    "src",
-    "typings"
-  ],
   "exclude": [
     "src/*.spec.ts"
   ]
