@@ -28,5 +28,11 @@
     {
       "path": "packages/console/tsconfig.libm.json"
     },
+    {
+      "path": "packages/syslog/tsconfig.lib.json"
+    },
+    {
+      "path": "packages/syslog/tsconfig.libm.json"
+    },
   ]
 }
