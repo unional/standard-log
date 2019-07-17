@@ -1,5 +1,19 @@
 import { createTimestampFormatter } from '..';
 
+test('none', () => {
+  const formatter = createTimestampFormatter('none')
+  const now = new Date()
+  const actual = [formatter(now)]
+  expect(actual).toEqual([undefined])
+})
+
+test('iso', () => {
+  const formatter = createTimestampFormatter('iso')
+  const now = new Date()
+  const actual = [formatter(now)]
+  expect(actual).toEqual([now.toISOString()])
+})
+
 test('elasped', () => {
   const formatter = createTimestampFormatter('elasped')
   const now = new Date()
