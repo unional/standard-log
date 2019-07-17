@@ -60,6 +60,7 @@ const gammaMap = {
   bc: 0.0722,
   lowc: 1 / 12.92
 }
+
 function getForegroundColor(background: RGB) {
   // Setting the contrasting color as default
   let color = getComplementary(background)
