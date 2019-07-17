@@ -3,9 +3,16 @@
   "compilerOptions": {
     "rootDir": "src"
   },
-  "references": [{
-    "path": "../core"
-  }, {
-    "path": "../console"
-  }]
+  "references": [
+    {
+      "path": "../core"
+    },
+    {
+      "path": "../console"
+    }
+  ],
+  "include": [
+    "src",
+    "typings"
+  ]
 }
