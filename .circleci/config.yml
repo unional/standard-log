@@ -51,7 +51,7 @@ jobs:
             - node_modules
       - run: yarn commitlint-circle
       - run: yarn build
-      - run: yarn verify
+      - run: yarn verify:ci
       - run: npx codecov
       - store_test_results:
           path: .reports/junit
@@ -71,7 +71,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn coverage
+      - run: yarn coverage --reporters=default --runInBand
       - store_test_results:
           path: .reports/junit
   node10:
@@ -81,7 +81,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn coverage
+      - run: yarn coverage --reporters=default --runInBand
       - store_test_results:
           path: .reports/junit
   node9:
@@ -91,7 +91,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn coverage
+      - run: yarn coverage --reporters=default --runInBand
       - store_test_results:
           path: .reports/junit
   node8:
@@ -101,7 +101,7 @@ jobs:
       - checkout
       - attach_workspace:
           at: '.'
-      - run: yarn coverage
+      - run: yarn coverage --reporters=default --runInBand
       - store_test_results:
           path: .reports/junit
   release:
