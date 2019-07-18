@@ -1,9 +1,10 @@
-export { addCustomLogLevel, clearCustomLogLevel, getCustomLevel, getCustomLevelName, getCustomLevels, isBrowser, LogEntry, LogFilter, LogFormatter, Logger, logLevel, LogMethodNames, LogReporter, LogReporterOptions } from 'standard-log-core';
+export { addCustomLogLevel, clearCustomLogLevel, getCustomLevel, getCustomLevelName, getCustomLevels, LogEntry, LogFilter, LogFormatter, Logger, logLevel, LogMethodNames, LogReporter, LogReporterOptions } from 'standard-log-core';
 export * from './config';
 export * from './console';
 export * from './errors';
 export * from './formatter';
 export * from './getLogger';
+export * from './isBrowser';
 export * from './logLevel';
 export * from './LogReporter';
 export * from './memory';
