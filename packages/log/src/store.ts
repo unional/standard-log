@@ -1,8 +1,9 @@
 import { createStore } from 'global-store';
-import { Logger, logLevel, LogReporter, isBrowser, LogMode } from 'standard-log-core';
+import { Logger, logLevel, LogMode, LogReporter } from 'standard-log-core';
+import { createConsoleLogReporter } from './console';
 import { getMode } from './env';
 import { getLogLevelByMode } from './getLogLevelByMode';
-import { createConsoleLogReporter } from './console';
+import { isBrowser } from './isBrowser';
 
 function createStoreDefault() {
   const envDefaults = getEnvironmentDefaults()
