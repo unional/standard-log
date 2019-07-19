@@ -1,4 +1,4 @@
-import { logLevel } from 'standard-log-core';
+import { logLevel } from 'standard-log';
 import { logEntriesToString } from '.';
 
 test('convert log entries to string', () => {
