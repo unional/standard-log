@@ -10,7 +10,6 @@
 
 Color console reporter for [`standard-log`](https://github.com/unional/standard-log).
 
-
 ## Installation
 
 ```sh
