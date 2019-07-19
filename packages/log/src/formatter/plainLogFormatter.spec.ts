@@ -1,5 +1,4 @@
-import { logLevel } from 'standard-log-core';
-import { plainLogFormatter } from '..';
+import { logLevel, plainLogFormatter } from '..';
 
 test('convert log entries to string', () => {
   const timestamp = new Date(2019, 6)

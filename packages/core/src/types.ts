@@ -1,7 +1,7 @@
-import { LogMethodNames } from './logLevel';
 
 export type LogMode = 'devel' | 'prod' | 'test'
 
+export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'warn' | 'notice' | 'info' | 'debug' | 'trace' | 'planck'
 export type LogMethod = (...args: any[]) => void
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 

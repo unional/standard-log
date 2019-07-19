@@ -1,6 +1,5 @@
 import a from 'assertron';
-import { clearCustomLogLevel, logLevel, toLogLevelName } from 'standard-log-core';
-import { clearLogReporters, config, createMemoryLogReporter, ProhibitedDuringProduction } from '.';
+import { clearCustomLogLevel, clearLogReporters, config, createMemoryLogReporter, logLevel, ProhibitedDuringProduction, toLogLevelName } from '.';
 import { resetStore, store } from './store';
 
 afterEach(() => {

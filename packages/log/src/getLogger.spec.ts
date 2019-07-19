@@ -1,7 +1,5 @@
 import a from 'assertron';
-import { toLogLevel, toLogLevelName } from 'standard-log-core';
-import { addCustomLogLevel, addLogReporter, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, InvalidId, logLevel, LogMethodNames, MemoryLogReporter } from '.';
-import { setLogLevel } from './logLevel';
+import { addCustomLogLevel, addLogReporter, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, InvalidId, logLevel, LogMethodNames, MemoryLogReporter, setLogLevel, toLogLevel, toLogLevelName } from '.';
 import { resetStore, store } from './store';
 
 afterEach(() => {
