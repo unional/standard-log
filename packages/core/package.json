@@ -37,9 +37,6 @@
     "verify": "yarn lint && yarn dc && yarn coverage",
     "watch": "jest --watch"
   },
-  "dependencies": {
-    "global-store": "^0.8.2",
-    "type-plus": "^1.26.2"
-  },
+  "dependencies": {},
   "devDependencies": {}
 }
