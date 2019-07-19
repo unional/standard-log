@@ -23,7 +23,6 @@ const log = getLogger('some logger')
 log.info('some log')
 ```
 
-
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
