@@ -3,9 +3,16 @@ import { LogEntry } from '../types';
 
 const doneDefers: Array<() => void> = []
 
+const queue: Array<LogEntry> = []
+
 export function writeToReporters(logEntry: LogEntry) {
+  queue.push(logEntry)
   setImmediate(() => {
-    store.value.reporters.forEach(r => r.write(logEntry))
+    let logEntry = queue.shift()
+    while (logEntry) {
+      store.value.reporters.forEach(r => r.write(logEntry!))
+      logEntry = queue.shift()
+    }
     doneDefers.forEach(l => l())
   })
 }
