@@ -1,3 +1,5 @@
+import 'setimmediate'
+
 export { LogEntry, LogFilter, LogFormatter, Logger, LogMethodNames, LogReporter, LogLevelEntry, LogReporterOptions } from 'standard-log-core';
 export * from './config';
 export * from './console';

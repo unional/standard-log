@@ -1,6 +1,22 @@
 import { LogEntry } from 'standard-log-core';
 import { store } from '../store';
 
+const doneDefers: Array<() => void> = []
+
 export function writeToReporters(logEntry: LogEntry) {
-  store.value.reporters.forEach(r => r.write(logEntry))
+  setImmediate(() => {
+    store.value.reporters.forEach(r => r.write(logEntry))
+    doneDefers.forEach(l => l())
+  })
+}
+
+/**
+ * Resolves when write is completed.
+ * This is used for internal testing.
+ */
+export function writeDone(ms = 10): Promise<void> {
+  return new Promise((a, r) => {
+    doneDefers.push(a)
+    setTimeout(r, ms)
+  })
 }

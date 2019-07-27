@@ -1,6 +1,7 @@
 import a from 'assertron';
-import { addCustomLogLevel, addLogReporter, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, InvalidId, logLevel, LogMethodNames, MemoryLogReporter, setLogLevel, toLogLevel, toLogLevelName } from '.';
+import { addCustomLogLevel, addLogReporter, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, InvalidId, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName, Logger } from '.';
 import { store } from './store';
+import { writeDone } from './utils';
 
 afterEach(() => {
   clearCustomLogLevel()
@@ -19,7 +20,7 @@ test.each('`~!@#$%^&*()=+\\/|[]{}<>,?'.split(''))('throws if id has unsupported 
   a.throws(() => getLogger(char), InvalidId)
 })
 
-test('logger with custom level', () => {
+test('logger with custom level', async () => {
   config({ mode: 'devel' })
   const reporter = createMemoryLogReporter()
   addLogReporter(reporter)
@@ -28,6 +29,7 @@ test('logger with custom level', () => {
 
   logger.cust_lvl('a', 'b')
 
+  await writeDone()
   a.satisfies(reporter.logs, [{ id: 'cust', level: 100, args: ['a', 'b'] }])
 })
 
@@ -55,26 +57,26 @@ test('existing logger will get custom level', () => {
 })
 
 describe('count()', () => {
-  test('will increment the counter', () => {
+  test('will increment the counter', async () => {
     const reporter = createMemoryLogReporter()
     config({ mode: 'test', reporters: [reporter] })
     const logger = getLogger('inc counter')
     logger.count()
     logger.count()
-
+    await writeDone()
     a.satisfies(reporter.logs, [
       { id: 'inc counter', level: logLevel.debug, args: [1] },
       { id: 'inc counter', level: logLevel.debug, args: [2] }
     ])
   })
 
-  test('append args after the counter', () => {
+  test('append args after the counter', async () => {
     const reporter = createMemoryLogReporter()
     config({ reporters: [reporter], logLevel: logLevel.debug })
     const id = 'inc with args';
     const logger = getLogger(id)
     logger.count('msg1', 'msg2')
-
+    await writeDone()
     a.satisfies(reporter.logs, [
       { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
     ])
@@ -82,62 +84,76 @@ describe('count()', () => {
 })
 
 describe('log level tests', () => {
-  let reporter: MemoryLogReporter
-
   beforeEach(() => {
-    reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
     setLogLevel(logLevel.error)
   })
 
-  afterAll(() => {
+  afterEach(() => {
     store.reset()
   })
 
-  function assertLoggedAtLevel(log: any, level: number) {
+  async function assertLoggedAtLevel(log: any, level: number) {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
+
     setLogLevel(level)
     const msg = `should log on level: ${level}`
     log[log.id](msg)
+    await writeDone()
     a.satisfies(reporter.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
   }
 
-  function assertNotLoggedAtLevel(log: any, level: number) {
+  async function assertNotLoggedAtLevel(log: any, level: number) {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
+
     setLogLevel(level)
     log[log.id](`should not log on level: ${level}`)
-    expect(reporter.logs).toEqual([])
+    await a.throws(writeDone())
   }
 
-  function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+  async function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
+
     setLogLevel(globalLevel)
     log.level = localLevel
 
     const msg = `should log on level: ${localLevel}`
     log[log.id](msg)
+    await writeDone()
     a.satisfies(reporter.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
   }
 
-  function assertNotLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+  async function assertNotLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
+
     setLogLevel(globalLevel)
     log.level = localLevel
     log[log.id](`should not log on level: ${localLevel}`)
-    expect(reporter.logs).toEqual([])
+
+    await a.throws(writeDone())
   }
 
-  function assertLogFunctionCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
+  async function assertLogFunctionCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
+    store.value.reporters = []
     setLogLevel(actualLevel)
     let actual = false
     log.on(callLevel, () => actual = true)
     expect(actual).toBe(true)
+    await writeDone()
   }
 
-  function assertLogFunctionCalledAtLocalLevel(log: any, callLevel: number, globalLevel: number, localLevel: number) {
+  async function assertLogFunctionCalledAtLocalLevel(log: Logger, callLevel: number, globalLevel: number, localLevel: number) {
+    store.value.reporters = []
     setLogLevel(globalLevel)
     log.level = localLevel
     let actual = false
-    log.on(callLevel, () => actual = true)
+    log.on(callLevel, log => actual = true)
     expect(actual).toBe(true)
+    await writeDone()
   }
-
   function assertLogFunctionNotCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
     setLogLevel(actualLevel)
     log.on(callLevel, () => { throw new Error(`should not log at level ${actualLevel}`) })
@@ -154,7 +170,7 @@ describe('log level tests', () => {
     test(`${method}() should log on level: ${name} (${level})`, () => {
       const log = getLogger(method)
 
-      assertLoggedAtLevel(log, level)
+      return assertLoggedAtLevel(log, level)
     })
   })
 
@@ -163,7 +179,7 @@ describe('log level tests', () => {
     test(`${method}() should not log on level: ${name} (${level})`, () => {
       const log = getLogger(method)
 
-      assertNotLoggedAtLevel(log, level)
+      return assertNotLoggedAtLevel(log, level)
     })
   })
 
@@ -175,7 +191,7 @@ describe('log level tests', () => {
       test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
         const log = getLogger(method)
 
-        assertLoggedAtLocalLevel(log, globalLevel, localLevel)
+        return assertLoggedAtLocalLevel(log, globalLevel, localLevel)
       })
     })
   })
@@ -188,7 +204,7 @@ describe('log level tests', () => {
       test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
         const log = getLogger(method)
 
-        assertNotLoggedAtLocalLevel(log, globalLevel, localLevel)
+        return assertNotLoggedAtLocalLevel(log, globalLevel, localLevel)
       })
     })
   })
@@ -199,7 +215,7 @@ describe('log level tests', () => {
     test(`${method}() should call log function on level: ${name} (${actualLevel})`, () => {
       const log = getLogger(method)
 
-      assertLogFunctionCalledAtLevel(log, callLevel, actualLevel)
+      return assertLogFunctionCalledAtLevel(log, callLevel, actualLevel)
     })
   })
 
@@ -222,7 +238,7 @@ describe('log level tests', () => {
       test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
         const log = getLogger(method)
 
-        assertLogFunctionCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
+        return assertLogFunctionCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
       })
     })
   })

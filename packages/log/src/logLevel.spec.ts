@@ -1,9 +1,11 @@
 import t from 'assert';
+import a from 'assertron';
 import { forEachKey } from 'type-plus';
-import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, getLogLevel, logLevel, MemoryLogReporter, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { getAllLogLevels } from './logLevel';
 import { store } from './store';
 import { rangeEntries } from './testUtil';
+import { writeDone } from './utils';
 
 function createFilterLoggers() {
   for (let i = 0; i < 20; i++) {
@@ -12,14 +14,8 @@ function createFilterLoggers() {
   }
 }
 
-let reporter: MemoryLogReporter
 beforeAll(() => {
   createFilterLoggers()
-})
-
-beforeEach(() => {
-  reporter = createMemoryLogReporter()
-  store.value.reporters = [reporter]
 })
 
 afterAll(() => {
@@ -27,12 +23,15 @@ afterAll(() => {
 })
 
 
-test('no matched logger do no harm', () => {
+test('no matched logger do no harm', async () => {
+  const reporter = createMemoryLogReporter()
+  store.value.reporters = [reporter]
+
   setLogLevels(/x/, logLevel.debug)
   const log = getLogger('filter1')
   log.debug('abc')
 
-  t.deepStrictEqual(reporter.logs, [])
+  await a.throws(writeDone())
 })
 
 describe('getLogLevel', () => {
@@ -46,7 +45,10 @@ describe('setLogLevels()', () => {
   beforeEach(() => {
     setLogLevel(logLevel.none)
   })
-  test('only filtered log are affected', () => {
+  test('only filtered log are affected', async () => {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
+
     const logs = setLogLevels(/filter1/, logLevel.debug)
     t.deepStrictEqual(logs.map(l => l.id), [
       'filter1',
@@ -65,6 +67,7 @@ describe('setLogLevels()', () => {
     getLogger('filter1').debug('filter1')
     getLogger('filter2').debug('filter2')
     getLogger('filter11').debug('filter11')
+    await writeDone()
 
     t.strictEqual(reporter.logs.length, 2)
   })
