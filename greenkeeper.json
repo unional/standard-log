@@ -4,7 +4,6 @@
       "packages": [
         "package.json",
         "packages/color/package.json",
-        "packages/core/package.json",
         "packages/log/package.json"
       ]
     }
