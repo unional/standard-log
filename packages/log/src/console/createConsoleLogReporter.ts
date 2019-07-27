@@ -1,9 +1,10 @@
-import { LogFormatter, LogReporter, LogReporterOptions } from 'standard-log-core';
 import { required } from 'type-plus';
+import { plainLogFormatter } from '../formatter';
+import { LogReporter, LogReporterOptions } from '../LogReporter';
+import { LogFormatter } from '../types';
 import { polyfilledConsole } from './polyfilledConsole';
 import { toConsoleMethod } from './toConsoleMethod';
 import { Console } from './types';
-import { plainLogFormatter } from '../formatter';
 
 export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
 export type ConsoleLogFormatter = LogFormatter<any[]>

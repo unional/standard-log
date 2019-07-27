@@ -1,11 +1,9 @@
 {
   "name": "standard-log",
   "private": true,
-  "workspaces": {
-    "packages": [
-      "packages/*"
-    ]
-  },
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "tsc -b",
@@ -22,7 +20,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "verify": "yarn lint && yarn dc && yarn coverage",
-    "verify:ci": "yarn lint && yarn dc && yarn coverage --runInBand",
+    "verify:ci": "yarn lint && yarn dc && yarn coverage --maxWorkers=2",
     "watch": "jest --watch"
   },
   "husky": {

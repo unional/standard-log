@@ -1,10 +1,11 @@
 import { createStore } from 'global-store';
-import { Logger, LogMode, LogReporter, LogLevelListener } from 'standard-log-core';
 import { createConsoleLogReporter } from './console';
 import { getMode } from './env';
 import { getLogLevelByMode } from './getLogLevelByMode';
 import { isBrowser } from './isBrowser';
 import { logLevel, LogLevel } from './logLevel';
+import { LogReporter } from './LogReporter';
+import { Logger, LogLevelListener, LogMode } from './types';
 
 export type LogStore = {
   mode: LogMode,

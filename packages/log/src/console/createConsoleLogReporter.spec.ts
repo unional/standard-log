@@ -1,5 +1,4 @@
-import { LogFilter } from 'standard-log-core';
-import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, createConsoleLogReporter, logLevel, plainLogFormatter } from '..';
+import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, createConsoleLogReporter, LogFilter, logLevel, plainLogFormatter } from '..';
 
 describe('rendering tests', () => {
   test('plain rendering', () => {

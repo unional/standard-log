@@ -28,12 +28,13 @@
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
     "bundle": "webpack",
     "clean": "rimraf dist lib libm",
+    "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i standard-log-core -i setimmediate && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "yarn build && yarn bundle",
     "test": "jest",
-    "verify": "yarn lint && yarn build && yarn dc && yarn test --reporters=default && yarn bundle",
+    "verify": "yarn lint && yarn build && yarn dc && yarn coverage && yarn bundle",
     "watch": "jest --watch"
   },
   "dependencies": {
@@ -42,7 +43,6 @@
     "iso-error": "^2.2.0",
     "ms": "^2.1.2",
     "setimmediate": "^1.0.5",
-    "standard-log-core": "^1.5.0",
     "type-plus": "^1.26.2",
     "upper-case": "^1.1.3"
   },

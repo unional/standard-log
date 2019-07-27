@@ -1,8 +1,8 @@
-import { LogFunction, Logger, LogMethodNames } from 'standard-log-core';
 import { InvalidId } from './errors';
 import { getAllLogLevels, logLevel, toLogLevel, toLogLevelName } from './logLevel';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
+import { LogFunction, Logger, LogMethodNames } from './types';
 import { writeToReporters } from './utils';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {

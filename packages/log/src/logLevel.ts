@@ -1,8 +1,8 @@
-import { Logger } from 'standard-log-core';
 import { reduceKey } from 'type-plus';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 import { getLoggers } from './getLoggers';
 import { store } from './store';
+import { Logger } from './types';
 
 export type LogLevel = number
 

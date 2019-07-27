@@ -1,9 +1,5 @@
 import a from 'assertron';
-import { createMemoryLogReporter } from 'standard-log-memory';
-import { getLogReporter } from '.';
-import { config } from './config';
-import { ProhibitedDuringProduction } from './errors';
-import { addLogReporter } from './LogReporter';
+import { addLogReporter, config, createMemoryLogReporter, getLogReporter, ProhibitedDuringProduction } from '.';
 import { store } from './store';
 
 beforeAll(() => {

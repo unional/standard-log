@@ -1,8 +1,7 @@
 import t from 'assert';
 import a from 'assertron';
 import { forEachKey } from 'type-plus';
-import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
-import { getAllLogLevels } from './logLevel';
+import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getAllLogLevels, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
 import { rangeEntries } from './testUtil';
 import { writeDone } from './utils';

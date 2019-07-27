@@ -1,5 +1,5 @@
-import { LogEntry } from 'standard-log-core';
 import { store } from '../store';
+import { LogEntry } from '../types';
 
 const doneDefers: Array<() => void> = []
 

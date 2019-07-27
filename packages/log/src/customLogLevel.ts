@@ -1,6 +1,6 @@
-import { LogLevelEntry } from 'standard-log-core';
 import { forEachKey, mapKey } from 'type-plus';
 import { store } from './store';
+import { LogLevelEntry } from './types';
 import { writeToReporters } from './utils';
 
 /**

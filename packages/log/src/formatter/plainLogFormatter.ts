@@ -1,4 +1,4 @@
-import { LogEntry } from 'standard-log-core';
+import { LogEntry } from '../types';
 import { formatLogLevel } from './formatLogLevel';
 
 export function plainLogFormatter({ id, level, args, timestamp }: LogEntry) {
