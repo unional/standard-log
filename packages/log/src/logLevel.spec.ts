@@ -2,7 +2,7 @@ import t from 'assert';
 import { forEachKey } from 'type-plus';
 import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, getLogLevel, logLevel, MemoryLogReporter, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { getAllLogLevels } from './logLevel';
-import { resetStore, store } from './store';
+import { store } from './store';
 import { rangeEntries } from './testUtil';
 
 function createFilterLoggers() {
@@ -19,11 +19,11 @@ beforeAll(() => {
 
 beforeEach(() => {
   reporter = createMemoryLogReporter()
-  store.get().reporters = [reporter]
+  store.value.reporters = [reporter]
 })
 
 afterAll(() => {
-  resetStore()
+  store.reset()
 })
 
 

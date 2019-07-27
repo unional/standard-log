@@ -12,7 +12,7 @@ export type ConfigOptions = {
   reporters: LogReporter[]
 }
 export function config(options: Partial<ConfigOptions>) {
-  const s = store.get()
+  const s = store.value
 
   if (s.configured) {
     switch (s.mode) {

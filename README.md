@@ -100,8 +100,7 @@ Besides printing the logs to console,
 you can use different reporters to save the logs in memory, file, service, or others.
 
 ```ts
-import { config, createConsoleLogReporter } from 'standard-log'
-import { createMemoryLogReporter } from 'standard-log-memory'
+import { config, createConsoleLogReporter, createMemoryLogReporter } from 'standard-log'
 
 config({
   reporters: [createConsoleLogReporter(), createMemoryLogReporter()]
@@ -122,8 +121,7 @@ createConsoleLogReporter({
 
 Here are some reporters:
 
-- [`standard-log-console`](https://github.com/unional/standard-log/tree/master/packages/console)
-- [`standard-log-memory`](https://github.com/unional/standard-log/tree/master/packages/memory)
+- [`standard-log-color`](https://github.com/unional/standard-log/tree/master/packages/color)
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
 

@@ -1,14 +1,14 @@
 import a from 'assertron';
 import { clearCustomLogLevel, clearLogReporters, config, createMemoryLogReporter, logLevel, ProhibitedDuringProduction, toLogLevelName } from '.';
-import { resetStore, store } from './store';
+import { store } from './store';
 
 afterEach(() => {
   clearCustomLogLevel()
-  resetStore()
+  store.reset()
 })
 
 test('in production mode by default', () => {
-  expect(store.get().mode).toBe('prod')
+  expect(store.value.mode).toBe('prod')
 })
 
 test('configure default logLevel', () => {
@@ -16,7 +16,7 @@ test('configure default logLevel', () => {
     logLevel: logLevel.planck
   })
 
-  expect(store.get().logLevel).toBe(logLevel.planck)
+  expect(store.value.logLevel).toBe(logLevel.planck)
 })
 
 test('calling config twice emits a warning during development mode', () => {
@@ -57,6 +57,6 @@ test('configure to use a reporter instance', () => {
       createMemoryLogReporter()
     ]
   })
-  a.satisfies(store.get().reporters, [{ id: 'memory' }])
-  expect(store.get().reporters.length).toBe(1)
+  a.satisfies(store.value.reporters, [{ id: 'memory' }])
+  expect(store.value.reporters.length).toBe(1)
 })

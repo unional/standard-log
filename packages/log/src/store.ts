@@ -4,28 +4,39 @@ import { createConsoleLogReporter } from './console';
 import { getMode } from './env';
 import { getLogLevelByMode } from './getLogLevelByMode';
 import { isBrowser } from './isBrowser';
-import { logLevel } from './logLevel';
+import { logLevel, LogLevel } from './logLevel';
 
-function createStoreDefault() {
-  const envDefaults = getEnvironmentDefaults()
-  const reporter = getDefaultReporter()
-  return Object.assign(envDefaults, {
-    loggers: {} as Record<string, Logger<any>>,
-    reporters: [reporter] as LogReporter[],
-    configured: false,
-    customLevels: {} as Record<string, number>,
-    customLevelsReverse: [] as string[],
-    addCustomLogLevelListeners: [] as LogLevelListener[]
-  })
+export type LogStore = {
+  mode: LogMode,
+  logLevel: LogLevel,
+  loggers: Record<string, Logger<any>>,
+  reporters: LogReporter[],
+  configured: boolean,
+  customLevels: Record<string, number>,
+  customLevelsReverse: string[],
+  addCustomLogLevelListeners: LogLevelListener[]
 }
 
-export const store = createStore('standard-log:e53d0937-f420-40a0-9901-099725fa4a53', createStoreDefault())
+export const store = createStore<LogStore>({
+  moduleName: 'standard-log',
+  key: 'e53d0937-f420-40a0-9901-099725fa4a53',
+  version: '1.0.0',
+  initializer: (prev, versions) => {
+    if (versions.length > 0) return prev
 
-export function resetStore() {
-  store.set(createStoreDefault())
-}
+    return Object.assign(
+      getEnvironmentDefaults(), {
+        loggers: {},
+        reporters: [getDefaultReporter()],
+        configured: false,
+        customLevels: {},
+        customLevelsReverse: [],
+        addCustomLogLevelListeners: []
+      }) as any
+  }
+})
 
-function getEnvironmentDefaults() {
+function getEnvironmentDefaults(): Pick<LogStore, 'mode' | 'logLevel'> {
   // istanbul ignore next
   if (isBrowser()) {
     return {

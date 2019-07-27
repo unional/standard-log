@@ -4,7 +4,7 @@ import { getLogReporter } from '.';
 import { config } from './config';
 import { ProhibitedDuringProduction } from './errors';
 import { addLogReporter } from './LogReporter';
-import { resetStore } from './store';
+import { store } from './store';
 
 beforeAll(() => {
   config({ mode: 'test' })
@@ -24,7 +24,7 @@ describe('getLogReporter()', () => {
 
 describe('addLogReporter()', () => {
   afterEach(() => {
-    resetStore()
+    store.reset()
   })
 
   test('throw Prohibited in production mode', () => {

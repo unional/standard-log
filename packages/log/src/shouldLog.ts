@@ -6,5 +6,5 @@ import { store } from './store';
  * It can be undefined which the global log level will be used.
  */
 export function shouldLog(targetLevel: number, loggerLevel: number | undefined) {
-  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.get().logLevel)
+  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.value.logLevel)
 }

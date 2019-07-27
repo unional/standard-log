@@ -3,7 +3,10 @@ import { reduceKey } from 'type-plus';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 import { getLoggers } from './getLoggers';
 import { store } from './store';
-export const logLevel = {
+
+export type LogLevel = number
+
+export const logLevel: Record<string, LogLevel> = {
   /**
    * none: 0
    */
@@ -59,7 +62,7 @@ export const logLevel = {
  * Gets the overall log level.
  */
 export function getLogLevel() {
-  return store.get().logLevel
+  return store.value.logLevel
 }
 
 /**
@@ -68,7 +71,7 @@ export function getLogLevel() {
  * that will take precedent.
  */
 export function setLogLevel(level: number) {
-  store.get().logLevel = level
+  store.value.logLevel = level
 }
 
 /**

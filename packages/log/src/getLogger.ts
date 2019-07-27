@@ -7,7 +7,7 @@ import { writeToReporters } from './utils';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
-  const loggers = store.get().loggers
+  const loggers = store.value.loggers
   const logger = loggers[id]
   if (logger) return logger as any
 
