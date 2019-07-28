@@ -109,7 +109,7 @@ describe('log level tests', () => {
 
     setLogLevel(level)
     log[log.id](`should not log on level: ${level}`)
-    await a.throws(writeDone())
+    await a.throws(() => writeDone())
   }
 
   async function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
@@ -133,7 +133,7 @@ describe('log level tests', () => {
     log.level = localLevel
     log[log.id](`should not log on level: ${localLevel}`)
 
-    await a.throws(writeDone())
+    await a.throws(() => writeDone())
   }
 
   async function assertLogFunctionCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
