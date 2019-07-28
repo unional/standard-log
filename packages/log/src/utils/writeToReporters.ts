@@ -1,7 +1,7 @@
 import { store } from '../store';
 import { LogEntry } from '../types';
 
-const doneDefers: Array<() => void> = []
+const doneDefers: Array<(l: any) => void> = []
 
 const queue: Array<LogEntry> = []
 
@@ -13,7 +13,7 @@ export function writeToReporters(logEntry: LogEntry) {
       store.value.reporters.forEach(r => r.write(logEntry!))
       logEntry = queue.shift()
     }
-    doneDefers.forEach(l => l())
+    doneDefers.forEach(l => l(logEntry))
   })
 }
 
