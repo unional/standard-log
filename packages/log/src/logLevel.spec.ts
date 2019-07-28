@@ -1,10 +1,8 @@
 import t from 'assert';
-import a from 'assertron';
 import { forEachKey } from 'type-plus';
 import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getAllLogLevels, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
-import { rangeEntries } from './testUtil';
-import { writeDone } from './utils';
+import { captureWrittenLog, rangeEntries } from './testUtil';
 
 function createFilterLoggers() {
   for (let i = 0; i < 20; i++) {
@@ -22,15 +20,50 @@ afterAll(() => {
 })
 
 
-test('no matched logger do no harm', async () => {
-  const reporter = createMemoryLogReporter()
-  store.value.reporters = [reporter]
+describe('capture write to reporters', () => {
+  let capture: ReturnType<typeof captureWrittenLog>
+  beforeEach(() => {
+    capture = captureWrittenLog()
+  })
+  afterEach(() => {
+    capture.reset()
+  })
+  test('no matched logger do no harm', async () => {
+    const reporter = createMemoryLogReporter()
+    store.value.reporters = [reporter]
 
-  setLogLevels(/x/, logLevel.debug)
-  const log = getLogger('filter1')
-  log.debug('abc')
+    setLogLevels(/x/, logLevel.debug)
+    const log = getLogger('filter1')
+    log.debug('abc')
+    expect(capture.logs.length).toEqual(0)
+  })
+  describe('setLogLevels()', () => {
+    beforeEach(() => {
+      setLogLevel(logLevel.none)
+    })
+    test('only filtered log are affected', async () => {
+      const logs = setLogLevels(/filter1/, logLevel.debug)
+      t.deepStrictEqual(logs.map(l => l.id), [
+        'filter1',
+        'filter10',
+        'filter11',
+        'filter12',
+        'filter13',
+        'filter14',
+        'filter15',
+        'filter16',
+        'filter17',
+        'filter18',
+        'filter19'
+      ])
 
-  await a.throws(writeDone())
+      getLogger('filter1').debug('filter1')
+      getLogger('filter2').debug('filter2')
+      getLogger('filter11').debug('filter11')
+
+      t.strictEqual(capture.logs.length, 2)
+    })
+  })
 })
 
 describe('getLogLevel', () => {
@@ -40,37 +73,6 @@ describe('getLogLevel', () => {
   })
 })
 
-describe('setLogLevels()', () => {
-  beforeEach(() => {
-    setLogLevel(logLevel.none)
-  })
-  test('only filtered log are affected', async () => {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
-
-    const logs = setLogLevels(/filter1/, logLevel.debug)
-    t.deepStrictEqual(logs.map(l => l.id), [
-      'filter1',
-      'filter10',
-      'filter11',
-      'filter12',
-      'filter13',
-      'filter14',
-      'filter15',
-      'filter16',
-      'filter17',
-      'filter18',
-      'filter19'
-    ])
-
-    getLogger('filter1').debug('filter1')
-    getLogger('filter2').debug('filter2')
-    getLogger('filter11').debug('filter11')
-    await writeDone()
-
-    t.strictEqual(reporter.logs.length, 2)
-  })
-})
 
 describe('toLogLevelName()', () => {
   test.each([
