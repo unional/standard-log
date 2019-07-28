@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.4.0 (2019-07-28)
+
+
+### Bug Fixes
+
+* **memory:** add aurelia-logging back as dependency ([5987bb5](https://github.com/unional/standard-log/commit/5987bb5))
+* console log for debug before NodeJS@9.3 ([#39](https://github.com/unional/standard-log/issues/39)) ([305a92f](https://github.com/unional/standard-log/commit/305a92f))
+* preversion script ([cab5195](https://github.com/unional/standard-log/commit/cab5195))
+* remove declaration from bundle folder ([6629661](https://github.com/unional/standard-log/commit/6629661))
+* repass all tests ([9aa8a68](https://github.com/unional/standard-log/commit/9aa8a68))
+
+
+### Features
+
+* **color:** decouple form `Logger` ([2f48976](https://github.com/unional/standard-log/commit/2f48976))
+* add aurelia-logging-file ([#43](https://github.com/unional/standard-log/issues/43)) ([2f7a7e8](https://github.com/unional/standard-log/commit/2f7a7e8))
+* update aurelia-logging-color to not depend on Logger ([bb07b1b](https://github.com/unional/standard-log/commit/bb07b1b))
+* **color:** rename standard-log-console to standard-log-color ([30fa7fb](https://github.com/unional/standard-log/commit/30fa7fb))
+* **simple-console:** initial release ([946fd31](https://github.com/unional/standard-log/commit/946fd31))
+
+
+
+
+
 ## [1.3.6](https://github.com/unional/standard-log/compare/standard-log-console@1.3.5...standard-log-console@1.3.6) (2019-07-15)
 
 

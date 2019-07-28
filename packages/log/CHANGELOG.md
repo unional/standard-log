@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/unional/standard-log/compare/standard-log@1.5.2...standard-log@2.0.0) (2019-07-28)
+
+
+### Bug Fixes
+
+* nodejs8 does not support catch without exception ([e89d422](https://github.com/unional/standard-log/commit/e89d422))
+* **log:** look for `standard-log-color` ([43219a2](https://github.com/unional/standard-log/commit/43219a2))
+* **log:** rename default reporter back to 'console' ([fa945d5](https://github.com/unional/standard-log/commit/fa945d5))
+* **log:** tricks webpack to not bundle console ([632d7ba](https://github.com/unional/standard-log/commit/632d7ba))
+* queue the logEntry ([28dab98](https://github.com/unional/standard-log/commit/28dab98))
+* simplify writeToReporters ([#11](https://github.com/unional/standard-log/issues/11)) ([93431f7](https://github.com/unional/standard-log/commit/93431f7))
+* update to use beta version of global-store ([9189dce](https://github.com/unional/standard-log/commit/9189dce))
+
+
+### Features
+
+* **console:** depends on standard-log ([01fa52d](https://github.com/unional/standard-log/commit/01fa52d))
+* **log:** absorb standard-log-memory into standard-log ([ebbd5dc](https://github.com/unional/standard-log/commit/ebbd5dc))
+* **log:** export custom level api ([ca43394](https://github.com/unional/standard-log/commit/ca43394))
+* **log:** move isBrowser to log ([44a8b1c](https://github.com/unional/standard-log/commit/44a8b1c))
+* **log:** move logLevel to log package ([ec5595f](https://github.com/unional/standard-log/commit/ec5595f))
+* **log:** move plainFormatter from core to log ([5235bbc](https://github.com/unional/standard-log/commit/5235bbc))
+* **log:** move timestamp formatter form console to log ([c136fb1](https://github.com/unional/standard-log/commit/c136fb1))
+* **log:** move toLogLevelDisplay from core to log as formatLogLevel() ([6203f7d](https://github.com/unional/standard-log/commit/6203f7d))
+* **log:** provide simple console reporter ([46ab1cf](https://github.com/unional/standard-log/commit/46ab1cf))
+* log out-of-band ([951e01b](https://github.com/unional/standard-log/commit/951e01b))
+* **log:** rename Console* to ConsoleLog* ([a0b51cb](https://github.com/unional/standard-log/commit/a0b51cb))
+
+
+### BREAKING CHANGES
+
+* **log:** api change
+
+
+
+
+
 ## [1.5.2](https://github.com/unional/standard-log/compare/standard-log@1.5.1...standard-log@1.5.2) (2019-07-16)
 
 
