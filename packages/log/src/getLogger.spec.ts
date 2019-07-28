@@ -1,7 +1,7 @@
 import a from 'assertron';
-import { addCustomLogLevel, addLogReporter, clearCustomLogLevel, config, createMemoryLogReporter, getLogger, InvalidId, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName, Logger } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, config, getLogger, InvalidId, Logger, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
-import { writeDone } from './utils';
+import { captureWrittenLog } from './testUtil';
 
 afterEach(() => {
   clearCustomLogLevel()
@@ -18,19 +18,6 @@ test('logger id supports unicode', () => {
 
 test.each('`~!@#$%^&*()=+\\/|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
   a.throws(() => getLogger(char), InvalidId)
-})
-
-test('logger with custom level', async () => {
-  config({ mode: 'devel' })
-  const reporter = createMemoryLogReporter()
-  addLogReporter(reporter)
-  addCustomLogLevel('cust_lvl', 100)
-  const logger = getLogger<'cust_lvl'>('cust')
-
-  logger.cust_lvl('a', 'b')
-
-  await writeDone()
-  a.satisfies(reporter.logs, [{ id: 'cust', level: 100, args: ['a', 'b'] }])
 })
 
 test('get logger with same name gets the same instance', () => {
@@ -55,299 +42,295 @@ test('existing logger will get custom level', () => {
   addCustomLogLevel('old_logger', 122)
   expect(typeof actual.old_logger).toBe('function')
 })
-
-describe('count()', () => {
-  test('will increment the counter', async () => {
-    const reporter = createMemoryLogReporter()
-    config({ mode: 'test', reporters: [reporter] })
-    const logger = getLogger('inc counter')
-    logger.count()
-    logger.count()
-    await writeDone()
-    a.satisfies(reporter.logs, [
-      { id: 'inc counter', level: logLevel.debug, args: [1] },
-      { id: 'inc counter', level: logLevel.debug, args: [2] }
-    ])
-  })
-
-  test('append args after the counter', async () => {
-    const reporter = createMemoryLogReporter()
-    config({ reporters: [reporter], logLevel: logLevel.debug })
-    const id = 'inc with args';
-    const logger = getLogger(id)
-    logger.count('msg1', 'msg2')
-    await writeDone()
-    a.satisfies(reporter.logs, [
-      { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
-    ])
-  })
-})
-
-describe('log level tests', () => {
+describe('validate write to reporters', () => {
+  let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
-    setLogLevel(logLevel.error)
+    capture = captureWrittenLog()
   })
-
   afterEach(() => {
-    store.reset()
+    capture.reset()
   })
+  test('logger with custom level', async () => {
+    config({ mode: 'devel' })
+    addCustomLogLevel('cust_lvl', 100)
+    const logger = getLogger<'cust_lvl'>('cust')
+    logger.cust_lvl('a', 'b')
 
-  async function assertLoggedAtLevel(log: any, level: number) {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
+    a.satisfies(capture.logs, [{ id: 'cust', level: 100, args: ['a', 'b'] }])
+  })
+  describe('count()', () => {
+    test('will increment the counter', async () => {
+      config({ mode: 'test' })
+      const logger = getLogger('inc counter')
 
-    setLogLevel(level)
-    const msg = `should log on level: ${level}`
-    log[log.id](msg)
-    await writeDone()
-    a.satisfies(reporter.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
-  }
+      logger.count()
+      logger.count()
 
-  async function assertNotLoggedAtLevel(log: any, level: number) {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
+      a.satisfies(capture.logs, [
+        { id: 'inc counter', level: logLevel.debug, args: [1] },
+        { id: 'inc counter', level: logLevel.debug, args: [2] }
+      ])
+    })
 
-    setLogLevel(level)
-    log[log.id](`should not log on level: ${level}`)
-    await a.throws(() => writeDone().then(l => console.info('should not log but got', l)))
-  }
+    test('append args after the counter', async () => {
+      config({ logLevel: logLevel.debug })
+    const id = 'inc with args';
+      const logger = getLogger(id)
+      logger.count('msg1', 'msg2')
 
-  async function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
-
-    setLogLevel(globalLevel)
-    log.level = localLevel
-
-    const msg = `should log on level: ${localLevel}`
-    log[log.id](msg)
-    await writeDone()
-    a.satisfies(reporter.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
-  }
-
-  async function assertNotLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
-
-    setLogLevel(globalLevel)
-    log.level = localLevel
-    log[log.id](`should not log on level: ${localLevel}`)
-
-    await a.throws(() => writeDone())
-  }
-
-  async function assertLogFunctionCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
-    store.value.reporters = []
-    setLogLevel(actualLevel)
-    let actual = false
-    log.on(callLevel, () => actual = true)
-    expect(actual).toBe(true)
-    await writeDone()
-  }
-
-  async function assertLogFunctionCalledAtLocalLevel(log: Logger, callLevel: number, globalLevel: number, localLevel: number) {
-    store.value.reporters = []
-    setLogLevel(globalLevel)
-    log.level = localLevel
-    let actual = false
-    log.on(callLevel, () => actual = true)
-    expect(actual).toBe(true)
-    await writeDone()
-  }
-  function assertLogFunctionNotCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
-    setLogLevel(actualLevel)
-    log.on(callLevel, () => { throw new Error(`should not log at level ${actualLevel}`) })
-  }
-
-  function assertLogFunctionNotCalledAtLocalLevel(log: any, callLevel: number, globalLevel: number, localLevel: number) {
-    setLogLevel(globalLevel)
-    log.level = localLevel
-    log.on(callLevel, () => { throw new Error(`should not log at local level ${localLevel}`) })
-  }
-
-  const shouldLog = wrapTest((test) => (method: string, level: number) => {
-    const name = toLogLevelName(level)
-    test(`${method}() should log on level: ${name} (${level})`, () => {
-      const log = getLogger(method)
-
-      return assertLoggedAtLevel(log, level)
+      a.satisfies(capture.logs, [
+        { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
+      ])
     })
   })
 
-  const shouldNotLog = wrapTest((test) => (method: string, level: number) => {
-    const name = toLogLevelName(level)
-    test(`${method}() should not log on level: ${name} (${level})`, () => {
-      const log = getLogger(method)
-
-      return assertNotLoggedAtLevel(log, level)
+  describe('log level tests', () => {
+    beforeEach(() => {
+      setLogLevel(logLevel.error)
     })
-  })
 
-  const shouldLogWithLocalLevelOverride = wrapTest((test) => (method: string, localLevel: number) => {
-    const localName = toLogLevelName(localLevel);
+    afterEach(() => {
+      store.reset()
+    })
 
-    [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-      const globalName = toLogLevelName(globalLevel) || 'none'
-      test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+    async function assertLoggedAtLevel(log: any, level: number) {
+      setLogLevel(level)
+      const msg = `should log on level: ${level}`
+      log[log.id](msg)
+      a.satisfies(capture.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
+    }
+
+    async function assertNotLoggedAtLevel(log: any, level: number) {
+      setLogLevel(level)
+      log[log.id](`should not log on level: ${level}`)
+      expect(capture.logs.length).toBe(0)
+    }
+
+    async function assertLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+      setLogLevel(globalLevel)
+      log.level = localLevel
+
+      const msg = `should log on level: ${localLevel}`
+      log[log.id](msg)
+      a.satisfies(capture.logs, [{ id: log.id, level: toLogLevel(log.id), args: [msg] }])
+    }
+
+    async function assertNotLoggedAtLocalLevel(log: any, globalLevel: number, localLevel: number) {
+      setLogLevel(globalLevel)
+      log.level = localLevel
+      log[log.id](`should not log on level: ${localLevel}`)
+      expect(capture.logs.length).toBe(0)
+    }
+
+    async function assertLogFunctionCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
+      setLogLevel(actualLevel)
+      let actual = false
+      log.on(callLevel, () => actual = true)
+      expect(actual).toBe(true)
+    }
+
+    async function assertLogFunctionCalledAtLocalLevel(log: Logger, callLevel: number, globalLevel: number, localLevel: number) {
+      setLogLevel(globalLevel)
+      log.level = localLevel
+      let actual = false
+      log.on(callLevel, () => actual = true)
+      expect(actual).toBe(true)
+    }
+    function assertLogFunctionNotCalledAtLevel(log: any, callLevel: number, actualLevel: number) {
+      setLogLevel(actualLevel)
+      log.on(callLevel, () => { throw new Error(`should not log at level ${actualLevel}`) })
+    }
+
+    function assertLogFunctionNotCalledAtLocalLevel(log: any, callLevel: number, globalLevel: number, localLevel: number) {
+      setLogLevel(globalLevel)
+      log.level = localLevel
+      log.on(callLevel, () => { throw new Error(`should not log at local level ${localLevel}`) })
+    }
+
+    const shouldLog = wrapTest((test) => (method: string, level: number) => {
+      const name = toLogLevelName(level)
+      test(`${method}() should log on level: ${name} (${level})`, () => {
         const log = getLogger(method)
 
-        return assertLoggedAtLocalLevel(log, globalLevel, localLevel)
+        return assertLoggedAtLevel(log, level)
       })
     })
-  })
 
-  const shouldNotLogWithLocalLevelOverride = wrapTest((test) => (method: string, localLevel: number) => {
-    const localName = toLogLevelName(localLevel);
-
-    [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-      const globalName = toLogLevelName(globalLevel) || 'none'
-      test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+    const shouldNotLog = wrapTest((test) => (method: string, level: number) => {
+      const name = toLogLevelName(level)
+      test(`${method}() should not log on level: ${name} (${level})`, () => {
         const log = getLogger(method)
 
-        return assertNotLoggedAtLocalLevel(log, globalLevel, localLevel)
+        return assertNotLoggedAtLevel(log, level)
       })
     })
-  })
 
-  const shouldCallLogFunction = wrapTest((test) => (callLevel: number, actualLevel: number) => {
-    const method = toLogLevelName(callLevel)
-    const name = toLogLevelName(actualLevel)
-    test(`${method}() should call log function on level: ${name} (${actualLevel})`, () => {
-      const log = getLogger(method)
+    const shouldLogWithLocalLevelOverride = wrapTest((test) => (method: string, localLevel: number) => {
+      const localName = toLogLevelName(localLevel);
 
-      return assertLogFunctionCalledAtLevel(log, callLevel, actualLevel)
+      [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
+        const globalName = toLogLevelName(globalLevel) || 'none'
+        test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+          const log = getLogger(method)
+
+          return assertLoggedAtLocalLevel(log, globalLevel, localLevel)
+        })
+      })
     })
-  })
 
-  const shouldNotCallLogFunction = wrapTest((test) => (callLevel: number, actualLevel: number) => {
-    const method = toLogLevelName(callLevel)
-    const name = toLogLevelName(actualLevel)
-    test(`${method}() should not call log function on level: ${name} (${actualLevel})`, () => {
-      const log = getLogger(method)
+    const shouldNotLogWithLocalLevelOverride = wrapTest((test) => (method: string, localLevel: number) => {
+      const localName = toLogLevelName(localLevel);
 
-      assertLogFunctionNotCalledAtLevel(log, callLevel, actualLevel)
+      [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
+        const globalName = toLogLevelName(globalLevel) || 'none'
+        test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+          const log = getLogger(method)
+
+          return assertNotLoggedAtLocalLevel(log, globalLevel, localLevel)
+        })
+      })
     })
-  })
 
-  const shouldCallLogFunctionWithLocalLevelOverride = wrapTest((test) => (callLevel: number, localLevel: number) => {
-    const method = toLogLevelName(callLevel)
-    const localName = toLogLevelName(localLevel);
-
-    [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-      const globalName = toLogLevelName(globalLevel) || 'none'
-      test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+    const shouldCallLogFunction = wrapTest((test) => (callLevel: number, actualLevel: number) => {
+      const method = toLogLevelName(callLevel)
+      const name = toLogLevelName(actualLevel)
+      test(`${method}() should call log function on level: ${name} (${actualLevel})`, () => {
         const log = getLogger(method)
 
-        return assertLogFunctionCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
+        return assertLogFunctionCalledAtLevel(log, callLevel, actualLevel)
       })
     })
-  })
 
-  const shouldNotCallLogFunctionWithLocalLevelOverride = wrapTest((test) => (callLevel: number, localLevel: number) => {
-    const method = toLogLevelName(callLevel)
-    const localName = toLogLevelName(localLevel);
-
-    [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
-      const globalName = toLogLevelName(globalLevel) || 'none'
-      test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+    const shouldNotCallLogFunction = wrapTest((test) => (callLevel: number, actualLevel: number) => {
+      const method = toLogLevelName(callLevel)
+      const name = toLogLevelName(actualLevel)
+      test(`${method}() should not call log function on level: ${name} (${actualLevel})`, () => {
         const log = getLogger(method)
 
-        assertLogFunctionNotCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
+        assertLogFunctionNotCalledAtLevel(log, callLevel, actualLevel)
       })
     })
+
+    const shouldCallLogFunctionWithLocalLevelOverride = wrapTest((test) => (callLevel: number, localLevel: number) => {
+      const method = toLogLevelName(callLevel)
+      const localName = toLogLevelName(localLevel);
+
+      [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
+        const globalName = toLogLevelName(globalLevel) || 'none'
+        test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+          const log = getLogger(method)
+
+          return assertLogFunctionCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
+        })
+      })
+    })
+
+    const shouldNotCallLogFunctionWithLocalLevelOverride = wrapTest((test) => (callLevel: number, localLevel: number) => {
+      const method = toLogLevelName(callLevel)
+      const localName = toLogLevelName(localLevel);
+
+      [logLevel.none, logLevel.error, logLevel.warn, logLevel.info, logLevel.debug].forEach(globalLevel => {
+        const globalName = toLogLevelName(globalLevel) || 'none'
+        test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
+          const log = getLogger(method)
+
+          assertLogFunctionNotCalledAtLocalLevel(log, callLevel, globalLevel, localLevel)
+        })
+      })
+    })
+
+    function wrapTest<F>(fn: (test: jest.It) => F) {
+      return Object.assign(fn(test), { only: fn(test.only), skip: fn(test.skip) })
+    }
+
+    shouldNotLog('error', logLevel.none)
+    shouldLog('error', logLevel.error)
+    shouldLog('error', logLevel.warn)
+    shouldLog('error', logLevel.info)
+    shouldLog('error', logLevel.debug)
+    shouldNotLogWithLocalLevelOverride('error', logLevel.none)
+    shouldLogWithLocalLevelOverride('error', logLevel.error)
+    shouldLogWithLocalLevelOverride('error', logLevel.warn)
+    shouldLogWithLocalLevelOverride('error', logLevel.info)
+    shouldLogWithLocalLevelOverride('error', logLevel.debug)
+
+    shouldNotLog('warn', logLevel.none)
+    shouldNotLog('warn', logLevel.error)
+    shouldLog('warn', logLevel.warn)
+    shouldLog('warn', logLevel.info)
+    shouldLog('warn', logLevel.debug)
+    shouldNotLogWithLocalLevelOverride('warn', logLevel.none)
+    shouldNotLogWithLocalLevelOverride('warn', logLevel.error)
+    shouldLogWithLocalLevelOverride('warn', logLevel.warn)
+    shouldLogWithLocalLevelOverride('warn', logLevel.info)
+    shouldLogWithLocalLevelOverride('warn', logLevel.debug)
+
+    shouldNotLog('info', logLevel.none)
+    shouldNotLog('info', logLevel.error)
+    shouldNotLog('info', logLevel.warn)
+    shouldLog('info', logLevel.info)
+    shouldLog('info', logLevel.debug)
+    shouldNotLogWithLocalLevelOverride('info', logLevel.none)
+    shouldNotLogWithLocalLevelOverride('info', logLevel.error)
+    shouldNotLogWithLocalLevelOverride('info', logLevel.warn)
+    shouldLogWithLocalLevelOverride('info', logLevel.info)
+    shouldLogWithLocalLevelOverride('info', logLevel.debug)
+
+    shouldNotLog('debug', logLevel.none)
+    shouldNotLog('debug', logLevel.error)
+    shouldNotLog('debug', logLevel.warn)
+    shouldNotLog('debug', logLevel.info)
+    shouldLog('debug', logLevel.debug)
+    shouldNotLogWithLocalLevelOverride('debug', logLevel.none)
+    shouldNotLogWithLocalLevelOverride('debug', logLevel.error)
+    shouldNotLogWithLocalLevelOverride('debug', logLevel.warn)
+    shouldNotLogWithLocalLevelOverride('debug', logLevel.info)
+    shouldLogWithLocalLevelOverride('debug', logLevel.debug)
+
+    shouldNotCallLogFunction(logLevel.error, logLevel.none)
+    shouldCallLogFunction(logLevel.error, logLevel.error)
+    shouldCallLogFunction(logLevel.error, logLevel.warn)
+    shouldCallLogFunction(logLevel.error, logLevel.info)
+    shouldCallLogFunction(logLevel.error, logLevel.debug)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.none)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.error)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.warn)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.info)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.debug)
+
+    shouldNotCallLogFunction(logLevel.warn, logLevel.none)
+    shouldNotCallLogFunction(logLevel.warn, logLevel.error)
+    shouldCallLogFunction(logLevel.warn, logLevel.warn)
+    shouldCallLogFunction(logLevel.warn, logLevel.info)
+    shouldCallLogFunction(logLevel.warn, logLevel.debug)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.none)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.error)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.warn)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.info)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.debug)
+
+    shouldNotCallLogFunction(logLevel.info, logLevel.none)
+    shouldNotCallLogFunction(logLevel.info, logLevel.error)
+    shouldNotCallLogFunction(logLevel.info, logLevel.warn)
+    shouldCallLogFunction(logLevel.info, logLevel.info)
+    shouldCallLogFunction(logLevel.info, logLevel.debug)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.none)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.error)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.warn)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.info)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.debug)
+
+    shouldNotCallLogFunction(logLevel.debug, logLevel.none)
+    shouldNotCallLogFunction(logLevel.debug, logLevel.error)
+    shouldNotCallLogFunction(logLevel.debug, logLevel.warn)
+    shouldNotCallLogFunction(logLevel.debug, logLevel.info)
+    shouldCallLogFunction(logLevel.debug, logLevel.debug)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.none)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.error)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.warn)
+    shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.info)
+    shouldCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.debug)
   })
-
-  function wrapTest<F>(fn: (test: jest.It) => F) {
-    return Object.assign(fn(test), { only: fn(test.only), skip: fn(test.skip) })
-  }
-
-  shouldNotLog('error', logLevel.none)
-  shouldLog('error', logLevel.error)
-  shouldLog('error', logLevel.warn)
-  shouldLog('error', logLevel.info)
-  shouldLog('error', logLevel.debug)
-  shouldNotLogWithLocalLevelOverride('error', logLevel.none)
-  shouldLogWithLocalLevelOverride('error', logLevel.error)
-  shouldLogWithLocalLevelOverride('error', logLevel.warn)
-  shouldLogWithLocalLevelOverride('error', logLevel.info)
-  shouldLogWithLocalLevelOverride('error', logLevel.debug)
-
-  shouldNotLog('warn', logLevel.none)
-  shouldNotLog('warn', logLevel.error)
-  shouldLog('warn', logLevel.warn)
-  shouldLog('warn', logLevel.info)
-  shouldLog('warn', logLevel.debug)
-  shouldNotLogWithLocalLevelOverride('warn', logLevel.none)
-  shouldNotLogWithLocalLevelOverride('warn', logLevel.error)
-  shouldLogWithLocalLevelOverride('warn', logLevel.warn)
-  shouldLogWithLocalLevelOverride('warn', logLevel.info)
-  shouldLogWithLocalLevelOverride('warn', logLevel.debug)
-
-  shouldNotLog('info', logLevel.none)
-  shouldNotLog('info', logLevel.error)
-  shouldNotLog('info', logLevel.warn)
-  shouldLog('info', logLevel.info)
-  shouldLog('info', logLevel.debug)
-  shouldNotLogWithLocalLevelOverride('info', logLevel.none)
-  shouldNotLogWithLocalLevelOverride('info', logLevel.error)
-  shouldNotLogWithLocalLevelOverride('info', logLevel.warn)
-  shouldLogWithLocalLevelOverride('info', logLevel.info)
-  shouldLogWithLocalLevelOverride('info', logLevel.debug)
-
-  shouldNotLog('debug', logLevel.none)
-  shouldNotLog('debug', logLevel.error)
-  shouldNotLog('debug', logLevel.warn)
-  shouldNotLog('debug', logLevel.info)
-  shouldLog('debug', logLevel.debug)
-  shouldNotLogWithLocalLevelOverride('debug', logLevel.none)
-  shouldNotLogWithLocalLevelOverride('debug', logLevel.error)
-  shouldNotLogWithLocalLevelOverride('debug', logLevel.warn)
-  shouldNotLogWithLocalLevelOverride('debug', logLevel.info)
-  shouldLogWithLocalLevelOverride('debug', logLevel.debug)
-
-  shouldNotCallLogFunction(logLevel.error, logLevel.none)
-  shouldCallLogFunction(logLevel.error, logLevel.error)
-  shouldCallLogFunction(logLevel.error, logLevel.warn)
-  shouldCallLogFunction(logLevel.error, logLevel.info)
-  shouldCallLogFunction(logLevel.error, logLevel.debug)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.none)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.error)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.warn)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.info)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.error, logLevel.debug)
-
-  shouldNotCallLogFunction(logLevel.warn, logLevel.none)
-  shouldNotCallLogFunction(logLevel.warn, logLevel.error)
-  shouldCallLogFunction(logLevel.warn, logLevel.warn)
-  shouldCallLogFunction(logLevel.warn, logLevel.info)
-  shouldCallLogFunction(logLevel.warn, logLevel.debug)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.none)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.error)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.warn)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.info)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.warn, logLevel.debug)
-
-  shouldNotCallLogFunction(logLevel.info, logLevel.none)
-  shouldNotCallLogFunction(logLevel.info, logLevel.error)
-  shouldNotCallLogFunction(logLevel.info, logLevel.warn)
-  shouldCallLogFunction(logLevel.info, logLevel.info)
-  shouldCallLogFunction(logLevel.info, logLevel.debug)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.none)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.error)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.warn)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.info)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.info, logLevel.debug)
-
-  shouldNotCallLogFunction(logLevel.debug, logLevel.none)
-  shouldNotCallLogFunction(logLevel.debug, logLevel.error)
-  shouldNotCallLogFunction(logLevel.debug, logLevel.warn)
-  shouldNotCallLogFunction(logLevel.debug, logLevel.info)
-  shouldCallLogFunction(logLevel.debug, logLevel.debug)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.none)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.error)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.warn)
-  shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.info)
-  shouldCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.debug)
 })
 
 test('on() can take log level name in first argument', () => {
