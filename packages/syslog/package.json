@@ -42,6 +42,6 @@
     "standard-log": "^2.0.0"
   },
   "peerDependencies": {
-    "standard-log": "^1.5.2"
+    "standard-log": "^2.0.0"
   }
 }
