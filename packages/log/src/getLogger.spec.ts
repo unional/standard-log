@@ -74,7 +74,7 @@ describe('validate write to reporters', () => {
 
     test('append args after the counter', async () => {
       config({ logLevel: logLevel.debug })
-    const id = 'inc with args';
+      const id = 'inc with args';
       const logger = getLogger(id)
       logger.count('msg1', 'msg2')
 
