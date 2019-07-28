@@ -42,6 +42,7 @@ test('existing logger will get custom level', () => {
   addCustomLogLevel('old_logger', 122)
   expect(typeof actual.old_logger).toBe('function')
 })
+
 describe('validate write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
@@ -81,6 +82,15 @@ describe('validate write to reporters', () => {
       a.satisfies(capture.logs, [
         { id, level: logLevel.debug, args: [1, 'msg1', 'msg2'] }
       ])
+    })
+
+    test('not log if log level is less than debug', async () => {
+      config({ logLevel: logLevel.debug - 1 })
+      const id = 'inc with args';
+      const logger = getLogger(id)
+      logger.count('msg1', 'msg2')
+
+      expect(capture.logs.length).toBe(0)
     })
   })
 
@@ -330,6 +340,18 @@ describe('validate write to reporters', () => {
     shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.warn)
     shouldNotCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.info)
     shouldCallLogFunctionWithLocalLevelOverride(logLevel.debug, logLevel.debug)
+  })
+
+
+  test('on() log using log argument', () => {
+    config({ mode: 'test' })
+    const logger = getLogger('log on fn')
+
+    logger.on('error', log => { log('value') })
+
+    a.satisfies(capture.logs, [
+      { id: 'log on fn', level: logLevel.error, args: ['value'] }
+    ])
   })
 })
 

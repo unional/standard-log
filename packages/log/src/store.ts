@@ -23,6 +23,7 @@ export const store = createStore<LogStore>({
   key: 'e53d0937-f420-40a0-9901-099725fa4a53',
   version: '1.0.0',
   initializer: (prev, versions) => {
+    // istanbul ignore next
     if (versions.length > 0) return prev
 
     return Object.assign(
