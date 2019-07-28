@@ -150,7 +150,7 @@ describe('log level tests', () => {
     setLogLevel(globalLevel)
     log.level = localLevel
     let actual = false
-    log.on(callLevel, log => actual = true)
+    log.on(callLevel, () => actual = true)
     expect(actual).toBe(true)
     await writeDone()
   }
@@ -351,6 +351,7 @@ describe('log level tests', () => {
 })
 
 test('on() can take log level name in first argument', () => {
+  store.value.reporters = []
   const log = getLogger('string-on')
   log.on('debug', () => { return })
 })

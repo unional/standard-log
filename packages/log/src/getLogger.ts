@@ -18,7 +18,6 @@ function validateId(id: string) {
   if (/[`~!@#$%^&*()=+\[\]{}\\\/,|<>\?]/.test(id)) throw new InvalidId(id)
 }
 
-
 function createLogger<T extends string>(id: string, level?: number): Logger<T> {
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
     logger[name] = (...args: any[]) => {

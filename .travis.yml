@@ -17,6 +17,6 @@ before_install:
 script:
   - yarn
   - yarn build
-  - yarn verify
+  - yarn coverage --reporters=default --maxWorkers=2
   - npm install -g codacy-coverage && cat ./coverage/lcov.info | codacy-coverage
   - npm install -g coveralls && cat ./coverage/lcov.info | coveralls
