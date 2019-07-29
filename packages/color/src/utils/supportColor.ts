@@ -1,4 +1,4 @@
-import { isBrowser } from 'standard-log';
+import { isBrowser } from './isBrowser';
 
 export function supportColor() {
   return isBrowser() ? doesBrowserSupportColor() : true
