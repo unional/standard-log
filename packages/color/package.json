@@ -1,6 +1,6 @@
 {
   "name": "standard-log-color",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Color console reporter for `standard-log`",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
