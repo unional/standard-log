@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.1](https://github.com/unional/standard-log/compare/standard-log@2.0.0...standard-log@2.0.1) (2019-07-29)
+
+
+### Bug Fixes
+
+* in test mode log writing are sync ([#14](https://github.com/unional/standard-log/issues/14)) ([25529f9](https://github.com/unional/standard-log/commit/25529f9))
+
+
+
+
+
 # [2.0.0](https://github.com/unional/standard-log/compare/standard-log@1.5.2...standard-log@2.0.0) (2019-07-28)
 
 
