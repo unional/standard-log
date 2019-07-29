@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.4](https://github.com/unional/standard-log/compare/standard-log-color@1.4.3...standard-log-color@1.4.4) (2019-07-29)
+
+
+### Bug Fixes
+
+* move code to @standard-log/core ([#16](https://github.com/unional/standard-log/issues/16)) ([0c769f8](https://github.com/unional/standard-log/commit/0c769f8))
+
+
+
+
+
 ## [1.4.3](https://github.com/unional/standard-log/compare/standard-log-color@1.4.2...standard-log-color@1.4.3) (2019-07-29)
 
 

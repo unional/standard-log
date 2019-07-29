@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/unional/standard-log/compare/standard-log@2.0.1...standard-log@2.0.2) (2019-07-29)
+
+
+### Bug Fixes
+
+* move code to @standard-log/core ([#16](https://github.com/unional/standard-log/issues/16)) ([0c769f8](https://github.com/unional/standard-log/commit/0c769f8))
+
+
+
+
+
 ## [2.0.1](https://github.com/unional/standard-log/compare/standard-log@2.0.0...standard-log@2.0.1) (2019-07-29)
 
 
