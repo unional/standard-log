@@ -6,7 +6,7 @@ import { Logger } from './types';
 
 export type LogLevel = number
 
-export const logLevel: Record<string, LogLevel> = {
+export const logLevel = {
   /**
    * none: 0
    */
