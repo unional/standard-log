@@ -1,5 +1,5 @@
 import { createStore } from 'global-store';
-import { LogLevel } from './logLevel';
+import { LogLevel, logLevel } from './logLevel';
 import { LogReporter } from './LogReporter';
 import { Logger, LogMode } from './types';
 
@@ -19,7 +19,7 @@ export const store = createStore<LogStore>({
   version: 0,
   initializer: current => ({
     mode: 'prod',
-    logLevel: 0,
+    logLevel: logLevel.warn,
     loggers: {},
     reporters: [],
     configured: false,
