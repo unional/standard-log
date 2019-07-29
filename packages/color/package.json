@@ -30,7 +30,7 @@
     "clean": "rimraf dist lib libm",
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i standard-log && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
     "prepublishOnly": "yarn build && yarn bundle",
     "test": "jest",
