@@ -1,6 +1,6 @@
+import { logLevel } from '@standard-log/core';
 import a from 'assertron';
 import { anything } from 'satisfier';
-import { logLevel } from 'standard-log';
 import { createCssFormatter } from './cssFormatter';
 
 const cssFormatter = createCssFormatter()
