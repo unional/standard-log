@@ -1,5 +1,5 @@
+import { createTimestampFormatter, LogEntry, TimestampFormat } from '@standard-log/core';
 import { createColorsFromMap, RGB, RGBA, rgbHex } from 'color-map';
-import { createTimestampFormatter, LogEntry, TimestampFormat } from 'standard-log';
 import { required } from 'unpartial';
 import { rainbow } from './colors';
 

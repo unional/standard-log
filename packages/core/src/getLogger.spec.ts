@@ -1,5 +1,5 @@
 import a from 'assertron';
-import { addCustomLogLevel, clearCustomLogLevel, config, getLogger, InvalidId, Logger, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
 import { captureWrittenLog } from './testUtil';
 
@@ -46,7 +46,8 @@ test('existing logger will get custom level', () => {
 describe('validate write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
-    config({ mode: 'test' })
+    store.value.mode = 'test'
+    store.value.logLevel = logLevel.debug
     capture = captureWrittenLog()
   })
   afterEach(() => {
@@ -73,7 +74,7 @@ describe('validate write to reporters', () => {
     })
 
     test('append args after the counter', async () => {
-      config({ logLevel: logLevel.debug })
+      store.value.logLevel = logLevel.debug
       const id = 'inc with args';
       const logger = getLogger(id)
       logger.count('msg1', 'msg2')
@@ -84,7 +85,7 @@ describe('validate write to reporters', () => {
     })
 
     test('not log if log level is less than debug', async () => {
-      config({ logLevel: logLevel.debug - 1 })
+      store.value.logLevel = logLevel.debug - 1
       const id = 'inc with args';
       const logger = getLogger(id)
       logger.count('msg1', 'msg2')
@@ -95,7 +96,8 @@ describe('validate write to reporters', () => {
 
   describe('log level tests', () => {
     beforeEach(() => {
-      config({ mode: 'test', logLevel: logLevel.error })
+      store.value.mode = 'test'
+      store.value.logLevel = logLevel.error
     })
 
     afterEach(() => {
@@ -343,7 +345,8 @@ describe('validate write to reporters', () => {
 
 
   test('on() log using log argument', () => {
-    config({ mode: 'test' })
+    store.value.mode = 'test'
+    store.value.logLevel = logLevel.debug
     const logger = getLogger('log on fn')
 
     logger.on('error', log => { log('value') })

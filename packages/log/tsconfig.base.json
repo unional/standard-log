@@ -4,6 +4,9 @@
     "rootDir": "src"
   },
   "references": [
+    {
+      "path": "../core"
+    }
   ],
   "include": [
     "src",

@@ -1,6 +1,6 @@
 import t from 'assert';
 import { forEachKey } from 'type-plus';
-import { addCustomLogLevel, clearCustomLogLevel, config, createMemoryLogReporter, getAllLogLevels, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, getAllLogLevels, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
 import { captureWrittenLog, rangeEntries } from './testUtil';
 
@@ -23,7 +23,8 @@ afterAll(() => {
 describe('capture write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
-    config({ mode: 'test', logLevel: logLevel.error })
+    store.value.mode = 'test'
+    store.value.logLevel = logLevel.error
     capture = captureWrittenLog()
   })
   afterEach(() => {
@@ -67,7 +68,8 @@ describe('capture write to reporters', () => {
 
 describe('getLogLevel', () => {
   test('default to debug in test mode', () => {
-    config({ mode: 'test' })
+    store.value.mode = 'test'
+    store.value.logLevel = logLevel.debug
     expect(getLogLevel()).toBe(logLevel.debug)
   })
 })
