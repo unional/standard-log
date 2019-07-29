@@ -1,7 +1,5 @@
-import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, LogFilter, logLevel, plainLogFormatter } from 'standard-log';
-import { createColorLogReporter } from '.';
-import { createAnsiFormatter } from './ansi';
-import { createCssFormatter } from './css';
+import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, LogFilter, logLevel, plainLogFormatter } from '@standard-log/core';
+import { createAnsiFormatter, createColorLogReporter, createCssFormatter } from '.';
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
