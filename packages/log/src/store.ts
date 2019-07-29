@@ -1,5 +1,5 @@
 import { createConsoleLogReporter, isBrowser, Logger, LogLevel, logLevel, LogLevelListener, LogMode, LogReporter } from '@standard-log/core';
-import { createStore } from 'global-store';
+import { createStore, compareVersion } from 'global-store';
 import { getMode } from './env';
 import { getLogLevelByMode } from './getLogLevelByMode';
 
@@ -18,19 +18,15 @@ export const store = createStore<LogStore>({
   moduleName: 'standard-log',
   key: 'e53d0937-f420-40a0-9901-099725fa4a53',
   version: '1.0.0',
-  initializer: (prev, versions) => {
-    // istanbul ignore next
-    if (versions.length > 0) return prev
-
-    return Object.assign(
-      getEnvironmentDefaults(), {
-        loggers: {},
-        reporters: [getDefaultReporter()],
-        configured: false,
-        customLevels: {},
-        customLevelsReverse: [],
-        addCustomLogLevelListeners: []
-      }) as any
+  initializer: (current, versions) => {
+    if (versions.some(v => compareVersion(v, '1.0.0') > 0)) {
+      return current
+    }
+    return {
+      ...current,
+      reporters: [getDefaultReporter()],
+      ...getEnvironmentDefaults()
+    }
   }
 })
 

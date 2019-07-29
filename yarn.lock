@@ -6705,9 +6705,9 @@ global-store@^0.8.1:
   integrity sha512-h/BzICq/3wAw+VeNnb8WY4fqe1SI7fec5b7RWmaOue2lBY4cSfhNL4TgdySWxCu8btkmZu0IBzyPGEcUn53IlA==
 
 global-store@^1.0.0-beta.11:
-  version "1.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/global-store/-/global-store-1.0.0-beta.11.tgz#a5bfe40b2a6b7433d2d65376f08ae82e7ef5c11d"
-  integrity sha512-WAerLNIPxj5dtvNF7NPKzc387MFS3PMfD4mjnvK066O07boB59ef7/ykwiq3A2ZY3KolE2XQCiYW0fGgByrpBw==
+  version "1.0.0-beta.12"
+  resolved "https://registry.yarnpkg.com/global-store/-/global-store-1.0.0-beta.12.tgz#11b4b8eea8db32e4dc5441da8a0e099616255263"
+  integrity sha512-D95gmtWzlr2oJMk0s8AKfMhuAAHclWiXyLOPdYCKgOMJQ8JXUlsSw9GoPDD6yRlez+Lr8ICyN3SotdSJ9Objqg==
 
 global@^4.3.2:
   version "4.4.0"
