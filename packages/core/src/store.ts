@@ -1,7 +1,7 @@
 import { createStore } from 'global-store';
 import { LogLevel } from './logLevel';
 import { LogReporter } from './LogReporter';
-import { Logger, LogLevelListener, LogMode } from './types';
+import { Logger, LogMode } from './types';
 
 export type LogStore = {
   mode: LogMode,
@@ -10,8 +10,7 @@ export type LogStore = {
   reporters: LogReporter[],
   configured: boolean,
   customLevels: Record<string, number>,
-  customLevelsReverse: string[],
-  addCustomLogLevelListeners: LogLevelListener[]
+  customLevelsReverse: string[]
 }
 
 export const store = createStore<LogStore>({
@@ -26,7 +25,6 @@ export const store = createStore<LogStore>({
     configured: false,
     customLevels: {},
     customLevelsReverse: [],
-    addCustomLogLevelListeners: [],
     ...current
   })
 })

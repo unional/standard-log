@@ -1,5 +1,5 @@
+import { InvalidEnvVar } from '@standard-log/core';
 import a from 'assertron';
-import { InvalidEnvVar } from '../errors';
 import { getMode } from './getMode';
 
 test('invalid value throws', () => {
