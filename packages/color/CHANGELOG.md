@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/unional/standard-log/compare/standard-log-color@1.4.2...standard-log-color@1.4.3) (2019-07-29)
+
+
+### Bug Fixes
+
+* **color:** use local isBrowser ([#15](https://github.com/unional/standard-log/issues/15)) ([343b3cf](https://github.com/unional/standard-log/commit/343b3cf))
+
+
+
+
+
 ## [1.4.2](https://github.com/unional/standard-log/compare/standard-log-color@1.4.1...standard-log-color@1.4.2) (2019-07-29)
 
 **Note:** Version bump only for package standard-log-color
