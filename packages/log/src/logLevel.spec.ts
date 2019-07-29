@@ -23,18 +23,17 @@ afterAll(() => {
 describe('capture write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
+    config({ mode: 'test', logLevel: logLevel.error })
     capture = captureWrittenLog()
   })
   afterEach(() => {
     capture.reset()
   })
   test('no matched logger do no harm', async () => {
-    const reporter = createMemoryLogReporter()
-    store.value.reporters = [reporter]
-
     setLogLevels(/x/, logLevel.debug)
     const log = getLogger('filter1')
     log.debug('abc')
+
     expect(capture.logs.length).toEqual(0)
   })
   describe('setLogLevels()', () => {
