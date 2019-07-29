@@ -46,13 +46,13 @@ test('existing logger will get custom level', () => {
 describe('validate write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
+    config({ mode: 'test' })
     capture = captureWrittenLog()
   })
   afterEach(() => {
     capture.reset()
   })
   test('logger with custom level', async () => {
-    config({ mode: 'devel' })
     addCustomLogLevel('cust_lvl', 100)
     const logger = getLogger<'cust_lvl'>('cust')
     logger.cust_lvl('a', 'b')
@@ -61,7 +61,6 @@ describe('validate write to reporters', () => {
   })
   describe('count()', () => {
     test('will increment the counter', async () => {
-      config({ mode: 'test' })
       const logger = getLogger('inc counter')
 
       logger.count()
@@ -96,7 +95,7 @@ describe('validate write to reporters', () => {
 
   describe('log level tests', () => {
     beforeEach(() => {
-      setLogLevel(logLevel.error)
+      config({ mode: 'test', logLevel: logLevel.error })
     })
 
     afterEach(() => {

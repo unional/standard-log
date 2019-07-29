@@ -47,13 +47,16 @@ or by setting the environment variable `STANDARD_LOG`.
 Production mode:
 - log level defaults to `warn`
 - `config()` can only be called once
+- reporters receives the log entry after current operation (i.e. in `setImmediate()`)
 
 Development mode:
 - log level defaults to `debug`
 - calling `config()` multiple times will emit a warning
+- reporters receives the log entry after current operation (i.e. in `setImmediate()`)
 
 Test mode:
 - log level defaults to `debug`
+- reporters receives the log entry immediately.
 
 ### Log Level
 
