@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/unional/standard-log/compare/standard-log@2.0.2...standard-log@2.0.3) (2019-07-29)
+
+
+### Bug Fixes
+
+* **log:** initialize store properly with new core ([78f6f0d](https://github.com/unional/standard-log/commit/78f6f0d))
+
+
+
+
+
 ## [2.0.2](https://github.com/unional/standard-log/compare/standard-log@2.0.1...standard-log@2.0.2) (2019-07-29)
 
 

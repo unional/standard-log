@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/unional/standard-log/compare/@standard-log/core@3.0.0...@standard-log/core@3.0.1) (2019-07-29)
+
+
+### Bug Fixes
+
+* **core:** cir-deps ([b063b2a](https://github.com/unional/standard-log/commit/b063b2a))
+* **core:** default logLevel to warn ([f3b20f5](https://github.com/unional/standard-log/commit/f3b20f5))
+* **core:** improve logLevel type ([bf83790](https://github.com/unional/standard-log/commit/bf83790))
+
+
+
+
+
 # 3.0.0 (2019-07-29)
 
 

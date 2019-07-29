@@ -1,6 +1,6 @@
 {
   "name": "standard-log",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "The standard log library",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -38,7 +38,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "@standard-log/core": "^3.0.0",
+    "@standard-log/core": "^3.0.1",
     "global-store": "^1.0.0-beta.11",
     "setimmediate": "^1.0.5",
     "type-plus": "^1.26.2"

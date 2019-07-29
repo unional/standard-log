@@ -1,6 +1,6 @@
 {
   "name": "standard-log-color",
-  "version": "1.4.4",
+  "version": "1.4.5",
   "description": "Color console reporter for `standard-log`",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -39,7 +39,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "@standard-log/core": "^3.0.0",
+    "@standard-log/core": "^3.0.1",
     "color-map": "^1.1.0",
     "unpartial": "^0.6.3"
   },
