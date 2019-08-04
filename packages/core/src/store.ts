@@ -8,7 +8,6 @@ export type LogStore = {
   logLevel: LogLevel,
   loggers: Record<string, Logger<any>>,
   reporters: LogReporter[],
-  configured: boolean,
   customLevels: Record<string, number>,
   customLevelsReverse: string[]
 }
@@ -22,7 +21,6 @@ export const store = createStore<LogStore>({
     logLevel: 500, // logLevel.warn. avoid cir-dep
     loggers: {},
     reporters: [],
-    configured: false,
     customLevels: {},
     customLevelsReverse: [],
     ...current

@@ -18,7 +18,7 @@ export type Logger<T extends string = LogMethodNames> = {
   count(...args: any[]): void,
   on(level: number | T, logFunction: LogFunction): void
 } & {
-    [k in T]: (...args: any[]) => void
+    [k in T]: LogMethod
   }
 
 export type LogEntry = {
