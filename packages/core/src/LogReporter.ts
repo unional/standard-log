@@ -1,4 +1,3 @@
-import { ProhibitedDuringProduction } from './errors';
 import { store } from './store';
 import { LogEntry, LogFilter, LogFormatter } from './types';
 
@@ -27,15 +26,4 @@ export type LogReporterOptions<T = any> = {
 
 export function getLogReporter(id: string) {
   return store.value.reporters.find(r => r.id === id)
-}
-
-export function addLogReporter(reporter: LogReporter) {
-  const s = store.value
-  if (s.mode === 'prod') throw new ProhibitedDuringProduction('addLogReporter')
-  s.reporters.push(reporter)
-}
-
-export function clearLogReporters() {
-  const reporters = store.value.reporters
-  reporters.splice(0, reporters.length)
 }

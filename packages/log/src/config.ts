@@ -12,14 +12,8 @@ export type ConfigOptions = {
 export function config(options: Partial<ConfigOptions>) {
   const s = store.value
 
-  if (s.configured) {
-    switch (s.mode) {
-      case 'devel':
-        console.warn('standard-log has been configured before. Overriding. `config()` should only be called once by the application')
-        break;
-      case 'prod':
-        throw new ProhibitedDuringProduction('config')
-    }
+  if (Object.isFrozen(s) && s.mode === 'prod') {
+    throw new ProhibitedDuringProduction('config')
   }
 
   if (options.mode) {
@@ -38,5 +32,6 @@ export function config(options: Partial<ConfigOptions>) {
   if (options.reporters) {
     s.reporters = options.reporters
   }
-  s.configured = true
+
+  if (s.mode === 'prod') store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
 }

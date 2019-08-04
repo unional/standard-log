@@ -27,7 +27,6 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@commitlint/cli": "^8.1.0",

@@ -1,11 +1,10 @@
 import a from 'assertron';
-import { clearCustomLogLevel, clearLogReporters, config, createMemoryLogReporter, logLevel, ProhibitedDuringProduction, toLogLevelName } from '.';
+import { config, createMemoryLogReporter, logLevel, ProhibitedDuringProduction, toLogLevelName } from '.';
 import { store } from './store';
 
-afterEach(() => {
-  clearCustomLogLevel()
-  store.reset()
-})
+beforeEach(() => store.reset())
+
+afterEach(() => store.reset())
 
 test('in production mode by default', () => {
   expect(store.value.mode).toBe('prod')
@@ -19,22 +18,7 @@ test('configure default logLevel', () => {
   expect(store.value.logLevel).toBe(logLevel.planck)
 })
 
-test('calling config twice emits a warning during development mode', () => {
-  const warn = console.warn.bind(console)
-  try {
-    let actual: any[] = []
-    console.warn = (...args: any[]) => actual = args
-
-    config({ mode: 'devel' })
-    config({ mode: 'devel' })
-    expect(actual).toEqual(['standard-log has been configured before. Overriding. `config()` should only be called once by the application'])
-  }
-  finally {
-    console.warn = warn
-  }
-})
-
-test('calling config twice thros ProhibitedDuringProduction in production mode', () => {
+test('calling config twice throws ProhibitedDuringProduction in production mode', () => {
   config({ mode: 'prod' })
   a.throws(() => config({ mode: 'devel' }), ProhibitedDuringProduction)
 })
@@ -50,8 +34,6 @@ test('add custom levels', () => {
 })
 
 test('configure to use a reporter instance', () => {
-  clearLogReporters()
-
   config({
     reporters: [
       createMemoryLogReporter()
