@@ -1,6 +1,6 @@
 import R from 'ramda';
-import { writeToReporters } from './utils';
 import { LogEntry } from './types';
+import { writeToReporters } from './writeToReporters';
 
 export function rangeEntries(start: number, end: number, expected: any) {
   return R.range(start, end).map(value => ([value, expected]))

@@ -1,8 +1,8 @@
 import delay from 'delay';
-import { getLogger } from '../getLogger';
-import { store } from '../store';
-import { captureWrittenLog } from '../testUtil';
-import { logLevel } from '../logLevel';
+import { getLogger } from './getLogger';
+import { store } from './store';
+import { captureWrittenLog } from './testUtil';
+import { logLevel } from './logLevel';
 
 test('in non test mode the logs are sent to reporters out of band', async () => {
   store.value.mode = 'devel'
