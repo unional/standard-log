@@ -1,6 +1,7 @@
 import { isBrowser } from './isBrowser';
 
 export function supportColor() {
+  // istanbul ignore next
   return isBrowser() ? doesBrowserSupportColor() : true
 }
 

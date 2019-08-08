@@ -1,4 +1,4 @@
-// istanbul ignore next
+/* istanbul ignore file */
 import { createConsoleLogReporter } from './console';
 
 declare const StandardLogColor: any
@@ -8,7 +8,6 @@ export function getDefaultReporter() {
     return StandardLogColor.createColorLogReporter()
   }
   catch (e) {
-    // istanbul ignore next
     return createConsoleLogReporter()
   }
 }
