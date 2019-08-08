@@ -1,5 +1,4 @@
-import { LogReporter, LogReporterOptions } from '../LogReporter';
-import { LogEntry, LogFormatter } from '../types';
+import { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from '../types';
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[]

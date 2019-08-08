@@ -1,4 +1,5 @@
 import a from 'assertron';
+import delay from 'delay';
 import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevel, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
 import { captureWrittenLog } from './testUtil';
@@ -358,7 +359,17 @@ describe('validate write to reporters', () => {
 })
 
 test('on() can take log level name in first argument', () => {
-  store.value.reporters = []
   const log = getLogger('string-on')
   log.on('debug', () => { return })
+})
+
+
+test('auto configure', async () => {
+  expect(store.value.configured).toBeFalsy()
+  const log = getLogger('auto config')
+
+  log.error('config is called automatically as expected')
+
+  await delay(10)
+  expect(store.value.configured).toBeTruthy()
 })

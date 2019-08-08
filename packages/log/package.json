@@ -15,10 +15,14 @@
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
   },
+  "browser": {
+    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts"
+  },
   "files": [
     "dist",
     "lib",
-    "libm"
+    "libm",
+    "src"
   ],
   "main": "lib/index.js",
   "module": "libm/index.js",
@@ -38,9 +42,17 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "@standard-log/core": "^3.0.1",
     "global-store": "^1.0.0-beta.14",
+    "is-node": "^1.0.2",
+    "iso-error": "^2.2.0",
+    "ms": "^2.1.2",
     "setimmediate": "^1.0.5",
-    "type-plus": "^1.26.2"
+    "type-plus": "^1.26.2",
+    "upper-case": "^1.1.3"
+  },
+  "devDependencies": {
+    "assertron": "^7.1.2",
+    "ramda": "^0.26.1",
+    "satisfier": "^5.0.2"
   }
 }

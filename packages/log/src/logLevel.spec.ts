@@ -19,7 +19,6 @@ afterAll(() => {
   store.reset()
 })
 
-
 describe('capture write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
@@ -73,7 +72,6 @@ describe('getLogLevel', () => {
     expect(getLogLevel()).toBe(logLevel.debug)
   })
 })
-
 
 describe('toLogLevelName()', () => {
   test.each([

@@ -39,7 +39,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "@standard-log/core": "^3.0.1",
+    "standard-log": "^2.0.3",
     "color-map": "^1.1.0",
     "unpartial": "^0.6.3"
   },

@@ -1,4 +1,4 @@
-import { ConsoleLogReporterOptions, createConsoleLogReporter, isBrowser, plainLogFormatter } from '@standard-log/core';
+import { ConsoleLogReporterOptions, createConsoleLogReporter, isBrowser, plainLogFormatter } from 'standard-log';
 import { required } from 'unpartial';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
