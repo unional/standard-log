@@ -15,9 +15,6 @@
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
   },
-  "browser": {
-    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts"
-  },
   "files": [
     "dist",
     "lib",
@@ -27,6 +24,14 @@
   "main": "lib/index.js",
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
+  "browser": {
+    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts",
+    "./lib/getLogModeFromEnvironment.js": "./lib/getLogModeFromEnvironment.browser.js",
+    "./libm/getLogModeFromEnvironment.js": "./libm/getLogModeFromEnvironment.browser.js",
+    "./src/getDefaultReporter.ts": "./src/getDefaultReporter.browser.ts",
+    "./lib/getDefaultReporter.js": "./lib/getDefaultReporter.browser.js",
+    "./libm/getDefaultReporter.js": "./libm/getDefaultReporter.browser.js"
+  },
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",

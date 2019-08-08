@@ -1,10 +1,9 @@
 import { forEachKey } from 'type-plus';
 import { addCustomLogLevel } from './customLogLevel';
 import { ProhibitedDuringProduction } from './errors';
-import { getLogLevelByMode } from './getLogLevelByMode';
+import { getDefaultReporter } from './getDefaultReporter';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
-import { createConsoleLogReporter } from './console';
 
 export type ConfigOptions = {
   mode: LogMode,
@@ -20,13 +19,12 @@ export function config(options: Partial<ConfigOptions>) {
     throw new ProhibitedDuringProduction('config')
   }
 
-  if (options.mode) {
-    s.mode = options.mode
-  }
+  if (options.mode) s.mode = options.mode
+
 
   if (s.mode !== 'prod') console.warn(`standard-log is configured in '${s.mode}' mode. Remember to configure it as 'prod' in production.`)
 
-  s.logLevel = options.logLevel !== undefined ? options.logLevel : getLogLevelByMode(s.mode)
+  if (options.logLevel !== undefined) s.logLevel = options.logLevel
 
   if (options.customLevels) {
     const customLevels = options.customLevels
@@ -39,17 +37,4 @@ export function config(options: Partial<ConfigOptions>) {
   s.configured = true
 
   if (s.mode === 'prod') store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
-}
-
-function getDefaultReporter() {
-  try {
-    // tricks webpack to not bundle standard-log-color
-    const c = '-color'
-    const colorModule = require('standard-log' + c)
-    return colorModule.createColorLogReporter()
-  }
-  catch (e) {
-    // istanbul ignore next
-    return createConsoleLogReporter()
-  }
 }
