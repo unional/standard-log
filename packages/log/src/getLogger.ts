@@ -1,5 +1,6 @@
 import { InvalidId } from './errors';
-import { getAllLogLevels, logLevel, toLogLevel, toLogLevelName } from './logLevel';
+import { logLevel } from './logLevel';
+import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
 import { LogFunction, Logger, LogMethodNames } from './types';

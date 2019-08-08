@@ -6,7 +6,6 @@ export function rangeEntries(start: number, end: number, expected: any) {
   return R.range(start, end).map(value => ([value, expected]))
 }
 
-
 export function captureWrittenLog() {
   const logs: LogEntry[] = []
   const orig = writeToReporters.fn

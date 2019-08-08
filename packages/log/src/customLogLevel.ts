@@ -34,4 +34,3 @@ export function getCustomLevels(): LogLevelEntry[] {
   const { customLevels } = store.value
   return mapKey(customLevels, name => ({ name, level: customLevels[name] }))
 }
-

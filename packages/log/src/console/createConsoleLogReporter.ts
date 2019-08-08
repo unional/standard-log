@@ -1,7 +1,6 @@
 import { required } from 'type-plus';
 import { plainLogFormatter } from '../formatter';
-import { LogReporter, LogReporterOptions } from '../LogReporter';
-import { LogFormatter } from '../types';
+import { LogFormatter, LogReporter, LogReporterOptions } from '../types';
 import { polyfilledConsole } from './polyfilledConsole';
 import { toConsoleMethod } from './toConsoleMethod';
 import { Console } from './types';

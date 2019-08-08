@@ -1,4 +1,4 @@
-import { logLevel } from '@standard-log/core';
+import { logLevel } from 'standard-log';
 import a from 'assertron';
 import { anything } from 'satisfier';
 import { createCssFormatter } from './cssFormatter';
