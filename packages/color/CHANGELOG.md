@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/unional/standard-log/compare/standard-log-color@1.4.6...standard-log-color@1.5.0) (2019-08-08)
+
+
+### Features
+
+* **log:** remove isBrowser ([e7ff262](https://github.com/unional/standard-log/commit/e7ff262))
+* remove core again ([5e1f021](https://github.com/unional/standard-log/commit/5e1f021))
+
+
+
+
+
 ## [1.4.6](https://github.com/unional/standard-log/compare/standard-log-color@1.4.5...standard-log-color@1.4.6) (2019-07-29)
 
 

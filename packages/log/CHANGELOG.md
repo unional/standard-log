@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/unional/standard-log/compare/standard-log@2.0.3...standard-log@2.1.0) (2019-08-08)
+
+
+### Bug Fixes
+
+* getDefaultReporter supports browser ([bd5bf0c](https://github.com/unional/standard-log/commit/bd5bf0c))
+* remove addLogReporter ([8dca328](https://github.com/unional/standard-log/commit/8dca328))
+
+
+### Features
+
+* **log:** remove isBrowser ([e7ff262](https://github.com/unional/standard-log/commit/e7ff262))
+* remove core again ([5e1f021](https://github.com/unional/standard-log/commit/5e1f021))
+
+
+
+
+
 ## [2.0.3](https://github.com/unional/standard-log/compare/standard-log@2.0.2...standard-log@2.0.3) (2019-07-29)
 
 
