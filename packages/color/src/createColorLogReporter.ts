@@ -2,8 +2,7 @@ import { ConsoleLogReporterOptions, createConsoleLogReporter, plainLogFormatter 
 import { required } from 'unpartial';
 import { createAnsiFormatter } from './ansi';
 import { createCssFormatter } from './css';
-import { isBrowser } from './isBrowser';
-import { supportColor } from './utils';
+import { isBrowser, supportColor } from './utils';
 
 export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
   return createConsoleLogReporter(required({ id: 'console', formatter: getFormatter() }, options))
