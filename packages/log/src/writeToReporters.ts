@@ -1,6 +1,6 @@
-import { store } from '../store';
-import { LogEntry } from '../types';
-import { getConfiguredStore } from '../getConfiguredStore';
+import { store } from './store';
+import { LogEntry } from './types';
+import { getConfiguredStore } from './getConfiguredStore';
 
 export function writeToReporters(logEntry: LogEntry) {
   if (store.value.mode === 'test')

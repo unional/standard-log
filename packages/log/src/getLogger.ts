@@ -4,7 +4,7 @@ import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
 import { LogFunction, Logger, LogMethodNames } from './types';
-import { writeToReporters } from './utils';
+import { writeToReporters } from './writeToReporters';
 
 export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
   validateId(id)
