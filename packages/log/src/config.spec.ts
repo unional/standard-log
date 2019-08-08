@@ -42,3 +42,14 @@ test('configure to use a reporter instance', () => {
   a.satisfies(store.value.reporters, [{ id: 'memory' }])
   expect(store.value.reporters.length).toBe(1)
 })
+
+test('configure as devel will emit warning', () => {
+  const warn = console.warn
+  let actual: string
+  console.warn = message => actual = message
+  config({ mode: 'devel' })
+
+  expect(actual!).toBe("standard-log is configured in 'devel' mode. Remember to configure it as 'prod' in production.")
+
+  console.warn = warn
+})
