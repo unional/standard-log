@@ -13,6 +13,7 @@ Color console reporter for [`standard-log`](https://github.com/unional/standard-
 ## Installation
 
 ```sh
+npm install standard-log-color
 yarn add standard-log-color
 ```
 
@@ -50,7 +51,7 @@ createCssLogFormatter({ maxColor: 30 })
 ```
 ![](2019-07-13-17-19-12.png)
 
-You can also configure the `timestamp` format:
+You can also add `timestamp`:
 
 ```ts
 import { createAnsiLogFormatter, createCssLogFormatter } from 'standard-log-color'
