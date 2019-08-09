@@ -11,3 +11,4 @@ export * from './logLevelFn';
 export * from './logReporter';
 export * from './memory';
 export * from './types';
+export * from './utils';

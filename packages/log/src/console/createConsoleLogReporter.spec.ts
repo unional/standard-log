@@ -1,4 +1,13 @@
+import a from 'assertron';
 import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, createConsoleLogReporter, LogFilter, logLevel, plainLogFormatter } from '..';
+import { config } from '../config';
+import { ProhibitedDuringProduction } from '../errors';
+import { store } from '../store';
+
+beforeEach(() => {
+  store.reset()
+  config({ mode: 'test' })
+})
 
 describe('rendering tests', () => {
   test('plain rendering', () => {
@@ -110,25 +119,16 @@ describe('formatter', () => {
   })
 
   test('formatter can be changed afterward', () => {
-    const id = 'id-only'
     const reporter = createConsoleLogReporter()
+    const formatter = reporter.formatter
     reporter.formatter = idFormatter
-    const fakeConsole = reporter.console = createFakeConsole();
-
-    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-
-    expect(fakeConsole.errors).toEqual([['id-only']])
+    expect(reporter.formatter).not.toEqual(formatter)
   })
 
-  test('clearing formatter on report will fallback to original formatter', () => {
-    const id = 'id-only'
-    const reporter = createConsoleLogReporter({ formatter: idFormatter })
-    reporter.formatter = undefined
-    const fakeConsole = reporter.console = createFakeConsole();
-
-    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-
-    expect(fakeConsole.errors).toEqual([['id-only']])
+  test('set formatter during production mode throws', () => {
+    config({ mode: 'production' })
+    const reporter = createConsoleLogReporter()
+    a.throws(() => reporter.formatter = idFormatter, ProhibitedDuringProduction)
   })
 })
 
@@ -142,6 +142,19 @@ describe('filter', () => {
     reporter.write({ id: 'secret', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
 
     expect(fakeConsole.errors).toEqual([['normal']])
+  })
+
+  test('can change filter', () => {
+    const reporter = createConsoleLogReporter()
+    const filter = reporter.filter
+    reporter.filter = entry => entry.id !== 'secret'
+    expect(reporter.filter).not.toEqual(filter)
+  })
+
+  test('set filter during production mode throws', () => {
+    config({ mode: 'production' })
+    const reporter = createConsoleLogReporter()
+    a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
   })
 })
 

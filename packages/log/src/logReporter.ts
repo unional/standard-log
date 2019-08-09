@@ -1,10 +1,9 @@
-import { LogReporter } from './types';
 import { store } from './store';
-import { ProhibitedDuringProduction } from './errors';
+import { LogReporter } from './types';
+import { assertLogModeIsNotProduction } from './utils';
 
 export function addLogReporter(reporter: LogReporter) {
-  if (store.value.mode === 'production') throw new ProhibitedDuringProduction('addLogReporter')
-
+  assertLogModeIsNotProduction('addLogReporter')
   store.value.reporters.push(reporter)
 }
 
@@ -13,6 +12,6 @@ export function getLogReporter(id: string) {
 }
 
 export function clearLogReporters() {
-  if (store.value.mode === 'production') throw new ProhibitedDuringProduction('clearLogReporters')
+  assertLogModeIsNotProduction('clearLogReporters')
   store.value.reporters.splice(0, store.value.reporters.length)
 }
