@@ -8,5 +8,6 @@ export * from './formatter';
 export * from './getLogger';
 export * from './logLevel';
 export * from './logLevelFn';
+export * from './logReporter';
 export * from './memory';
 export * from './types';
