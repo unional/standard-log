@@ -8,7 +8,17 @@
 [![Codecov][codecov-image]][codecov-url]
 [![Coveralls Status][coveralls-image]][coveralls-url]
 
-`standard-log` is a flexible logging library allows you to handle log in any possible ways.
+`standard-log` is a powerful and extensible logging library.
+
+## Key features
+
+- create multiple loggers for different part of your application.
+- provide multiple log levels out of the box.
+- add custom log levels.
+- global and local log level control.
+- send logs to multiple reporters, e.g. console, file, memory, or remote service.
+- custom formatting and filtering for each reporter.
+- config tempering protection during production
 
 ## Usage
 
@@ -18,11 +28,14 @@ import { getLogger } from 'standard-log'
 
 const log = getLogger('my-app')
 
+// debug and info does not show by default in production mode
 log.debug('debug')
 log.info('info')
 log.warn('warn')
 log.error('error')
 ```
+
+![](images/2019-08-08-23-40-05.png)
 
 ### Mode
 
@@ -32,21 +45,23 @@ You can change it programmatically:
 ```ts
 import { config } from 'standard-log'
 
-config({ mode: 'prod' }) // or 'devel', 'test'
+config({ mode: 'production' }) // or 'development', 'test'
 ```
 
 or by setting the environment variable `STANDARD_LOG`.
 
 Production mode:
-- log level defaults to `warn`
-- `config()` can only be called once
+- log level defaults to `logLevel.warn`.
+- `config()` can only be called once.
+- configuration is protected from tempering.
+- logs are performed out-of-band
 
 Development mode:
-- log level defaults to `debug`
-- calling `config()` multiple times will emit a warning
+- log level defaults to `logLevel.debug`.
+- a warning is emitted when calling `config()` or making log the first time.
 
 Test mode:
-- log level defaults to `debug`
+- log level defaults to `logLevel.debug`
 
 ### Log Level
 
@@ -70,7 +85,7 @@ log.planck('msg')
 
 When sending logs to console, they are mapped to `info`, `warn`, `error`, and `debug` based on severity.
 
-You can also add your own levels:
+You can also add your own custom levels:
 
 ```ts
 import { config, getLogger, logLevel } from 'standard-log'
@@ -93,8 +108,7 @@ Besides printing the logs to console,
 you can use different reporters to save the logs in memory, file, service, or others.
 
 ```ts
-import { config, createConsoleLogReporter } from 'standard-log'
-import { createMemoryLogReporter } from 'standard-log-memory'
+import { config, createConsoleLogReporter, createMemoryLogReporter } from 'standard-log'
 
 config({
   reporters: [createConsoleLogReporter(), createMemoryLogReporter()]
@@ -113,10 +127,9 @@ createConsoleLogReporter({
 })
 ```
 
-Here are some reporters:
+Here are some additional reporters:
 
 - [`standard-log-color`](https://github.com/unional/standard-log/tree/master/packages/color)
-- [`standard-log-memory`](https://github.com/unional/standard-log/tree/master/packages/memory)
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
 

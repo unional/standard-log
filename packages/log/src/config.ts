@@ -4,6 +4,7 @@ import { ProhibitedDuringProduction } from './errors';
 import { getDefaultReporter } from './getDefaultReporter';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
+import { getLogLevelByMode } from './getLogLevelByMode';
 
 export type ConfigOptions = {
   mode: LogMode,
@@ -13,18 +14,14 @@ export type ConfigOptions = {
 }
 
 export function config(options: Partial<ConfigOptions>) {
-  const s = store.value
-
-  if (Object.isFrozen(s) && s.mode === 'prod') {
+  if (store.value.configured && store.value.mode === 'production') {
     throw new ProhibitedDuringProduction('config')
   }
 
-  if (options.mode) s.mode = options.mode
+  if (options.mode) store.value.mode = options.mode
 
-
-  if (s.mode !== 'prod') console.warn(`standard-log is configured in '${s.mode}' mode. Remember to configure it as 'prod' in production.`)
-
-  if (options.logLevel !== undefined) s.logLevel = options.logLevel
+  store.value.logLevel = options.logLevel !== undefined ?
+    options.logLevel : getLogLevelByMode(store.value.mode)
 
   if (options.customLevels) {
     const customLevels = options.customLevels
@@ -33,8 +30,13 @@ export function config(options: Partial<ConfigOptions>) {
     })
   }
 
-  s.reporters = options.reporters || [getDefaultReporter()]
-  s.configured = true
+  store.value.reporters = options.reporters || [getDefaultReporter()]
+  store.value.configured = true
 
-  if (s.mode === 'prod') store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
+  if (store.value.mode === 'production') {
+    store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
+  }
+  else if (store.value.mode === 'development') {
+    console.warn(`standard-log is configured in 'development' mode. Configuration is not protected.`)
+  }
 }
