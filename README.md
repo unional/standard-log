@@ -15,118 +15,12 @@
 
 This is the repository for [`standard-log`](https://github.com/unional/standard-log)
 
-`standard-log` is a flexible logging library allows you to handle log in any possible ways.
+`standard-log` is a powerful and extensible logging library.
 
-## Usage
+## Links
 
-To use `standard-log`, simply create your logger and log away:
-```ts
-import { getLogger } from 'standard-log'
-
-const log = getLogger('my-app')
-
-log.debug('debug')
-log.info('info')
-log.warn('warn')
-log.error('error')
-```
-
-### Mode
-
-By default, `standard-log` runs in production mode.
-You can change it programmatically:
-
-```ts
-import { config } from 'standard-log'
-
-config({ mode: 'prod' }) // or 'devel', 'test'
-```
-
-or by setting the environment variable `STANDARD_LOG`.
-
-Production mode:
-- log level defaults to `warn`
-- `config()` can only be called once
-- reporters receives the log entry after current operation (i.e. in `setImmediate()`)
-
-Development mode:
-- log level defaults to `debug`
-- calling `config()` multiple times will emit a warning
-- reporters receives the log entry after current operation (i.e. in `setImmediate()`)
-
-Test mode:
-- log level defaults to `debug`
-- reporters receives the log entry immediately.
-
-### Log Level
-
-`standard-log` comes with many log levels out of the box:
-
-```ts
-import { getLogger } from 'standard-log'
-
-const log = getLogger('x')
-log.emergency('msg')
-log.alert('msg')
-log.critical('msg')
-log.error('msg')
-log.warn('msg')
-log.notice('msg')
-log.info('msg')
-log.debug('msg')
-log.trace('msg')
-log.planck('msg')
-```
-
-When sending logs to console, they are mapped to `info`, `warn`, `error`, and `debug` based on severity.
-
-You can also add your own levels:
-
-```ts
-import { config, getLogger, logLevel } from 'standard-log'
-
-config({
-  customLevels: {
-    'important': logLevel.warn + 1,
-    'silly': logLevel.debug + 1
-  }
-})
-
-const log = getLogger<'silly' | 'important'>('custom')
-log.important('this is an important message')
-log.silly('oh silly')
-```
-
-### Reporters
-
-Besides printing the logs to console,
-you can use different reporters to save the logs in memory, file, service, or others.
-
-```ts
-import { config, createConsoleLogReporter, createMemoryLogReporter } from 'standard-log'
-
-config({
-  reporters: [createConsoleLogReporter(), createMemoryLogReporter()]
-})
-```
-
-Some reporters allows you to format the logs and/or filter them.
-Using the console log reporter as an example:
-
-```ts
-import { createConsoleLogReporter } from 'standard-log'
-
-createConsoleLogReporter({
-  formatter: (entry) => [...],
-  filter: (entry) => entry.args.every(arg => arg !== 'secret')
-})
-```
-
-Here are some reporters:
-
-- [`standard-log-color`](https://github.com/unional/standard-log/tree/master/packages/color)
-- `standard-log-file` (TODO)
-- `standard-log-syslog` (TODO)
+- [`standard-log` documentation](packages/log/README.md)
+- [`standard-log-color` documentation](packages/color/README.md)
 
 [circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
