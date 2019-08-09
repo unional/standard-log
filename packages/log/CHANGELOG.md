@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](https://github.com/unional/standard-log/compare/standard-log@3.0.0...standard-log@3.1.0) (2019-08-09)
+
+
+### Features
+
+* **log:** remove setimmediate to reduce size ([9f54f58](https://github.com/unional/standard-log/commit/9f54f58))
+
+
+
+
+
 # [3.0.0](https://github.com/unional/standard-log/compare/standard-log@2.1.0...standard-log@3.0.0) (2019-08-09)
 
 
