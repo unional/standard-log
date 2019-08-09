@@ -7,7 +7,7 @@ beforeEach(() => store.reset())
 afterEach(() => store.reset())
 
 test('in production mode by default', () => {
-  expect(store.value.mode).toBe('prod')
+  expect(store.value.mode).toBe('production')
 })
 
 test('configure default logLevel', () => {
@@ -19,8 +19,8 @@ test('configure default logLevel', () => {
 })
 
 test('calling config twice throws ProhibitedDuringProduction in production mode', () => {
-  config({ mode: 'prod' })
-  a.throws(() => config({ mode: 'devel' }), ProhibitedDuringProduction)
+  config({ mode: 'production' })
+  a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
 })
 
 test('add custom levels', () => {
@@ -47,9 +47,9 @@ test('configure as devel will emit warning', () => {
   const warn = console.warn
   let actual: string
   console.warn = message => actual = message
-  config({ mode: 'devel' })
+  config({ mode: 'development' })
 
-  expect(actual!).toBe("standard-log is configured in 'devel' mode. Remember to configure it as 'prod' in production.")
+  expect(actual!).toBe(`standard-log is configured in 'development' mode. Configuration is not protected.`)
 
   console.warn = warn
 })

@@ -8,9 +8,9 @@ test('invalid value throws', () => {
 })
 
 test('valid values', () => {
-  process.env.STANDARD_LOG = 'prod'
-  expect(getLogModeFromEnvironment()).toBe('prod')
+  process.env.STANDARD_LOG = 'production'
+  expect(getLogModeFromEnvironment()).toBe('production')
 
-  process.env.STANDARD_LOG = 'devel'
-  expect(getLogModeFromEnvironment()).toBe('devel')
+  process.env.STANDARD_LOG = 'development'
+  expect(getLogModeFromEnvironment()).toBe('development')
 })

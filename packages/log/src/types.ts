@@ -1,5 +1,5 @@
 
-export type LogMode = 'devel' | 'prod' | 'test'
+export type LogMode = 'development' | 'production' | 'test'
 
 export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'warn' | 'notice' | 'info' | 'debug' | 'trace' | 'planck'
 export type LogMethod = (...args: any[]) => void
