@@ -3,7 +3,10 @@ workflows:
   version: 2
   all:
     jobs:
-      - node-latest
+      - node-latest:
+          filters:
+            tags:
+              ignore: /.*/
       - node11:
           requires:
             - node-latest
