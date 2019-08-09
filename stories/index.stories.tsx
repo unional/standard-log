@@ -1,8 +1,7 @@
 import { storiesOf } from '@storybook/react';
 import { Console, Decode, Hook, Unhook } from 'console-feed';
 import React from 'react';
-import { config, getLogger } from 'standard-log';
-import { createConsoleLogReporter } from 'standard-log-console';
+import { config, createConsoleLogReporter, getLogger } from 'standard-log';
 
 storiesOf('Console', module)
   .add('hello world', () => {
