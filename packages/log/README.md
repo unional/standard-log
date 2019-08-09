@@ -37,6 +37,8 @@ log.error('error')
 
 ![](images/2019-08-08-23-40-05.png)
 
+(above is logged when `standard-log-color` is installed)
+
 ### Mode
 
 By default, `standard-log` runs in production mode.
@@ -50,18 +52,20 @@ config({ mode: 'production' }) // or 'development', 'test'
 
 or by setting the environment variable `STANDARD_LOG`.
 
-Production mode:
+`production` mode:
 - log level defaults to `logLevel.warn`.
 - `config()` can only be called once.
 - configuration is protected from tempering.
 - logs are performed out-of-band
 
-Development mode:
+`development` mode:
 - log level defaults to `logLevel.debug`.
-- a warning is emitted when calling `config()` or making log the first time.
+- a warning is emitted when calling `config()` or log for the first time.
+- logs are performed out-of-band
 
-Test mode:
+`test` mode:
 - log level defaults to `logLevel.debug`
+- logs are performed immediately
 
 ### Log Level
 

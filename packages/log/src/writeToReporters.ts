@@ -1,6 +1,6 @@
+import { config } from './config';
 import { store } from './store';
 import { LogEntry } from './types';
-import { getConfiguredStore } from './getConfiguredStore';
 
 export function writeToReporters(logEntry: LogEntry) {
   if (store.value.mode === 'test')
@@ -12,4 +12,11 @@ export function writeToReporters(logEntry: LogEntry) {
 // istanbul ignore next
 writeToReporters.fn = (logEntry: LogEntry) => {
   getConfiguredStore().value.reporters.forEach(r => r.write(logEntry!))
+}
+
+function getConfiguredStore() {
+  if (!store.value.configured) {
+    config()
+  }
+  return store
 }

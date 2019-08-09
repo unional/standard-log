@@ -50,8 +50,14 @@ export type LogReporter<T = any> = {
   /**
    * Specifies the formatter to be used by the reporter.
    * Using this you can customize how the reporter writes the log entry.
+   * This is readonly in production mode.
    */
-  formatter?: LogFormatter<T>
+  formatter: LogFormatter<T>
+  /**
+   * Specifies a filter to determine should the log be written.
+   * This is readonly in production mode.
+   */
+  filter: LogFilter
   write(entry: LogEntry): void
 }
 
