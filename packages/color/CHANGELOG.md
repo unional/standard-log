@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.1](https://github.com/unional/standard-log/compare/standard-log-color@1.5.0...standard-log-color@1.5.1) (2019-08-09)
+
+
+### Bug Fixes
+
+* **color:** don't need to define id ([8fd5915](https://github.com/unional/standard-log/commit/8fd5915))
+
+
+
+
+
 # [1.5.0](https://github.com/unional/standard-log/compare/standard-log-color@1.4.6...standard-log-color@1.5.0) (2019-08-08)
 
 

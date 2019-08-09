@@ -3,6 +3,34 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/unional/standard-log/compare/standard-log@2.1.0...standard-log@3.0.0) (2019-08-09)
+
+
+### Bug Fixes
+
+* **log:** add global-store as peerDeps ([c49da80](https://github.com/unional/standard-log/commit/c49da80))
+* **log:** set bundle target to es5 ([bab5359](https://github.com/unional/standard-log/commit/bab5359))
+
+
+### Features
+
+* add addLogReporter and co. back ([4f4df6f](https://github.com/unional/standard-log/commit/4f4df6f))
+* add formatter and filter for console and memory ([0bc4800](https://github.com/unional/standard-log/commit/0bc4800))
+* make configOptions optional ([88b8372](https://github.com/unional/standard-log/commit/88b8372))
+* rename modes ([0133d9f](https://github.com/unional/standard-log/commit/0133d9f))
+
+
+### BREAKING CHANGES
+
+* modes are renamed
+
+`prod` => `production`
+'devel` => `development`
+
+
+
+
+
 # [2.1.0](https://github.com/unional/standard-log/compare/standard-log@2.0.3...standard-log@2.1.0) (2019-08-08)
 
 
