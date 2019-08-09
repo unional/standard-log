@@ -2,9 +2,9 @@ import { forEachKey } from 'type-plus';
 import { addCustomLogLevel } from './customLogLevel';
 import { ProhibitedDuringProduction } from './errors';
 import { getDefaultReporter } from './getDefaultReporter';
+import { getLogLevelByMode } from './getLogLevelByMode';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
-import { getLogLevelByMode } from './getLogLevelByMode';
 
 export type ConfigOptions = {
   mode: LogMode,
@@ -13,7 +13,7 @@ export type ConfigOptions = {
   reporters: LogReporter[]
 }
 
-export function config(options: Partial<ConfigOptions>) {
+export function config(options: Partial<ConfigOptions> = {}) {
   if (store.value.configured && store.value.mode === 'production') {
     throw new ProhibitedDuringProduction('config')
   }
