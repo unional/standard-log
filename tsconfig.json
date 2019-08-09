@@ -21,6 +21,6 @@
     },
     {
       "path": "packages/syslog/tsconfig.libm.json"
-    },
+    }
   ]
 }
