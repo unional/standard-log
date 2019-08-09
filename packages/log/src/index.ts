@@ -1,5 +1,3 @@
-import 'setimmediate';
-
 export * from './config';
 export * from './console';
 export * from './customLogLevel';

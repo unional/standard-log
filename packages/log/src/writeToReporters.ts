@@ -6,7 +6,7 @@ export function writeToReporters(logEntry: LogEntry) {
   if (store.value.mode === 'test')
     writeToReporters.fn(logEntry)
   else
-    setImmediate(() => writeToReporters.fn(logEntry))
+    setTimeout(() => writeToReporters.fn(logEntry), 0)
 }
 
 // istanbul ignore next

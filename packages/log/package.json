@@ -51,7 +51,6 @@
     "is-node": "^1.0.2",
     "iso-error": "^2.2.0",
     "ms": "^2.1.2",
-    "setimmediate": "^1.0.5",
     "type-plus": "^1.26.2",
     "upper-case": "^1.1.3"
   },
