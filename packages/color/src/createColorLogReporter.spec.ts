@@ -1,5 +1,8 @@
-import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, LogFilter, logLevel, plainLogFormatter } from 'standard-log';
+import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, LogFilter, logLevel, plainLogFormatter, config } from 'standard-log';
 import { createAnsiFormatter, createColorLogReporter, createCssFormatter } from '.';
+beforeAll(() => {
+  config({ mode: 'test' })
+})
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
@@ -137,17 +140,6 @@ describe('formatter', () => {
     const id = 'id-only'
     const reporter = createColorLogReporter()
     reporter.formatter = idFormatter
-    const fakeConsole = reporter.console = createFakeConsole();
-
-    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-
-    expect(fakeConsole.errors).toEqual([['id-only']])
-  })
-
-  test('clearing formatter on report will fallback to original formatter', () => {
-    const id = 'id-only'
-    const reporter = createColorLogReporter({ formatter: idFormatter })
-    reporter.formatter = undefined
     const fakeConsole = reporter.console = createFakeConsole();
 
     reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })

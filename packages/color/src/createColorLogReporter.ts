@@ -5,7 +5,7 @@ import { createCssFormatter } from './css';
 import { isBrowser, supportColor } from './utils';
 
 export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
-  return createConsoleLogReporter(required({ id: 'console', formatter: getFormatter() }, options))
+  return createConsoleLogReporter(required({ formatter: getFormatter() }, options))
 }
 
 function getFormatter() {
