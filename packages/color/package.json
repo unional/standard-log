@@ -48,6 +48,6 @@
     "@types/semver": "^6.0.1"
   },
   "peerDependencies": {
-    "standard-log": "^2.0.0"
+    "standard-log": "^3.1.0"
   }
 }
