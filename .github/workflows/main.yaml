@@ -1,0 +1,22 @@
+name: build
+on: push
+jobs:
+  test:
+    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [8, 10, 12]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: nuxt/actions-yarn@node-${{ matrix.node_version }}
+    - name: npm install, build and test
+      run: |
+        yarn lint
+        yarn build
+        yarn dc
+        yarn coverage --reporters=default --maxWorkers=2
