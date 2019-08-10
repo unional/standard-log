@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.2](https://github.com/unional/standard-log/compare/standard-log@3.1.1...standard-log@3.1.2) (2019-08-10)
+
+
+### Bug Fixes
+
+* expose shouldLog again ([777d257](https://github.com/unional/standard-log/commit/777d257))
+
+
+
+
+
 ## [3.1.1](https://github.com/unional/standard-log/compare/standard-log@3.1.0...standard-log@3.1.1) (2019-08-10)
 
 
