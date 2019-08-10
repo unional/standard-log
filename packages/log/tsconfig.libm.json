@@ -6,6 +6,6 @@
     "target": "esnext"
   },
   "exclude": [
-    "src/*.spec.ts"
+    "src/**/*.spec.ts"
   ]
 }
