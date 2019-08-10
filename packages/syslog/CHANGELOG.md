@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.8](https://github.com/unional/standard-log/compare/standard-log-syslog@1.4.7...standard-log-syslog@1.4.8) (2019-08-10)
+
+
+### Bug Fixes
+
+* remove spec files from package ([cae7eb7](https://github.com/unional/standard-log/commit/cae7eb7))
+
+
+
+
+
 ## [1.4.7](https://github.com/unional/standard-log/compare/standard-log-syslog@1.4.6...standard-log-syslog@1.4.7) (2019-08-09)
 
 **Note:** Version bump only for package standard-log-syslog

@@ -1,6 +1,6 @@
 {
   "name": "standard-log-syslog",
-  "version": "1.4.7",
+  "version": "1.4.8",
   "description": "syslog plugin for `standard-log`",
   "homepage": "https://github.com/unional/standard-log",
   "bugs": {
@@ -39,7 +39,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "standard-log": "^3.1.0"
+    "standard-log": "^3.1.1"
   },
   "peerDependencies": {
     "standard-log": "^2.0.0"

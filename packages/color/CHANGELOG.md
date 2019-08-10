@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.3](https://github.com/unional/standard-log/compare/standard-log-color@1.5.2...standard-log-color@1.5.3) (2019-08-10)
+
+
+### Bug Fixes
+
+* remove spec files from package ([cae7eb7](https://github.com/unional/standard-log/commit/cae7eb7))
+
+
+
+
+
 ## [1.5.2](https://github.com/unional/standard-log/compare/standard-log-color@1.5.1...standard-log-color@1.5.2) (2019-08-09)
 
 **Note:** Version bump only for package standard-log-color

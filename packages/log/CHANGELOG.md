@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](https://github.com/unional/standard-log/compare/standard-log@3.1.0...standard-log@3.1.1) (2019-08-10)
+
+
+### Bug Fixes
+
+* remove spec files from package ([cae7eb7](https://github.com/unional/standard-log/commit/cae7eb7))
+
+
+
+
+
 # [3.1.0](https://github.com/unional/standard-log/compare/standard-log@3.0.0...standard-log@3.1.0) (2019-08-09)
 
 
