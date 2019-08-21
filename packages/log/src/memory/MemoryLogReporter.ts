@@ -9,7 +9,9 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
 export type MemoryLogFormatter = LogFormatter<LogEntry>
 
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
-  let { id, formatter, filter } = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
+  const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
+  const { id } = opt
+  let { formatter, filter } = opt
   return {
     id,
     get formatter() {

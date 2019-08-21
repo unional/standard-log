@@ -22,10 +22,10 @@ export type Logger<T extends string = LogMethodNames> = {
   }
 
 export type LogEntry = {
-  id: string
-  level: number
+  id: string,
+  level: number,
   // args instead of messages because it is `any[]` instead of `string[]`
-  args: any[]
+  args: any[],
   timestamp: Date
 }
 
@@ -46,28 +46,28 @@ export type LogLevelEntry = { name: string, level: number }
 export type LogLevelListener = (logLevelEntry: LogLevelEntry) => void
 
 export type LogReporter<T = any> = {
-  id: string
+  id: string,
   /**
    * Specifies the formatter to be used by the reporter.
    * Using this you can customize how the reporter writes the log entry.
    * This is readonly in production mode.
    */
-  formatter: LogFormatter<T>
+  formatter: LogFormatter<T>,
   /**
    * Specifies a filter to determine should the log be written.
    * This is readonly in production mode.
    */
-  filter: LogFilter
+  filter: LogFilter,
   write(entry: LogEntry): void
 }
 
 export type LogReporterOptions<T = any> = {
-  id?: string
+  id?: string,
   /**
    * Specifies the formatter to be used by the reporter.
    * Using this you can customize how the reporter writes the log entry.
    */
-  formatter?: LogFormatter<T>
+  formatter?: LogFormatter<T>,
   /**
    * Specifies a filter to determine should the log be written.
    */

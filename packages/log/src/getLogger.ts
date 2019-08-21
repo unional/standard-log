@@ -16,7 +16,7 @@ export function getLogger<T extends string = LogMethodNames>(id: string, default
 }
 
 function validateId(id: string) {
-  if (/[`~!@#$%^&*()=+\[\]{}\\\/,|<>\?]/.test(id)) throw new InvalidId(id)
+  if (/[`~!@#$%^&*()=+[\]{}\\/,|<>?]/.test(id)) throw new InvalidId(id)
 }
 
 function createLogger<T extends string>(id: string, level?: number): Logger<T> {

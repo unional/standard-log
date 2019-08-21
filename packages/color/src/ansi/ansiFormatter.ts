@@ -6,7 +6,7 @@ import { wrapAnsi, wrapAnsiId } from './wrapAnsi';
 
 type Context = {
   colorMap: number[][],
-  idMap: Record<string, number[]>
+  idMap: Record<string, number[]>,
   counter: number
 }
 

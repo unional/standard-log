@@ -11,7 +11,9 @@ export type ConsoleLogFormatter = LogFormatter<any[]>
 export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): ConsoleLogReporter {
-  let { id, formatter, filter } = required({ id: 'console', formatter: plainLogFormatter }, options)
+  const opts = required({ id: 'console', formatter: plainLogFormatter }, options)
+  const { id } = opts
+  let { formatter, filter } = opts
   return {
     id,
     get formatter() {

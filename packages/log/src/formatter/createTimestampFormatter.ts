@@ -8,7 +8,7 @@ export function createTimestampFormatter(format: TimestampFormat) {
       return (_timestamp: Date) => undefined
     case 'iso':
       return (timestamp: Date) => timestamp.toISOString()
-    case 'elasped':
+    case 'elasped': {
       let lastTick: number | undefined = undefined
       return (timestamp: Date) => {
         const newTick = timestamp.getTime()
@@ -16,5 +16,6 @@ export function createTimestampFormatter(format: TimestampFormat) {
         lastTick = newTick
         return result
       }
+    }
   }
 }
