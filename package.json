@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006",
     "test": "jest",
     "test:watch": "jest --watch",
-    "verify": "yarn lint && yarn build && yarn dc && yarn coverage && yarn bundle",
+    "verify": "yarn lint && yarn build && yarn depcheck && yarn coverage && yarn bundle",
     "watch": "yarn test:watch"
   },
   "husky": {
