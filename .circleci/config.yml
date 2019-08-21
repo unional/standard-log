@@ -55,7 +55,7 @@ jobs:
       - run: yarn commitlint-circle
       - run: yarn lint
       - run: yarn build
-      - run: yarn dc
+      - run: yarn depcheck
       - run: yarn coverage --maxWorkers=2
       - store_test_results:
           path: .reports/junit
