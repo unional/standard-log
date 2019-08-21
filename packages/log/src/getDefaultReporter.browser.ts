@@ -7,7 +7,7 @@ export function getDefaultReporter() {
   try {
     return StandardLogColor.createColorLogReporter()
   }
-  catch {
+  catch (e) {
     return createConsoleLogReporter()
   }
 }

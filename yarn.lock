@@ -5670,9 +5670,9 @@ escodegen@^1.9.1:
     source-map "~0.6.1"
 
 eslint-plugin-harmony@^2.0.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-harmony/-/eslint-plugin-harmony-2.1.1.tgz#dd324d547912acc39ce14f35aa75061e3140fb6e"
-  integrity sha512-xkQn5U4KUfuaVE0Oq8X/6oE29G0PwTpwvNNeSNZifpIcBs3zkH0IMnTM9pnSCHJ4CkNEsWyrUYR1KuABT4463g==
+  version "2.1.6"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-harmony/-/eslint-plugin-harmony-2.1.6.tgz#c7b726bce8daccba1b312939ae3e6bb8db8e905d"
+  integrity sha512-npOZXxlmRtZtfJ41Luc9T5e52KB1Qm6meOQcawm0KXypGCt1KLSjViy04n8crdBV0hygkHTp0Pt9lBxXUn2j7Q==
   dependencies:
     "@typescript-eslint/experimental-utils" "^2.0.0"
 

@@ -8,7 +8,7 @@ export function getDefaultReporter() {
     const colorModule = require('standard-log' + c)
     return colorModule.createColorLogReporter()
   }
-  catch {
+  catch (e) {
     // istanbul ignore next
     return createConsoleLogReporter()
   }
