@@ -1,5 +1,7 @@
 import { toSyslogKeyword, toSyslogSeverity } from '.';
 import { rangeEntries } from './test-util';
+import { logLevel } from 'standard-log';
+import { toSyslogLevel } from './syslog';
 
 describe('toSyslogSeverity()', () => {
   test.each([
@@ -30,3 +32,18 @@ describe('toSyslogKeyword()', () => {
     expect(toSyslogKeyword(level)).toBe(keyword)
   })
 })
+
+describe('toSyslogLevel()', () => {
+  test.each([
+    [logLevel.emergency, 0],
+    [logLevel.alert, 1],
+    [logLevel.critical, 2],
+    [logLevel.error, 3],
+    [logLevel.warn, 4],
+    [logLevel.notice, 5],
+    [logLevel.info, 6],
+    [logLevel.debug, 7]
+  ])(`convert %i to %i`, (level: number, syslogLevel: number) => {
+    expect(toSyslogLevel(level)).toBe(syslogLevel)
+  })
+});

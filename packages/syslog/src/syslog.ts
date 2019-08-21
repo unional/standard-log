@@ -1,5 +1,3 @@
-// TODO: this should go to Syslog Reporter package
-
 /**
  * Convert log level to syslog severity
  * @see <https://en.wikipedia.org/wiki/Syslog>
@@ -50,4 +48,11 @@ export function toSyslogKeyword(level: number) {
     default:
       return 'debug'
   }
+}
+
+/**
+ * Convert log level to syslog level.
+ */
+export function toSyslogLevel(level: number) {
+  return Math.floor((Math.min(800, level) - 1) / 100)
 }
