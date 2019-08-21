@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/unional/standard-log/compare/standard-log-syslog@1.4.9...standard-log-syslog@1.5.0) (2019-08-21)
+
+
+### Features
+
+* **syslog:** add createSyslogFormatter ([bd45709](https://github.com/unional/standard-log/commit/bd45709))
+
+
+
+
+
 ## [1.4.9](https://github.com/unional/standard-log/compare/standard-log-syslog@1.4.8...standard-log-syslog@1.4.9) (2019-08-10)
 
 **Note:** Version bump only for package standard-log-syslog
