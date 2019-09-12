@@ -47,7 +47,7 @@
   "dependencies": {
     "global-store": "^1.0.0-beta.14",
     "is-node": "^1.0.2",
-    "iso-error": "^2.2.0",
+    "iso-error": "^3.0.0",
     "ms": "^2.1.2",
     "type-plus": "^1.26.2",
     "upper-case": "^1.1.3"
