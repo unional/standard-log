@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](https://github.com/unional/standard-log/compare/standard-log@3.2.0...standard-log@3.2.1) (2019-10-24)
+
+
+### Bug Fixes
+
+* add hasConsoleReporter() ([f696878](https://github.com/unional/standard-log/commit/f696878))
+
+
+
+
+
 # [3.2.0](https://github.com/unional/standard-log/compare/standard-log@3.1.3...standard-log@3.2.0) (2019-10-24)
 
 
