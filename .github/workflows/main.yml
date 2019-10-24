@@ -19,6 +19,8 @@ jobs:
     - run: yarn depcheck
     - run: yarn coverage --maxWorkers=2
     - run: yarn codecov
+    - run: echo release
+      if: github.event_name == 'push'
   node-others:
     runs-on: ubuntu-latest
     strategy:
@@ -33,5 +35,3 @@ jobs:
     - run: yarn
     - run: yarn build
     - run: yarn coverage --maxWorkers=2
-    - run: echo release
-      if: github.event == 'push'
