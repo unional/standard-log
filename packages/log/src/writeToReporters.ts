@@ -3,10 +3,12 @@ import { store } from './store';
 import { LogEntry } from './types';
 
 export function writeToReporters(logEntry: LogEntry) {
-  if (store.value.mode === 'test')
-    writeToReporters.fn(logEntry)
-  else
-    setTimeout(() => writeToReporters.fn(logEntry), 0)
+  if (store.value.mode === 'test') writeToReporters.fn(logEntry)
+  else {
+    // istanbul ignore next
+    if (setImmediate) setImmediate(() => writeToReporters.fn(logEntry))
+    else setTimeout(() => writeToReporters.fn(logEntry), 0)
+  }
 }
 
 // istanbul ignore next
@@ -15,8 +17,6 @@ writeToReporters.fn = (logEntry: LogEntry) => {
 }
 
 function getConfiguredStore() {
-  if (!store.value.configured) {
-    config()
-  }
+  if (!store.value.configured) config()
   return store
 }
