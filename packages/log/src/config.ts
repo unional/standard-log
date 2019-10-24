@@ -36,10 +36,14 @@ export function config(options: Partial<ConfigOptions> = {}) {
 
   if (store.value.mode === 'production') {
     store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
-    // eslint-disable-next-line no-console
-    console.debug(`'standard-log' is running in 'production' mode with log level '${toLogLevelName(store.value.logLevel)}'`)
+    console.info(`'standard-log' is running in 'production' mode with log level '${toLogLevelName(store.value.logLevel)}'`)
   }
   else if (store.value.mode === 'development') {
     console.warn(`'standard-log' is configured in 'development' mode. Configuration is not protected.`)
   }
 }
+
+/**
+ * Gets if the config has already been locked
+ */
+config.isLocked = () => store.value.configured
