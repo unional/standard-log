@@ -55,7 +55,7 @@ test('configure as devel will emit warning', () => {
 })
 
 test('config.configured', () => {
-  expect(config.isLocked()).toBeFalsy()
+  expect(config.isLocked).toBeFalsy()
   config({ mode: 'test' })
-  expect(config.isLocked()).toBe(true)
+  expect(config.isLocked).toBe(true)
 })
