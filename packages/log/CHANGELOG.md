@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](https://github.com/unional/standard-log/compare/standard-log@3.3.0...standard-log@3.4.0) (2019-10-24)
+
+
+### Bug Fixes
+
+* change isLocked() to getter ([3e24898](https://github.com/unional/standard-log/commit/3e24898))
+
+
+### Features
+
+* add config.isLocked() ([c9f7a90](https://github.com/unional/standard-log/commit/c9f7a90))
+
+
+
+
+
 # [3.3.0](https://github.com/unional/standard-log/compare/standard-log@3.2.2...standard-log@3.3.0) (2019-10-24)
 
 
