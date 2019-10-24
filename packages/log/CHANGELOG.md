@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/unional/standard-log/compare/standard-log@3.2.2...standard-log@3.3.0) (2019-10-24)
+
+
+### Features
+
+* add logLevels ([2fdba1a](https://github.com/unional/standard-log/commit/2fdba1a))
+
+
+
+
+
 ## [3.2.2](https://github.com/unional/standard-log/compare/standard-log@3.2.1...standard-log@3.2.2) (2019-10-24)
 
 
