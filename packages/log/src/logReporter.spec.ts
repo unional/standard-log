@@ -4,6 +4,7 @@ import { store } from './store';
 import { createConsoleLogReporter } from './console';
 import { LogFilter } from './types';
 import { logLevel } from './logLevel';
+import { hasConsoleReporter } from './logReporter';
 
 beforeEach(() => {
   store.reset()
@@ -71,5 +72,17 @@ describe('clearLogReporters()', () => {
     clearLogReporters()
 
     expect(store.value.reporters.length).toBe(0)
+  })
+})
+
+describe('hasConsoleReporter()', () => {
+  test('returns true if there is a console reporter', () => {
+    expect(hasConsoleReporter()).toBeTruthy()
+  })
+  test('returns false if there is no console reporter', () => {
+    clearLogReporters()
+    expect(hasConsoleReporter()).toBeFalsy()
+    addLogReporter(createMemoryLogReporter())
+    expect(hasConsoleReporter()).toBeFalsy()
   })
 })
