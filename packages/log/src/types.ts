@@ -58,6 +58,15 @@ export type LogReporter<T = any> = {
    * This is readonly in production mode.
    */
   filter: LogFilter,
+  /**
+   * Indicate if this is a console reporter.
+   * There is only one console reporter can be present in the system.
+   * If a new console reporter is added,
+   * it will be used in place of the existing one.
+   * However, existing filter will be carried over to ensure logs should not be shown remain not shown.
+   * If the new reporter also contains a filter, they will be combined.
+   */
+  isConsoleReporter?: boolean,
   write(entry: LogEntry): void
 }
 

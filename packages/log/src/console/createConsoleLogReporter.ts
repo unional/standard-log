@@ -16,6 +16,7 @@ export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): C
   let { formatter, filter } = opts
   return {
     id,
+    isConsoleReporter: true,
     get formatter() {
       return formatter
     },
