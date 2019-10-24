@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.2](https://github.com/unional/standard-log/compare/standard-log@3.2.1...standard-log@3.2.2) (2019-10-24)
+
+
+### Bug Fixes
+
+* use setImmediate over setTimeout when available ([63b0795](https://github.com/unional/standard-log/commit/63b0795))
+
+
+
+
+
 ## [3.2.1](https://github.com/unional/standard-log/compare/standard-log@3.2.0...standard-log@3.2.1) (2019-10-24)
 
 
