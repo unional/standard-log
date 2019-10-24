@@ -1,6 +1,6 @@
 import t from 'assert';
 import { forEachKey } from 'type-plus';
-import { addCustomLogLevel, clearCustomLogLevel, getAllLogLevels, getLogger, getLogLevel, logLevel, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
+import { addCustomLogLevel, clearCustomLogLevel, getAllLogLevels, getLogger, getLogLevel, logLevels, setLogLevel, setLogLevels, toLogLevel, toLogLevelName } from '.';
 import { store } from './store';
 import { captureWrittenLog, rangeEntries } from './testUtil';
 
@@ -23,14 +23,14 @@ describe('capture write to reporters', () => {
   let capture: ReturnType<typeof captureWrittenLog>
   beforeEach(() => {
     store.value.mode = 'test'
-    store.value.logLevel = logLevel.error
+    store.value.logLevel = logLevels.error
     capture = captureWrittenLog()
   })
   afterEach(() => {
     capture.reset()
   })
   test('no matched logger do no harm', async () => {
-    setLogLevels(/x/, logLevel.debug)
+    setLogLevels(/x/, logLevels.debug)
     const log = getLogger('filter1')
     log.debug('abc')
 
@@ -38,10 +38,10 @@ describe('capture write to reporters', () => {
   })
   describe('setLogLevels()', () => {
     beforeEach(() => {
-      setLogLevel(logLevel.none)
+      setLogLevel(logLevels.none)
     })
     test('only filtered log are affected', async () => {
-      const logs = setLogLevels(/filter1/, logLevel.debug)
+      const logs = setLogLevels(/filter1/, logLevels.debug)
       t.deepStrictEqual(logs.map(l => l.id), [
         'filter1',
         'filter10',
@@ -68,8 +68,8 @@ describe('capture write to reporters', () => {
 describe('getLogLevel', () => {
   test('default to debug in test mode', () => {
     store.value.mode = 'test'
-    store.value.logLevel = logLevel.debug
-    expect(getLogLevel()).toBe(logLevel.debug)
+    store.value.logLevel = logLevels.debug
+    expect(getLogLevel()).toBe(logLevels.debug)
   })
 })
 
@@ -124,20 +124,20 @@ describe('toLogLevel()', () => {
 describe('getAllLogLevels', () => {
   test('get all default log levels except none and all', () => {
     const actual = getAllLogLevels()
-    forEachKey(logLevel, name => {
+    forEachKey(logLevels, name => {
       if (name === 'none' || name === 'all') {
         expect(actual.find(x => x.name === name)).toBeUndefined()
       }
       else {
-        expect(actual.find(x => x.name === name)).toEqual({ name, level: logLevel[name] })
+        expect(actual.find(x => x.name === name)).toEqual({ name, level: logLevels[name] })
       }
     })
   })
   test('include custom level (even if they have the same level value as one of the default level)', () => {
     addCustomLogLevel('info_a', 301)
-    addCustomLogLevel('info_b', logLevel.info)
+    addCustomLogLevel('info_b', logLevels.info)
     const actual = getAllLogLevels()
     expect(actual.find(x => x.name === 'info_a')).toEqual({ name: 'info_a', level: 301 })
-    expect(actual.find(x => x.name === 'info_b')).toEqual({ name: 'info_b', level: logLevel.info })
+    expect(actual.find(x => x.name === 'info_b')).toEqual({ name: 'info_b', level: logLevels.info })
   })
 })

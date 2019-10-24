@@ -3,7 +3,7 @@ import { addLogReporter, clearLogReporters, config, createMemoryLogReporter, get
 import { store } from './store';
 import { createConsoleLogReporter } from './console';
 import { LogFilter } from './types';
-import { logLevel } from './logLevel';
+import { logLevels } from './logLevel';
 import { hasConsoleReporter } from './logReporter';
 
 beforeEach(() => {
@@ -35,7 +35,7 @@ describe('addLogReporter()', () => {
     })
 
     test('will carry over existing filter', () => {
-      const filter: LogFilter = entry => entry.level < logLevel.alert
+      const filter: LogFilter = entry => entry.level < logLevels.alert
       addLogReporter(createConsoleLogReporter({ id: 'c2', filter }))
       addLogReporter(createConsoleLogReporter({ id: 'c3' }))
       const c3 = getLogReporter('c3')!
@@ -43,11 +43,11 @@ describe('addLogReporter()', () => {
     })
 
     test('will combine existing filter and new filter', () => {
-      addLogReporter(createConsoleLogReporter({ id: 'c2', filter: entry => entry.level > logLevel.critical }))
-      addLogReporter(createConsoleLogReporter({ id: 'c3', filter: entry => entry.level < logLevel.error }))
+      addLogReporter(createConsoleLogReporter({ id: 'c2', filter: entry => entry.level > logLevels.critical }))
+      addLogReporter(createConsoleLogReporter({ id: 'c3', filter: entry => entry.level < logLevels.error }))
       const c3 = getLogReporter('c3')!
-      expect(c3.filter({ level: logLevel.info } as any)).toBe(false)
-      expect(c3.filter({ level: logLevel.alert } as any)).toBe(false)
+      expect(c3.filter({ level: logLevels.info } as any)).toBe(false)
+      expect(c3.filter({ level: logLevels.alert } as any)).toBe(false)
     })
   })
 })
