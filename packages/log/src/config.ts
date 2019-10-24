@@ -14,7 +14,7 @@ export type ConfigOptions = {
   reporters: LogReporter[]
 }
 
-export function config(options: Partial<ConfigOptions> = {}) {
+export const config: { (options?: Partial<ConfigOptions>): void, readonly isLocked: boolean } = function config(options: Partial<ConfigOptions> = {}) {
   if (store.value.configured && store.value.mode === 'production') {
     throw new ProhibitedDuringProduction('config')
   }
@@ -41,9 +41,13 @@ export function config(options: Partial<ConfigOptions> = {}) {
   else if (store.value.mode === 'development') {
     console.warn(`'standard-log' is configured in 'development' mode. Configuration is not protected.`)
   }
-}
+} as any
 
-/**
- * Gets if the config has already been locked
- */
-config.isLocked = () => store.value.configured
+Object.defineProperty(config, 'isLocked', {
+  /**
+   * Gets if the config has already been locked
+   */
+  get() {
+    return store.value.configured
+  }
+})
