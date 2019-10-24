@@ -1,5 +1,5 @@
 import { InvalidId } from './errors';
-import { logLevel } from './logLevel';
+import { logLevels } from './logLevel';
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
@@ -32,7 +32,7 @@ function createLogger<T extends string>(id: string, level?: number): Logger<T> {
 
   let counter = 0;
   logger.count = (...args: any[]) => {
-    const level = logLevel.debug
+    const level = logLevels.debug
     if (shouldLog(level, logger.level))
       writeToReporters({
         id,

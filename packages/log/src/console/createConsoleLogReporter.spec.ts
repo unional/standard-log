@@ -1,5 +1,5 @@
 import a from 'assertron';
-import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, createConsoleLogReporter, LogFilter, logLevel, plainLogFormatter } from '..';
+import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, createConsoleLogReporter, LogFilter, logLevels, plainLogFormatter } from '..';
 import { config } from '../config';
 import { ProhibitedDuringProduction } from '../errors';
 import { store } from '../store';
@@ -13,7 +13,7 @@ describe('rendering tests', () => {
   test('plain rendering', () => {
     const reporter = createConsoleLogReporter({ formatter: plainLogFormatter });
     ['emergency', 'info', 'warn', 'debug'].forEach(level => {
-      reporter.write({ id: 'plain', level: (logLevel as any)[level], args: ['hello', 'world'], timestamp: new Date() })
+      reporter.write({ id: 'plain', level: (logLevels as any)[level], args: ['hello', 'world'], timestamp: new Date() })
     })
   })
 })
@@ -35,10 +35,10 @@ describe('log level', () => {
     const reporter = createConsoleLogReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.critical, args: ['critical'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.alert, args: ['alert'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.error, args: ['error'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.critical, args: ['critical'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.alert, args: ['alert'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.error, args: ['error'], timestamp: new Date() })
 
     expect(fakeConsole.errors.length).toBe(4)
   })
@@ -49,7 +49,7 @@ describe('log level', () => {
 
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id, level: logLevel.warn, args: ['warn'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.warn, args: ['warn'], timestamp: new Date() })
 
     expect(fakeConsole.warns.length).toBe(1)
   })
@@ -60,8 +60,8 @@ describe('log level', () => {
 
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id, level: logLevel.notice, args: ['notice'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.info, args: ['info'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.notice, args: ['notice'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.info, args: ['info'], timestamp: new Date() })
 
     expect(fakeConsole.infos.length).toBe(2)
   })
@@ -72,9 +72,9 @@ describe('log level', () => {
     const reporter = createConsoleLogReporter()
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id, level: logLevel.debug, args: ['debug'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.trace, args: ['trace'], timestamp: new Date() })
-    reporter.write({ id, level: logLevel.planck, args: ['planck'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.debug, args: ['debug'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.trace, args: ['trace'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.planck, args: ['planck'], timestamp: new Date() })
 
     expect(fakeConsole.debugs.length).toBe(3)
   })
@@ -113,7 +113,7 @@ describe('formatter', () => {
     const reporter = createConsoleLogReporter({ formatter: idFormatter })
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id, level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
+    reporter.write({ id, level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })
 
     expect(fakeConsole.errors).toEqual([['id-only']])
   })
@@ -138,8 +138,8 @@ describe('filter', () => {
     const reporter = createConsoleLogReporter({ formatter: idFormatter, filter })
     const fakeConsole = reporter.console = createFakeConsole();
 
-    reporter.write({ id: 'normal', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
-    reporter.write({ id: 'secret', level: logLevel.emergency, args: ['emergency'], timestamp: new Date() })
+    reporter.write({ id: 'normal', level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })
+    reporter.write({ id: 'secret', level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })
 
     expect(fakeConsole.errors).toEqual([['normal']])
   })
@@ -163,7 +163,7 @@ test('write log entry with multiple arguments', () => {
   const reporter = createConsoleLogReporter({ formatter: plainLogFormatter })
   const fakeConsole = reporter.console = createFakeConsole();
 
-  const entry = { id, level: logLevel.info, args: ['a', 'b', 'c'], timestamp: new Date() }
+  const entry = { id, level: logLevels.info, args: ['a', 'b', 'c'], timestamp: new Date() }
 
   reporter.write(entry)
 

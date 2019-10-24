@@ -1,6 +1,6 @@
-import { logLevel } from './logLevel';
+import { logLevels } from './logLevel';
 import { LogMode } from './types';
 
 export function getLogLevelByMode(mode: LogMode) {
-  return mode === 'production' ? logLevel.warn : logLevel.debug
+  return mode === 'production' ? logLevels.warn : logLevels.debug
 }

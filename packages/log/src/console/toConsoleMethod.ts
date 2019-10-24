@@ -1,4 +1,4 @@
-import { logLevel } from '../logLevel';
+import { logLevels } from '../logLevel';
 
 export function toConsoleMethod(level: number) {
   switch (true) {
@@ -6,11 +6,11 @@ export function toConsoleMethod(level: number) {
     case (level === 0):
       // edge case in case none is somehow written
       return 'debug'
-    case (level <= logLevel.error):
+    case (level <= logLevels.error):
       return 'error'
-    case (level <= logLevel.warn):
+    case (level <= logLevels.warn):
       return 'warn'
-    case (level <= logLevel.info):
+    case (level <= logLevels.info):
       return 'info'
     default:
       return 'debug'

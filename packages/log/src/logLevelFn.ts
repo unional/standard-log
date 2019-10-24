@@ -1,7 +1,7 @@
 import { reduceKey } from 'type-plus';
 import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
 import { getLoggers } from './getLoggers';
-import { logLevel } from './logLevel';
+import { logLevels } from './logLevel';
 import { store } from './store';
 import { Logger } from './types';
 
@@ -33,7 +33,7 @@ export function setLogLevels(filter: RegExp, level: number): Logger<any>[] {
 }
 
 export function toLogLevel(name: string): number | undefined {
-  return getCustomLevel(name) || (logLevel as any)[name]
+  return getCustomLevel(name) || (logLevels as any)[name]
 }
 
 export function toLogLevelName(level: number) {
@@ -64,8 +64,8 @@ export function toLogLevelName(level: number) {
 }
 
 export function getAllLogLevels() {
-  return reduceKey(logLevel, (result, name) => {
-    if (name !== 'none' && name !== 'all') result.push({ name, level: logLevel[name] })
+  return reduceKey(logLevels, (result, name) => {
+    if (name !== 'none' && name !== 'all') result.push({ name, level: logLevels[name] })
 
     return result
   }, getCustomLevels())

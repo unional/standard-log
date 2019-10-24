@@ -5,6 +5,7 @@ import { getDefaultReporter } from './getDefaultReporter';
 import { getLogLevelByMode } from './getLogLevelByMode';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
+import { toLogLevelName } from './logLevelFn';
 
 export type ConfigOptions = {
   mode: LogMode,
@@ -35,8 +36,10 @@ export function config(options: Partial<ConfigOptions> = {}) {
 
   if (store.value.mode === 'production') {
     store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
+    // eslint-disable-next-line no-console
+    console.debug(`'standard-log' is running in 'production' mode with log level '${toLogLevelName(store.value.logLevel)}'`)
   }
   else if (store.value.mode === 'development') {
-    console.warn(`standard-log is configured in 'development' mode. Configuration is not protected.`)
+    console.warn(`'standard-log' is configured in 'development' mode. Configuration is not protected.`)
   }
 }
