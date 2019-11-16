@@ -1,6 +1,8 @@
 import a from 'assertron';
 import delay from 'delay';
 import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevels, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
+import { config } from './config';
+import { createMemoryLogReporter, MemoryLogReporter } from './memory';
 import { store } from './store';
 import { captureWrittenLog } from './testUtil';
 
@@ -28,7 +30,7 @@ test('get logger with same name gets the same instance', () => {
 })
 
 test('can specify local log level', () => {
-  const log = getLogger('local', logLevels.trace)
+  const log = getLogger('local', { level: logLevels.trace })
   expect(log.level).toBe(logLevels.trace)
 })
 
@@ -363,7 +365,6 @@ test('on() can take log level name in first argument', () => {
   log.on('debug', () => { return })
 })
 
-
 test('auto configure', async () => {
   expect(store.value.configured).toBeFalsy()
   const log = getLogger('auto config')
@@ -372,4 +373,45 @@ test('auto configure', async () => {
 
   await delay(10)
   expect(store.value.configured).toBeTruthy()
+})
+
+describe('writeTo', () => {
+  let memReporter: MemoryLogReporter
+  let specialReporter: MemoryLogReporter
+  beforeEach(() => {
+    memReporter = createMemoryLogReporter()
+    specialReporter = createMemoryLogReporter({ id: 'special' })
+    config({ mode: 'test', reporters: [memReporter, specialReporter] })
+  })
+  test('specific reporter with string', () => {
+    const log = getLogger('writeTo-string', { writeTo: 'special' })
+    log.error('error message')
+
+    expect(memReporter.logs.length).toEqual(0)
+    expect(specialReporter.logs.length).toEqual(1)
+  })
+
+  test('specific reporter with regex', () => {
+    const log = getLogger('writeTo-regex', { writeTo: /^spec/ })
+    log.error('error message')
+
+    expect(memReporter.logs.length).toEqual(0)
+    expect(specialReporter.logs.length).toEqual(1)
+  })
+
+  test('specific reporter with RegExp', () => {
+    const log = getLogger('writeTo-RegExp', { writeTo: new RegExp('^spec') })
+    log.error('error message')
+
+    expect(memReporter.logs.length).toEqual(0)
+    expect(specialReporter.logs.length).toEqual(1)
+  })
+
+  test('specific reporter with function', () => {
+    const log = getLogger('writeTo-fn', { writeTo: id => id === 'special' })
+    log.error('error message')
+
+    expect(memReporter.logs.length).toEqual(0)
+    expect(specialReporter.logs.length).toEqual(1)
+  })
 })

@@ -29,6 +29,8 @@ export type LogEntry = {
   timestamp: Date
 }
 
+export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
+
 /**
  * Formats a log entry.
  * Depends on the reporter, it can expect a different return type.

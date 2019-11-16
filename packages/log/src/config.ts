@@ -3,9 +3,9 @@ import { addCustomLogLevel } from './customLogLevel';
 import { ProhibitedDuringProduction } from './errors';
 import { getDefaultReporter } from './getDefaultReporter';
 import { getLogLevelByMode } from './getLogLevelByMode';
+import { toLogLevelName } from './logLevelFn';
 import { store } from './store';
 import { LogMode, LogReporter } from './types';
-import { toLogLevelName } from './logLevelFn';
 
 export type ConfigOptions = {
   mode: LogMode,
