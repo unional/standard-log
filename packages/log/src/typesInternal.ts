@@ -3,10 +3,15 @@ import { Logger, LogLevel, LogLevelListener, LogMode, LogReporter } from './type
 export type LogStore = {
   mode: LogMode,
   logLevel: LogLevel,
-  loggers: Record<string, Logger<any>>,
+  loggerClosures: Record<string, LoggerClosure<any>>,
   reporters: LogReporter[],
   customLevels: Record<string, number>,
   customLevelsReverse: string[],
   addCustomLogLevelListeners: LogLevelListener[],
   configured: boolean
+}
+
+export type LoggerClosure<T extends string> = {
+  addMethod(name: string, level: number): void,
+  logger: Logger<T>
 }

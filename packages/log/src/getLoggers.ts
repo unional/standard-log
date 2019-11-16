@@ -7,6 +7,6 @@ import { Logger } from './types';
  * @param filter RegExp to look for loggers
  */
 export function getLoggers(filter: RegExp): Logger<any>[] {
-  const { loggers } = store.value
-  return filterKey(loggers, id => filter.test(id)).map(k => loggers[k])
+  const { loggerClosures } = store.value
+  return filterKey(loggerClosures, id => filter.test(id)).map(k => loggerClosures[k].logger)
 }

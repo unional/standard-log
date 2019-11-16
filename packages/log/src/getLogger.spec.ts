@@ -415,3 +415,14 @@ describe('writeTo', () => {
     expect(specialReporter.logs.length).toEqual(1)
   })
 })
+
+test('id is readonly', () => {
+  const log: any = getLogger('id is readonly')
+  a.throws(() => log.id = 'b')
+})
+
+test.each(['on', 'count', 'error', 'warn', 'info', 'debug'])('method %s is readonly', name => {
+  const log: any = getLogger(`${name} is readonly`)
+
+  a.throws(() => log[name] = true)
+})

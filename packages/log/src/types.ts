@@ -6,7 +6,7 @@ export type LogMethod = (...args: any[]) => void
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
 export type Logger<T extends string = LogMethodNames> = {
-  id: string,
+  readonly id: string,
   /**
    * Logger local log level.
    */
