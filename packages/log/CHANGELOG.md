@@ -3,6 +3,29 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/unional/standard-log/compare/standard-log@3.4.0...standard-log@4.0.0) (2019-11-16)
+
+
+### Bug Fixes
+
+* make logger id and methods readonly ([4171946](https://github.com/unional/standard-log/commit/4171946))
+
+
+### Features
+
+* **log:** add writeTo option ([d57ee46](https://github.com/unional/standard-log/commit/d57ee46))
+
+
+### BREAKING CHANGES
+
+* **log:** `getLogger()` signature changed
+
+`getLogger(id, level?)` is changed to `getLogger(id, options?)`.
+
+
+
+
+
 # [3.4.0](https://github.com/unional/standard-log/compare/standard-log@3.3.0...standard-log@3.4.0) (2019-10-24)
 
 

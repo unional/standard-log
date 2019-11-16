@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.12](https://github.com/unional/standard-log/compare/standard-log-color@1.5.11...standard-log-color@1.5.12) (2019-11-16)
+
+**Note:** Version bump only for package standard-log-color
+
+
+
+
+
 ## [1.5.11](https://github.com/unional/standard-log/compare/standard-log-color@1.5.10...standard-log-color@1.5.11) (2019-10-24)
 
 **Note:** Version bump only for package standard-log-color
