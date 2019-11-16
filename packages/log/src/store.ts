@@ -10,7 +10,7 @@ export const store = createStore<LogStore>({
   initializer: (current) => {
     const mode = getLogModeFromEnvironment() || 'production'
     return {
-      loggers: {},
+      loggerClosures: {},
       reporters: [],
       customLevels: {},
       customLevelsReverse: [],

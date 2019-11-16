@@ -1,7 +1,6 @@
 import { forEachKey, mapKey } from 'type-plus';
 import { store } from './store';
 import { LogLevelEntry } from './types';
-import { writeToReporters } from './writeToReporters';
 
 /**
  * @param level the `logLevel` number.
@@ -11,8 +10,8 @@ export function addCustomLogLevel(name: string, level: number) {
   const { customLevels, customLevelsReverse } = store.value
   customLevels[name] = level
   customLevelsReverse[level] = name
-  const { loggers } = store.value
-  forEachKey(loggers, id => loggers[id][name] = (...args: any[]) => writeToReporters({ id, level, args, timestamp: new Date() }))
+  const { loggerClosures } = store.value
+  forEachKey(loggerClosures, id => loggerClosures[id].addMethod(name, level))
 }
 
 export function clearCustomLogLevel() {

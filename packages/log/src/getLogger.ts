@@ -4,6 +4,7 @@ import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
 import { LogFunction, Logger, LogMethodNames, ReporterFilter } from './types';
+import { LoggerClosure } from './typesInternal';
 import { writeToReporters } from './writeToReporters';
 
 export namespace getLogger {
@@ -15,50 +16,64 @@ export namespace getLogger {
 
 export function getLogger<T extends string = LogMethodNames>(id: string, options?: getLogger.Options): Logger<T | LogMethodNames> {
   validateId(id)
-  const loggers = store.value.loggers
-  const logger = loggers[id]
-  if (logger) return logger as any
-
-  return loggers[id] = createLogger<T | LogMethodNames>(id, options)
+  const loggerClosures = store.value.loggerClosures
+  const loggerClosure: any = loggerClosures[id] || (loggerClosures[id] = createLoggerClosure<T | LogMethodNames>(id, options))
+  return loggerClosure.logger
 }
 
 function validateId(id: string) {
   if (/[`~!@#$%^&*()=+[\]{}\\/,|<>?]/.test(id)) throw new InvalidId(id)
 }
 
-function createLogger<T extends string>(id: string, { level, writeTo = () => true }: getLogger.Options = {}): Logger<T> {
+function createLoggerClosure<T extends string>(id: string, { level, writeTo = () => true }: getLogger.Options = {}): LoggerClosure<T> {
   const filter: (reporterId: string) => boolean = typeof writeTo === 'string' ? id => id === writeTo :
     writeTo instanceof RegExp ? id => writeTo.test(id) : writeTo
 
-  const logger = getAllLogLevels().reduce((logger, { name, level }) => {
-    logger[name] = (...args: any[]) => {
-      if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() }, filter)
-    }
-    return logger
-  }, { id, level } as any)
+  const logger = {
+    level,
+  } as any
 
-  let counter = 0;
-  logger.count = (...args: any[]) => {
-    const level = logLevels.debug
-    if (shouldLog(level, logger.level))
-      writeToReporters({
-        id,
-        level,
-        args: [++counter, ...args],
-        timestamp: new Date()
-      }, filter)
+  Object.defineProperties(logger, {
+    id: { value: id, writable: false },
+    count: {
+      writable: false,
+      value: ((counter) => (...args: any[]) => {
+        const level = logLevels.debug
+        if (shouldLog(level, logger.level))
+          writeToReporters({
+            id,
+            level,
+            args: [++counter, ...args],
+            timestamp: new Date()
+          }, filter)
+      })(0)
+    },
+    on: {
+      writable: false,
+      value: (level: number | T, logfn: LogFunction) => {
+        const logLevel = typeof level === 'string' ? toLogLevel(level)! : level
+        if (shouldLog(logLevel, logger.level)) {
+          const methodName = toLogLevelName(logLevel)
+          const bindedMethod = logger[methodName].bind(logger)
+          const result = logfn(bindedMethod)
+          if (result) bindedMethod(result)
+        }
+      }
+    }
+  })
+  const loggerClosure: LoggerClosure<T> = {
+    addMethod(name, level) {
+      Object.defineProperty(logger, name, {
+        writable: false,
+        value: (...args: any[]) => {
+          if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() }, filter)
+        }
+      })
+    },
+    logger
   }
 
-  logger.on = (level: number | T, logfn: LogFunction) => {
-    // tslint:disable-next-line: strict-type-predicates
-    const logLevel = typeof level === 'string' ? toLogLevel(level)! : level
-    if (shouldLog(logLevel, logger.level)) {
-      const methodName = toLogLevelName(logLevel)
-      const bindedMethod = logger[methodName].bind(logger)
-      const result = logfn(bindedMethod)
-      if (result) bindedMethod(result)
-    }
-  }
+  getAllLogLevels().forEach(({ name, level }) => loggerClosure.addMethod(name, level))
 
-  return logger
+  return loggerClosure
 }
