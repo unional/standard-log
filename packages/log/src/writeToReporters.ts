@@ -2,18 +2,13 @@ import { config } from './config';
 import { store } from './store';
 import { LogEntry } from './types';
 
-export function writeToReporters(logEntry: LogEntry) {
-  if (store.value.mode === 'test') writeToReporters.fn(logEntry)
-  else {
-    // istanbul ignore next
-    if (setImmediate) setImmediate(() => writeToReporters.fn(logEntry))
-    else setTimeout(() => writeToReporters.fn(logEntry), 0)
-  }
+export function writeToReporters(logEntry: LogEntry, filter: (reporterId: string) => boolean) {
+  writeToReporters.fn(logEntry, filter)
 }
 
 // istanbul ignore next
-writeToReporters.fn = (logEntry: LogEntry) => {
-  getConfiguredStore().value.reporters.forEach(r => r.write(logEntry!))
+writeToReporters.fn = (logEntry: LogEntry, filter: (reporterId: string) => boolean) => {
+  getConfiguredStore().value.reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
 }
 
 function getConfiguredStore() {

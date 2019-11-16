@@ -3,32 +3,39 @@ import { logLevels } from './logLevel';
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn';
 import { shouldLog } from './shouldLog';
 import { store } from './store';
-import { LogFunction, Logger, LogMethodNames } from './types';
+import { LogFunction, Logger, LogMethodNames, ReporterFilter } from './types';
 import { writeToReporters } from './writeToReporters';
 
-export function getLogger<T extends string = LogMethodNames>(id: string, defaultLogLevel?: number): Logger<T | LogMethodNames> {
+export namespace getLogger {
+  export type Options = {
+    level?: number,
+    writeTo?: ReporterFilter
+  }
+}
+
+export function getLogger<T extends string = LogMethodNames>(id: string, options?: getLogger.Options): Logger<T | LogMethodNames> {
   validateId(id)
   const loggers = store.value.loggers
   const logger = loggers[id]
   if (logger) return logger as any
 
-  return loggers[id] = createLogger<T | LogMethodNames>(id, defaultLogLevel)
+  return loggers[id] = createLogger<T | LogMethodNames>(id, options)
 }
 
 function validateId(id: string) {
   if (/[`~!@#$%^&*()=+[\]{}\\/,|<>?]/.test(id)) throw new InvalidId(id)
 }
 
-function createLogger<T extends string>(id: string, level?: number): Logger<T> {
+function createLogger<T extends string>(id: string, { level, writeTo = () => true }: getLogger.Options = {}): Logger<T> {
+  const filter: (reporterId: string) => boolean = typeof writeTo === 'string' ? id => id === writeTo :
+    writeTo instanceof RegExp ? id => writeTo.test(id) : writeTo
+
   const logger = getAllLogLevels().reduce((logger, { name, level }) => {
     logger[name] = (...args: any[]) => {
-      if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() })
+      if (shouldLog(level, logger.level)) writeToReporters({ id, level, args, timestamp: new Date() }, filter)
     }
     return logger
-  }, {
-    id,
-    level
-  } as any)
+  }, { id, level } as any)
 
   let counter = 0;
   logger.count = (...args: any[]) => {
@@ -39,7 +46,7 @@ function createLogger<T extends string>(id: string, level?: number): Logger<T> {
         level,
         args: [++counter, ...args],
         timestamp: new Date()
-      })
+      }, filter)
   }
 
   logger.on = (level: number | T, logfn: LogFunction) => {

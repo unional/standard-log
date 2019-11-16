@@ -28,16 +28,27 @@ import { getLogger } from 'standard-log'
 
 const log = getLogger('my-app')
 
-// debug and info does not show by default in production mode
-log.debug('debug')
-log.info('info')
-log.warn('warn')
 log.error('error')
+log.warn('warn')
+// by default debug() and info() will not be printed
+// because production mode defaults log level to `warn`
+log.info('info')
+log.debug('debug')
 ```
 
 ![](images/2019-08-08-23-40-05.png)
 
 (above is logged when `standard-log-color` is installed)
+
+You can configure a logger by doing `getLogger(id, options)`:
+
+`options.level: number`:
+
+Log level of this logger.
+
+`options.writeTo: string | RegExp | ((reporterId: string) => boolean)`:
+
+Only log to specific reporter(s).
 
 ### Mode
 
@@ -56,16 +67,13 @@ or by setting the environment variable `STANDARD_LOG`.
 - log level defaults to `logLevel.warn`.
 - `config()` can only be called once.
 - configuration is protected from tempering.
-- logs are performed out-of-band
 
 `development` mode:
 - log level defaults to `logLevel.debug`.
 - a warning is emitted when calling `config()` or log for the first time.
-- logs are performed out-of-band
 
 `test` mode:
 - log level defaults to `logLevel.debug`
-- logs are performed immediately
 
 ### Log Level
 
