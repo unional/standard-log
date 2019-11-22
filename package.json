@@ -37,7 +37,7 @@
     "@types/jest": "^24.0.15",
     "@types/ramda": "^0.26.16",
     "@types/react": "^16.8.23",
-    "@types/storybook__react": "^4.0.2",
+    "@types/storybook__react": "^5.2.0",
     "@unional/devpkg-node": "^1.4.0",
     "babel-loader": "^8.0.6",
     "codecov": "^3.6.1",
