@@ -5404,6 +5404,13 @@ domutils@^1.5.1, domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
+dot-case@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/dot-case/-/dot-case-3.0.0.tgz#9d5064f602f75dcc736675b4aac526e8e78f8cba"
+  integrity sha512-MgRN12r21YD+KLtsXtmnbJ3vtyO2wOYpvY8FjunqndpA1ARdUC+gB8l2kjwjlc9hc9x15CuBrRZRRa6yeLv5wQ==
+  dependencies:
+    no-case "^3.0.0"
+
 dot-prop@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-3.0.0.tgz#1b708af094a49c9a0e7dbcad790aba539dac1177"
@@ -8506,6 +8513,11 @@ lower-case@^1.1.1:
   resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
   integrity sha1-miyr0bno4K6ZOkv31YdcOcQujqw=
 
+lower-case@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/lower-case/-/lower-case-2.0.0.tgz#8f07128bd5ffd0247d15106e7e8d17d223312faa"
+  integrity sha512-OJifkIqIt8iu216sXZ0Fpo5tK4QhJjOYQIUd09SNkoc71NvU9157VTXsT4aRsx7TTpCtykmbCYal3B7y5L9/wg==
+
 lowlight@~1.9.1:
   version "1.9.2"
   resolved "https://registry.yarnpkg.com/lowlight/-/lowlight-1.9.2.tgz#0b9127e3cec2c3021b7795dd81005c709a42fdd1"
@@ -9063,6 +9075,13 @@ no-case@^2.2.0:
   integrity sha512-rmTZ9kz+f3rCvK2TD1Ue/oZlns7OGoIWP4fc3llxxRXlOkHKoWPPWJOfFYpITabSow43QJbRIoHQXtt10VldyQ==
   dependencies:
     lower-case "^1.1.1"
+
+no-case@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/no-case/-/no-case-3.0.0.tgz#e4a875c97613479944b8b01d319b8b89575f1022"
+  integrity sha512-XFxcq4iHOOBanVPfJZkvdWWl8NWszvJFb0DubOXBACe4fwbiZ30CEs7VIpUl+7x4qRwkmO/tOSHdLVun/A5wKw==
+  dependencies:
+    lower-case "^2.0.0"
 
 node-dir@^0.1.10:
   version "0.1.17"
@@ -9653,6 +9672,13 @@ param-case@^2.1.1:
   integrity sha1-35T9jPZTHs915r75oIWPvHK+Ikc=
   dependencies:
     no-case "^2.2.0"
+
+param-case@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/param-case/-/param-case-3.0.0.tgz#4d854b786704fb7214729103695e3008365d6979"
+  integrity sha512-AU1C7c1XLiQMWnSxLxOrBBF/O/4L4HYbjsUF3vX8yZJqgHgLH2neZVabQpz2rZTa4kqAFXI8ocBj189w3TnXoA==
+  dependencies:
+    dot-case "^3.0.0"
 
 parent-module@^1.0.0:
   version "1.0.1"
