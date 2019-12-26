@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.1](https://github.com/unional/standard-log/compare/standard-log@4.0.0...standard-log@4.0.1) (2019-12-26)
+
+
+### Bug Fixes
+
+* bump store version ([b8a547f](https://github.com/unional/standard-log/commit/b8a547f))
+
+
+
+
+
 # [4.0.0](https://github.com/unional/standard-log/compare/standard-log@3.4.0...standard-log@4.0.0) (2019-11-16)
 
 
