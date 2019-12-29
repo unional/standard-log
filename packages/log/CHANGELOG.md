@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.2](https://github.com/unional/standard-log/compare/standard-log@4.0.1...standard-log@4.0.2) (2019-12-29)
+
+
+### Bug Fixes
+
+* **package:** update iso-error to version 3.1.3 ([26cf5a8](https://github.com/unional/standard-log/commit/26cf5a8)), closes [#58](https://github.com/unional/standard-log/issues/58)
+
+
+
+
+
 ## [4.0.1](https://github.com/unional/standard-log/compare/standard-log@4.0.0...standard-log@4.0.1) (2019-12-26)
 
 
