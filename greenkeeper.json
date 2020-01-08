@@ -4,7 +4,8 @@
       "packages": [
         "package.json",
         "packages/color/package.json",
-        "packages/log/package.json"
+        "packages/log/package.json",
+        "packages/syslog/package.json"
       ]
     }
   }
