@@ -16,7 +16,7 @@
     "depcheck": "lerna run depcheck",
     "lint": "eslint --ext=js,ts .",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
-    "release": "lerna publish",
+    "publish": "lerna publish from-package -y --no-verify-access",
     "storybook": "start-storybook -p 6006",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
+    "@changesets/cli": "^2.4.1",
     "@commitlint/cli": "^8.3.4",
     "@commitlint/config-conventional": "^8.3.4",
     "@storybook/addon-actions": "^5.2.8",
