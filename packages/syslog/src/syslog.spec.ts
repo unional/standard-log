@@ -1,7 +1,7 @@
-import { toSyslogKeyword, toSyslogSeverity } from '.';
-import { rangeEntries } from './test-util';
 import { logLevel } from 'standard-log';
+import { toSyslogKeyword, toSyslogSeverity } from '.';
 import { toSyslogLevel } from './syslog';
+import { rangeEntries } from './test-util';
 
 describe('toSyslogSeverity()', () => {
   test.each([
