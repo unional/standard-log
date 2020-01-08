@@ -43,6 +43,6 @@
     "unpartial": "^0.6.3"
   },
   "peerDependencies": {
-    "standard-log": ">=3.1.2"
+    "standard-log": ">=4.0.2"
   }
 }
