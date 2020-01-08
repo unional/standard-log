@@ -57,6 +57,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
       - run: yarn
+      - run: yarn build
       - run: yarn coverage --maxWorkers=2
       - name: codecov
         if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
