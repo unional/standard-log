@@ -16,16 +16,16 @@ workflows:
       # - node8:
       #     requires:
       #       - node-latest
-      # - release:
-      #     context: publish
-      #     filters:
-      #       branches:
-      #         only: master
-      #     requires:
-      #       - node-latest
-      #       - node11
-      #       - node10
-      #       - node8
+      - release:
+          context: publish
+          filters:
+            branches:
+              only: master
+          requires:
+            - node-latest
+            - node11
+            - node10
+            # - node8
 jobs:
   local:
     docker:
@@ -109,16 +109,16 @@ jobs:
       - run: yarn coverage --maxWorkers=2
       - store_test_results:
           path: .reports/junit
-  # release:
-  #   docker:
-  #     - image: circleci/node:12
-  #   steps:
-  #     - checkout
-  #     - attach_workspace:
-  #         at: '.'
-  #     - run: git config user.email $GIT_CONFIG_EMAIL
-  #     - run: git config user.name $GIT_CONFIG_NAME
-  #     - run:
-  #         name: Authenticate with registry
-  #         command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-  #     - run: yarn release
+  release:
+    docker:
+      - image: circleci/node:12
+    steps:
+      - checkout
+      - attach_workspace:
+          at: '.'
+      - run: git config user.email $GIT_CONFIG_EMAIL
+      - run: git config user.name $GIT_CONFIG_NAME
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+      - run: yarn release
