@@ -39,10 +39,8 @@
   },
   "dependencies": {
     "color-map": "^1.1.0",
+    "tslib": "^1.10.0",
     "unpartial": "^0.6.3"
-  },
-  "devDependencies": {
-    "standard-log": "^4.0.2"
   },
   "peerDependencies": {
     "standard-log": ">=3.1.2"

@@ -39,8 +39,5 @@
   },
   "peerDependencies": {
     "standard-log": "^3.0.0"
-  },
-  "depDependencies": {
-    "standard-log": "^4.0.2"
   }
 }
