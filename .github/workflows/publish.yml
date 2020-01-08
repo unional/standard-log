@@ -91,7 +91,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   publish-npm:
-    needs: build
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -107,7 +107,7 @@ jobs:
             ${{ runner.os }}-yarn-
       - run: yarn
       - run: yarn build
-      - run: yarn publish
+      - run: yarn publish:ci
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
