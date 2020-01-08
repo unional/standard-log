@@ -105,12 +105,8 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: libm
-      - name: Authenticate with registry
-        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       - run: yarn
-      - run: yarn release
-        # env:
+      - run: yarn lerna publish --yes --registry https:"//registry.npmjs.org/:_authToken=$NPM_TOKEN"
+        env:
         #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        #   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
