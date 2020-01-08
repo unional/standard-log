@@ -24,6 +24,7 @@
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
   "typings": "lib/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
     "bundle": "webpack",
@@ -40,6 +41,6 @@
     "standard-log": "^3.0.0"
   },
   "depDependencies": {
-    "standard-log": "^3.1.2"
+    "standard-log": "^4.0.2"
   }
 }
