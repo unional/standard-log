@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.setting.json",
   "compilerOptions": {
+    "importHelpers": true,
     "rootDir": "src"
   },
   "references": [
