@@ -1,5 +1,5 @@
-import { LogEntry } from 'standard-log';
-import { toSyslogLevel } from './syslog';
+import { LogEntry } from 'standard-log'
+import { toSyslogLevel } from './syslog'
 
 export type SyslogFormatterOptions = {
   facility: number,
