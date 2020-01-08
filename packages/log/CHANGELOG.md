@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [4.0.3](https://github.com/unional/standard-log/compare/standard-log@4.0.2...standard-log@4.0.3) (2020-01-08)
+
+
+### Bug Fixes
+
+* **color:** add tslib ([ac594d5](https://github.com/unional/standard-log/commit/ac594d54d9a5e12752cd18ff4e7a4f77d9e6188d))
+* add sideEffects flag ([95ae4dc](https://github.com/unional/standard-log/commit/95ae4dc056bfbf552a645b681182d08cf56ca0b1))
+
+
+
+
+
 ## [4.0.2](https://github.com/unional/standard-log/compare/standard-log@4.0.1...standard-log@4.0.2) (2019-12-29)
 
 

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.16](https://github.com/unional/standard-log/compare/standard-log-color@1.5.15...standard-log-color@1.5.16) (2020-01-08)
+
+
+### Bug Fixes
+
+* update deps ([14e7064](https://github.com/unional/standard-log/commit/14e7064ede66143a9ebc3ee46d720ea47d4eef07))
+* **color:** add tslib ([ac594d5](https://github.com/unional/standard-log/commit/ac594d54d9a5e12752cd18ff4e7a4f77d9e6188d))
+* add sideEffects flag ([95ae4dc](https://github.com/unional/standard-log/commit/95ae4dc056bfbf552a645b681182d08cf56ca0b1))
+
+
+
+
+
 ## [1.5.15](https://github.com/unional/standard-log/compare/standard-log-color@1.5.14...standard-log-color@1.5.15) (2019-12-29)
 
 **Note:** Version bump only for package standard-log-color
