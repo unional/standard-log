@@ -1,7 +1,7 @@
-import { createStore } from 'global-store';
-import { getLogLevelByMode } from './getLogLevelByMode';
-import { getLogModeFromEnvironment } from './getLogModeFromEnvironment';
-import { LogStore } from './typesInternal';
+import { createStore } from 'global-store'
+import { getLogModeFromEnvironment } from './getLogModeFromEnvironment'
+import { logLevels } from './logLevel'
+import { LogStore } from './typesInternal'
 
 export const store = createStore<LogStore>({
   moduleName: 'standard-log',
@@ -15,7 +15,7 @@ export const store = createStore<LogStore>({
       customLevels: {},
       customLevelsReverse: [],
       mode,
-      logLevel: getLogLevelByMode(mode),
+      logLevel: logLevels.warn,
       ...current
     }
   }

@@ -23,6 +23,7 @@
 ## Usage
 
 To use `standard-log`, simply create your logger and log away:
+
 ```ts
 import { getLogger } from 'standard-log'
 
@@ -36,9 +37,9 @@ log.info('info')
 log.debug('debug')
 ```
 
-![](images/2019-08-08-23-40-05.png)
+![rendering-example](images/2019-08-08-23-40-05.png)
 
-(above is logged when `standard-log-color` is installed)
+(above is logged with `standard-log-color` installed)
 
 You can configure a logger by doing `getLogger(id, options)`:
 
@@ -64,20 +65,22 @@ config({ mode: 'production' }) // or 'development', 'test'
 or by setting the environment variable `STANDARD_LOG`.
 
 `production` mode:
-- log level defaults to `logLevel.warn`.
+
 - `config()` can only be called once.
 - configuration is protected from tempering.
 
 `development` mode:
-- log level defaults to `logLevel.debug`.
+
 - a warning is emitted when calling `config()` or log for the first time.
 
 `test` mode:
-- log level defaults to `logLevel.debug`
+
+- no warning is emitted
 
 ### Log Level
 
-`standard-log` comes with many log levels out of the box:
+`standard-log` log level defaults to `logLevels.warn`.
+It comes with many log levels out of the box:
 
 ```ts
 import { getLogger } from 'standard-log'
