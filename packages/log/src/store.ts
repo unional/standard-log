@@ -15,7 +15,7 @@ export const store = createStore<LogStore>({
       customLevels: {},
       customLevelsReverse: [],
       mode,
-      logLevel: logLevels.warn,
+      logLevel: logLevels.info,
       ...current
     }
   }
