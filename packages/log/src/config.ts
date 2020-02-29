@@ -2,7 +2,6 @@ import { forEachKey } from 'type-plus'
 import { addCustomLogLevel } from './customLogLevel'
 import { ProhibitedDuringProduction } from './errors'
 import { getDefaultReporter } from './getDefaultReporter'
-import { logLevels } from './logLevel'
 import { toLogLevelName } from './logLevelFn'
 import { store } from './store'
 import { LogMode, LogReporter } from './types'
@@ -21,7 +20,7 @@ export const config: { (options?: Partial<ConfigOptions>): void, readonly isLock
 
   if (options.mode) store.value.mode = options.mode
 
-  store.value.logLevel = options.logLevel !== undefined ? options.logLevel : logLevels.warn
+  store.value.logLevel = options.logLevel !== undefined ? options.logLevel : store.value.logLevel
 
   if (options.customLevels) {
     const customLevels = options.customLevels

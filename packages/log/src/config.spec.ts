@@ -10,6 +10,10 @@ test('in production mode by default', () => {
   expect(store.value.mode).toBe('production')
 })
 
+test('default logLevel is info', () => {
+  expect(store.value.logLevel).toBe(logLevels.info)
+})
+
 test('configure default logLevel', () => {
   config({
     logLevel: logLevels.planck
