@@ -1,9 +1,9 @@
-import { reduceKey } from 'type-plus';
-import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel';
-import { getLoggers } from './getLoggers';
-import { logLevels } from './logLevel';
-import { store } from './store';
-import { Logger } from './types';
+import { reduceKey } from 'type-plus'
+import { getCustomLevel, getCustomLevelName, getCustomLevels } from './customLogLevel'
+import { getLoggers } from './getLoggers'
+import { logLevels } from './logLevel'
+import { store } from './store'
+import { Logger } from './types'
 
 /**
  * Gets the overall log level.

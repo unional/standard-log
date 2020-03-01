@@ -148,6 +148,28 @@ Here are some additional reporters:
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
 
+### Capture Logs
+
+You can also temporary disable and capture logs by `captureLogs()`.
+This is useful when you are writing tests.
+
+```ts
+import { getLogger, captureLogs } from 'standard-log'
+import a from 'assertron'
+
+test('your test', () => {
+  function foo() {
+    const log = getLogger('foo logger')
+    // this log will not be sent to normal reporters
+    log.info('some messages')
+  }
+  const log = getLogger('foo logger')
+  const logEntries = captureLogs(log, foo)
+
+  a.satisfies([{ args: ['some messages']}])
+})
+```
+
 ## Browser usage
 
 The package comes with a pre-bundled file under `dist`.
