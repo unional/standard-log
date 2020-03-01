@@ -8,7 +8,10 @@ export function writeToReporters(logEntry: LogEntry, filter: (reporterId: string
 
 // istanbul ignore next
 writeToReporters.fn = (logEntry: LogEntry, filter: (reporterId: string) => boolean) => {
-  getConfiguredStore().value.reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
+  const store = getConfiguredStore()
+  const redirect = store.value.redirects[logEntry.id]
+  const reporters = redirect && redirect.length > 0 ? redirect : store.value.reporters
+  reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
 }
 
 function getConfiguredStore() {

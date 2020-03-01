@@ -4,6 +4,10 @@ export type LogStore = {
   mode: LogMode,
   logLevel: LogLevel,
   loggerClosures: Record<string, LoggerClosure<any>>,
+  /**
+   * redirects logger to specific reporter.
+   */
+  redirects: Record<string, LogReporter[]>,
   reporters: LogReporter[],
   customLevels: Record<string, number>,
   customLevelsReverse: string[],

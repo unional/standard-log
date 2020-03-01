@@ -16,7 +16,7 @@ export type Logger<T extends string = LogMethodNames> = {
    * This is useful during debugging to check for steps executed.
    */
   count(...args: any[]): void,
-  on(level: number | T, logFunction: LogFunction): void
+  on(level: number | T, logFunction: LogFunction): void,
 } & {
     [k in T]: LogMethod
   }
