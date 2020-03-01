@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.1.0](https://github.com/unional/standard-log/compare/standard-log@4.0.3...standard-log@4.1.0) (2020-03-01)
+
+
+### Bug Fixes
+
+* default log level to warn ([fe03b18](https://github.com/unional/standard-log/commit/fe03b18788181fc5269dd64250baa6e0ac24a24a))
+* default logLevel to info ([391b973](https://github.com/unional/standard-log/commit/391b973d504742232786c5266e80fa51bcba7f27))
+
+
+### Features
+
+* add captureLogs() ([154afe9](https://github.com/unional/standard-log/commit/154afe9efd6a85eefe0d9c3e416e75990fb8c920))
+
+
+
+
+
 ## [4.0.3](https://github.com/unional/standard-log/compare/standard-log@4.0.2...standard-log@4.0.3) (2020-01-08)
 
 

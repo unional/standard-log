@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.17](https://github.com/unional/standard-log/compare/standard-log-color@1.5.16...standard-log-color@1.5.17) (2020-03-01)
+
+
+### Bug Fixes
+
+* default logLevel to info ([391b973](https://github.com/unional/standard-log/commit/391b973d504742232786c5266e80fa51bcba7f27))
+
+
+
+
+
 ## [1.5.16](https://github.com/unional/standard-log/compare/standard-log-color@1.5.15...standard-log-color@1.5.16) (2020-01-08)
 
 
