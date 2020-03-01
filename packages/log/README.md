@@ -31,9 +31,9 @@ const log = getLogger('my-app')
 
 log.error('error')
 log.warn('warn')
-// by default debug() and info() will not be printed
-// because production mode defaults log level to `warn`
 log.info('info')
+// by default debug() will not be printed
+// because production mode defaults log level to `info`
 log.debug('debug')
 ```
 
@@ -79,7 +79,7 @@ or by setting the environment variable `STANDARD_LOG`.
 
 ### Log Level
 
-`standard-log` log level defaults to `logLevels.warn`.
+`standard-log` log level defaults to `logLevels.info`.
 It comes with many log levels out of the box:
 
 ```ts
