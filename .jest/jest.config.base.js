@@ -10,8 +10,8 @@ module.exports = {
     }
   },
   moduleNameMapper: {
-    '^standard-log': '<rootDir>/../log',
-    '^standard-log-(.*)': '<rootDir>/../$1',
+    '^standard-log': '<rootDir>/../log/src',
+    '^standard-log-(.*)': '<rootDir>/../$1/src',
   },
   preset: 'ts-jest',
   roots: [
