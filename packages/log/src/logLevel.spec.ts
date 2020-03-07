@@ -119,6 +119,24 @@ describe('toLogLevel()', () => {
     addCustomLogLevel('cust-get', 123)
     expect(toLogLevel('cust-get')).toBe(123)
   })
+
+  test('case insensitive', () => {
+    const actual = [
+      toLogLevel('emerGency'),
+      toLogLevel('aleRt'),
+      toLogLevel('critIcal'),
+      toLogLevel('errOr'),
+      toLogLevel('warN'),
+      toLogLevel('nOtice'),
+      toLogLevel('iNfo'),
+      toLogLevel('deBug'),
+      toLogLevel('traCe'),
+      toLogLevel('planCk')
+    ]
+    expect(actual).toEqual([
+      100, 200, 300, 400, 500, 600, 700, 800, 900, Infinity
+    ])
+  })
 })
 
 describe('getAllLogLevels', () => {
