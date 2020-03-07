@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
           fetch-depth: 1
       - name: setup yarn-cache
@@ -81,11 +81,11 @@ jobs:
     name: release
     runs-on: ubuntu-latest
     # if: github.ref == 'refs/heads/master'
-    needs:
-      - build
-      - test
+    # needs:
+    #   - build
+    #   - test
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: setup yarn-cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
