@@ -17,6 +17,7 @@
     "lint": "eslint --ext=js,ts .",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
     "publish:ci": "lerna publish from-package -y --no-verify-access",
+    "release": "lerna publish",
     "storybook": "start-storybook -p 6006",
     "test": "jest",
     "test:watch": "jest --watch",
