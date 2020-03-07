@@ -86,6 +86,8 @@ jobs:
     #   - test
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: release
       - name: setup yarn-cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
