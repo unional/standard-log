@@ -1,14 +1,14 @@
 # standard-log
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/unional/standard-log.svg)](https://greenkeeper.io/)
-
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Circle CI][circleci-image]][circleci-url]
-[![Travis CI][travis-image]][travis-url]
+[![Github NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Coveralls Status][coveralls-image]][coveralls-url]
+[![Codacy Grade Badge][codacy-grade]][codacy-grade-url]
+[![Codacy Coverage Badge][codacy-coverage]][codacy-coverage-url]
+
+[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
@@ -22,18 +22,23 @@ This is the repository for [`standard-log`](https://github.com/unional/standard-
 - [`standard-log` documentation](packages/log/README.md)
 - [`standard-log-color` documentation](packages/color/README.md)
 
-[circleci-image]: https://circleci.com/gh/unional/standard-log/tree/master.svg?style=shield
-[circleci-url]: https://circleci.com/gh/unional/standard-log/tree/master
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
-[coveralls-image]: https://coveralls.io/repos/github/unional/standard-log/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/unional/standard-log?branch=master
-[downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
-[downloads-url]: https://npmjs.org/package/standard-log
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
-[travis-image]: https://travis-ci.com/unional/standard-log.svg?branch=master
-[travis-url]: https://travis-ci.com/unional/standard-log?branch=master
+[downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
+[downloads-url]: https://npmjs.org/package/standard-log
+
+[github-nodejs]: https://github.com/unional/standard-log/workflows/Node%20CI/badge.svg
+[github-action-url]: https://github.com/unional/standard-log/actions
+[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/unional/standard-log
+[codacy-grade]: https://api.codacy.com/project/badge/Grade/707f89609508442486050d207ec5bd78
+[codacy-grade-url]: https://www.codacy.com/app/homawong/standard-log?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/standard-log&amp;utm_campaign=Badge_Grade
+[codacy-coverage]: https://api.codacy.com/project/badge/Coverage/707f89609508442486050d207ec5bd78
+[codacy-coverage-url]: https://www.codacy.com/manual/homawong/standard-log?utm_source=github.com&utm_medium=referral&utm_content=unional/standard-log&utm_campaign=Badge_Coverage
+
+[greenkeeper-image]: https://badges.greenkeeper.io/unional/standard-log.svg
+[greenkeeper-url]: https://greenkeeper.io/
+
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
