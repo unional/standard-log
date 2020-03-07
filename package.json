@@ -16,7 +16,6 @@
     "depcheck": "lerna run depcheck",
     "lint": "eslint --ext=js,ts .",
     "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
-    "release": "lerna publish -y --no-verify-access",
     "storybook": "start-storybook -p 6006",
     "test": "jest",
     "test:nodejs": "jest",
