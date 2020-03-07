@@ -112,7 +112,15 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: yarn build
-      - run: yarn lerna publish --yes --registry https:"//registry.npmjs.org/:_authToken=$NPM_TOKEN"
+      - name: Authenticate with Registry
+        run: |
+            yarn logout
+            echo "registry=http://registry.npmjs.org/" >> .npmrc
+            echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> .npmrc
+            npm whoami
+        env:
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: yarn lerna publish --yes
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
