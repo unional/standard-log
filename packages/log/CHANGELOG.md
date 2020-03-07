@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.1 (2020-03-07)
+
+**Note:** Version bump only for package standard-log
+
+
+
+
+
 # [4.1.0](https://github.com/unional/standard-log/compare/standard-log@4.0.3...standard-log@4.1.0) (2020-03-01)
 
 
