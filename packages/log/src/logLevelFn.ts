@@ -33,7 +33,7 @@ export function setLogLevels(filter: RegExp, level: number): Logger<any>[] {
 }
 
 export function toLogLevel(name: string): number | undefined {
-  return getCustomLevel(name) || (logLevels as any)[name]
+  return getCustomLevel(name) || (logLevels as any)[name.toLowerCase()]
 }
 
 export function toLogLevelName(level: number) {
