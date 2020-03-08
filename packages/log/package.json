@@ -2,7 +2,7 @@
   "name": "standard-log",
   "version": "4.1.2",
   "description": "The standard log library",
-  "homepage": "https://github.com/unional/standard-log",
+  "homepage": "https://github.com/unional/standard-log/tree/master/packages/log",
   "bugs": {
     "url": "https://github.com/unional/standard-log/issues"
   },

@@ -6,7 +6,7 @@ import { config, createConsoleLogReporter, getLogger } from 'standard-log';
 storiesOf('Console', module)
   .add('hello world', () => {
     const reporter = createConsoleLogReporter()
-    config({ mode: 'devel', reporters: [reporter], logLevel: Infinity })
+    config({ mode: 'development', reporters: [reporter], logLevel: Infinity })
     const log = getLogger('testing')
     setImmediate(() => {
       log.debug('hello world')
