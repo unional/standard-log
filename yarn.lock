@@ -1020,14 +1020,14 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@changesets/apply-release-plan@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@changesets/apply-release-plan/-/apply-release-plan-0.4.1.tgz#3e284772fa3f72a9f623ba320017f8c0e20c239b"
-  integrity sha512-zgCG/Iq969nRii4QXfofPLIN3Errom0kFtsR9aJAiJi/xlXKqusmVAky7VqQpo+S54cuVuOAnFJoNNGTUhlJ4Q==
+"@changesets/apply-release-plan@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@changesets/apply-release-plan/-/apply-release-plan-0.4.2.tgz#06ce45debd2f818ecda7424d4becd06ace5ca848"
+  integrity sha512-E5OmDWbS9IScDLBIgTMfT0KSod96T1TEfthZOJ7puG6KCLPgPkU6U/L65CMltf7P0NZwL8DMClF30mMRANAdvQ==
   dependencies:
     "@babel/runtime" "^7.4.4"
     "@changesets/config" "^0.3.0"
-    "@changesets/get-version-range-type" "^0.2.0"
+    "@changesets/get-version-range-type" "^0.3.0"
     "@changesets/git" "^0.4.0"
     "@changesets/types" "^0.4.0"
     fs-extra "^7.0.1"
@@ -1048,13 +1048,13 @@
     "@changesets/types" "^0.4.0"
     semver "^5.4.1"
 
-"@changesets/cli@^2.5.2":
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.5.2.tgz#97009683ec0eae084c88e9e1c9f043fe73149d68"
-  integrity sha512-qdwvGqIrWbcU+mwGJB80MUJI0PRbt72o3uSVRZrepk18dkuVq73vGHk/++i/X6fvc1y3jPlLW5cMaZ2bGzKA6g==
+"@changesets/cli@^2.6.0":
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/@changesets/cli/-/cli-2.6.0.tgz#0aa81bd63a266149a29538609d49d331280dacab"
+  integrity sha512-HdHD07TYbWnQZjuT+VbmKI3a90NTjA26ksl0cjkZUMpL6uuLMTyqXIQ1wBpUMpntr6c4jgMvmmB4LdVWLLvosw==
   dependencies:
     "@babel/runtime" "^7.4.4"
-    "@changesets/apply-release-plan" "^0.4.1"
+    "@changesets/apply-release-plan" "^0.4.2"
     "@changesets/assemble-release-plan" "^0.3.1"
     "@changesets/config" "^0.3.0"
     "@changesets/errors" "^0.1.2"
@@ -1113,10 +1113,10 @@
     get-dependents-graph "^0.2.0"
     get-workspaces "^0.6.0"
 
-"@changesets/get-version-range-type@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@changesets/get-version-range-type/-/get-version-range-type-0.2.0.tgz#1b647e87c7d1f0fd3d75cc9957f7610f699a7deb"
-  integrity sha512-myE/FG1AqmvacjsvOt4UBzVl9KdKXGD6isCP14Q+GY94Ky1zp9n9YByuf6BiIq7/6gAM/2kC9kQvKG9I/AS9Yw==
+"@changesets/get-version-range-type@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@changesets/get-version-range-type/-/get-version-range-type-0.3.0.tgz#7b338710cf770115a9daefc4033385ee841580c6"
+  integrity sha512-u+BiZ45Brm9R5LSUlZgF8phCSEkmdkjjD4NAOvtIaFVwLrdq4M6WM8fPa+ptm7OjupXuD7HL865ynufDlVeLNw==
 
 "@changesets/git@^0.4.0":
   version "0.4.0"
