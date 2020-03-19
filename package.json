@@ -67,7 +67,7 @@
     "pascal-case": "^3.1.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.27.0",
-    "react": "^16.13.0",
+    "react": "^16.13.1",
     "react-dom": "^16.13.0",
     "rimraf": "^3.0.2",
     "satisfier": "^5.1.0",
