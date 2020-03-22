@@ -42,7 +42,7 @@
     "@storybook/react": "^5.3.14",
     "@types/jest": "^24.9.1",
     "@types/ms": "^0.7.31",
-    "@types/ramda": "^0.26.43",
+    "@types/ramda": "^0.27.0",
     "@types/react": "^16.9.23",
     "@types/semver": "^7.1.0",
     "@unional/devpkg-node": "^1.5.0",
