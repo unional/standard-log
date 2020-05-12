@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "color-map": "^1.1.0",
-    "tslib": "^1.10.0",
+    "tslib": "^1.12.0",
     "unpartial": "^0.6.3"
   },
   "peerDependencies": {
