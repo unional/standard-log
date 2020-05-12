@@ -52,7 +52,7 @@
     "codacy-coverage": "^3.4.0",
     "codecov": "^3.6.5",
     "commitlint-circle": "^1.0.0",
-    "compression-webpack-plugin": "^3.1.0",
+    "compression-webpack-plugin": "^4.0.0",
     "console-feed": "^2.8.11",
     "delay": "^4.3.0",
     "husky": "^4.2.3",
