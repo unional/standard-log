@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.3 (2020-08-30)
+
+
+### Bug Fixes
+
+* store initializer ([#92](https://github.com/unional/standard-log/issues/92)) ([aedefd3](https://github.com/unional/standard-log/commit/aedefd37ab90baddd540e728fb3d60be7d539abf))
+
+
+
+
+
 ## 4.1.2 (2020-03-07)
 
 **Note:** Version bump only for package standard-log
