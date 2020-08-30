@@ -10,7 +10,6 @@
   "overrides": [
     {
       "extends": [
-        "plugin:react/recommended",
         "plugin:harmony/ts-recommended"
       ],
       "files": [
