@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 4.1.4 (2020-08-30)
+
+**Note:** Version bump only for package standard-log
+
+
+
+
+
 ## 4.1.3 (2020-08-30)
 
 
