@@ -22,7 +22,7 @@ export function getLogger<T extends string = LogMethodNames>(id: string, options
 }
 
 function validateId(id: string) {
-  if (/[`~!@#$%^&*()=+[\]{}\\/,|<>?]/.test(id)) throw new InvalidId(id)
+  if (/[`~!#$%^&*()=+[\]{},|<>?]/.test(id)) throw new InvalidId(id)
 }
 
 function createLoggerClosure<T extends string>(id: string, { level, writeTo = () => true }: getLogger.Options = {}): LoggerClosure<T> {

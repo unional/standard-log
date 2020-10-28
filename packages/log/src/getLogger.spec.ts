@@ -19,7 +19,12 @@ test('logger id supports unicode', () => {
   getLogger('ミク香港')
 })
 
-test.each('`~!@#$%^&*()=+\\/|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
+test('logger id supports @, \\ and /', () => {
+  getLogger('@unional/fixture')
+  getLogger(`a\\b\\c`)
+})
+
+test.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
   a.throws(() => getLogger(char), InvalidId)
 })
 

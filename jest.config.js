@@ -5,7 +5,7 @@ module.exports = {
     '!<rootDir>/src/**/*.browser.[jt]s'
   ],
   projects: [
-    '<rootDir>/packages/*/jest.config.js'
+    'packages/*'
   ],
   reporters: [
     'default',
