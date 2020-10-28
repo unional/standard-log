@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.8 (2020-10-28)
+
+
+### Bug Fixes
+
+* allow @ \ / in id ([#94](https://github.com/unional/standard-log/issues/94)) ([5684a0e](https://github.com/unional/standard-log/commit/5684a0e43d7dbb5956b3652d87fccee0e638da06))
+
+
+
+
+
 ## 1.5.7 (2020-10-28)
 
 
