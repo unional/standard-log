@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.22 (2020-10-28)
+
+
+### Bug Fixes
+
+* upgrade dependencies ([#93](https://github.com/unional/standard-log/issues/93)) ([0afc399](https://github.com/unional/standard-log/commit/0afc39942b74e1b2dd551e25b74cdd00739e0416))
+
+
+
+
+
 ## 1.5.21 (2020-08-30)
 
 **Note:** Version bump only for package standard-log-color

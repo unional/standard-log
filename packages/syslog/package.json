@@ -1,6 +1,6 @@
 {
   "name": "standard-log-syslog",
-  "version": "1.5.6",
+  "version": "1.5.7",
   "description": "syslog plugin for `standard-log`",
   "homepage": "https://github.com/unional/standard-log/tree/master/packages/syslog",
   "bugs": {
