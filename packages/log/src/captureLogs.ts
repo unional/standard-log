@@ -1,11 +1,11 @@
 import { createMemoryLogReporter } from './memory'
 import { LogEntry, Logger, LogReporter } from './types'
 import { store } from './store'
-import { isPromise } from 'type-plus'
+import { AnyFunction, isPromise } from 'type-plus'
 
 export function captureLogs(logger: Logger, funcBlock: () => Promise<any>): Promise<LogEntry[]>
 export function captureLogs(logger: Logger, funcBlock: () => void): LogEntry[]
-export function captureLogs(logger: Logger, funcBlock: Function): LogEntry[] | Promise<LogEntry[]> {
+export function captureLogs(logger: Logger, funcBlock: AnyFunction): LogEntry[] | Promise<LogEntry[]> {
   const reporter = createMemoryLogReporter()
   addRedirect(logger.id, reporter)
 
