@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.24 (2020-12-16)
+
+
+### Bug Fixes
+
+* **syslog:** distribute src to fix source map ([65d1a83](https://github.com/unional/standard-log/commit/65d1a83098bb7c590a88899a828698c661485572))
+
+
+
+
+
 ## 1.5.23 (2020-10-28)
 
 
