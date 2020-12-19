@@ -1,15 +1,15 @@
 import { ConsoleLogReporterOptions, createConsoleLogReporter, plainLogFormatter } from 'standard-log'
 import { required } from 'unpartial'
-import { createAnsiFormatter } from './ansi'
+import { createCssFormatter } from './css'
 import { supportColor } from './utils'
 
 export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
   return createConsoleLogReporter(required({ formatter: getFormatter() }, options))
 }
 
+// istanbul ignore next
 function getFormatter() {
-  // istanbul ignore next
   if (!supportColor()) return plainLogFormatter
 
-  return createAnsiFormatter()
+  return createCssFormatter()
 }
