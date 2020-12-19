@@ -25,6 +25,22 @@
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
   "typings": "lib/index.d.ts",
+  "browser": {
+    "./lib/utils/supportColor.js": "./lib/utils/supportColor.browser.js",
+    "./lib/utils/supportColor.d.ts": "./lib/utils/supportColor.browser.d.ts",
+    "./lib/utils/supportColor.js.map": "./lib/utils/supportColor.browser.js.map",
+    "./libm/utils/supportColor.js": "./libm/utils/supportColor.browser.js",
+    "./libm/utils/supportColor.d.ts": "./libm/utils/supportColor.browser.d.ts",
+    "./libm/utils/supportColor.js.map": "./libm/utils/supportColor.browser.js.map",
+    "./src/utils/supportColor.ts": "./src/utils/supportColor.browser.ts",
+    "./lib/createColorLogReporter.js": "./lib/createColorLogReporter.browser.js",
+    "./lib/createColorLogReporter.d.ts": "./lib/createColorLogReporter.browser.d.ts",
+    "./lib/createColorLogReporter.js.map": "./lib/createColorLogReporter.browser.js.map",
+    "./libm/createColorLogReporter.js": "./libm/createColorLogReporter.browser.js",
+    "./libm/createColorLogReporter.d.ts": "./libm/createColorLogReporter.browser.d.ts",
+    "./libm/createColorLogReporter.js.map": "./libm/createColorLogReporter.browser.js.map",
+    "./src/createColorLogReporter.ts": "./src/createColorLogReporter.browser.ts"
+  },
   "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
