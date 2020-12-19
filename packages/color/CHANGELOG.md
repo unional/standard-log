@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.5.25 (2020-12-19)
+
+
+### Bug Fixes
+
+* **color:** remove isBrowser and use browser field ([9a468e8](https://github.com/unional/standard-log/commit/9a468e8fb696be680138e707b050b38b4bbb2344))
+
+
+
+
+
 ## 1.5.24 (2020-12-16)
 
 
