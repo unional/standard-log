@@ -12,5 +12,11 @@
     }
   ],
   "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": true
+  "eslint.enable": true,
+  "cSpell.words": [
+    "Greenkeeper",
+    "changesets",
+    "syslog",
+    "uglifyjs"
+  ]
 }
