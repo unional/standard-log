@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.0.0 (2021-02-24)
+
+
+### Features
+
+* return result in captureLogs() ([#97](https://github.com/unional/standard-log/issues/97)) ([3f457c3](https://github.com/unional/standard-log/commit/3f457c37a685435a0d20802bb0be33565e58ba20))
+
+
+### BREAKING CHANGES
+
+* return signagure of captureLogs changed
+
+* chore: update deps
+
+
+
+
+
 ## 1.5.25 (2020-12-19)
 
 
