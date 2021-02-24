@@ -1,10 +1,10 @@
-import a from 'assertron';
-import delay from 'delay';
-import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevels, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.';
-import { config } from './config';
-import { createMemoryLogReporter, MemoryLogReporter } from './memory';
-import { store } from './store';
-import { captureWrittenLog } from './testUtil';
+import a from 'assertron'
+import delay from 'delay'
+import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevels, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from '.'
+import { config } from './config'
+import { createMemoryLogReporter, MemoryLogReporter } from './memory'
+import { store } from './store'
+import { captureWrittenLog } from './testUtil'
 
 afterEach(() => {
   clearCustomLogLevel()
@@ -83,7 +83,7 @@ describe('validate write to reporters', () => {
 
     test('append args after the counter', async () => {
       store.value.logLevel = logLevels.debug
-      const id = 'inc with args';
+      const id = 'inc with args'
       const logger = getLogger(id)
       logger.count('msg1', 'msg2')
 
@@ -94,7 +94,7 @@ describe('validate write to reporters', () => {
 
     test('not log if log level is less than debug', async () => {
       store.value.logLevel = logLevels.debug - 1
-      const id = 'inc with args';
+      const id = 'inc with args'
       const logger = getLogger(id)
       logger.count('msg1', 'msg2')
 
@@ -351,7 +351,6 @@ describe('validate write to reporters', () => {
     shouldCallLogFunctionWithLocalLevelOverride(logLevels.debug, logLevels.debug)
   })
 
-
   test('on() log using log argument', () => {
     store.value.mode = 'test'
     store.value.logLevel = logLevels.debug
@@ -362,6 +361,13 @@ describe('validate write to reporters', () => {
     a.satisfies(capture.logs, [
       { id: 'log on fn', level: logLevels.error, args: ['value'] }
     ])
+  })
+
+  test('write entry directly', () => {
+    const log = getLogger('write-entry')
+    const entry = { id: 'write-entry', level: logLevels.info, args: ['abc'], timestamp: new Date() }
+    log.write(entry)
+    a.satisfies(capture.logs, [entry])
   })
 })
 

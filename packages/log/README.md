@@ -174,6 +174,9 @@ test('your test', () => {
 
   a.satisfies(logs, [{ args: ['some messages']}])
   a.equals('miku', result)
+
+  // rewriting the logs
+  logs.forEach(entry => log.write(entry))
 })
 ```
 
