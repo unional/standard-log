@@ -5,6 +5,14 @@ export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'war
 export type LogMethod = (...args: any[]) => void
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
+export type LogEntry = {
+  id: string,
+  level: number,
+  // args instead of messages because it is `any[]` instead of `string[]`
+  args: any[],
+  timestamp: Date
+}
+
 export type Logger<T extends string = LogMethodNames> = {
   readonly id: string,
   /**
@@ -17,17 +25,14 @@ export type Logger<T extends string = LogMethodNames> = {
    */
   count(...args: any[]): void,
   on(level: number | T, logFunction: LogFunction): void,
+  /**
+   * Write custom log entries.
+   * This can be used along with `captureLogs()` to rewrite the logs at a later time.
+   */
+  write(entry: LogEntry): void
 } & {
     [k in T]: LogMethod
   }
-
-export type LogEntry = {
-  id: string,
-  level: number,
-  // args instead of messages because it is `any[]` instead of `string[]`
-  args: any[],
-  timestamp: Date
-}
 
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 
