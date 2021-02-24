@@ -167,11 +167,13 @@ test('your test', () => {
     const log = getLogger('foo logger')
     // this log will not be sent to normal reporters
     log.info('some messages')
+    return 'miku'
   }
   const log = getLogger('foo logger')
-  const logEntries = captureLogs(log, foo)
+  const [result, logs] = captureLogs(log, foo)
 
-  a.satisfies([{ args: ['some messages']}])
+  a.satisfies(logs, [{ args: ['some messages']}])
+  a.equals('miku', result)
 })
 ```
 

@@ -6,21 +6,21 @@ import { store } from './store'
 describe('capture from logger', () => {
   test('gets empty object if no log are written', () => {
     const log = getLogger('capture')
-    const actual = captureLogs(log, () => { })
+    const [, actual] = captureLogs(log, () => { })
 
     expect(actual).toEqual([])
   })
 
   test('gets logs', () => {
     const log = getLogger('capture')
-    const actual = captureLogs(log, () => log.error('err msg'))
+    const [, actual] = captureLogs(log, () => log.error('err msg'))
 
     a.satisfies(actual, [{ args: ['err msg'] }])
   })
 
   test('get logs for async block', async () => {
     const log = getLogger('capture')
-    const actual = await captureLogs(log, async () => {
+    const [, actual] = await captureLogs(log, async () => {
       await delay(1)
       log.error('err msg')
     })
@@ -41,4 +41,10 @@ describe('capture from logger', () => {
     }))
     expect(store.value.redirects[log.id].length).toBe(0)
   })
-});
+
+  test('receive sync result', () => {
+    const log = getLogger('capture')
+    const [a] = captureLogs(log, () => 123)
+    expect(a).toEqual(123)
+  })
+})
