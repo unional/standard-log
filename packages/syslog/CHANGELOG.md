@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2021-02-24)
+
+
+### Features
+
+* add logger.write(entry) ([28fe6c9](https://github.com/unional/standard-log/commit/28fe6c955b7c5dd3a13bef5f3276b7f4641b2d1f))
+
+
+
+
+
 # 2.0.0 (2021-02-24)
 
 
