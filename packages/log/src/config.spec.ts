@@ -53,7 +53,7 @@ test('configure as devel will emit warning', () => {
   console.warn = message => actual = message
   config({ mode: 'development' })
 
-  expect(actual!).toBe(`'standard-log' is configured in 'development' mode. Configuration is not protected.`)
+  expect(actual!).toBe(`'standard-log' is running in 'development' mode. Configuration is not protected.`)
 
   console.warn = warn
 })

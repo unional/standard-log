@@ -18,7 +18,7 @@ export class ProhibitedDuringProduction extends StandardLogError {
 }
 
 export class InvalidEnvVar extends StandardLogError {
-  constructor(public name: string, public value: string, public possibleValues?: string[]) {
-    super(`${name} contains invalid value '${value}'${possibleValues ? ` valid values: [${possibleValues.join()}]` : ''}`)
+  constructor(public name: string, public value: string, public possibleValues: string[]) {
+    super(`${name} contains invalid value '${value}'${` valid values: [${possibleValues.join()}]`}`)
   }
 }
