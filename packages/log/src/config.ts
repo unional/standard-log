@@ -2,7 +2,6 @@ import { forEachKey } from 'type-plus'
 import { addCustomLogLevel } from './customLogLevel'
 import { ProhibitedDuringProduction } from './errors'
 import { getDefaultReporter } from './getDefaultReporter'
-import { toLogLevelName } from './logLevelFn'
 import { store } from './store'
 import { LogMode, LogReporter } from './types'
 
@@ -34,10 +33,9 @@ export const config: { (options?: Partial<ConfigOptions>): void, readonly isLock
 
   if (store.value.mode === 'production') {
     store.freeze({ ...store.value, reporters: Object.freeze(store.value.reporters) })
-    console.info(`'standard-log' is running in 'production' mode with log level '${toLogLevelName(store.value.logLevel)}'`)
   }
   else if (store.value.mode === 'development') {
-    console.warn(`'standard-log' is configured in 'development' mode. Configuration is not protected.`)
+    console.warn(`'standard-log' is running in 'development' mode. Configuration is not protected.`)
   }
 } as any
 
