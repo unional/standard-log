@@ -64,11 +64,11 @@ import { createAnsiLogFormatter, createCssLogFormatter } from 'standard-log-colo
 
 createAnsiLogFormatter({ timestamp: 'none' })
 createAnsiLogFormatter({ timestamp: 'iso' })
-createAnsiLogFormatter({ timestamp: 'elasped' })
+createAnsiLogFormatter({ timestamp: 'elapsed' })
 
 createCssLogFormatter({ timestamp: 'none' })
 createCssLogFormatter({ timestamp: 'iso' })
-createCssLogFormatter({ timestamp: 'elasped' })
+createCssLogFormatter({ timestamp: 'elapsed' })
 ```
 
 ![timestamp example](2019-07-13-17-18-14.png)
