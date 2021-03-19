@@ -4,7 +4,7 @@ import { store } from './store';
 import { createConsoleLogReporter } from './console';
 import { LogFilter } from './types';
 import { logLevels } from './logLevel';
-import { hasConsoleReporter } from './logReporter';
+import { getConsoleReporter, hasConsoleReporter } from './logReporter';
 
 beforeEach(() => {
   store.reset()
@@ -27,27 +27,27 @@ describe('addLogReporter()', () => {
   })
 
   describe('add another console reporter', () => {
-    test('will replace existing one', () => {
+    test('will not replace existing one', () => {
       expect(getLogReporter('console')).toBeDefined()
       addLogReporter(createConsoleLogReporter({ id: 'c2' }))
-      expect(getLogReporter('c2')).toBeDefined()
-      expect(getLogReporter('console')).toBeUndefined()
+      expect(getLogReporter('c2')).toBeUndefined()
+      expect(getLogReporter('console')).toBeDefined()
     })
 
     test('will carry over existing filter', () => {
       const filter: LogFilter = entry => entry.level < logLevels.alert
       addLogReporter(createConsoleLogReporter({ id: 'c2', filter }))
       addLogReporter(createConsoleLogReporter({ id: 'c3' }))
-      const c3 = getLogReporter('c3')!
+      const c3 = getConsoleReporter()!
       expect(c3.filter).toBe(filter)
     })
 
     test('will combine existing filter and new filter', () => {
       addLogReporter(createConsoleLogReporter({ id: 'c2', filter: entry => entry.level > logLevels.critical }))
       addLogReporter(createConsoleLogReporter({ id: 'c3', filter: entry => entry.level < logLevels.error }))
-      const c3 = getLogReporter('c3')!
-      expect(c3.filter({ level: logLevels.info } as any)).toBe(false)
-      expect(c3.filter({ level: logLevels.alert } as any)).toBe(false)
+      const c2 = getConsoleReporter()!
+      expect(c2.filter!({ level: logLevels.info } as any)).toBe(false)
+      expect(c2.filter!({ level: logLevels.alert } as any)).toBe(false)
     })
   })
 })

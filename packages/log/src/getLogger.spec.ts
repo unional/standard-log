@@ -428,10 +428,22 @@ describe('writeTo', () => {
 
   test('custom reporter', () => {
     const reporter = createMemoryLogReporter({ id: 'custom mem' })
-    const log = getLogger('writeTo-fn', { writeTo: reporter })
+    const log = getLogger('writeTo-reporter', { writeTo: reporter })
     log.error('error message')
 
     expect(reporter.logs.length).toEqual(1)
+  })
+
+  test('custom reporter cannot override added console reporter', () => {
+    // if not, it would be a security issue as the new reporter
+    // can capture the logs from other logger and send it elsewhere
+    const reporter = createMemoryLogReporter({ id: 'custom mem' })
+    reporter.isConsoleReporter = true
+    getLogger('writeTo-reporter-no-override', { writeTo: reporter })
+    const log = getLogger('writeTo-reporter-no-override-2')
+    log.error('error message')
+
+    expect(reporter.logs.length).toEqual(0)
   })
 })
 
