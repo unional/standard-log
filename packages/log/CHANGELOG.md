@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.1.2 (2021-03-19)
+
+
+### Bug Fixes
+
+* filter should be optional ([#100](https://github.com/unional/standard-log/issues/100)) ([6fa73c2](https://github.com/unional/standard-log/commit/6fa73c24d979061c4b390aab4597688d29953fd8))
+
+
+
+
+
 ## 5.1.1 (2021-03-13)
 
 **Note:** Version bump only for package standard-log
