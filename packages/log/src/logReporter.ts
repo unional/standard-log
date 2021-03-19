@@ -11,7 +11,7 @@ export function addLogReporter(reporter: LogReporter) {
     if (r.filter) {
       if (reporter.filter) {
         const f2 = reporter.filter
-        reporter.filter = entry => r.filter(entry) && f2(entry)
+        reporter.filter = entry => r.filter!(entry) && f2(entry)
       }
       else {
         reporter.filter = r.filter
