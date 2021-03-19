@@ -16,6 +16,10 @@ export function hasConsoleReporter() {
   return store.value.reporters.some(r => r.isConsoleReporter)
 }
 
+export function getConsoleReporter() {
+  return store.value.reporters.find(r => r.isConsoleReporter)
+}
+
 export function clearLogReporters() {
   assertLogModeIsNotProduction('clearLogReporters')
   store.value.reporters.splice(0, store.value.reporters.length)
