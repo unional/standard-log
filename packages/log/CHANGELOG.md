@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 5.2.0 (2021-03-19)
+
+
+### Features
+
+* getLogger can specify a custom reporter ([1ba85e5](https://github.com/unional/standard-log/commit/1ba85e51c639de8147a82386473c25b2fcf861ca))
+
+
+
+
+
 ## 5.1.2 (2021-03-19)
 
 
