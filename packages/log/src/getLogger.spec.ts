@@ -425,6 +425,14 @@ describe('writeTo', () => {
     expect(memReporter.logs.length).toEqual(0)
     expect(specialReporter.logs.length).toEqual(1)
   })
+
+  test('custom reporter', () => {
+    const reporter = createMemoryLogReporter({ id: 'custom mem' })
+    const log = getLogger('writeTo-fn', { writeTo: reporter })
+    log.error('error message')
+
+    expect(reporter.logs.length).toEqual(1)
+  })
 })
 
 test('id is readonly', () => {

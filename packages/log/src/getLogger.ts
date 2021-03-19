@@ -1,16 +1,17 @@
 import { InvalidId } from './errors'
 import { logLevels } from './logLevel'
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn'
+import { addLogReporterInternal } from './logReporterInternal'
 import { shouldLog } from './shouldLog'
 import { store } from './store'
-import { LogEntry, LogFunction, Logger, LogMethodNames, ReporterFilter } from './types'
+import { LogEntry, LogFunction, Logger, LogMethodNames, LogReporter, ReporterFilter } from './types'
 import { LoggerClosure } from './typesInternal'
 import { writeToReporters } from './writeToReporters'
 
 export namespace getLogger {
   export type Options = {
     level?: number,
-    writeTo?: ReporterFilter
+    writeTo?: LogReporter | ReporterFilter
   }
 }
 
@@ -19,7 +20,8 @@ export function getLogger<T extends string = LogMethodNames>(
 ): Logger<T | LogMethodNames> {
   validateId(id)
   const loggerClosures = store.value.loggerClosures
-  const loggerClosure: any = loggerClosures[id] || (loggerClosures[id] = createLoggerClosure<T | LogMethodNames>(id, options))
+  const loggerClosure: any = loggerClosures[id] ||
+    (loggerClosures[id] = createLoggerClosure<T | LogMethodNames>(id, options))
   return loggerClosure.logger
 }
 
@@ -28,8 +30,13 @@ function validateId(id: string) {
 }
 
 function createLoggerClosure<T extends string>(id: string, { level, writeTo = () => true }: getLogger.Options = {}): LoggerClosure<T> {
-  const filter: (reporterId: string) => boolean = typeof writeTo === 'string' ? id => id === writeTo :
-    writeTo instanceof RegExp ? id => writeTo.test(id) : writeTo
+  const filter: (reporterId: string) => boolean = typeof writeTo === 'string'
+    ? id => id === writeTo
+    : writeTo instanceof RegExp
+      ? id => writeTo.test(id)
+      : typeof writeTo === 'function'
+        ? writeTo
+        : (addLogReporterInternal(writeTo), id => id === writeTo.id)
 
   function write(entry: LogEntry) {
     writeToReporters(entry, filter)
