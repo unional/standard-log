@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 5.2.1 (2021-03-19)
+
+
+### Bug Fixes
+
+* support case when adding first console reporter ([fda7209](https://github.com/unional/standard-log/commit/fda7209a8f72ea6cf2f8d942ed8c1dd29d3cff69))
+
+
+
+
+
 # 5.2.0 (2021-03-19)
 
 
