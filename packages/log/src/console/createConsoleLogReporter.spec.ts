@@ -23,7 +23,7 @@ describe('id', () => {
     const reporter = createConsoleLogReporter()
     expect(reporter.id).toBe('console')
   })
-  test('can be overriden', () => {
+  test('can be overridden', () => {
     const reporter = createConsoleLogReporter({ id: 'neo-console' })
     expect(reporter.id).toBe('neo-console')
   })
