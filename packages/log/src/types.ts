@@ -64,7 +64,7 @@ export type LogReporter<T = any> = {
    * Specifies a filter to determine should the log be written.
    * This is readonly in production mode.
    */
-  filter: LogFilter,
+  filter?: LogFilter,
   /**
    * Indicate if this is a console reporter.
    * There is only one console reporter can be present in the system.
