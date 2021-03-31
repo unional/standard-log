@@ -1,6 +1,6 @@
-import a from 'assertron';
-import { config, createMemoryLogReporter, ProhibitedDuringProduction } from '..';
-import { store } from '../store';
+import a from 'assertron'
+import { config, createMemoryLogReporter, ProhibitedDuringProduction } from '..'
+import { store } from '../store'
 
 beforeEach(() => {
   store.reset()
@@ -64,4 +64,19 @@ test('set formatter in production mode throws', () => {
   const reporter = createMemoryLogReporter()
 
   a.throws(() => { reporter.formatter = e => e }, ProhibitedDuringProduction)
+})
+
+describe('getLogMessages()', () => {
+  test('empty logs returns empty string', () => {
+    const reporter = createMemoryLogReporter()
+
+    expect(reporter.getLogMessage()).toEqual('')
+  })
+
+  test('print args', () => {
+    const reporter = createMemoryLogReporter()
+    const entry = { id: 'log', level: 1, args: ['miku', 'is', 'singing'], timestamp: new Date() }
+    reporter.write(entry)
+    expect(reporter.getLogMessage()).toEqual('miku is singing')
+  })
 })
