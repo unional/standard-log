@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.3.0 (2021-03-31)
+
+
+### Features
+
+* adding getLogMessage() for MemoryLogReporter ([19e08d5](https://github.com/unional/standard-log/commit/19e08d536e46258e7d151f40659f502062696c43))
+
+
+
+
+
 ## 2.2.2 (2021-03-19)
 
 **Note:** Version bump only for package standard-log-syslog
