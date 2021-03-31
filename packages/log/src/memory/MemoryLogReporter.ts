@@ -3,7 +3,12 @@ import { required } from 'type-plus';
 import { assertLogModeIsNotProduction } from '../utils';
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
-  logs: LogEntry[]
+  logs: LogEntry[],
+  /**
+   * Gets a simple log message for testing.
+   * The message only contains arguments for each log entry.
+   */
+  getLogMessage(): string
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
@@ -32,6 +37,9 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
     write(entry) {
       if (filter && !filter(entry)) return
       this.logs.push(formatter(entry))
+    },
+    getLogMessage() {
+      return this.logs.map(log => log.args.join(' ')).join('\n')
     }
   }
 }
