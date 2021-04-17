@@ -1,4 +1,4 @@
-import { createTimestampFormatter } from '..';
+import { createTimestampFormatter } from '..'
 
 test('none', () => {
   const formatter = createTimestampFormatter('none')
@@ -14,8 +14,8 @@ test('iso', () => {
   expect(actual).toEqual([now.toISOString()])
 })
 
-test('elasped', () => {
-  const formatter = createTimestampFormatter('elasped')
+test('elapsed', () => {
+  const formatter = createTimestampFormatter('elapsed')
   const now = new Date()
   const next = new Date(now.getTime() + 10)
   const actual = [formatter(now), formatter(next)]

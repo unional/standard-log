@@ -79,4 +79,11 @@ describe('getLogMessages()', () => {
     reporter.write(entry)
     expect(reporter.getLogMessage()).toEqual('miku is singing')
   })
+
+  test('print object arg', () => {
+    const reporter = createMemoryLogReporter()
+    const entry = { id: 'log', level: 1, args: [{ 'miku': 'sing' }], timestamp: new Date() }
+    reporter.write(entry)
+    expect(reporter.getLogMessage()).toEqual("{ miku: 'sing' }")
+  })
 })

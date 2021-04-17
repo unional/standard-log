@@ -1,6 +1,8 @@
-import { LogEntry, LogFormatter, LogReporter, LogReporterOptions, LogFilter } from '../types';
-import { required } from 'type-plus';
-import { assertLogModeIsNotProduction } from '../utils';
+import isNode from 'is-node'
+import { LogEntry, LogFormatter, LogReporter, LogReporterOptions, LogFilter } from '../types'
+import { required } from 'type-plus'
+import { assertLogModeIsNotProduction } from '../utils'
+import { toInspectStringForObject } from './toInspectStringForObject'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[],
@@ -12,6 +14,23 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
+
+const getLogMessage = createGetLogMessage()
+
+function createGetLogMessage() {
+  if (isNode) {
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const inspect = require('util').inspect
+    return function getLogMessage(this: { logs: LogEntry[] }) {
+      return this.logs.map(log => log.args.map(
+        arg => toInspectStringForObject(inspect, arg)
+      ).join(' ')).join('\n')
+    }
+  }
+  return function getLogMessage(this: { logs: LogEntry[] }) {
+    return this.logs.map(log => log.args.join(' ')).join('\n')
+  }
+}
 
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
   const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
@@ -38,8 +57,6 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       if (filter && !filter(entry)) return
       this.logs.push(formatter(entry))
     },
-    getLogMessage() {
-      return this.logs.map(log => log.args.join(' ')).join('\n')
-    }
+    getLogMessage
   }
 }
