@@ -1,5 +1,5 @@
 
-export const logLevels = {
+export const logLevel = {
   /**
    * none: 0
    */
@@ -54,4 +54,4 @@ export const logLevels = {
 /**
  * @deprecated logLevel is renamed to logLevels
  */
-export const logLevel = logLevels
+export const logLevels = logLevel
