@@ -1,9 +1,7 @@
-import { required } from 'type-plus'
 import { InvalidId } from './errors'
 import { logLevels } from './logLevel'
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn'
 import { addLogReporterInternal } from './logReporterInternal'
-import { createMemoryLogReporter } from './memory'
 import { shouldLog } from './shouldLog'
 import { store } from './store'
 import { LogEntry, LogFunction, Logger, LogMethodNames, LogReporter, ReporterFilter } from './types'
@@ -14,21 +12,6 @@ export namespace getLogger {
   export type Options = {
     level?: number,
     writeTo?: LogReporter | ReporterFilter
-  }
-}
-
-export function getMemoryLogger<T extends string = LogMethodNames>(
-  id: string, options?: Pick<getLogger.Options, 'level'>
-): Logger<T | LogMethodNames> {
-  validateId(id)
-  const reporter = createMemoryLogReporter({ id })
-  const loggerClosure = createLoggerClosure<T | LogMethodNames>(
-    id,
-    required({ writeTo: reporter }, options)
-  )
-  return {
-    ...loggerClosure.logger,
-    logs: reporter.logs
   }
 }
 

@@ -5,14 +5,3 @@ export type LogEntry = {
   args: any[],
   timestamp: Date
 }
-
-export const LogEntry = {
-  create(id: string, level: number, ...args: any[]) {
-    return {
-      id,
-      level,
-      args,
-      timestamp: new Date()
-    }
-  }
-}

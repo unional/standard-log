@@ -457,3 +457,4 @@ test.each(['on', 'count', 'error', 'warn', 'info', 'debug'])('method %s is reado
 
   a.throws(() => log[name] = true)
 })
+
