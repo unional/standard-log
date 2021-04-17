@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](https://github.com/unional/standard-log/compare/standard-log-color@2.3.0...standard-log-color@3.0.0) (2021-04-17)
+
+
+### Bug Fixes
+
+* print log message with pretty object ([#104](https://github.com/unional/standard-log/issues/104)) ([3b6709b](https://github.com/unional/standard-log/commit/3b6709b9dea152989b662755cf41c1503895dd8c))
+
+
+### BREAKING CHANGES
+
+* elasped -> elapsed
+
+The `TimestampFormat` has fixed the typo from `elasped` to `elapsed`.
+
+
+
+
+
 # 2.3.0 (2021-03-31)
 
 
