@@ -1,6 +1,7 @@
-import { LogEntry, LogFormatter, LogReporter, LogReporterOptions, LogFilter } from '../types';
-import { required } from 'type-plus';
-import { assertLogModeIsNotProduction } from '../utils';
+import { required } from 'type-plus'
+import { LogEntry, LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types'
+import { assertLogModeIsNotProduction } from '../utils'
+import { toInspectLogEntry } from './toInspectStringForObject'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[],
@@ -12,6 +13,16 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
+
+const getLogMessage = createGetLogMessage()
+
+function createGetLogMessage() {
+  return function getLogMessage(this: { logs: LogEntry[] }) {
+    return this.logs.map(toInspectLogEntry)
+      .map(log => log.args.join(' '))
+      .join('\n')
+  }
+}
 
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
   const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
@@ -38,8 +49,6 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       if (filter && !filter(entry)) return
       this.logs.push(formatter(entry))
     },
-    getLogMessage() {
-      return this.logs.map(log => log.args.join(' ')).join('\n')
-    }
+    getLogMessage
   }
 }

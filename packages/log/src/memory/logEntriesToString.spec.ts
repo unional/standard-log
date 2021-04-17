@@ -1,4 +1,4 @@
-import { logLevels, logEntriesToString } from '..';
+import { logLevels, logEntriesToString } from '..'
 
 test('convert log entries to string', () => {
   const timestamp = new Date(2019, 6)
@@ -24,4 +24,24 @@ ${iso},log,(NOTICE),notice
 ${iso},log,(INFO),info
 ${iso},log,(DEBUG),debug
 ${iso},log,(TRACE),trace`)
+})
+
+test('print out object', () => {
+  const timestamp = new Date(2021, 4)
+  const actual = logEntriesToString([
+    { id: 'log', level: logLevels.info, args: ['a', { a: 1 }], timestamp }
+  ])
+
+  const iso = timestamp.toISOString()
+  expect(actual).toEqual(`${iso},log,(INFO),a,{ a: 1 }`)
+})
+
+test('print out array', () => {
+  const timestamp = new Date(2021, 4)
+  const actual = logEntriesToString([
+    { id: 'log', level: logLevels.info, args: ['a', [1, 2, 3]], timestamp }
+  ])
+
+  const iso = timestamp.toISOString()
+  expect(actual).toEqual(`${iso},log,(INFO),a,[ 1, 2, 3 ]`)
 })
