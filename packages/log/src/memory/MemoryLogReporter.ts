@@ -1,4 +1,5 @@
 import { required } from 'type-plus'
+import { formatLogLevel } from '../formatter'
 import { LogEntry, LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types'
 import { assertLogModeIsNotProduction } from '../utils'
 import { toInspectLogEntry } from './toInspectStringForObject'
@@ -9,12 +10,11 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
    * Gets a simple log message for testing.
    * The message only contains arguments for each log entry.
    */
-  getLogMessage(): string
+  getLogMessage(): string,
+  getLogMessageWithLevel(): string
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
-
-const getLogMessage = createGetLogMessage()
 
 function createGetLogMessage() {
   return function getLogMessage(this: { logs: LogEntry[] }) {
@@ -23,6 +23,15 @@ function createGetLogMessage() {
       .join('\n')
   }
 }
+
+function createGetMessageWithLevel() {
+  return function getLogMessage(this: { logs: LogEntry[] }) {
+    return this.logs.map(toInspectLogEntry)
+      .map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
+      .join('\n')
+  }
+}
+
 
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
   const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
@@ -49,6 +58,7 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       if (filter && !filter(entry)) return
       this.logs.push(formatter(entry))
     },
-    getLogMessage
+    getLogMessage: createGetLogMessage(),
+    getLogMessageWithLevel: createGetMessageWithLevel()
   }
 }
