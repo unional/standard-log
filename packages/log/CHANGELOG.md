@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 6.1.0 (2021-04-18)
+
+
+### Features
+
+* add MemoryReporter.getLogMessageWithLevel() ([5c923d9](https://github.com/unional/standard-log/commit/5c923d971d22aff015d47c0a9317004717ce96a2))
+
+
+
+
+
 ## 6.0.1 (2021-04-17)
 
 **Note:** Version bump only for package standard-log
