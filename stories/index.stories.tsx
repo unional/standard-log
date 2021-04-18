@@ -1,21 +1,7 @@
-import { storiesOf } from '@storybook/react';
-import { Console, Decode, Hook, Unhook } from 'console-feed';
-import React from 'react';
-import { config, createConsoleLogReporter, getLogger } from 'standard-log';
-
-storiesOf('Console', module)
-  .add('hello world', () => {
-    const reporter = createConsoleLogReporter()
-    config({ mode: 'development', reporters: [reporter], logLevel: Infinity })
-    const log = getLogger('testing')
-    setImmediate(() => {
-      log.debug('hello world')
-      log.info('hello world')
-      log.warn('hello world')
-      log.error('hello world')
-    })
-    return <ConsolePanel console={reporter.console} />
-  })
+import { storiesOf } from '@storybook/react'
+import { Console, Decode, Hook, Unhook } from 'console-feed'
+import React from 'react'
+import { config, createConsoleLogReporter, getLogger } from 'standard-log'
 
 class ConsolePanel extends React.Component<{ console?: any }, { logs: any[] }> {
   state = {
@@ -38,3 +24,17 @@ class ConsolePanel extends React.Component<{ console?: any }, { logs: any[] }> {
     )
   }
 }
+
+storiesOf('Console', module)
+  .add('hello world', () => {
+    const reporter = createConsoleLogReporter()
+    config({ mode: 'development', reporters: [reporter], logLevel: Infinity })
+    const log = getLogger('testing')
+    setImmediate(() => {
+      log.debug('hello world')
+      log.info('hello world')
+      log.warn('hello world')
+      log.error('hello world')
+    })
+    return <ConsolePanel console={reporter.console} />
+  })

@@ -1,5 +1,6 @@
 import a from 'assertron'
 import { config, createMemoryLogReporter, ProhibitedDuringProduction } from '..'
+import { logLevels } from '../logLevel'
 import { store } from '../store'
 
 beforeEach(() => {
@@ -85,5 +86,14 @@ describe('getLogMessages()', () => {
     const entry = { id: 'log', level: 1, args: [{ 'miku': 'sing' }], timestamp: new Date() }
     reporter.write(entry)
     expect(reporter.getLogMessage()).toEqual("{ miku: 'sing' }")
+  })
+})
+
+describe('getLogMessageWithLevel', () => {
+  test('print with level', () => {
+    const reporter = createMemoryLogReporter()
+    reporter.write({ id: 'log', level: logLevels.info, args: ['msg 1'], timestamp: new Date() })
+    reporter.write({ id: 'log', level: logLevels.warn, args: ['msg 2'], timestamp: new Date() })
+    expect(reporter.getLogMessageWithLevel()).toEqual(`(INFO) msg 1\n(WARN) msg 2`)
   })
 })

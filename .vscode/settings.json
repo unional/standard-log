@@ -15,6 +15,7 @@
   "eslint.enable": true,
   "cSpell.words": [
     "Greenkeeper",
+    "Unmount",
     "changesets",
     "syslog",
     "uglifyjs"

@@ -1,10 +1,10 @@
-import { required } from 'type-plus';
-import { plainLogFormatter } from '../formatter';
-import { LogFormatter, LogReporter, LogReporterOptions, LogFilter } from '../types';
-import { assertLogModeIsNotProduction } from '../utils';
-import { polyfilledConsole } from './polyfilledConsole';
-import { toConsoleMethod } from './toConsoleMethod';
-import { Console } from './types';
+import { required } from 'type-plus'
+import { plainLogFormatter } from '../formatter'
+import { LogFormatter, LogReporter, LogReporterOptions, LogFilter } from '../types'
+import { assertLogModeIsNotProduction } from '../utils'
+import { polyfilledConsole } from './polyfilledConsole'
+import { toConsoleMethod } from './toConsoleMethod'
+import { Console } from './types'
 
 export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
 export type ConsoleLogFormatter = LogFormatter<any[]>
