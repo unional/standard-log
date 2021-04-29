@@ -27,6 +27,9 @@ module.exports = {
     ]
   },
   output: {
+    environment: {
+      arrowFunction: false
+    },
     path: path.resolve('dist'),
     filename: `${filename}.js`,
     library: globalVariable
