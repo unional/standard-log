@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 6.1.1 (2021-04-29)
+
+
+### Bug Fixes
+
+* remove arrow function from bundle ([#106](https://github.com/unional/standard-log/issues/106)) ([cc36f64](https://github.com/unional/standard-log/commit/cc36f646b6d2d24ba0a104e9b8861df5c4dc40a4))
+
+
+
+
+
 # 6.1.0 (2021-04-18)
 
 
