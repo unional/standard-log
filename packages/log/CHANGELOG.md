@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 6.1.2 (2021-04-30)
+
+
+### Bug Fixes
+
+* support old phantomjs ([#107](https://github.com/unional/standard-log/issues/107)) ([5fee141](https://github.com/unional/standard-log/commit/5fee14132ec3c220f7447c2347223dfee0a0b2b7))
+
+
+
+
+
 ## 6.1.1 (2021-04-29)
 
 
