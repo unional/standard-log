@@ -29,7 +29,8 @@ module.exports = {
   },
   output: {
     environment: {
-      arrowFunction: false
+      arrowFunction: false,
+      destructuring: false
     },
     path: path.resolve('dist'),
     filename: `${filename}.js`,
