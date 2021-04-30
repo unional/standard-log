@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.4.3 (2021-04-30)
+
+
+### Bug Fixes
+
+* diable destructuring ([#108](https://github.com/unional/standard-log/issues/108)) ([664d33a](https://github.com/unional/standard-log/commit/664d33ae3e499b5cde2c1a9d409730a8e38b261f))
+
+
+
+
+
 ## 2.4.2 (2021-04-30)
 
 
