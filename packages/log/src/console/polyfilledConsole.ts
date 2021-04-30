@@ -1,4 +1,4 @@
-// istanbul ignore file
+/* istanbul ignore file */
 import { isConsoleDebugAvailable } from './isConsoleDebugAvailable'
 /* eslint-disable no-console */
 
