@@ -29,6 +29,7 @@ module.exports = {
   output: {
     environment: {
       arrowFunction: false,
+      const: false,
       destructuring: false
     },
     path: path.resolve('dist'),

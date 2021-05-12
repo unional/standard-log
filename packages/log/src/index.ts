@@ -1,5 +1,6 @@
 export * from './captureLogs'
 export * from './config'
+export * from './configForTest'
 export * from './console'
 export * from './customLogLevel'
 export * from './errors'
