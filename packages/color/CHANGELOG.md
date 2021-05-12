@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.2.0 (2021-05-12)
+
+
+### Features
+
+* add configForTest() ([#109](https://github.com/unional/standard-log/issues/109)) ([9170b29](https://github.com/unional/standard-log/commit/9170b2976896b5f0bf577480ee72ec3d9b64a836))
+
+
+
+
+
 ## 3.1.3 (2021-04-30)
 
 
