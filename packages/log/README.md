@@ -188,6 +188,40 @@ To use it, you also need to load [`global-store`](https://github.com/unional/glo
 If you are building a library and bundle it, make sure you mark `global-store` as externals.
 You can check out [`global-store`](https://github.com/unional/global-store) for more information.
 
+## testing
+
+During test,
+you should configure `standard-log` to `test` mode and use `MemoryReporter` to capture the logs.
+
+```ts
+import { config, createMemoryReporter } from 'standard-log'
+
+test('your test', () => {
+  const reporter = createMemoryLogReporter()
+  config({
+    reporters: [reporter],
+    mode: 'test'
+  })
+
+  // do your thing...
+
+  const messages = reporter.getLogMessage() // or getLogMessageWithLevel()
+  // validate the message if you want to
+})
+```
+
+And to simplify things, you can use the `configForTest()` function:
+
+```ts
+import { configForTest } from 'standard-log'
+
+test('your test', () => {
+  const { reporter } = configForTest()
+
+  // do your thing...
+})
+```
+
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
