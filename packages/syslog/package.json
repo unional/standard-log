@@ -39,6 +39,6 @@
     "watch": "jest --watch"
   },
   "peerDependencies": {
-    "standard-log": "^4.0.2"
+    "standard-log": ">=4.0.2"
   }
 }
