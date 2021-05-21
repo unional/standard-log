@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.5.1 (2021-05-21)
+
+
+### Bug Fixes
+
+* update tslib ([#110](https://github.com/unional/standard-log/issues/110)) ([2d7a0d2](https://github.com/unional/standard-log/commit/2d7a0d200d442794d7152aa284a65c00e0840bd7))
+
+
+
+
+
 # 2.5.0 (2021-05-12)
 
 
