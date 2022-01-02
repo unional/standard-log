@@ -42,7 +42,7 @@
     "@storybook/react": "^6.0.27",
     "@types/jest": "^26.0.15",
     "@types/ms": "^0.7.31",
-    "@types/ramda": "^0.27.30",
+    "@types/ramda": "0.27.62",
     "@types/react": "^16.9.54",
     "@types/semver": "^7.3.4",
     "assertron": "^7.1.3",
