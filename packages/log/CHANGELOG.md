@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.5](https://github.com/unional/standard-log/compare/standard-log@6.2.4...standard-log@6.2.5) (2022-01-02)
+
+
+### Bug Fixes
+
+* update to iso-error 4 ([#121](https://github.com/unional/standard-log/issues/121)) ([7b007e3](https://github.com/unional/standard-log/commit/7b007e38286925f0305076de03ddacc007d30998))
+
+
+
+
+
 ## 6.2.4 (2022-01-02)
 
 **Note:** Version bump only for package standard-log
