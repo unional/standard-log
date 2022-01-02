@@ -40,7 +40,7 @@
     "@storybook/addon-actions": "^6.0.27",
     "@storybook/addon-links": "^6.0.27",
     "@storybook/react": "^6.0.27",
-    "@types/jest": "^26.0.15",
+    "@types/jest": "26.0.20",
     "@types/ms": "^0.7.31",
     "@types/ramda": "^0.27.30",
     "@types/react": "^16.9.54",
