@@ -1,8 +1,8 @@
-import { ModuleError } from 'iso-error'
+import { IsoError, ModuleError } from 'iso-error'
 
 export class StandardLogError extends ModuleError {
-  constructor(description: string, ...errors: Error[]) {
-    super('standard-log', description, ...errors)
+  constructor(description: string, options?: IsoError.Options) {
+    super('standard-log', description, options)
   }
 }
 export class InvalidId extends StandardLogError {
