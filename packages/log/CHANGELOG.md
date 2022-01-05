@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.2.6](https://github.com/unional/standard-log/compare/standard-log@6.2.5...standard-log@6.2.6) (2022-01-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency type-plus to v4 ([#123](https://github.com/unional/standard-log/issues/123)) ([1abf2de](https://github.com/unional/standard-log/commit/1abf2dec8a8e1360053a20849996b9483eb425ae))
+
+
+
+
+
 ## [6.2.5](https://github.com/unional/standard-log/compare/standard-log@6.2.4...standard-log@6.2.5) (2022-01-02)
 
 
