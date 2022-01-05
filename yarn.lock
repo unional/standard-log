@@ -14549,6 +14549,15 @@ tersify@^3.7.8, tersify@^3.7.9:
     is-buffer "^2.0.5"
     unpartial "^0.6.4"
 
+tersify@^3.8.0:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.8.2.tgz#6f05659036a7b1822eada1637918212f97a5cb6d"
+  integrity sha512-VtcyrO7pb/tQAPZNMkNzRtmkz3smQpUQiOQXuoxLoAfN7W+ag9YxVlfs6c9hOEGotCD1HZQ1D4eoSeOQxI8mJA==
+  dependencies:
+    acorn "^8.6.0"
+    is-buffer "^2.0.5"
+    unpartial "^0.6.4"
+
 test-exclude@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-6.0.0.tgz#04a8698661d805ea6fa293b6cb9e63ac044ef15e"
@@ -14898,6 +14907,14 @@ type-plus@^3.14.0:
   dependencies:
     tersify "^3.7.8"
     unpartial "^0.6.3"
+
+type-plus@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-4.0.0.tgz#7c8617998d8d7a89a5a2a244159ddab183a4b666"
+  integrity sha512-6/oxPklK+yT3MWIr/ya1R5A0NnbR3t/X9mf5h1Oo6os7slDE9VzJFmj8u4ygjh7e6DwH4oRSDuC2g5f0eDrpCQ==
+  dependencies:
+    tersify "^3.8.0"
+    unpartial "^0.6.4"
 
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
