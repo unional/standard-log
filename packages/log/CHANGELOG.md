@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [6.3.1](https://github.com/unional/standard-log/compare/standard-log@6.3.0...standard-log@6.3.1) (2022-04-04)
+
+**Note:** Version bump only for package standard-log
+
+
+
+
+
 # [6.3.0](https://github.com/unional/standard-log/compare/standard-log@6.2.6...standard-log@6.3.0) (2022-04-04)
 
 
