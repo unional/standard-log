@@ -1,5 +1,9 @@
 import a from 'assertron'
-import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction, toLogLevelName } from '.'
+import {
+  config, createMemoryLogReporter,
+  logLevels, ProhibitedDuringProduction, toLogLevelName
+} from '.'
+import { configForTest } from './configForTest'
 import { store } from './store'
 
 beforeEach(() => store.reset())
@@ -15,9 +19,7 @@ test('default logLevel is info', () => {
 })
 
 test('configure default logLevel', () => {
-  config({
-    logLevel: logLevels.planck
-  })
+  config({ logLevel: logLevels.planck })
 
   expect(store.value.logLevel).toBe(logLevels.planck)
 })
@@ -25,6 +27,12 @@ test('configure default logLevel', () => {
 test('calling config twice throws ProhibitedDuringProduction in production mode', () => {
   config({ mode: 'production' })
   a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
+})
+
+test('calling config twice in test mode is allowed, but emit a warning', () => {
+  const { reporter } = configForTest()
+  config({ mode: 'production' })
+  expect(reporter.getLogMessageWithLevel()).toEqual('(WARN) already configured for test, ignoring config() call')
 })
 
 test('add custom levels', () => {

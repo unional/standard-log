@@ -1,8 +1,10 @@
-import { addCustomLogLevel, clearCustomLogLevel, ConsoleLogFormatter, LogFilter, logLevels, plainLogFormatter, config } from 'standard-log'
+import {
+  addCustomLogLevel, clearCustomLogLevel, configForTest,
+  ConsoleLogFormatter, LogFilter, logLevels, plainLogFormatter
+} from 'standard-log'
 import { createAnsiFormatter, createColorLogReporter, createCssFormatter } from '.'
-beforeAll(() => {
-  config({ mode: 'test' })
-})
+
+beforeAll(() => configForTest())
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {

@@ -2,6 +2,7 @@ import { forEachKey } from 'type-plus'
 import { addCustomLogLevel } from './customLogLevel'
 import { ProhibitedDuringProduction } from './errors'
 import { getDefaultReporter } from './getDefaultReporter'
+import { getLogger } from './getLogger'
 import { store } from './store'
 import { LogMode, LogReporter } from './types'
 
@@ -13,8 +14,15 @@ export type ConfigOptions = {
 }
 
 export const config: { (options?: Partial<ConfigOptions>): void, readonly isLocked: boolean } = function config(options: Partial<ConfigOptions> = {}) {
-  if (store.value.configured && store.value.mode === 'production') {
-    throw new ProhibitedDuringProduction('config')
+  if (store.value.configured) {
+    if (store.value.mode === 'production') {
+      throw new ProhibitedDuringProduction('config')
+    }
+    if (store.value.mode === 'test') {
+      const log = getLogger('standard-log')
+      log.warn(`already configured for test, ignoring config() call`)
+      return
+    }
   }
 
   if (options.mode) store.value.mode = options.mode
