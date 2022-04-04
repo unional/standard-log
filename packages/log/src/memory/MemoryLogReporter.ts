@@ -28,6 +28,10 @@ export function toMessageWithLevel(logs: LogEntry[]) {
   return logs.map(toInspectLogEntry)
     .map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
     .join('\n')
+    // if it has more than this log,
+    // we assume it is running under tests,
+    // and remove this log to simplify testing.
+    .replace(/^\(WARN\) already configured for test, ignoring config\(\) call\\n.+/, '')
 }
 
 
