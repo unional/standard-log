@@ -31,7 +31,7 @@ export function toMessageWithLevel(logs: LogEntry[]) {
     // if it has more than this log,
     // we assume it is running under tests,
     // and remove this log to simplify testing.
-    .replace(/^\(WARN\) already configured for test, ignoring config\(\) call\\n.+/, '')
+    .replace(/^\(WARN\) already configured for test, ignoring config\(\) call\n/, '')
 }
 
 
