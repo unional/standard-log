@@ -1,7 +1,7 @@
-import { createMemoryLogReporter } from './memory'
-import { LogEntry, Logger, LogReporter } from './types'
-import { store } from './store'
 import { AnyFunction, isPromise } from 'type-plus'
+import { createMemoryLogReporter } from './memory'
+import { store } from './store'
+import { LogEntry, Logger, LogReporter } from './types'
 
 export function captureLogs<R>(logger: Logger, funcBlock: () => Promise<R>): Promise<[R, LogEntry[]]>
 export function captureLogs<R>(logger: Logger, funcBlock: () => R): [R, LogEntry[]]

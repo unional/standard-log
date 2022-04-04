@@ -15,8 +15,10 @@
   "eslint.enable": true,
   "cSpell.words": [
     "changesets",
+    "cust",
     "Greenkeeper",
     "syslog",
+    "tsbuildinfo",
     "uglifyjs",
     "Unmount",
     "unpartial"

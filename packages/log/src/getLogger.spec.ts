@@ -380,7 +380,7 @@ test('auto configure', async () => {
   expect(store.value.configured).toBeFalsy()
   const log = getLogger('auto config')
 
-  log.error('config is called automatically as expected')
+  log.info('config is called automatically as expected')
 
   await delay(10)
   expect(store.value.configured).toBeTruthy()
