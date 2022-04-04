@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.0.2](https://github.com/unional/standard-log/compare/standard-log@7.0.1...standard-log@7.0.2) (2022-04-04)
+
+
+### Bug Fixes
+
+* ignore production warning during test v2 ([#133](https://github.com/unional/standard-log/issues/133)) ([75f9912](https://github.com/unional/standard-log/commit/75f991257c09142dd1dfa482af8365d581a018a8))
+
+
+
+
+
 ## [7.0.1](https://github.com/unional/standard-log/compare/standard-log@7.0.0...standard-log@7.0.1) (2022-04-04)
 
 
