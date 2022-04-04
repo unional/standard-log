@@ -1,6 +1,6 @@
-import a from 'assertron';
-import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction, toLogLevelName } from '.';
-import { store } from './store';
+import a from 'assertron'
+import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction, toLogLevelName } from '.'
+import { store } from './store'
 
 beforeEach(() => store.reset())
 
@@ -47,7 +47,7 @@ test('configure to use a reporter instance', () => {
   expect(store.value.reporters.length).toBe(1)
 })
 
-test('configure as devel will emit warning', () => {
+test('configure as development will emit warning', () => {
   const warn = console.warn
   let actual: string
   console.warn = message => actual = message
