@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0](https://github.com/unional/standard-log/compare/standard-log-color@3.2.4...standard-log-color@4.0.0) (2022-04-04)
+
+
+### Bug Fixes
+
+* allow making `config()` call during tests ([#131](https://github.com/unional/standard-log/issues/131)) ([52c97dd](https://github.com/unional/standard-log/commit/52c97dde55167f8f34fba09b64e84733f9668f33))
+
+
+### BREAKING CHANGES
+
+* config behavior changed
+
+while this shouldn't be an issue,
+marking this as a breaking change in case this causes any suprises.
+
+
+
+
+
 ## 3.2.4 (2022-01-02)
 
 **Note:** Version bump only for package standard-log-color
