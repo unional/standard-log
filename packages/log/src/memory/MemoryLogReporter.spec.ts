@@ -1,5 +1,7 @@
 import a from 'assertron'
 import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction } from '..'
+import { configForTest } from '../configForTest'
+import { getLogger } from '../getLogger'
 import { store } from '../store'
 
 describe('production checks', () => {
@@ -15,6 +17,15 @@ describe('production checks', () => {
     config({ mode: 'production' })
     const reporter = createMemoryLogReporter()
     a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
+  })
+
+  describe('getLogMessageWithLevel()', () => {
+    test('the production log is omitted', () => {
+      const { reporter } = configForTest()
+      config({ mode: 'production' })
+      getLogger('test').warn('some test warnings')
+      expect(reporter.getLogMessageWithLevel()).toEqual(`(WARN) some test warnings`)
+    })
   })
 })
 
