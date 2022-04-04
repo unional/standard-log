@@ -24,12 +24,10 @@ function createGetLogMessage() {
   }
 }
 
-function createGetMessageWithLevel() {
-  return function getLogMessage(this: { logs: LogEntry[] }) {
-    return this.logs.map(toInspectLogEntry)
-      .map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
-      .join('\n')
-  }
+export function toMessageWithLevel(logs: LogEntry[]) {
+  return logs.map(toInspectLogEntry)
+    .map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
+    .join('\n')
 }
 
 
@@ -59,6 +57,6 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       this.logs.push(formatter(entry))
     },
     getLogMessage: createGetLogMessage(),
-    getLogMessageWithLevel: createGetMessageWithLevel()
+    getLogMessageWithLevel() { return toMessageWithLevel(this.logs) }
   }
 }

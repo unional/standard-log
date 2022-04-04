@@ -1,9 +1,10 @@
 import a from 'assertron'
 import delay from 'delay'
 import { captureLogs, getLogger } from '.'
+import { toMessageWithLevel } from './memory'
 import { store } from './store'
 
-describe('capture from logger', () => {
+describe('captureLogs()', () => {
   test('gets empty object if no log are written', () => {
     const log = getLogger('capture')
     const [, actual] = captureLogs(log, () => { })
@@ -15,6 +16,7 @@ describe('capture from logger', () => {
     const log = getLogger('capture')
     const [, actual] = captureLogs(log, () => log.error('err msg'))
 
+    expect(toMessageWithLevel(actual)).toEqual('(ERROR) err msg')
     a.satisfies(actual, [{ args: ['err msg'] }])
   })
 

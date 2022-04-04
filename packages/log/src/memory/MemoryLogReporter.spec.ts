@@ -1,6 +1,5 @@
 import a from 'assertron'
-import { config, createMemoryLogReporter, ProhibitedDuringProduction } from '..'
-import { logLevels } from '../logLevel'
+import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction } from '..'
 import { store } from '../store'
 
 beforeEach(() => {
