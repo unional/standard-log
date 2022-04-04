@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [6.3.0](https://github.com/unional/standard-log/compare/standard-log@6.2.6...standard-log@6.3.0) (2022-04-04)
+
+
+### Features
+
+* expose toMessageWithLevel() ([#130](https://github.com/unional/standard-log/issues/130)) ([ca1a4c1](https://github.com/unional/standard-log/commit/ca1a4c1d3254fc12d9aad9d42fbeccc3021ce710))
+
+
+
+
+
 ## [6.2.6](https://github.com/unional/standard-log/compare/standard-log@6.2.5...standard-log@6.2.6) (2022-01-05)
 
 
