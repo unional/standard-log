@@ -58,8 +58,5 @@
     "color-map": "^1.1.0",
     "tslib": "^2.2.0",
     "unpartial": "^0.6.3"
-  },
-  "peerDependencies": {
-    "standard-log": ">=4.0.2"
   }
 }
