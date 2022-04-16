@@ -37,8 +37,5 @@
     "test:watch": "jest --watch",
     "verify": "yarn lint && yarn depcheck && yarn coverage",
     "watch": "jest --watch"
-  },
-  "peerDependencies": {
-    "standard-log": ">=4.0.2"
   }
 }
