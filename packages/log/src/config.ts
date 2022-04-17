@@ -18,7 +18,7 @@ export const config: { (options?: Partial<ConfigOptions>): void, readonly isLock
     if (store.value.mode === 'production') {
       throw new ProhibitedDuringProduction('config')
     }
-    if (store.value.mode === 'test') {
+    if (store.value.mode === 'test' && options.mode !== 'test') {
       const log = getLogger('standard-log')
       log.warn(`already configured for test, ignoring config() call`)
       return

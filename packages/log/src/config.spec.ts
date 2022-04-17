@@ -29,11 +29,18 @@ test('calling config twice throws ProhibitedDuringProduction in production mode'
   a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
 })
 
-test('calling config twice in test mode is allowed, but emit a warning', () => {
+test('allow calling config with non-test mode while already running in test mode, but emit a warning', () => {
   const { reporter } = configForTest()
   config({ mode: 'production' })
   expect(reporter.getLogMessageWithLevel()).toEqual('(WARN) already configured for test, ignoring config() call')
 })
+
+test('allow calling config in test mode again while in test mode. Emit no warning', () => {
+  const { reporter } = configForTest()
+  config({ mode: 'test' })
+  expect(reporter.getLogMessageWithLevel()).toEqual('')
+})
+
 
 test('add custom levels', () => {
   config({
