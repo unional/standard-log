@@ -155,7 +155,7 @@ Here are some additional reporters:
 
 ### Capture Logs
 
-You can also temporary disable and capture logs by `captureLogs()`.
+You can temporarily capture logs by `captureLogs()`.
 This is useful when you are writing tests.
 
 ```ts
@@ -178,6 +178,19 @@ test('your test', () => {
   // rewriting the logs
   logs.forEach(entry => log.write(entry))
 })
+```
+
+### Suppress log
+
+You can temporarily suppress logs by `suppressLogs()`.
+This allows you to disable downstream logs to reduce log noises.
+
+```ts
+import { getLogger, suppressLogs } from 'standard-log'
+
+const log = getLogger('some logger')
+
+suppressLogs(() => log.info('not logged'), log)
 ```
 
 ## Browser usage
