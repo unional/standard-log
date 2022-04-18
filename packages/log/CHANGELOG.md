@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/unional/standard-log/compare/standard-log@7.0.3...standard-log@7.1.0) (2022-04-18)
+
+
+### Features
+
+* **log:** add suppressLogs ([#138](https://github.com/unional/standard-log/issues/138)) ([a87382e](https://github.com/unional/standard-log/commit/a87382eb03837e21fe8ceecc600b6e974352f76a))
+
+
+
+
+
 ## [7.0.3](https://github.com/unional/standard-log/compare/standard-log@7.0.2...standard-log@7.0.3) (2022-04-17)
 
 
