@@ -46,7 +46,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "global-store": "1.0.0-beta.19",
+    "global-store": "1.0.0-beta.21",
     "is-node": "^1.0.2",
     "iso-error": "^4.1.0",
     "ms": "^2.1.3",
@@ -55,6 +55,6 @@
     "upper-case": "^2.0.2"
   },
   "peerDependencies": {
-    "global-store": "1.0.0-beta.19"
+    "global-store": "1.0.0-beta.21"
   }
 }
