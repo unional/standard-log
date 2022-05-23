@@ -15,30 +15,38 @@
     "name": "Homa Wong",
     "email": "homawong@gmail.com"
   },
+  "sideEffects": false,
+  "main": "lib/index.js",
+  "module": "libm/index.js",
+  "jsnext:main": "libm/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "dist",
     "lib",
     "libm",
     "src"
   ],
-  "main": "lib/index.js",
-  "module": "libm/index.js",
-  "jsnext:main": "libm/index.js",
-  "typings": "lib/index.d.ts",
-  "sideEffects": false,
   "scripts": {
     "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
     "bundle": "webpack",
     "clean": "rimraf dist lib libm",
     "coverage": "jest --coverage",
-    "depcheck": "dependency-check . --unused --no-dev -i standard-log && dependency-check . --missing --no-dev",
+    "depcheck": "depcheck",
     "prepublishOnly": "yarn build && yarn bundle",
     "test": "jest",
     "test:watch": "jest --watch",
     "verify": "yarn lint && yarn depcheck && yarn coverage",
     "watch": "jest --watch"
   },
+  "devDependencies": {
+    "compression-webpack-plugin": "^9.2.0",
+    "param-case": "^3.0.4",
+    "pascal-case": "^3.1.2"
+  },
   "peerDependencies": {
     "standard-log": ">=4.0.2"
+  },
+  "optionalDependencies": {
+    "ramda": "^0.28.0"
   }
 }
