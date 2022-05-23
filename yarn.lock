@@ -13575,7 +13575,7 @@ __metadata:
     type-plus: ^4.9.1
     upper-case: ^2.0.2
   peerDependencies:
-    global-store: 1.0.0-beta.21
+    global-store: "*"
   languageName: unknown
   linkType: soft
 
