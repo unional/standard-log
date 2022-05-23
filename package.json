@@ -1,31 +1,30 @@
 {
-  "name": "standard-log",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "tsc -b",
-    "build-storybook": "build-storybook",
-    "build:watch": "tsc -b -w",
-    "bundle": "lerna run bundle",
-    "clean": "lerna run clean && rimraf .tsbuildinfo",
-    "coverage": "jest --coverage",
-    "depcheck": "lerna run depcheck",
-    "lint": "eslint --ext=js,ts .",
-    "nuke": "yarn clean && lerna clean -y && rimraf node_modules",
-    "storybook": "start-storybook -p 6006",
-    "test": "jest",
-    "test:nodejs": "jest",
-    "test:watch": "jest --watch",
-    "verify": "yarn lint && yarn build && yarn depcheck && yarn coverage && yarn bundle",
-    "watch": "yarn test:watch"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+    "build": "turbo run build",
+    "clean": "turbo run clean",
+    "coverage": "turbo run coverage",
+    "cs": "changeset",
+    "depcheck": "turbo run depcheck",
+    "dev": "turbo run dev --parallel",
+    "postinstall": "husky install",
+    "just-func": "yarn workspace just-func",
+    "lint": "turbo run lint",
+    "nuke": "turbo run nuke",
+    "nuke:local": "rimraf node_modules || true",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable",
+    "prepare": "husky install",
+    "publish": "yarn cs publish",
+    "release": "turbo run build",
+    "size": "turbo run size",
+    "test": "turbo run test",
+    "verify": "turbo run lint build coverage depcheck size",
+    "version": "yarn cs version",
+    "watch": "jest --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",
@@ -36,9 +35,6 @@
     "@changesets/cli": "^2.19.0",
     "@commitlint/cli": "^16.2.3",
     "@commitlint/config-conventional": "^16.2.1",
-    "@storybook/addon-actions": "^6.4.9",
-    "@storybook/addon-links": "^6.4.9",
-    "@storybook/react": "^6.4.9",
     "@types/jest": "^27.4.0",
     "@types/ms": "^0.7.31",
     "@types/ramda": "^0.28.0",
@@ -48,16 +44,13 @@
     "assertron": "^9.0.4",
     "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.4",
-    "codacy-coverage": "^3.4.0",
-    "codecov": "^3.8.3",
-    "commitlint-circle": "^1.0.0",
     "compression-webpack-plugin": "^9.2.0",
     "console-feed": "^3.3.0",
     "delay": "^5.0.0",
     "dependency-check": "^4.1.0",
     "eslint": "^8.12.0",
     "eslint-plugin-harmony": "^6.0.2",
-    "husky": "^7.0.4",
+    "husky": "^8.0.1",
     "jest": "^27.5.1",
     "jest-audio-reporter": "^2.2.3",
     "jest-progress-tracker": "^3.0.4",
@@ -69,6 +62,7 @@
     "npm-check-updates": "^12.5.7",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2",
+    "pinst": "^3.0.0",
     "ramda": "^0.28.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -76,9 +70,11 @@
     "satisfier": "^5.1.2",
     "source-map-loader": "^3.0.0",
     "ts-loader": "^9.2.6",
+    "turbo": "^1.2.11",
     "typescript": "^4.5.4",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1"
-  }
+  },
+  "packageManager": "yarn@3.2.1"
 }

@@ -26,20 +26,20 @@
   "jsnext:main": "libm/index.js",
   "typings": "lib/index.d.ts",
   "browser": {
-    "./lib/utils/supportColor.js": "./lib/utils/supportColor.browser.js",
-    "./lib/utils/supportColor.d.ts": "./lib/utils/supportColor.browser.d.ts",
-    "./lib/utils/supportColor.js.map": "./lib/utils/supportColor.browser.js.map",
-    "./libm/utils/supportColor.js": "./libm/utils/supportColor.browser.js",
-    "./libm/utils/supportColor.d.ts": "./libm/utils/supportColor.browser.d.ts",
-    "./libm/utils/supportColor.js.map": "./libm/utils/supportColor.browser.js.map",
-    "./src/utils/supportColor.ts": "./src/utils/supportColor.browser.ts",
-    "./lib/createColorLogReporter.js": "./lib/createColorLogReporter.browser.js",
     "./lib/createColorLogReporter.d.ts": "./lib/createColorLogReporter.browser.d.ts",
+    "./lib/createColorLogReporter.js": "./lib/createColorLogReporter.browser.js",
     "./lib/createColorLogReporter.js.map": "./lib/createColorLogReporter.browser.js.map",
-    "./libm/createColorLogReporter.js": "./libm/createColorLogReporter.browser.js",
+    "./lib/utils/supportColor.d.ts": "./lib/utils/supportColor.browser.d.ts",
+    "./lib/utils/supportColor.js": "./lib/utils/supportColor.browser.js",
+    "./lib/utils/supportColor.js.map": "./lib/utils/supportColor.browser.js.map",
     "./libm/createColorLogReporter.d.ts": "./libm/createColorLogReporter.browser.d.ts",
+    "./libm/createColorLogReporter.js": "./libm/createColorLogReporter.browser.js",
     "./libm/createColorLogReporter.js.map": "./libm/createColorLogReporter.browser.js.map",
-    "./src/createColorLogReporter.ts": "./src/createColorLogReporter.browser.ts"
+    "./libm/utils/supportColor.d.ts": "./libm/utils/supportColor.browser.d.ts",
+    "./libm/utils/supportColor.js": "./libm/utils/supportColor.browser.js",
+    "./libm/utils/supportColor.js.map": "./libm/utils/supportColor.browser.js.map",
+    "./src/createColorLogReporter.ts": "./src/createColorLogReporter.browser.ts",
+    "./src/utils/supportColor.ts": "./src/utils/supportColor.browser.ts"
   },
   "sideEffects": false,
   "scripts": {
@@ -55,9 +55,9 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "color-map": "^1.1.0",
-    "tslib": "^2.2.0",
-    "unpartial": "^0.6.3"
+    "color-map": "^1.1.4",
+    "tslib": "^2.4.0",
+    "unpartial": "^0.6.4"
   },
   "peerDependencies": {
     "standard-log": ">=4.0.2"

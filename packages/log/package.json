@@ -25,12 +25,12 @@
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
   "browser": {
-    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts",
+    "./lib/getDefaultReporter.js": "./lib/getDefaultReporter.browser.js",
     "./lib/getLogModeFromEnvironment.js": "./lib/getLogModeFromEnvironment.browser.js",
+    "./libm/getDefaultReporter.js": "./libm/getDefaultReporter.browser.js",
     "./libm/getLogModeFromEnvironment.js": "./libm/getLogModeFromEnvironment.browser.js",
     "./src/getDefaultReporter.ts": "./src/getDefaultReporter.browser.ts",
-    "./lib/getDefaultReporter.js": "./lib/getDefaultReporter.browser.js",
-    "./libm/getDefaultReporter.js": "./libm/getDefaultReporter.browser.js"
+    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts"
   },
   "typings": "lib/index.d.ts",
   "sideEffects": false,
@@ -46,15 +46,17 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "global-store": "1.0.0-beta.19",
     "is-node": "^1.0.2",
-    "iso-error": "^4.1.0",
+    "iso-error": "^4.2.0",
     "ms": "^2.1.3",
-    "tslib": "^2.3.1",
-    "type-plus": "^4.0.0",
+    "tslib": "^2.4.0",
+    "type-plus": "^4.9.1",
     "upper-case": "^2.0.2"
   },
+  "devDependencies": {
+    "global-store": "1.0.0-beta.21"
+  },
   "peerDependencies": {
-    "global-store": "1.0.0-beta.19"
+    "global-store": ">=1.0.0-beta.21 | >= 1.0.0"
   }
 }
