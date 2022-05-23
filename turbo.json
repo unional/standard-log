@@ -41,7 +41,11 @@
         "coverage/**"
       ]
     },
-    "depcheck": {},
+    "depcheck": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "dev": {
       "cache": false
     },
