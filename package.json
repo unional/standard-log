@@ -49,7 +49,7 @@
     "delay": "^5.0.0",
     "depcheck": "^1.4.3",
     "eslint": "^8.12.0",
-    "eslint-plugin-harmony": "^6.0.2",
+    "eslint-plugin-harmony": "^7.0.0",
     "husky": "^8.0.1",
     "jest": "^28.0.0",
     "jest-audio-reporter": "^2.2.3",
