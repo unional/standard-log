@@ -13840,6 +13840,7 @@ __metadata:
     param-case: ^3.0.4
     pascal-case: ^3.1.2
     satisfier: ^5.1.2
+    standard-log: "workspace:*"
     tslib: ^2.4.0
     unpartial: ^0.6.4
   peerDependencies:
@@ -13855,6 +13856,7 @@ __metadata:
     param-case: ^3.0.4
     pascal-case: ^3.1.2
     ramda: ^0.28.0
+    standard-log: "workspace:*"
   peerDependencies:
     standard-log: ">=4.0.2"
   dependenciesMeta:
@@ -13863,7 +13865,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"standard-log@workspace:packages/log":
+"standard-log@workspace:*, standard-log@workspace:packages/log":
   version: 0.0.0-use.local
   resolution: "standard-log@workspace:packages/log"
   dependencies:
