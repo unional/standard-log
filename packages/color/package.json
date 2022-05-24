@@ -64,7 +64,8 @@
     "compression-webpack-plugin": "^9.2.0",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2",
-    "satisfier": "^5.1.2"
+    "satisfier": "^5.1.2",
+    "standard-log": "workspace:*"
   },
   "peerDependencies": {
     "standard-log": ">=4.0.2"
