@@ -61,7 +61,7 @@
   },
   "devDependencies": {
     "assertron": "^9.0.4",
-    "compression-webpack-plugin": "^9.2.0",
+    "compression-webpack-plugin": "^10.0.0",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2",
     "satisfier": "^5.1.2",

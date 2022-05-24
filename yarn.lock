@@ -5909,15 +5909,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"compression-webpack-plugin@npm:^9.2.0":
-  version: 9.2.0
-  resolution: "compression-webpack-plugin@npm:9.2.0"
+"compression-webpack-plugin@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "compression-webpack-plugin@npm:10.0.0"
   dependencies:
     schema-utils: ^4.0.0
     serialize-javascript: ^6.0.0
   peerDependencies:
     webpack: ^5.1.0
-  checksum: 50ef78d0973f87ed8d7c30fdb31b009d409c288a77ee842d9b3b5b2348048f55148f510d3a0bd30b5c954e6701ed9fc08c3616ce46ad1eec8e0954b336a5f4b9
+  checksum: 2ac9079b7ab87141639c62ddbb2820a06f105198e27ef4c3860da3186bdbefc00d1e206969833ce7a4b7b26161ddbec7b8d20d30f9f9c1d494818b9b86f0d5cc
   languageName: node
   linkType: hard
 
@@ -13102,7 +13102,7 @@ __metadata:
     assertron: ^9.0.4
     babel-jest: ^27.5.1
     babel-loader: ^8.2.4
-    compression-webpack-plugin: ^9.2.0
+    compression-webpack-plugin: ^10.0.0
     console-feed: ^3.3.0
     delay: ^5.0.0
     depcheck: ^1.4.3
@@ -13850,7 +13850,7 @@ __metadata:
   dependencies:
     assertron: ^9.0.4
     color-map: ^1.1.4
-    compression-webpack-plugin: ^9.2.0
+    compression-webpack-plugin: ^10.0.0
     param-case: ^3.0.4
     pascal-case: ^3.1.2
     satisfier: ^5.1.2
@@ -13866,7 +13866,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "standard-log-syslog@workspace:packages/syslog"
   dependencies:
-    compression-webpack-plugin: ^9.2.0
+    compression-webpack-plugin: ^10.0.0
     param-case: ^3.0.4
     pascal-case: ^3.1.2
     ramda: ^0.28.0
@@ -13884,7 +13884,7 @@ __metadata:
   resolution: "standard-log@workspace:packages/log"
   dependencies:
     assertron: ^9.0.4
-    compression-webpack-plugin: ^9.2.0
+    compression-webpack-plugin: ^10.0.0
     delay: ^5.0.0
     global-store: 1.0.0-beta.21
     is-node: ^1.0.2
