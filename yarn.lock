@@ -13735,7 +13735,7 @@ __metadata:
     satisfier: ^5.1.2
     standard-log: "workspace:*"
     tslib: ^2.4.0
-    unpartial: ^0.6.4
+    unpartial: ^0.7.0
   peerDependencies:
     standard-log: ">=4.0.2"
   languageName: unknown
@@ -14838,6 +14838,13 @@ __metadata:
   version: 0.6.4
   resolution: "unpartial@npm:0.6.4"
   checksum: 34a9d765d97f54ec36036c8d0bd8087874e2b7c4ff2b71a3168687b867d4db2f3a7dd7bc15b50371df9488d280723a1ba8f726b1fdfb5537d293785eee647ec2
+  languageName: node
+  linkType: hard
+
+"unpartial@npm:^0.7.0":
+  version: 0.7.0
+  resolution: "unpartial@npm:0.7.0"
+  checksum: 2bd3e3e11a0de6a580528abb566df73d5d68bf91d15b53b48504f5c8fd99c5dacae5c193de3434ce31594d682d3cb9d6f9370e36f9aa98ea9c79dde92b67066b
   languageName: node
   linkType: hard
 

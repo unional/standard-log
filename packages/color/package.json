@@ -57,7 +57,7 @@
   "dependencies": {
     "color-map": "^1.1.4",
     "tslib": "^2.4.0",
-    "unpartial": "^0.6.4"
+    "unpartial": "^0.7.0"
   },
   "devDependencies": {
     "assertron": "^9.0.4",
