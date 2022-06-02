@@ -35,7 +35,7 @@
     "@changesets/cli": "^2.19.0",
     "@commitlint/cli": "^17.0.0",
     "@commitlint/config-conventional": "^17.0.0",
-    "@types/jest": "^27.4.0",
+    "@types/jest": "^28.0.0",
     "@types/ms": "^0.7.31",
     "@types/ramda": "^0.28.0",
     "@types/react": "^17.0.38",
