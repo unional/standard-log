@@ -57,14 +57,14 @@
   "dependencies": {
     "color-map": "^1.1.4",
     "tslib": "^2.4.0",
-    "unpartial": "^0.7.0"
+    "unpartial": "^0.7.4"
   },
   "devDependencies": {
-    "assertron": "^9.0.4",
+    "assertron": "^9.2.3",
     "compression-webpack-plugin": "^10.0.0",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2",
-    "satisfier": "^5.1.2",
+    "satisfier": "^5.2.0",
     "standard-log": "workspace:*"
   },
   "peerDependencies": {
