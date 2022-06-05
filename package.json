@@ -18,12 +18,10 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "prepare": "husky install",
-    "publish": "yarn cs publish",
-    "release": "turbo run build",
     "size": "turbo run size",
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
-    "version": "yarn cs version",
+    "version": "changeset version && yarn install",
     "watch": "jest --watch"
   },
   "devDependencies": {
