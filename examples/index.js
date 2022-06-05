@@ -1,6 +1,6 @@
 const StandardLog = require('standard-log')
 
-StandardLog.config({ logLevel: StandardLog.logLevel.debug })
+StandardLog.config({ logLevel: StandardLog.logLevels.debug })
 const log = StandardLog.getLogger('my-app')
 
 log.debug('debug')
