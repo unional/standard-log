@@ -55,8 +55,8 @@ node_modules
 !.yarn/versions
 
 # project folders
-dist
-lib*
-out*
+packages/*/dist
+packages/*/lib*
+pacakges/*/out*
 .nowhere
 .reports
