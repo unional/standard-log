@@ -15,6 +15,6 @@
     "strict": true,
     "target": "ES2021",
     "useDefineForClassFields": true,
-    "useUnknownInCatchVariables": true,
+    "useUnknownInCatchVariables": true
   }
 }
