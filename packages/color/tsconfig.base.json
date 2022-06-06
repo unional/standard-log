@@ -1,8 +1,11 @@
 {
-  "extends": "../../tsconfig.setting.json",
+  "extends": "../../config/tsconfig.setting.json",
   "compilerOptions": {
-    "importHelpers": true,
-    "rootDir": "src"
+    "rootDir": "ts",
+    "lib": [
+      "ES2021.Promise"
+    ],
+    "tsBuildInfoFile": ".tsbuildinfo"
   },
   "references": [
     {
@@ -10,7 +13,7 @@
     }
   ],
   "include": [
-    "src",
+    "ts",
     "typings"
   ]
 }

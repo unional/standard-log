@@ -16,33 +16,44 @@
     "email": "homawong@gmail.com"
   },
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "libm/index.js",
-  "jsnext:main": "libm/index.js",
-  "browser": {
-    "./lib/getDefaultReporter.js": "./lib/getDefaultReporter.browser.js",
-    "./lib/getLogModeFromEnvironment.js": "./lib/getLogModeFromEnvironment.browser.js",
-    "./libm/getDefaultReporter.js": "./libm/getDefaultReporter.browser.js",
-    "./libm/getLogModeFromEnvironment.js": "./libm/getLogModeFromEnvironment.browser.js",
-    "./src/getDefaultReporter.ts": "./src/getDefaultReporter.browser.ts",
-    "./src/getLogModeFromEnvironment.ts": "./src/getLogModeFromEnvironment.browser.ts"
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
   },
-  "typings": "lib/index.d.ts",
+  "main": "./cjs/index.js",
+  "browser": {
+    "./cjs/getDefaultReporter.js": "./cjs/getDefaultReporter.browser.js",
+    "./cjs/getLogModeFromEnvironment.js": "./cjs/getLogModeFromEnvironment.browser.js",
+    "./esm/getDefaultReporter.js": "./esm/getDefaultReporter.browser.js",
+    "./esm/getLogModeFromEnvironment.js": "./esm/getLogModeFromEnvironment.browser.js",
+    "./ts/getDefaultReporter.ts": "./ts/getDefaultReporter.browser.ts",
+    "./ts/getLogModeFromEnvironment.ts": "./ts/getLogModeFromEnvironment.browser.ts"
+  },
+  "typings": "./cjs/index.d.ts",
   "files": [
+    "cjs",
     "dist",
-    "lib",
-    "libm",
-    "src"
+    "esm",
+    "ts",
+    "!ts/**/*.spec.ts"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
-    "bundle": "webpack",
-    "clean": "rimraf dist lib libm",
+    "build": "npm-run-all build:clean -p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
+    "build:clean": "rimraf .tsbuildinfo || true",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:esm": "tsc -p ./tsconfig.esm.json",
+    "build:tslib": "tsc -p ./tsconfig.tslib.json",
+    "bundle": "run-p bundle:es5 bundle:esm",
+    "bundle:es5": "webpack -c ./webpack.es5.cjs",
+    "bundle:esm": "webpack -c ./webpack.esm.cjs",
+    "clean": "rimraf dist lib libm cjs esm tslib coverage .tsbuildinfo || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
-    "prepublishOnly": "yarn build && yarn bundle",
+    "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
+    "size": "size-limit",
     "test": "jest",
-    "verify": "yarn lint && yarn build && yarn depcheck && yarn coverage && yarn bundle",
+    "verify": "npm-run-all clean -p build depcheck lint coverage -s size",
     "watch": "jest --watch"
   },
   "dependencies": {
@@ -54,17 +65,45 @@
     "upper-case": "^2.0.2"
   },
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
     "assertron": "^9.2.3",
     "compression-webpack-plugin": "^10.0.0",
+    "cross-env": "^7.0.3",
     "delay": "^5.0.0",
+    "depcheck": "^1.4.3",
+    "eslint": "^8.17.0",
     "global-store": "1.0.0-beta.21",
+    "jest": "^28.1.0",
+    "npm-run-all": "^4.1.5",
     "param-case": "^3.0.4",
-    "pascal-case": "^3.1.2"
+    "pascal-case": "^3.1.2",
+    "rimraf": "^3.0.2",
+    "size-limit": "^7.0.8",
+    "ts-jest": "^28.0.4",
+    "ts-loader": "^9.3.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.2"
   },
   "peerDependencies": {
     "global-store": "*"
   },
   "optionalDependencies": {
     "ramda": "^0.28.0"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "./cjs/index.js",
+      "limit": "20 kB"
+    },
+    {
+      "path": "./esm/index.js",
+      "limit": "10 kB"
+    },
+    {
+      "path": "./tslib/index.js",
+      "limit": "20 kB"
+    }
+  ]
 }

@@ -1,2 +1,10 @@
 ignores:
+  - '@size-limit/preset-small-lib'
+  - compression-webpack-plugin
+  - param-case
+  - pascal-case
+  - size-limit
+  - ts-jest
+  - ts-loader
   - tslib
+  - webpack-cli

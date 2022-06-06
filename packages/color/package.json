@@ -16,58 +16,97 @@
     "email": "homawong@gmail.com"
   },
   "sideEffects": false,
-  "main": "lib/index.js",
-  "module": "libm/index.js",
-  "jsnext:main": "libm/index.js",
-  "browser": {
-    "./lib/createColorLogReporter.d.ts": "./lib/createColorLogReporter.browser.d.ts",
-    "./lib/createColorLogReporter.js": "./lib/createColorLogReporter.browser.js",
-    "./lib/createColorLogReporter.js.map": "./lib/createColorLogReporter.browser.js.map",
-    "./lib/utils/supportColor.d.ts": "./lib/utils/supportColor.browser.d.ts",
-    "./lib/utils/supportColor.js": "./lib/utils/supportColor.browser.js",
-    "./lib/utils/supportColor.js.map": "./lib/utils/supportColor.browser.js.map",
-    "./libm/createColorLogReporter.d.ts": "./libm/createColorLogReporter.browser.d.ts",
-    "./libm/createColorLogReporter.js": "./libm/createColorLogReporter.browser.js",
-    "./libm/createColorLogReporter.js.map": "./libm/createColorLogReporter.browser.js.map",
-    "./libm/utils/supportColor.d.ts": "./libm/utils/supportColor.browser.d.ts",
-    "./libm/utils/supportColor.js": "./libm/utils/supportColor.browser.js",
-    "./libm/utils/supportColor.js.map": "./libm/utils/supportColor.browser.js.map",
-    "./src/createColorLogReporter.ts": "./src/createColorLogReporter.browser.ts",
-    "./src/utils/supportColor.ts": "./src/utils/supportColor.browser.ts"
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
   },
-  "typings": "lib/index.d.ts",
+  "main": "./cjs/index.js",
+  "browser": {
+    "./cjs/createColorLogReporter.d.ts": "./cjs/createColorLogReporter.browser.d.ts",
+    "./cjs/createColorLogReporter.js": "./cjs/createColorLogReporter.browser.js",
+    "./cjs/createColorLogReporter.js.map": "./cjs/createColorLogReporter.browser.js.map",
+    "./cjs/utils/supportColor.d.ts": "./cjs/utils/supportColor.browser.d.ts",
+    "./cjs/utils/supportColor.js": "./cjs/utils/supportColor.browser.js",
+    "./cjs/utils/supportColor.js.map": "./cjs/utils/supportColor.browser.js.map",
+    "./esm/createColorLogReporter.d.ts": "./esm/createColorLogReporter.browser.d.ts",
+    "./esm/createColorLogReporter.js": "./esm/createColorLogReporter.browser.js",
+    "./esm/createColorLogReporter.js.map": "./esm/createColorLogReporter.browser.js.map",
+    "./esm/utils/supportColor.d.ts": "./esm/utils/supportColor.browser.d.ts",
+    "./esm/utils/supportColor.js": "./esm/utils/supportColor.browser.js",
+    "./esm/utils/supportColor.js.map": "./esm/utils/supportColor.browser.js.map",
+    "./ts/createColorLogReporter.ts": "./ts/createColorLogReporter.browser.ts",
+    "./ts/utils/supportColor.ts": "./ts/utils/supportColor.browser.ts"
+  },
+  "types": "./cjs/index.d.ts",
   "files": [
     "dist",
-    "lib",
-    "libm",
-    "src"
+    "cjs",
+    "esm",
+    "ts",
+    "!ts/**/*.spec.ts"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.lib.json && tsc -p tsconfig.libm.json",
-    "bundle": "webpack",
-    "clean": "rimraf dist lib libm",
+    "build": "npm-run-all build:clean -p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
+    "build:clean": "rimraf .tsbuildinfo || true",
+    "build:cjs": "tsc -p ./tsconfig.cjs.json",
+    "build:esm": "tsc -p ./tsconfig.esm.json",
+    "build:tslib": "tsc -p ./tsconfig.tslib.json",
+    "bundle": "run-p bundle:es5 bundle:esm",
+    "bundle:es5": "webpack -c ./webpack.es5.cjs",
+    "bundle:esm": "webpack -c ./webpack.esm.cjs",
+    "clean": "rimraf dist lib libm csj esm tslib coverage || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
+    "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
     "prepublishOnly": "yarn build && yarn bundle",
+    "size": "size-limit",
     "test": "jest",
     "test:watch": "jest --watch",
-    "verify": "yarn lint && yarn depcheck && yarn coverage",
+    "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
     "watch": "jest --watch"
   },
   "dependencies": {
     "color-map": "^1.1.4",
-    "tslib": "^2.4.0",
     "unpartial": "^0.7.4"
   },
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^7.0.8",
     "assertron": "^9.2.3",
     "compression-webpack-plugin": "^10.0.0",
+    "cross-env": "^7.0.3",
+    "depcheck": "^1.4.3",
+    "eslint": "^8.17.0",
+    "jest": "^28.1.0",
+    "npm-run-all": "^4.1.5",
     "param-case": "^3.0.4",
     "pascal-case": "^3.1.2",
+    "rimraf": "^3.0.2",
     "satisfier": "^5.2.0",
-    "standard-log": "workspace:*"
+    "size-limit": "^7.0.8",
+    "standard-log": "workspace:*",
+    "ts-jest": "^28.0.4",
+    "ts-loader": "^9.3.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.3",
+    "webpack": "^5.73.0",
+    "webpack-cli": "^4.9.2"
   },
   "peerDependencies": {
     "standard-log": ">=4.0.2"
-  }
+  },
+  "size-limit": [
+    {
+      "path": "./cjs/index.js",
+      "limit": "10 kB"
+    },
+    {
+      "path": "./esm/index.js",
+      "limit": "10 kB"
+    },
+    {
+      "path": "./tslib/index.js",
+      "limit": "10 kB"
+    }
+  ]
 }

@@ -1,26 +1,19 @@
 {
   "files": [],
   "exclude": [
+    "packages/*/cjs",
+    "packages/*/esm",
     "packages/*/lib*"
   ],
   "references": [
     {
-      "path": "packages/log/tsconfig.lib.json"
+      "path": "packages/log"
     },
     {
-      "path": "packages/log/tsconfig.libm.json"
+      "path": "packages/color"
     },
     {
-      "path": "packages/color/tsconfig.lib.json"
-    },
-    {
-      "path": "packages/color/tsconfig.libm.json"
-    },
-    {
-      "path": "packages/syslog/tsconfig.lib.json"
-    },
-    {
-      "path": "packages/syslog/tsconfig.libm.json"
+      "path": "packages/syslog"
     }
   ]
 }

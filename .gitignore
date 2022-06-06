@@ -55,6 +55,9 @@ node_modules
 !.yarn/versions
 
 # project folders
+packages/*/cjs
+packages/*/esm
+packages/*/tslib
 packages/*/dist
 packages/*/lib*
 pacakges/*/out*

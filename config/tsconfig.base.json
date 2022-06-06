@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    // Inline sources should make it possible to not include the TS code in the package.
+    // But need to see how it behaves in VS Code.
+    "inlineSources": true,
+    "newLine": "LF",
+    "noUnusedLocals": true,
+    "outDir": ".nowhere",
+    "removeComments": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "sourceMap": true,
+    "strict": true,
+    "target": "ES2021",
+    "useDefineForClassFields": true,
+    "useUnknownInCatchVariables": true,
+  }
+}

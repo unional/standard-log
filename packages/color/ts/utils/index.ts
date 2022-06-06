@@ -1,0 +1,1 @@
+export * from './supportColor.js'
