@@ -1,6 +1,5 @@
 {
   "recommendations": [
-    "bierner.emojisense",
     "mhutchie.git-graph",
     "editorconfig.editorconfig",
     "aaron-bond.better-comments",
@@ -9,6 +8,7 @@
     "davidanson.vscode-markdownlint",
     "unional.vscode-sort-package-json",
     "dbaeumer.vscode-eslint",
-    "drKnoxy.eslint-disable-snippets"
+    "drknoxy.eslint-disable-snippets",
+    "bierner.emojisense"
   ]
 }
