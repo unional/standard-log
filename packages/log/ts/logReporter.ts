@@ -4,7 +4,7 @@ import { LogReporter } from './types.js'
 import { assertLogModeIsNotProduction } from './utils.js'
 
 export function addLogReporter(reporter: LogReporter) {
-  assertLogModeIsNotProduction('addLogReporter')
+  assertLogModeIsNotProduction('addLogReporter', addLogReporter)
   addLogReporterInternal(reporter)
 }
 
@@ -21,6 +21,6 @@ export function getConsoleReporter() {
 }
 
 export function clearLogReporters() {
-  assertLogModeIsNotProduction('clearLogReporters')
+  assertLogModeIsNotProduction('clearLogReporters', clearLogReporters)
   store.value.reporters.splice(0, store.value.reporters.length)
 }

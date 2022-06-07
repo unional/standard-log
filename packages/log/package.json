@@ -36,7 +36,8 @@
     "dist",
     "esm",
     "ts",
-    "!ts/**/*.spec.ts"
+    "!ts/**/*.spec.ts",
+    "!ts/testUtil.ts"
   ],
   "scripts": {
     "build": "npm-run-all build:clean -p build:cjs build:esm build:tslib bundle:es5 bundle:esm",

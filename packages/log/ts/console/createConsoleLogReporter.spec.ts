@@ -5,6 +5,7 @@ import {
   LogFilter, logLevels, plainLogFormatter, ProhibitedDuringProduction
 } from '../index.js'
 import { store } from '../store.js'
+import { assertSSF } from '../testUtil.js'
 
 describe('production checks', () => {
   beforeEach(() => store.reset())
@@ -15,11 +16,26 @@ describe('production checks', () => {
     a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
   })
 
+  it('set filter throws with ssf at call site', () => {
+    config({ mode: 'production' })
+    const reporter = createConsoleLogReporter()
+    const err = a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
+
+    assertSSF(err, __filename)
+  })
+
   const idFormatter: ConsoleLogFormatter = (entry) => [entry.id]
   test('set formatter during production mode throws', () => {
     config({ mode: 'production' })
     const reporter = createConsoleLogReporter()
     a.throws(() => reporter.formatter = idFormatter, ProhibitedDuringProduction)
+  })
+  it('set formatter throws with ssf at call site', () => {
+    config({ mode: 'production' })
+    const reporter = createConsoleLogReporter()
+    const err = a.throws(() => reporter.formatter = idFormatter, ProhibitedDuringProduction)
+
+    assertSSF(err, __filename)
   })
 })
 

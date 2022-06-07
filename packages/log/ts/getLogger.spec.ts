@@ -4,7 +4,7 @@ import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, l
 import { config } from './config.js'
 import { createMemoryLogReporter, MemoryLogReporter } from './memory/index.js'
 import { store } from './store.js'
-import { captureWrittenLog } from './testUtil.js'
+import { assertSSF, captureWrittenLog } from './testUtil.js'
 
 afterEach(() => {
   clearCustomLogLevel()
@@ -26,6 +26,12 @@ test('logger id supports @, \\ and /', () => {
 
 test.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
   a.throws(() => getLogger(char), InvalidId)
+})
+
+it('throw InvalidId with ssf to the call site', () => {
+  const err = a.throws(() => getLogger('!'), InvalidId)
+
+  assertSSF(err, __filename)
 })
 
 test('get logger with same name gets the same instance', () => {

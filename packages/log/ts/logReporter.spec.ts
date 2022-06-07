@@ -6,6 +6,7 @@ import {
   LogFilter, logLevels, ProhibitedDuringProduction
 } from './index.js'
 import { store } from './store.js'
+import { assertSSF } from './testUtil.js'
 
 describe('production checks', () => {
   beforeEach(() => store.reset())
@@ -16,12 +17,26 @@ describe('production checks', () => {
       const reporter = createMemoryLogReporter()
       a.throws(() => addLogReporter(reporter), ProhibitedDuringProduction)
     })
+
+    it('throw with ssf at call site', () => {
+      config({ mode: 'production' })
+      const reporter = createMemoryLogReporter()
+      const err = a.throws(() => addLogReporter(reporter), ProhibitedDuringProduction)
+
+      assertSSF(err, __filename)
+    })
   })
 
   describe('clearLogReporters()', () => {
     test('throws in production mode', () => {
       config({ mode: 'production' })
       a.throws(() => clearLogReporters(), ProhibitedDuringProduction)
+    })
+    it('throw with ssf at call site', () => {
+      config({ mode: 'production' })
+      const err = a.throws(() => clearLogReporters(), ProhibitedDuringProduction)
+
+      assertSSF(err, __filename)
     })
   })
 })

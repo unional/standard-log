@@ -17,3 +17,8 @@ export function captureWrittenLog() {
     }
   }
 }
+
+export function assertSSF(err: Error, filename: string) {
+  const firstStackTrace = err.stack?.split('\n')[1]
+  expect(firstStackTrace).toMatch(filename)
+}
