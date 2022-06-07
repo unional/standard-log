@@ -16,7 +16,7 @@ export type ConfigOptions = {
 export const config: { (options?: Partial<ConfigOptions>): void, readonly isLocked: boolean } = function config(options: Partial<ConfigOptions> = {}) {
   if (store.value.configured) {
     if (store.value.mode === 'production') {
-      throw new ProhibitedDuringProduction('config')
+      throw new ProhibitedDuringProduction('config', { ssf: config })
     }
     if (store.value.mode === 'test' && options.mode !== 'test') {
       const log = getLogger('standard-log')

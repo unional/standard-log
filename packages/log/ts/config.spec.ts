@@ -5,6 +5,7 @@ import {
 } from './index.js'
 import { configForTest } from './configForTest.js'
 import { store } from './store.js'
+import { assertSSF } from './testUtil.js'
 
 beforeEach(() => store.reset())
 
@@ -27,6 +28,13 @@ test('configure default logLevel', () => {
 test('calling config twice throws ProhibitedDuringProduction in production mode', () => {
   config({ mode: 'production' })
   a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
+})
+
+it('throw ProhibitedDuringProduction with ssf to the call site', () => {
+  config({ mode: 'production' })
+  const err = a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
+
+  assertSSF(err, __filename)
 })
 
 test('allow calling config with non-test mode while already running in test mode, but emit a warning', () => {

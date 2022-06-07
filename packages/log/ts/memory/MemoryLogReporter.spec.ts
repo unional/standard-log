@@ -3,6 +3,7 @@ import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction 
 import { configForTest } from '../configForTest.js'
 import { getLogger } from '../getLogger.js'
 import { store } from '../store.js'
+import { assertSSF } from '../testUtil.js'
 
 describe('production checks', () => {
   beforeEach(() => store.reset())
@@ -12,11 +13,27 @@ describe('production checks', () => {
 
     a.throws(() => { reporter.formatter = e => e }, ProhibitedDuringProduction)
   })
+  it('set formatter throws with ssf at call site', () => {
+    config({ mode: 'production' })
+    const reporter = createMemoryLogReporter()
+
+    const err = a.throws(() => { reporter.formatter = e => e }, ProhibitedDuringProduction)
+
+    assertSSF(err, __filename)
+  })
 
   test('set filter in production mode throws', () => {
     config({ mode: 'production' })
     const reporter = createMemoryLogReporter()
     a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
+  })
+
+  it('set filter throws with ssf at call site', () => {
+    config({ mode: 'production' })
+    const reporter = createMemoryLogReporter()
+    const err = a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
+
+    assertSSF(err, __filename)
   })
 
   describe('getLogMessageWithLevel()', () => {

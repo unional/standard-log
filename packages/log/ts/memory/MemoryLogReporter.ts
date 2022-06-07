@@ -45,14 +45,20 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       return formatter
     },
     set formatter(value: MemoryLogFormatter) {
-      assertLogModeIsNotProduction('set Reporter.formatter')
+      assertLogModeIsNotProduction(
+        'set Reporter.formatter',
+        Object.getOwnPropertyDescriptor(this, 'formatter')!.set!
+      )
       formatter = value
     },
     get filter() {
       return filter
     },
     set filter(value: LogFilter) {
-      assertLogModeIsNotProduction('set Reporter.filter')
+      assertLogModeIsNotProduction(
+        'set Reporter.filter',
+        Object.getOwnPropertyDescriptor(this, 'filter')!.set!
+      )
       filter = value
     },
     logs: [],

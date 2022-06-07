@@ -8,7 +8,7 @@ export function getLogModeFromEnvironment(): LogMode | undefined {
   if (mode === undefined || isLogMode(mode)) {
     return mode as LogMode
   }
-  throw new InvalidEnvVar('STANDARD_LOG', mode, logModeValues)
+  throw new InvalidEnvVar('STANDARD_LOG', mode, logModeValues, { ssf: getLogModeFromEnvironment })
 }
 
 function isLogMode(mode: string): mode is LogMode {

@@ -1,10 +1,17 @@
 import a from 'assertron'
 import { InvalidEnvVar } from './index.js'
 import { getLogModeFromEnvironment } from './getLogModeFromEnvironment.js'
+import { assertSSF } from './testUtil.js'
 
 test('invalid value throws', () => {
   process.env.STANDARD_LOG = 'unknown'
   a.throws(() => getLogModeFromEnvironment(), InvalidEnvVar)
+})
+
+it('throws with ssf at call site', () => {
+  process.env.STANDARD_LOG = 'unknown'
+  const err = a.throws(() => getLogModeFromEnvironment(), InvalidEnvVar)
+  assertSSF(err, __filename)
 })
 
 test('valid values', () => {

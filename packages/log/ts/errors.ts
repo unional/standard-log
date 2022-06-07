@@ -6,19 +6,19 @@ export class StandardLogError extends ModuleError {
   }
 }
 export class InvalidId extends StandardLogError {
-  constructor(public id: string) {
-    super(`logger id only supports alphanumeric, unicode characters, and [:_-.]. Received ${id}`)
+  constructor(public id: string, options?: IsoError.Options) {
+    super(`logger id only supports alphanumeric, unicode characters, and [:_-.]. Received ${id}`, options)
   }
 }
 
 export class ProhibitedDuringProduction extends StandardLogError {
-  constructor(public action: string) {
-    super(`Cannot perform ${action} during production`)
+  constructor(public action: string, options?: IsoError.Options) {
+    super(`Cannot perform ${action} during production`, options)
   }
 }
 
 export class InvalidEnvVar extends StandardLogError {
-  constructor(public name: string, public value: string, public possibleValues: string[]) {
-    super(`${name} contains invalid value '${value}'${` valid values: [${possibleValues.join()}]`}`)
+  constructor(public name: string, public value: string, public possibleValues: string[], options?: IsoError.Options) {
+    super(`${name} contains invalid value '${value}'${` valid values: [${possibleValues.join()}]`}`, options)
   }
 }
