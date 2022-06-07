@@ -1,5 +1,6 @@
 ignore-patterns:
   - dist
+  - tslib
 ignores:
   - '@size-limit/preset-small-lib'
   - compression-webpack-plugin
