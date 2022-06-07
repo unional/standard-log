@@ -1,7 +1,6 @@
 import { InvalidId } from './errors.js'
 import { logLevels } from './logLevel.js'
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn.js'
-import { addLogReporterInternal } from './logReporterInternal.js'
 import { shouldLog } from './shouldLog.js'
 import { store } from './store.js'
 import { LogEntry, LogFunction, Logger, LogMethodNames, LogReporter, ReporterFilter } from './types.js'
@@ -89,4 +88,23 @@ function createLoggerClosure<T extends string>(id: string, { level, writeTo = ()
   getAllLogLevels().forEach(({ name, level }) => loggerClosure.addMethod(name, level))
 
   return loggerClosure
+}
+
+function addLogReporterInternal(reporter: LogReporter) {
+  if (reporter.isConsoleReporter) {
+    const r = getConsoleReporter()
+    if (r && reporter.filter) {
+      const f = r.filter
+      const f2 = reporter.filter
+      if (f) r.filter = entry => f(entry) && f2(entry)
+      else r.filter = f2
+    }
+  }
+  else {
+    store.value.reporters.push(reporter)
+  }
+}
+
+function getConsoleReporter() {
+  return store.value.reporters.find(r => r.isConsoleReporter)
 }

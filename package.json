@@ -13,6 +13,7 @@
     "postinstall": "husky install",
     "just-func": "yarn workspace just-func",
     "lint": "turbo run lint",
+    "log": "yarn workspace standard-log",
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",
     "prepack": "pinst --disable",
