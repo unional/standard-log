@@ -1,4 +1,3 @@
-export * from './captureLogs.js'
 export * from './config.js'
 export * from './configForTest.js'
 export * from './console/index.js'
