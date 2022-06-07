@@ -1,6 +1,6 @@
 {
   "name": "standard-log-color",
-  "version": "4.0.0",
+  "version": "5.0.0",
   "description": "Color console reporter for `standard-log`",
   "homepage": "https://github.com/unional/standard-log/tree/master/packages/color",
   "bugs": {
@@ -93,7 +93,7 @@
     "webpack-cli": "^4.9.2"
   },
   "peerDependencies": {
-    "standard-log": ">=4.0.2"
+    "standard-log": ">=8.0.0"
   },
   "size-limit": [
     {
