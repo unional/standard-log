@@ -55,7 +55,7 @@
     "bundle": "run-p bundle:es5 bundle:esm",
     "bundle:es5": "webpack -c ./webpack.es5.cjs",
     "bundle:esm": "webpack -c ./webpack.esm.cjs",
-    "clean": "rimraf dist lib libm csj esm tslib coverage || true",
+    "clean": "rimraf cjs coverage dist esm lib libm tslib .tsbuildinfo && mkdir cjs && echo '{\"type\":\"commonjs\"}' > cjs/package.json || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
