@@ -9,7 +9,7 @@ export function createTimestampFormatter(format: TimestampFormat) {
     case 'iso':
       return (timestamp: Date) => timestamp.toISOString()
     case 'elapsed': {
-      let lastTick: number | undefined = undefined
+      let lastTick: number
       return (timestamp: Date) => {
         const newTick = timestamp.getTime()
         const result = ms(lastTick === undefined ? 0 : newTick - lastTick)

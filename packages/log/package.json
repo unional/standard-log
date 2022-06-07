@@ -23,12 +23,18 @@
   },
   "main": "./cjs/index.js",
   "browser": {
+    "./cjs/console/isConsoleDebugAvailable.js": "./cjs/console/isConsoleDebugAvailable.browser.js",
     "./cjs/getDefaultReporter.js": "./cjs/getDefaultReporter.browser.js",
     "./cjs/getLogModeFromEnvironment.js": "./cjs/getLogModeFromEnvironment.browser.js",
+    "./cjs/memory/toInspectStringForObject.ts": "./cjs/memory/toInspectStringForObject.browser.ts",
+    "./esm/console/isConsoleDebugAvailable.js": "./esm/console/isConsoleDebugAvailable.browser.js",
     "./esm/getDefaultReporter.js": "./esm/getDefaultReporter.browser.js",
     "./esm/getLogModeFromEnvironment.js": "./esm/getLogModeFromEnvironment.browser.js",
+    "./esm/memory/toInspectStringForObject.ts": "./esm/memory/toInspectStringForObject.browser.ts",
+    "./ts/console/isConsoleDebugAvailable.js": "./ts/console/isConsoleDebugAvailable.browser.js",
     "./ts/getDefaultReporter.ts": "./ts/getDefaultReporter.browser.ts",
-    "./ts/getLogModeFromEnvironment.ts": "./ts/getLogModeFromEnvironment.browser.ts"
+    "./ts/getLogModeFromEnvironment.ts": "./ts/getLogModeFromEnvironment.browser.ts",
+    "./ts/memory/toInspectStringForObject.ts": "./ts/memory/toInspectStringForObject.browser.ts"
   },
   "typings": "./cjs/index.d.ts",
   "files": [
@@ -58,10 +64,8 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "is-node": "^1.0.2",
     "iso-error": "^4.3.3",
     "ms": "^2.1.3",
-    "tslib": "^2.4.0",
     "type-plus": "^4.10.0",
     "upper-case": "^2.0.2"
   },
@@ -83,6 +87,7 @@
     "size-limit": "^7.0.8",
     "ts-jest": "^28.0.4",
     "ts-loader": "^9.3.0",
+    "tslib": "^2.4.0",
     "typescript": "^4.7.3",
     "webpack": "^5.73.0",
     "webpack-bundle-analyzer": "^4.5.0",

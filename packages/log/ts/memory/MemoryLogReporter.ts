@@ -16,14 +16,6 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
 
-function createGetLogMessage() {
-  return function getLogMessage(this: { logs: LogEntry[] }) {
-    return this.logs.map(toInspectLogEntry)
-      .map(log => log.args.join(' '))
-      .join('\n')
-  }
-}
-
 export function toMessageWithLevel(logs: LogEntry[]) {
   return logs.map(toInspectLogEntry)
     .map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
@@ -34,16 +26,14 @@ export function toMessageWithLevel(logs: LogEntry[]) {
     .replace(/^\(WARN\) already configured for test, ignoring config\(\) call\n/, '')
 }
 
-
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
   const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
   const { id } = opt
   let { formatter, filter } = opt
+  const logs: LogEntry[] = []
   return {
     id,
-    get formatter() {
-      return formatter
-    },
+    get formatter() { return formatter },
     set formatter(value: MemoryLogFormatter) {
       assertLogModeIsNotProduction(
         'set Reporter.formatter',
@@ -51,9 +41,7 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       )
       formatter = value
     },
-    get filter() {
-      return filter
-    },
+    get filter() { return filter },
     set filter(value: LogFilter) {
       assertLogModeIsNotProduction(
         'set Reporter.filter',
@@ -61,12 +49,16 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       )
       filter = value
     },
-    logs: [],
+    logs,
     write(entry) {
       if (filter && !filter(entry)) return
-      this.logs.push(formatter(entry))
+      logs.push(formatter(entry))
     },
-    getLogMessage: createGetLogMessage(),
-    getLogMessageWithLevel() { return toMessageWithLevel(this.logs) }
+    getLogMessage() {
+      return logs.map(toInspectLogEntry)
+        .map(log => log.args.join(' '))
+        .join('\n')
+    },
+    getLogMessageWithLevel() { return toMessageWithLevel(logs) }
   }
 }
