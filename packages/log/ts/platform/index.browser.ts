@@ -1,4 +1,4 @@
-import { LogEntry } from '../LogEntry.js'
+import type { LogEntry } from '../types.js'
 
 export const toInspectLogEntry = (e: LogEntry) => e
 export function isConsoleDebugAvailable() {

@@ -1,7 +1,7 @@
 import ms from 'ms'
 import { upperCase } from 'upper-case'
 import { toLogLevelName } from '../logLevelFn.js'
-import { LogEntry } from '../types.js'
+import type { LogEntry } from '../types.js'
 
 export type TimestampFormat = 'none' | 'iso' | 'elapsed'
 
