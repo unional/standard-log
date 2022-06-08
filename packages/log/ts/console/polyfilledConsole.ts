@@ -1,5 +1,5 @@
 /* istanbul ignore file */
-import { isConsoleDebugAvailable } from './isConsoleDebugAvailable.js'
+import { isConsoleDebugAvailable } from '../platform/index.js'
 /* eslint-disable no-console */
 
 function buildPolyfillConsole() {
