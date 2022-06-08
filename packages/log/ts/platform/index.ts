@@ -20,3 +20,11 @@ export function isConsoleDebugAvailable() {
 export const toInspectLogEntry = (e: LogEntry) => (
   e.args = e.args.map(value => typeof value === 'object' && value !== null ? inspect(value) : value),
   e)
+
+export function createColorLogReporter() {
+    // tricks webpack to not bundle standard-log-color
+    const c = '-color'
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
+    const colorModule = require('standard-log' + c)
+    return colorModule.createColorLogReporter()
+}
