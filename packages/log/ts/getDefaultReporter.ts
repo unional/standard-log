@@ -1,12 +1,9 @@
 import { createConsoleLogReporter } from './console/index.js'
+import { createColorLogReporter } from './platform/index.js'
 
 export function getDefaultReporter() {
   try {
-    // tricks webpack to not bundle standard-log-color
-    const c = '-color'
-    // eslint-disable-next-line @typescript-eslint/no-var-requires
-    const colorModule = require('standard-log' + c)
-    return colorModule.createColorLogReporter()
+    return createColorLogReporter()
   }
   catch (e) {
     // istanbul ignore next
