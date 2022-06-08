@@ -1,7 +1,7 @@
 import { forEachKey } from 'type-plus'
 import { addCustomLogLevel } from './customLogLevel.js'
 import { ProhibitedDuringProduction } from './errors.js'
-import { getDefaultReporter } from './getDefaultReporter.js'
+import { getDefaultReporter } from './reporter.js'
 import { getLogger } from './getLogger.js'
 import { store } from './store.js'
 import { LogMode, LogReporter } from './types.js'

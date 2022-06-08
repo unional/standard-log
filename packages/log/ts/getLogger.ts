@@ -3,9 +3,12 @@ import { logLevels } from './logLevel.js'
 import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn.js'
 import { shouldLog } from './shouldLog.js'
 import { store } from './store.js'
-import { LogEntry, LogFunction, Logger, LogMethodNames, LogReporter, ReporterFilter } from './types.js'
+import type {
+  LogEntry, LogFunction, Logger, LogMethodNames,
+  LogReporter, ReporterFilter
+} from './types.js'
 import { LoggerClosure } from './typesInternal.js'
-import { writeToReporters } from './writeToReporters.js'
+import { writeToReporters } from './reporter.js'
 
 export namespace getLogger {
   export type Options = {

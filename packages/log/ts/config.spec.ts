@@ -1,9 +1,11 @@
 import a from 'assertron'
+import delay from 'delay'
+import { configForTest } from './configForTest.js'
+import { getLogger } from './getLogger.js'
 import {
   config, createMemoryLogReporter,
   logLevels, ProhibitedDuringProduction, toLogLevelName
 } from './index.js'
-import { configForTest } from './configForTest.js'
 import { store } from './store.js'
 import { assertSSF } from './testUtil.js'
 
@@ -85,4 +87,11 @@ test('config.configured', () => {
     expect(config.isLocked).toBeFalsy()
   config({ mode: 'test' })
   expect(config.isLocked).toBe(true)
+})
+
+test('auto config in first write', async () => {
+  const log = getLogger('config-in-first-write')
+  log.emergency('first: should see this message')
+  log.emergency('second: should see this message')
+  await delay(10)
 })
