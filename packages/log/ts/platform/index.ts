@@ -1,5 +1,5 @@
 import { inspect } from 'util'
-import { LogEntry } from '../LogEntry.js'
+import type { LogEntry } from '../types.js'
 
 export function semverGt(versionString: string, version: [number, number, number]) {
   const actual = versionString.split('.').reverse().reduce((p, v, i) => {

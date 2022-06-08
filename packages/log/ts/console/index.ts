@@ -1,10 +1,8 @@
 import { logLevels } from '../logLevel.js'
-/* istanbul ignore file */
 import { isConsoleDebugAvailable } from '../platform/index.js'
-
 import { required } from 'type-plus'
 import { plainLogFormatter } from '../formatter/index.js'
-import { LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
+import type { LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
 import { assertLogModeIsNotProduction } from '../utils.js'
 
 export function toConsoleMethod(level: number) {
