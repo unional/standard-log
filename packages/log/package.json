@@ -23,13 +23,10 @@
   },
   "main": "./cjs/index.js",
   "browser": {
-    "./cjs/getLogModeFromEnvironment.js": "./cjs/getLogModeFromEnvironment.browser.js",
     "./cjs/memory/toInspectStringForObject.ts": "./cjs/memory/toInspectStringForObject.browser.ts",
     "./cjs/platform/index.js": "./cjs/platform/index.browser.js",
-    "./esm/getLogModeFromEnvironment.js": "./esm/getLogModeFromEnvironment.browser.js",
     "./esm/memory/toInspectStringForObject.ts": "./esm/memory/toInspectStringForObject.browser.ts",
     "./esm/platform/index.js": "./esm/platform/index.browser.js",
-    "./ts/getLogModeFromEnvironment.ts": "./ts/getLogModeFromEnvironment.browser.ts",
     "./ts/memory/toInspectStringForObject.ts": "./ts/memory/toInspectStringForObject.browser.ts",
     "./ts/platform/index.js": "./ts/platform/index.browser.js"
   },

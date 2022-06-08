@@ -1,7 +1,7 @@
 import a from 'assertron'
-import { InvalidEnvVar } from './index.js'
-import { getLogModeFromEnvironment } from './getLogModeFromEnvironment.js'
-import { assertSSF } from './testUtil.js'
+import { InvalidEnvVar } from '../index.js'
+import { assertSSF } from '../testUtil.js'
+import { getLogModeFromEnvironment } from './index.js'
 
 test('invalid value throws', () => {
   process.env.STANDARD_LOG = 'unknown'
