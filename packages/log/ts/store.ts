@@ -1,6 +1,6 @@
 import { createStore } from 'global-store'
-import { getLogModeFromEnvironment } from './getLogModeFromEnvironment.js'
 import { logLevels } from './logLevel.js'
+import { getLogModeFromEnvironment } from './platform/index.js'
 import { LogStore } from './typesInternal.js'
 
 export const store = createStore<LogStore>({
