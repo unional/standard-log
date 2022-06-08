@@ -1,4 +1,4 @@
-import { semverGt } from './semverGt.js'
+import { semverGt } from './index.js'
 
 test('9.3.0 returns false', () => {
   expect(semverGt('9.3.0', [9, 3, 0])).toBe(false)

@@ -23,15 +23,15 @@
   },
   "main": "./cjs/index.js",
   "browser": {
-    "./cjs/console/isConsoleDebugAvailable.js": "./cjs/console/isConsoleDebugAvailable.browser.js",
+    "./cjs/platform/index.js": "./cjs/platform/index.browser.js",
     "./cjs/getDefaultReporter.js": "./cjs/getDefaultReporter.browser.js",
     "./cjs/getLogModeFromEnvironment.js": "./cjs/getLogModeFromEnvironment.browser.js",
     "./cjs/memory/toInspectStringForObject.ts": "./cjs/memory/toInspectStringForObject.browser.ts",
-    "./esm/console/isConsoleDebugAvailable.js": "./esm/console/isConsoleDebugAvailable.browser.js",
+    "./esm/platform/index.js": "./esm/platform/index.browser.js",
     "./esm/getDefaultReporter.js": "./esm/getDefaultReporter.browser.js",
     "./esm/getLogModeFromEnvironment.js": "./esm/getLogModeFromEnvironment.browser.js",
     "./esm/memory/toInspectStringForObject.ts": "./esm/memory/toInspectStringForObject.browser.ts",
-    "./ts/console/isConsoleDebugAvailable.js": "./ts/console/isConsoleDebugAvailable.browser.js",
+    "./ts/platform/index.js": "./ts/platform/index.browser.js",
     "./ts/getDefaultReporter.ts": "./ts/getDefaultReporter.browser.ts",
     "./ts/getLogModeFromEnvironment.ts": "./ts/getLogModeFromEnvironment.browser.ts",
     "./ts/memory/toInspectStringForObject.ts": "./ts/memory/toInspectStringForObject.browser.ts"
