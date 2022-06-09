@@ -1,7 +1,7 @@
-import { logLevels } from '../logLevel.js'
+import { logLevels } from '../logLevels.js'
 import { isConsoleDebugAvailable } from '../platform/index.js'
 import { required } from 'type-plus'
-import { plainLogFormatter } from '../formatter/index.js'
+import { plainLogFormatter } from '../formatter.js'
 import type { LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
 import { assertLogModeIsNotProduction } from '../utils.js'
 

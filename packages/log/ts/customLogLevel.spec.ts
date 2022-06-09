@@ -1,7 +1,7 @@
 import a from 'assertron'
 import { addCustomLogLevel, clearCustomLogLevel, getCustomLevels, getLogger, logLevels } from './index.js'
 import { config } from './config.js'
-import { createMemoryLogReporter } from './memory/index.js'
+import { createMemoryLogReporter } from './memory.js'
 import { store } from './store.js'
 
 afterEach(() => store.reset())

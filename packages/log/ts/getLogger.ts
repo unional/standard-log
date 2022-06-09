@@ -1,6 +1,6 @@
 import { InvalidId } from './errors.js'
-import { logLevels } from './logLevel.js'
-import { getAllLogLevels, toLogLevel, toLogLevelName } from './logLevelFn.js'
+import { getAllLogLevels, logLevels, toLogLevel, toLogLevelName } from './logLevels.js'
+import { writeToReporters } from './reporter.js'
 import { shouldLog } from './shouldLog.js'
 import { store } from './store.js'
 import type {
@@ -8,7 +8,6 @@ import type {
   LogReporter, ReporterFilter
 } from './types.js'
 import { LoggerClosure } from './typesInternal.js'
-import { writeToReporters } from './reporter.js'
 
 export namespace getLogger {
   export type Options = {

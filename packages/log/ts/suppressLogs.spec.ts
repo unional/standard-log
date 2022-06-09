@@ -1,7 +1,7 @@
 import { configForTest } from './configForTest.js'
 import { getLogger } from './getLogger.js'
-import { logLevels } from './logLevel.js'
-import { MemoryLogReporter } from './memory/index.js'
+import { logLevels } from './logLevels.js'
+import { MemoryLogReporter } from './memory.js'
 import { suppressLogs } from './suppressLogs.js'
 
 let reporter: MemoryLogReporter
