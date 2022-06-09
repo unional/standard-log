@@ -1,4 +1,6 @@
 import R from 'ramda'
+import { plainLogFormatter } from './formatter.js'
+import { toInspectLogEntry } from './platform/index.js'
 import { writeToReporters } from './reporter.js'
 import type { LogEntry } from './types.js'
 
@@ -21,4 +23,8 @@ export function captureWrittenLog() {
 export function assertSSF(err: Error, filename: string) {
   const firstStackTrace = err.stack?.split('\n')[1]
   expect(firstStackTrace).toMatch(filename)
+}
+
+export function logEntriesToString(logs: LogEntry[]) {
+  return logs.map(toInspectLogEntry).map(plainLogFormatter).join('\n')
 }

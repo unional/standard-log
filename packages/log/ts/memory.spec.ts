@@ -1,9 +1,9 @@
 import a from 'assertron'
 import { configForTest } from './configForTest.js'
 import { getLogger } from './getLogger.js'
-import { config, createMemoryLogReporter, logEntriesToString, logLevels, ProhibitedDuringProduction } from './index.js'
+import { config, createMemoryLogReporter, logLevels, ProhibitedDuringProduction } from './index.js'
 import { store } from './store.js'
-import { assertSSF } from './testUtil.js'
+import { assertSSF, logEntriesToString } from './testUtil.js'
 
 describe('MemoryLogReporter', () => {
   describe('production checks', () => {
