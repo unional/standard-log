@@ -1,4 +1,4 @@
-import { logLevels } from './logLevel.js'
+import { logLevels } from './logLevels.js'
 import { Logger } from './types.js'
 
 /**

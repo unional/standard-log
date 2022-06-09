@@ -1,5 +1,5 @@
 import { createStore } from 'global-store'
-import { logLevels } from './logLevel.js'
+import { logLevels } from './logLevels.js'
 import { getLogModeFromEnvironment } from './platform/index.js'
 import { LogStore } from './typesInternal.js'
 

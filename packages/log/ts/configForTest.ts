@@ -1,5 +1,5 @@
 import { config } from './config.js'
-import { createMemoryLogReporter } from './memory/index.js'
+import { createMemoryLogReporter } from './memory.js'
 import { store } from './store.js'
 import { LogLevel } from './types.js'
 

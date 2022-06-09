@@ -1,6 +1,6 @@
 import { configForTest } from './index.js'
 import { getLogger } from './getLogger.js'
-import { logLevels } from './logLevel.js'
+import { logLevels } from './logLevels.js'
 
 test('config in test mode and return the memory reporter', () => {
   const { reporter } = configForTest()

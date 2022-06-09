@@ -2,7 +2,7 @@ import a from 'assertron'
 import delay from 'delay'
 import { addCustomLogLevel, clearCustomLogLevel, getLogger, InvalidId, Logger, logLevels, LogMethodNames, setLogLevel, toLogLevel, toLogLevelName } from './index.js'
 import { config } from './config.js'
-import { createMemoryLogReporter, MemoryLogReporter } from './memory/index.js'
+import { createMemoryLogReporter, MemoryLogReporter } from './memory.js'
 import { store } from './store.js'
 import { assertSSF, captureWrittenLog } from './testUtil.js'
 
