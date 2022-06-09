@@ -1,12 +1,9 @@
 import { required } from 'type-plus'
-import { formatLogLevel, plainLogFormatter } from './formatter.js'
+import { formatLogLevel } from './formatter.js'
 import { toInspectLogEntry } from './platform/index.js'
 import type { LogEntry, LogFilter, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 import { assertLogModeIsNotProduction } from './utils.js'
 
-export function logEntriesToString(logs: LogEntry[]) {
-  return logs.map(toInspectLogEntry).map(plainLogFormatter).join('\n')
-}
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[],
