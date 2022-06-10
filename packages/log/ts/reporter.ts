@@ -1,12 +1,32 @@
-import { createConsoleLogReporter } from './console/index.js'
-import { createColorLogReporter } from './platform/index.js'
+import ms from 'ms'
+import { upperCase } from 'upper-case'
+import { toLogLevelName } from './logLevels.js'
+import type { LogEntry } from './types.js'
 
-export function getDefaultReporter() {
-  try {
-    return createColorLogReporter()
+export type TimestampFormat = 'none' | 'iso' | 'elapsed'
+
+export function createTimestampFormatter(format: TimestampFormat) {
+  switch (format) {
+    case 'none':
+      return (_timestamp: Date) => undefined
+    case 'iso':
+      return (timestamp: Date) => timestamp.toISOString()
+    case 'elapsed': {
+      let lastTick: number
+      return (timestamp: Date) => {
+        const newTick = timestamp.getTime()
+        const result = ms(lastTick === undefined ? 0 : newTick - lastTick)
+        lastTick = newTick
+        return result
+      }
+    }
   }
-  catch (e) {
-    // istanbul ignore next
-    return createConsoleLogReporter()
-  }
+}
+
+export function formatLogLevel(level: number) {
+  return `(${upperCase(toLogLevelName(level))})`
+}
+
+export function plainLogFormatter({ id, level, args, timestamp }: LogEntry) {
+  return [timestamp.toISOString(), id, formatLogLevel(level), ...args]
 }

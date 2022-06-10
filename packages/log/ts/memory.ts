@@ -1,6 +1,6 @@
 import { required } from 'type-plus'
-import { formatLogLevel } from './formatter.js'
 import { toInspectLogEntry } from './platform/index.js'
+import { formatLogLevel } from './reporter.js'
 import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
