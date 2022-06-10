@@ -1,9 +1,9 @@
 import { assertron as a } from 'assertron'
-import { createStandardLog, createStandardLogForTest, StandLog } from './createStandardLog.js'
 import { InvalidId } from './errors.js'
 import { logLevels } from './logLevels.js'
 import { toLogLevelName } from './logStore.js'
 import { createMemoryLogReporter } from './memory.js'
+import { createStandardLog, createStandardLogForTest, StandLog, suppressLogs } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames } from './types.js'
 
@@ -466,5 +466,36 @@ describe('getLogger()', () => {
           expect(reporter.logs.length).toEqual(0)
         })
     })
+  })
+})
+
+describe('suppressLogs()', () => {
+  test('suppress log', () => {
+    const sl = createStandardLogForTest()
+    const log = sl.getLogger(['l'])
+    suppressLogs(() => {
+      log.alert('should not see me')
+    }, log)
+
+    expect(sl.reporter.getLogMessageWithLevel()).toBe('')
+  })
+
+  test('suppress multiple logs', () => {
+    const sl = createStandardLogForTest()
+    const log1 = sl.getLogger(['l1'])
+    const log2 = sl.getLogger(['l2'])
+    suppressLogs(() => {
+      log1.alert('should not see me')
+      log2.alert('should not see me too')
+    }, log1, log2)
+    expect(sl.reporter.getLogMessageWithLevel()).toBe('')
+  })
+
+  test('return block result', () => {
+    const sl = createStandardLogForTest()
+    const log1 = sl.getLogger(['l'])
+    const log2 = sl.getLogger(['l2'])
+    const a = suppressLogs(() => 1, log1, log2)
+    expect(a).toBe(1)
   })
 })
