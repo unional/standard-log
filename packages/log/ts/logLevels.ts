@@ -49,3 +49,20 @@ export const logLevels = {
    */
   all: Infinity
 }
+
+export function toLogLevelName(level: number) {
+  if (level <= 100) return 'emergency'
+  if (level <= 200) return 'alert'
+  if (level <= 300) return 'critical'
+  if (level <= 400) return 'error'
+  if (level <= 500) return 'warn'
+  if (level <= 600) return 'notice'
+  if (level <= 700) return 'info'
+  if (level <= 800) return 'debug'
+  if (level <= 900) return 'trace'
+  return 'planck'
+}
+
+export function toLogLevel(name: string) {
+  return (logLevels as any)[name.toLocaleLowerCase()]
+}

@@ -1,7 +1,7 @@
 import { required } from 'type-plus'
-import { plainLogFormatter } from '../formatter.js'
 import { logLevels } from '../logLevels.js'
 import { isConsoleDebugAvailable } from '../platform/index.js'
+import { plainLogFormatter } from '../reporter.js'
 import type { LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
 
 export function toConsoleMethod(level: number) {

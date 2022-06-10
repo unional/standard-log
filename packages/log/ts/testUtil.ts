@@ -1,5 +1,5 @@
 import R from 'ramda'
-import { plainLogFormatter } from './formatter.js'
+import { plainLogFormatter } from './reporter.js'
 import { toInspectLogEntry } from './platform/index.js'
 import type { LogEntry } from './types.js'
 

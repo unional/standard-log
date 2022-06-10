@@ -1,7 +1,6 @@
 import { assertron as a } from 'assertron'
 import { InvalidId } from './errors.js'
-import { logLevels } from './logLevels.js'
-import { toLogLevelName } from './logStore.js'
+import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter } from './memory.js'
 import { createStandardLog, createStandardLogForTest, StandLog, suppressLogs } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'

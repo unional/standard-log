@@ -1,6 +1,8 @@
+
 import { mapKey, reduceByKey, reduceKey } from 'type-plus'
-import { logLevels } from './logLevels.js'
-import { getDefaultReporter } from './reporter.js'
+import { createConsoleLogReporter } from './console/index.js'
+import { logLevels, toLogLevel, toLogLevelName } from './logLevels.js'
+import { createColorLogReporter } from './platform/index.js'
 import type { Logger, LogLevel, LogReporter, StandardLogOptions } from './types.js'
 
 export function createLogStore(options: StandardLogOptions): LogStore {
@@ -50,19 +52,12 @@ export function logLevelStore(options: LogLevelStoreOptions) {
   }
 }
 
-export function toLogLevelName(level: number) {
-  if (level <= 100) return 'emergency'
-  if (level <= 200) return 'alert'
-  if (level <= 300) return 'critical'
-  if (level <= 400) return 'error'
-  if (level <= 500) return 'warn'
-  if (level <= 600) return 'notice'
-  if (level <= 700) return 'info'
-  if (level <= 800) return 'debug'
-  if (level <= 900) return 'trace'
-  return 'planck'
-}
-
-export function toLogLevel(name: string) {
-  return (logLevels as any)[name.toLocaleLowerCase()]
+function getDefaultReporter() {
+  try {
+    return createColorLogReporter()
+  }
+  catch (e) {
+    // istanbul ignore next
+    return createConsoleLogReporter()
+  }
 }

@@ -3,8 +3,9 @@ import { RequiredPick } from 'type-plus'
 import { InvalidId } from './errors.js'
 import { logLevels } from './logLevels.js'
 import { LogStore } from './logStore.js'
-import { shouldLog } from './shouldLog.js'
+import { store } from './store.js'
 import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
+import { LogLevel } from './types.js'
 
 export function createLogger<T extends string = LogMethodNames>(
   [store, id, { level, writeTo = () => true }]: [LogStore, string, RequiredPick<LoggerOptions, 'level'>],
@@ -73,4 +74,13 @@ function validateId(id: string, meta?: StackTraceMeta) {
 
 function writeToReporters(reporters: LogReporter[], logEntry: LogEntry, filter: (reporterId: string) => boolean) {
   reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
+}
+
+/**
+ * Determines should you log.
+ * @param loggerLevel Log level of the logger.
+ * It can be undefined which the global log level will be used.
+ */
+function shouldLog(targetLevel: LogLevel, loggerLevel: LogLevel | undefined) {
+  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.value.logLevel)
 }
