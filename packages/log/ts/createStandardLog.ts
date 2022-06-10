@@ -1,10 +1,9 @@
 import { required } from 'type-plus'
-import { ConfigOptions } from './config.js'
 import { createLogger } from './logger.js'
 import { logLevels } from './logLevels.js'
 import { createLogStore } from './logStore.js'
 import { createMemoryLogReporter } from './memory.js'
-import { Logger, LoggerOptions, LogLevel, LogMethodNames, StackTraceMeta } from './types.js'
+import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StackTraceMeta, StandardLogOptions } from './types.js'
 
 export interface StandLog<N extends string = LogMethodNames> {
   readonly logLevel: number,
@@ -14,7 +13,7 @@ export interface StandLog<N extends string = LogMethodNames> {
 }
 
 export function createStandardLog<N extends string = LogMethodNames>(
-  options?: Partial<ConfigOptions<N>>, _meta?: StackTraceMeta
+  options?: Partial<StandardLogOptions<N>>, _meta?: StackTraceMeta
 ): Readonly<StandLog<N>> {
   const store = createLogStore(required({ logLevel: logLevels.info }, options))
 
@@ -36,6 +35,6 @@ export function createStandardLog<N extends string = LogMethodNames>(
 
 export function createStandardLogForTest(logLevel: LogLevel = logLevels.debug) {
   const reporter = createMemoryLogReporter()
-  const standardLog = createStandardLog({ reporters: [reporter], logLevel, mode: 'test' })
+  const standardLog = createStandardLog({ reporters: [reporter], logLevel })
   return { ...standardLog, reporter }
 }

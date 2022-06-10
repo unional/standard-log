@@ -4,6 +4,11 @@ export interface StackTraceMeta {
   ssf: AnyFunction
 }
 
+export type StandardLogOptions<CustomLevelNames extends string = string> = {
+  customLevels: Record<CustomLevelNames, number>,
+  logLevel: number,
+  reporters: LogReporter[]
+}
 
 export interface LoggerOptions {
   level?: number,
