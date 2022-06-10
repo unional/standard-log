@@ -1,5 +1,11 @@
 # Change Log
 
+## 8.0.1
+
+### Patch Changes
+
+- ebf3153: Adjust errors ssf to call site
+
 ## 8.0.0
 
 ### Major Changes
