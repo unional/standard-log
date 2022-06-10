@@ -1,3 +1,15 @@
+import { AnyFunction } from 'type-plus'
+
+export interface StackTraceMeta {
+  ssf: AnyFunction
+}
+
+
+export interface LoggerOptions {
+  level?: number,
+  writeTo?: LogReporter | ReporterFilter
+}
+
 
 export type LogMode = 'development' | 'production' | 'test'
 

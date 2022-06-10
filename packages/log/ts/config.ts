@@ -6,9 +6,9 @@ import { getLogger } from './getLogger.js'
 import { store } from './store.js'
 import { LogMode, LogReporter } from './types.js'
 
-export type ConfigOptions = {
+export type ConfigOptions<CustomLevelNames extends string = string> = {
   mode: LogMode,
-  customLevels: Record<string, number>,
+  customLevels: Record<CustomLevelNames, number>,
   logLevel: number,
   reporters: LogReporter[]
 }

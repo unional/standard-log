@@ -28,3 +28,7 @@ export function assertSSF(err: Error, filename: string) {
 export function logEntriesToString(logs: LogEntry[]) {
   return logs.map(toInspectLogEntry).map(plainLogFormatter).join('\n')
 }
+
+export function wrapTest<F>(fn: (test: jest.It) => F) {
+  return Object.assign(fn(test), { only: fn(test.only), skip: fn(test.skip) })
+}

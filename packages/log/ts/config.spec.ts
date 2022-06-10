@@ -13,39 +13,39 @@ beforeEach(() => store.reset())
 
 afterEach(() => store.reset())
 
-test('in production mode by default', () => {
+test.skip('in production mode by default', () => {
   expect(store.value.mode).toBe('production')
 })
 
-test('default logLevel is info', () => {
+test.skip('default logLevel is info', () => {
   expect(store.value.logLevel).toBe(logLevels.info)
 })
 
-test('configure default logLevel', () => {
+test.skip('configure default logLevel', () => {
   config({ logLevel: logLevels.planck })
 
   expect(store.value.logLevel).toBe(logLevels.planck)
 })
 
-test('calling config twice throws ProhibitedDuringProduction in production mode', () => {
+test.skip('calling config twice throws ProhibitedDuringProduction in production mode', () => {
   config({ mode: 'production' })
   a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
 })
 
-it('throw ProhibitedDuringProduction with ssf to the call site', () => {
+it.skip('throw ProhibitedDuringProduction with ssf to the call site', () => {
   config({ mode: 'production' })
   const err = a.throws(() => config({ mode: 'development' }), ProhibitedDuringProduction)
 
   assertSSF(err, __filename)
 })
 
-test('allow calling config with non-test mode while already running in test mode, but emit a warning', () => {
+test.skip('allow calling config with non-test mode while already running in test mode, but emit a warning', () => {
   const { reporter } = configForTest()
   config({ mode: 'production' })
   expect(reporter.getLogMessageWithLevel()).toEqual('(WARN) already configured for test, ignoring config() call')
 })
 
-test('allow calling config in test mode again while in test mode. Emit no warning', () => {
+test.skip('allow calling config in test mode again while in test mode. Emit no warning', () => {
   const { reporter } = configForTest()
   config({ mode: 'test' })
   expect(reporter.getLogMessageWithLevel()).toEqual('')
