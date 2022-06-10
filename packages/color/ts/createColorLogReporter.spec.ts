@@ -1,10 +1,7 @@
 import {
-  addCustomLogLevel, clearCustomLogLevel, configForTest,
-  ConsoleLogFormatter, LogFilter, logLevels, plainLogFormatter
+  ConsoleLogFormatter, LogFilter, logLevels, plainLogFormatter, createStandardLog
 } from 'standard-log'
 import { createAnsiFormatter, createColorLogReporter, createCssFormatter } from './index.js'
-
-beforeAll(() => configForTest())
 
 describe('rendering tests', () => {
   test('default to color rendering', () => {
@@ -21,18 +18,14 @@ describe('rendering tests', () => {
   })
 
   test('different timestamp settings', () => {
-    const reporter = createColorLogReporter();
-
     ['none', 'iso', 'elapsed'].forEach((timestamp: any) => {
-      reporter.formatter = createAnsiFormatter({ timestamp })
+      const reporter = createColorLogReporter({ formatter: createAnsiFormatter({ timestamp }) })
       reporter.write({ id: timestamp, level: logLevels.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
   test('different timestamp settings for css', () => {
-    const reporter = createColorLogReporter();
-
     ['none', 'iso', 'elapsed'].forEach((timestamp: any) => {
-      reporter.formatter = createCssFormatter({ timestamp })
+      const reporter = createColorLogReporter({ formatter: createCssFormatter({ timestamp }) })
       reporter.write({ id: timestamp, level: logLevels.info, args: ['hello', 'world'], timestamp: new Date() })
     })
   })
@@ -101,22 +94,26 @@ describe('log level', () => {
 })
 
 describe('custom logs', () => {
-  afterEach(() => clearCustomLogLevel())
-
   test('are written according to their log level value', () => {
-    addCustomLogLevel('high', 50)
-    addCustomLogLevel('important', 450)
-    addCustomLogLevel('interest', 650)
-    addCustomLogLevel('silly', 1000)
-
     const id = 'log'
     const reporter = createColorLogReporter()
     const fakeConsole = reporter.console = createFakeConsole()
 
-    reporter.write({ id, level: 50, args: ['a'], timestamp: new Date() })
-    reporter.write({ id, level: 450, args: ['b'], timestamp: new Date() })
-    reporter.write({ id, level: 650, args: ['c'], timestamp: new Date() })
-    reporter.write({ id, level: 1000, args: ['d'], timestamp: new Date() })
+    const sl = createStandardLog({
+      logLevel: logLevels.all,
+      customLevels: {
+        'high': 50,
+        'important': 450,
+        'interest': 650,
+        'silly': 1000
+      },
+      reporters: [reporter]
+    })
+    const log = sl.getLogger([id])
+    log.high('a')
+    log.important('b')
+    log.interest('c')
+    log.silly('d')
 
     expect(fakeConsole.errors.length).toBe(1)
     expect(fakeConsole.warns.length).toBe(1)
@@ -140,8 +137,7 @@ describe('formatter', () => {
 
   test('formatter can be changed afterward', () => {
     const id = 'id-only'
-    const reporter = createColorLogReporter()
-    reporter.formatter = idFormatter
+    const reporter = createColorLogReporter({ formatter: idFormatter })
     const fakeConsole = reporter.console = createFakeConsole()
 
     reporter.write({ id, level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })

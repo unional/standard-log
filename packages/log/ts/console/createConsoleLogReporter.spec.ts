@@ -1,4 +1,4 @@
-import { createStandardLog } from '../createStandardLog.js'
+import { createStandardLog } from '../standardLog.js'
 import {
   ConsoleLogFormatter, createConsoleLogReporter,
   LogFilter, logLevels, plainLogFormatter
