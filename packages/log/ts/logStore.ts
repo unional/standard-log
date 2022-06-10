@@ -1,5 +1,24 @@
 import { mapKey, reduceByKey, reduceKey } from 'type-plus'
+import { ConfigOptions } from './config.js'
 import { logLevels } from './logLevels.js'
+import { getDefaultReporter } from './reporter.js'
+import { Logger, LogLevel, LogReporter } from './types.js'
+
+export function createLogStore(options: ConfigOptions): LogStore {
+  return {
+    loggers: {},
+    reporters: options.reporters || [getDefaultReporter()],
+    logLevel: options.logLevel,
+    logLevelStore: logLevelStore(options)
+  }
+}
+
+export interface LogStore {
+  loggers: Record<string, Logger>,
+  reporters: LogReporter[],
+  logLevel: LogLevel,
+  logLevelStore: ReturnType<typeof logLevelStore>
+}
 
 export interface LogLevelStoreOptions {
   customLevels?: Record<string, number>
@@ -17,10 +36,10 @@ export function logLevelStore(options: LogLevelStoreOptions) {
   }
   return {
     getName(level: number) {
-      return store.customLevelsReverse[level] ?? getDefaultLogLevelName(level)
+      return store.customLevelsReverse[level] ?? toLogLevelName(level)
     },
     getLevel(name: string) {
-      return store.customLevels[name] ?? (logLevels as any)[name.toLocaleLowerCase()]
+      return store.customLevels[name] ?? toLogLevel(name)
     },
     getAllLevels() {
       return reduceKey(logLevels, (result, name) => {
@@ -32,7 +51,7 @@ export function logLevelStore(options: LogLevelStoreOptions) {
   }
 }
 
-function getDefaultLogLevelName(level: number) {
+export function toLogLevelName(level: number) {
   if (level <= 100) return 'emergency'
   if (level <= 200) return 'alert'
   if (level <= 300) return 'critical'
@@ -43,4 +62,8 @@ function getDefaultLogLevelName(level: number) {
   if (level <= 800) return 'debug'
   if (level <= 900) return 'trace'
   return 'planck'
+}
+
+export function toLogLevel(name: string) {
+  return (logLevels as any)[name.toLocaleLowerCase()]
 }
