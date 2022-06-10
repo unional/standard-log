@@ -11,16 +11,16 @@ export function createLogger<T extends string = LogMethodNames>(
   meta?: StackTraceMeta
 ): Logger {
   validateId(id, meta)
-  const filter: (reporterId: string) => boolean = typeof writeTo === 'string'
-    ? id => id === writeTo
+  const [filter, reporters]: [(reporterId: string) => boolean, LogReporter[]] = typeof writeTo === 'string'
+    ? [id => id === writeTo, store.reporters]
     : writeTo instanceof RegExp
-      ? id => writeTo.test(id)
+      ? [id => writeTo.test(id), store.reporters]
       : typeof writeTo === 'function'
-        ? writeTo
-        : (addLogReporterInternal(store, writeTo), id => id === writeTo.id)
+        ? [writeTo, store.reporters]
+        : [() => true, [writeTo]]
 
   function write(entry: LogEntry) {
-    writeToReporters(store, entry, filter)
+    writeToReporters(reporters, entry, filter)
   }
 
   const logger = {
@@ -71,26 +71,6 @@ function validateId(id: string, meta?: StackTraceMeta) {
   if (/[`~!#$%^&*()=+[\]{},|<>?]/.test(id)) throw new InvalidId(id, meta)
 }
 
-function addLogReporterInternal(store: LogStore, reporter: LogReporter) {
-  if (reporter.isConsoleReporter) {
-    const r = getConsoleReporter(store)
-    if (r && reporter.filter) {
-      const f = r.filter
-      const f2 = reporter.filter
-      if (f) r.filter = entry => f(entry) && f2(entry)
-      else r.filter = f2
-    }
-  }
-  else {
-    store.reporters.push(reporter)
-  }
-}
-
-
-function getConsoleReporter(store: LogStore) {
-  return store.reporters.find(r => r.isConsoleReporter)
-}
-
-function writeToReporters(store: LogStore, logEntry: LogEntry, filter: (reporterId: string) => boolean) {
-  store.reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
+function writeToReporters(reporters: LogReporter[], logEntry: LogEntry, filter: (reporterId: string) => boolean) {
+  reporters.filter(r => filter(r.id)).forEach(r => r.write(logEntry!))
 }
