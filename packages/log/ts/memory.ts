@@ -1,9 +1,7 @@
 import { required } from 'type-plus'
 import { formatLogLevel } from './formatter.js'
 import { toInspectLogEntry } from './platform/index.js'
-import type { LogEntry, LogFilter, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
-import { assertLogModeIsNotProduction } from './utils.js'
-
+import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[],
@@ -28,28 +26,12 @@ export function toMessageWithLevel(logs: LogEntry[]) {
 }
 
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
-  const opt = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
-  const { id } = opt
-  let { formatter, filter } = opt
+  const { id, formatter, filter } = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
   const logs: LogEntry[] = []
   return {
     id,
     get formatter() { return formatter },
-    set formatter(value: MemoryLogFormatter) {
-      assertLogModeIsNotProduction(
-        'set Reporter.formatter',
-        Object.getOwnPropertyDescriptor(this, 'formatter')!.set!
-      )
-      formatter = value
-    },
     get filter() { return filter },
-    set filter(value: LogFilter) {
-      assertLogModeIsNotProduction(
-        'set Reporter.filter',
-        Object.getOwnPropertyDescriptor(this, 'filter')!.set!
-      )
-      filter = value
-    },
     logs,
     write(entry) {
       if (filter && !filter(entry)) return

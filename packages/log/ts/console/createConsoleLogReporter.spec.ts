@@ -1,48 +1,10 @@
-import a from 'assertron'
+import { createStandardLog } from '../createStandardLog.js'
 import {
-  addCustomLogLevel, clearCustomLogLevel, config, configForTest,
   ConsoleLogFormatter, createConsoleLogReporter,
-  LogFilter, logLevels, plainLogFormatter, ProhibitedDuringProduction
+  LogFilter, logLevels, plainLogFormatter
 } from '../index.js'
-import { store } from '../store.js'
-import { assertSSF } from '../testUtil.js'
-
-describe('production checks', () => {
-  beforeEach(() => store.reset())
-
-  test('set filter during production mode throws', () => {
-    config({ mode: 'production' })
-    const reporter = createConsoleLogReporter()
-    a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
-  })
-
-  it('set filter throws with ssf at call site', () => {
-    config({ mode: 'production' })
-    const reporter = createConsoleLogReporter()
-    const err = a.throws(() => { reporter.filter = () => true }, ProhibitedDuringProduction)
-
-    assertSSF(err, __filename)
-  })
-
-  const idFormatter: ConsoleLogFormatter = (entry) => [entry.id]
-  test('set formatter during production mode throws', () => {
-    config({ mode: 'production' })
-    const reporter = createConsoleLogReporter()
-    a.throws(() => reporter.formatter = idFormatter, ProhibitedDuringProduction)
-  })
-  it('set formatter throws with ssf at call site', () => {
-    config({ mode: 'production' })
-    const reporter = createConsoleLogReporter()
-    const err = a.throws(() => reporter.formatter = idFormatter, ProhibitedDuringProduction)
-
-    assertSSF(err, __filename)
-  })
-})
-
 
 describe('unit tests', () => {
-  beforeEach(() => configForTest())
-
   describe('rendering tests', () => {
     test('plain rendering', () => {
       const reporter = createConsoleLogReporter({ formatter: plainLogFormatter });
@@ -115,22 +77,26 @@ describe('unit tests', () => {
   })
 
   describe('custom logs', () => {
-    afterEach(() => clearCustomLogLevel())
-
     test('are written according to their log level value', () => {
-      addCustomLogLevel('high', 50)
-      addCustomLogLevel('important', 450)
-      addCustomLogLevel('interest', 650)
-      addCustomLogLevel('silly', 1000)
-
       const id = 'log'
       const reporter = createConsoleLogReporter()
       const fakeConsole = reporter.console = createFakeConsole()
 
-      reporter.write({ id, level: 50, args: ['a'], timestamp: new Date() })
-      reporter.write({ id, level: 450, args: ['b'], timestamp: new Date() })
-      reporter.write({ id, level: 650, args: ['c'], timestamp: new Date() })
-      reporter.write({ id, level: 1000, args: ['d'], timestamp: new Date() })
+      const sl = createStandardLog({
+        logLevel: logLevels.all,
+        customLevels: {
+          'high': 50,
+          'important': 450,
+          'interest': 650,
+          'silly': 1000
+        },
+        reporters: [reporter]
+      })
+      const log = sl.getLogger([id])
+      log.high('a')
+      log.important('b')
+      log.interest('c')
+      log.silly('d')
 
       expect(fakeConsole.errors.length).toBe(1)
       expect(fakeConsole.warns.length).toBe(1)
@@ -151,13 +117,6 @@ describe('unit tests', () => {
 
       expect(fakeConsole.errors).toEqual([['id-only']])
     })
-
-    test('formatter can be changed afterward', () => {
-      const reporter = createConsoleLogReporter()
-      const formatter = reporter.formatter
-      reporter.formatter = idFormatter
-      expect(reporter.formatter).not.toEqual(formatter)
-    })
   })
 
   describe('filter', () => {
@@ -170,13 +129,6 @@ describe('unit tests', () => {
       reporter.write({ id: 'secret', level: logLevels.emergency, args: ['emergency'], timestamp: new Date() })
 
       expect(fakeConsole.errors).toEqual([['normal']])
-    })
-
-    test('can change filter', () => {
-      const reporter = createConsoleLogReporter()
-      const filter = reporter.filter
-      reporter.filter = entry => entry.id !== 'secret'
-      expect(reporter.filter).not.toEqual(filter)
     })
   })
 

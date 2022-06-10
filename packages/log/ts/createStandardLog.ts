@@ -19,6 +19,7 @@ export function createStandardLog<N extends string = LogMethodNames>(
 
   return Object.freeze({
     get logLevel() { return store.logLevel },
+
     toLogLevelName(level: number) {
       return store.logLevelStore.getName(level)
     },

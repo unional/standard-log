@@ -1,34 +1,31 @@
-import { configForTest } from './configForTest.js'
-import { getLogger } from './getLogger.js'
-import { logLevels } from './logLevels.js'
-import { MemoryLogReporter } from './memory.js'
+import { createStandardLogForTest } from './createStandardLog.js'
 import { suppressLogs } from './suppressLogs.js'
 
-let reporter: MemoryLogReporter
-beforeEach(() => reporter = configForTest(logLevels.all).reporter)
-
 test('suppress log', () => {
-  const log = getLogger('l')
+  const sl = createStandardLogForTest()
+  const log = sl.getLogger(['l'])
   suppressLogs(() => {
     log.alert('should not see me')
   }, log)
 
-  expect(reporter.getLogMessageWithLevel()).toBe('')
+  expect(sl.reporter.getLogMessageWithLevel()).toBe('')
 })
 
 test('suppress multiple logs', () => {
-  const log1 = getLogger('l1')
-  const log2 = getLogger('l2')
+  const sl = createStandardLogForTest()
+  const log1 = sl.getLogger(['l1'])
+  const log2 = sl.getLogger(['l2'])
   suppressLogs(() => {
     log1.alert('should not see me')
     log2.alert('should not see me too')
   }, log1, log2)
-  expect(reporter.getLogMessageWithLevel()).toBe('')
+  expect(sl.reporter.getLogMessageWithLevel()).toBe('')
 })
 
 test('return block result', () => {
-  const log1 = getLogger('l')
-  const log2 = getLogger('l2')
+  const sl = createStandardLogForTest()
+  const log1 = sl.getLogger(['l'])
+  const log2 = sl.getLogger(['l2'])
   const a = suppressLogs(() => 1, log1, log2)
   expect(a).toBe(1)
 })
