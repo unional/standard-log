@@ -11,12 +11,6 @@ export class InvalidId extends StandardLogError {
   }
 }
 
-export class ProhibitedDuringProduction extends StandardLogError {
-  constructor(public action: string, options?: IsoError.Options) {
-    super(`Cannot perform ${action} during production`, options)
-  }
-}
-
 export class InvalidEnvVar extends StandardLogError {
   constructor(public name: string, public value: string, public possibleValues: string[], options?: IsoError.Options) {
     super(`${name} contains invalid value '${value}'${` valid values: [${possibleValues.join()}]`}`, options)

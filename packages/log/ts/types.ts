@@ -15,12 +15,7 @@ export interface LoggerOptions {
   writeTo?: LogReporter | ReporterFilter
 }
 
-
-export type LogMode = 'development' | 'production' | 'test'
-
 export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'warn' | 'notice' | 'info' | 'debug' | 'trace' | 'planck'
-export type LogMethod = (...args: any[]) => void
-export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
 export type LogEntry = {
   id: string,
@@ -47,9 +42,16 @@ export type Logger<T extends string = LogMethodNames> = {
    * This can be used along with `captureLogs()` to rewrite the logs at a later time.
    */
   write(entry: LogEntry): void
-} & {
-    [k in T]: LogMethod
-  }
+} & { [k in T]: LogMethod }
+
+export type LogMethod = (...args: any[]) => void
+
+
+export type LogMode = 'development' | 'production' | 'test'
+
+export type LogFunction = ((log: LogMethod) => void) | (() => string)
+
+
 
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 
@@ -69,28 +71,22 @@ export type LogLevelEntry = { name: string, level: number }
 
 export type LogLevelListener = (logLevelEntry: LogLevelEntry) => void
 
-export type LogReporter<T = any> = {
-  id: string,
+export interface LogReporter<T = any> {
+  readonly id: string,
   /**
    * Specifies the formatter to be used by the reporter.
    * Using this you can customize how the reporter writes the log entry.
-   * This is readonly in production mode.
    */
-  formatter: LogFormatter<T>,
+  readonly formatter: LogFormatter<T>,
   /**
    * Specifies a filter to determine should the log be written.
-   * This is readonly in production mode.
    */
-  filter?: LogFilter,
+  readonly filter?: LogFilter,
   /**
    * Indicate if this is a console reporter.
    * There is only one console reporter can be present in the system.
-   * If a new console reporter is added,
-   * it will be used in place of the existing one.
-   * However, existing filter will be carried over to ensure logs should not be shown remain not shown.
-   * If the new reporter also contains a filter, they will be combined.
    */
-  isConsoleReporter?: boolean,
+  readonly isConsoleReporter?: boolean,
   write(entry: LogEntry): void
 }
 

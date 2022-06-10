@@ -1,9 +1,8 @@
-import { logLevels } from '../logLevels.js'
-import { isConsoleDebugAvailable } from '../platform/index.js'
 import { required } from 'type-plus'
 import { plainLogFormatter } from '../formatter.js'
-import type { LogFilter, LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
-import { assertLogModeIsNotProduction } from '../utils.js'
+import { logLevels } from '../logLevels.js'
+import { isConsoleDebugAvailable } from '../platform/index.js'
+import type { LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
 
 export function toConsoleMethod(level: number) {
   switch (true) {
@@ -61,31 +60,15 @@ export type ConsoleLogFormatter = LogFormatter<any[]>
 export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): ConsoleLogReporter {
-  const opts = required({ id: 'console', formatter: plainLogFormatter }, options)
-  const { id } = opts
-  let { formatter, filter } = opts
+  const { id, formatter, filter } = required({ id: 'console', formatter: plainLogFormatter }, options)
   return {
     id,
     isConsoleReporter: true,
     get formatter() {
       return formatter
     },
-    set formatter(value: ConsoleLogFormatter) {
-      assertLogModeIsNotProduction(
-        'set Reporter.formatter',
-        Object.getOwnPropertyDescriptor(this, 'formatter')!.set!
-      )
-      formatter = value
-    },
     get filter() {
       return filter
-    },
-    set filter(value: LogFilter) {
-      assertLogModeIsNotProduction(
-        'set Reporter.filter',
-        Object.getOwnPropertyDescriptor(this, 'filter')!.set!
-      )
-      filter = value
     },
     console: polyfilledConsole,
     write(entry) {
