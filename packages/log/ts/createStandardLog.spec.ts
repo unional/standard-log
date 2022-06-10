@@ -30,6 +30,16 @@ describe('createStandardLog()', () => {
       expect(actual.toLogLevelName(80)).toBe('urgent')
     })
   })
+
+  describe('reporters', () => {
+    it('can specify reporter', () => {
+      const mem = createMemoryLogReporter()
+      const sl = createStandardLog({ reporters: [mem] })
+      const log = sl.getLogger(['x'])
+      log.info('abc')
+      expect(mem.logs.length).toBe(1)
+    })
+  })
 })
 
 describe('createStandardLogForTest()', () => {

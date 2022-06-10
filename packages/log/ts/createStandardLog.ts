@@ -36,12 +36,6 @@ export function createStandardLog<N extends string = LogMethodNames>(
 
 export function createStandardLogForTest(logLevel: LogLevel = logLevels.debug) {
   const reporter = createMemoryLogReporter()
-  const standardLog = createStandardLog({
-    reporters: [reporter],
-    logLevel
-  })
-  return {
-    ...standardLog,
-    reporter
-  }
+  const standardLog = createStandardLog({ reporters: [reporter], logLevel, mode: 'test' })
+  return { ...standardLog, reporter }
 }
