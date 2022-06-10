@@ -1,10 +1,9 @@
 import { mapKey, reduceByKey, reduceKey } from 'type-plus'
-import { ConfigOptions } from './config.js'
 import { logLevels } from './logLevels.js'
 import { getDefaultReporter } from './reporter.js'
-import { Logger, LogLevel, LogReporter } from './types.js'
+import type { Logger, LogLevel, LogReporter, StandardLogOptions } from './types.js'
 
-export function createLogStore(options: ConfigOptions): LogStore {
+export function createLogStore(options: StandardLogOptions): LogStore {
   return {
     loggers: {},
     reporters: options.reporters || [getDefaultReporter()],
