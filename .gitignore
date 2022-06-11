@@ -63,3 +63,4 @@ packages/*/lib*
 pacakges/*/out*
 .nowhere
 .reports
+/docs
