@@ -2,7 +2,7 @@ import { assertron as a } from 'assertron'
 import { InvalidId } from './errors.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter } from './memory.js'
-import { createStandardLog, createStandardLogForTest, StandLog, suppressLogs } from './standardLog.js'
+import { createStandardLog, createStandardLogForTest, StandardLog, suppressLogs } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames } from './types.js'
 
@@ -403,7 +403,7 @@ describe('getLogger()', () => {
   describe('getLogger([,{ writeTo }])', () => {
     function testWriteTo(
       loggerParams: [id: string, options: LoggerOptions],
-      handler: (log: Logger, memLogs: LogEntry[], specialLogs: LogEntry[], sl: StandLog) => void
+      handler: (log: Logger, memLogs: LogEntry[], specialLogs: LogEntry[], sl: StandardLog) => void
     ) {
       const memReporter = createMemoryLogReporter()
       const specialReporter = createMemoryLogReporter({ id: 'special' })
