@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.0.1
+
+### Patch Changes
+
+- e04eac6: `getLogger()` provides default log method names in generic environment.
+
 ## 9.0.0
 
 ### Major Changes
