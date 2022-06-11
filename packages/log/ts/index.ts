@@ -1,4 +1,4 @@
-export * from './console/index.js'
+export * from './console.js'
 export * from './standardLog.js'
 export * from './errors.js'
 export * from './reporter.js'

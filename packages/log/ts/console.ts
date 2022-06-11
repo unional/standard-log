@@ -1,26 +1,21 @@
 import { required } from 'type-plus'
-import { logLevels } from '../logLevels.js'
-import { isConsoleDebugAvailable } from '../platform/index.js'
-import { plainLogFormatter } from '../reporter.js'
-import type { LogFormatter, LogReporter, LogReporterOptions } from '../types.js'
+import { logLevels } from './logLevels.js'
+import { isConsoleDebugAvailable } from './platform/index.js'
+import { plainLogFormatter } from './reporter.js'
+import type { LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export function toConsoleMethod(level: number) {
   switch (true) {
-    // istanbul ignore next
-    case (level === 0):
-      // edge case in case none is somehow written
-      return 'debug'
-    case (level <= logLevels.error):
-      return 'error'
-    case (level <= logLevels.warn):
-      return 'warn'
-    case (level <= logLevels.info):
-      return 'info'
-    default:
-      return 'debug'
+    // edge case in case none is somehow written
+    case (level <= 0): return 'debug'
+    case (level <= logLevels.error): return 'error'
+    case (level <= logLevels.warn): return 'warn'
+    case (level <= logLevels.info): return 'info'
+    default: return 'debug'
   }
 }
 
+// istanbul ignore next
 /* eslint-disable no-console */
 function buildPolyfillConsole() {
   // old phantomjs does not have bind function
@@ -47,29 +42,34 @@ function buildPolyfillConsole() {
   }
 }
 
+// istanbul ignore next
 function buildFn(name: 'debug' | 'info' | 'warn' | 'error' | 'log') {
   return function (...args: any[]) { console[name](...args) }
 }
 
-export const polyfilledConsole = buildPolyfillConsole()
+export interface Console {
+  debug(...args: any[]): void,
+  info(...args: any[]): void,
+  warn(...args: any[]): void,
+  error(...args: any[]): void,
+}
 
-export type Console = typeof polyfilledConsole
+let polyfilledConsole: Console
 
-export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
+
 export type ConsoleLogFormatter = LogFormatter<any[]>
+export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
 export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): ConsoleLogReporter {
   const { id, formatter, filter } = required({ id: 'console', formatter: plainLogFormatter }, options)
+  if (!polyfilledConsole) polyfilledConsole = buildPolyfillConsole()
+
   return {
     id,
     isConsoleReporter: true,
-    get formatter() {
-      return formatter
-    },
-    get filter() {
-      return filter
-    },
+    get formatter() { return formatter },
+    get filter() { return filter },
     console: polyfilledConsole,
     write(entry) {
       if (filter && !filter(entry)) return
