@@ -15,5 +15,13 @@
     {
       "path": "packages/syslog"
     }
-  ]
+  ],
+  "typedocOptions": {
+    "customTitle": "standard-log documentation",
+    "customTitleLink": "https://github.com/unional/standard-log",
+    "entryPoints": [
+      "packages/log/ts/index.ts"
+    ],
+    "out": "docs"
+  }
 }
