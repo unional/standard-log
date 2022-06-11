@@ -23,7 +23,6 @@ export type Logger<T extends string = LogMethodNames> = {
   on(level: number | T, logFunction: LogFunction): void,
   /**
    * Write custom log entries.
-   * This can be used along with `captureLogs()` to rewrite the logs at a later time.
    */
   write(entry: LogEntry): void
 } & { [k in T]: LogMethod }
@@ -50,7 +49,7 @@ export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 /**
  * Formats a log entry.
  * Depends on the reporter, it can expect a different return type.
- * By default the return type is `any[]` which `console` accepts.
+ * By default the return type is `any[]` which the `console` accepts.
  */
 export type LogFormatter<T = any[]> = (entry: LogEntry) => T
 
