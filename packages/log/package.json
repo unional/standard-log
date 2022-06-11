@@ -23,9 +23,9 @@
   },
   "main": "./cjs/index.js",
   "browser": {
-    "./cjs/platform/index.js": "./cjs/platform/index.browser.js",
-    "./esm/platform/index.js": "./esm/platform/index.browser.js",
-    "./ts/platform/index.js": "./ts/platform/index.browser.js"
+    "./cjs/platform.js": "./cjs/platform.browser.js",
+    "./esm/platform.js": "./esm/platform.browser.js",
+    "./ts/platform.js": "./ts/platform.browser.js"
   },
   "typings": "./cjs/index.d.ts",
   "files": [
