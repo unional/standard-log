@@ -6,7 +6,7 @@ import { createLogStore } from './logStore.js'
 import { createMemoryLogReporter } from './memory.js'
 import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogOptions } from './types.js'
 
-export interface StandLog<N extends string = LogMethodNames> {
+export interface StandardLog<N extends string = LogMethodNames> {
   readonly logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
@@ -15,7 +15,7 @@ export interface StandLog<N extends string = LogMethodNames> {
 
 export function createStandardLog<N extends string = LogMethodNames>(
   options?: Partial<StandardLogOptions<N>>, _meta?: StackTraceMeta
-): Readonly<StandLog<N>> {
+): Readonly<StandardLog<N>> {
   const store = createLogStore(required({ logLevel: logLevels.info }, options))
 
   return Object.freeze({
