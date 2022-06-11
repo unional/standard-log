@@ -9,6 +9,10 @@
     "unional.vscode-sort-package-json",
     "dbaeumer.vscode-eslint",
     "drknoxy.eslint-disable-snippets",
-    "bierner.emojisense"
+    "bierner.emojisense",
+    "github.vscode-pull-request-github",
+    "dendron.dendron-paste-image",
+    "tyriar.sort-lines",
+    "pflannery.vscode-versionlens"
   ]
 }
