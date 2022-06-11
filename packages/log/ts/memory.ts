@@ -28,12 +28,12 @@ export function toMessageWithLevel(logs: LogEntry[]) {
 export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
   const { id, formatter, filter } = required({ id: 'memory', formatter: (e: LogEntry) => e }, options)
   const logs: LogEntry[] = []
-  return {
+  return Object.freeze({
     id,
     get formatter() { return formatter },
     get filter() { return filter },
     logs,
-    write(entry) {
+    write(entry: LogEntry) {
       if (filter && !filter(entry)) return
       logs.push(formatter(entry))
     },
@@ -43,5 +43,5 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
         .join('\n')
     },
     getLogMessageWithLevel() { return toMessageWithLevel(logs) }
-  }
+  })
 }
