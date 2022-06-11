@@ -1,5 +1,90 @@
 # Change Log
 
+## 9.0.0
+
+### Major Changes
+
+`standard-log` 9.0 is a significant update from 8.0.
+
+How to use the library is greatly changed,
+so that it can be used in micro-app environment.
+
+Now, instead of calling `config()` which configure `standard-log` globally (with the help of `global-store`),
+calling `createStandardLog()` returns an isolated log system which can be used within an application.
+
+The following functions/features are removed and replaced:
+
+- `config()` -> `createStandardLog()`
+- `configForTest()` -> `createStandardLogForTest()`
+- `getLogger()` -> `createStandardLog().getLogger()`
+- `captureLogs()` -> removed
+- `addCustomLogLeve()` -> `createStandardLog({ customLevels: { ... } })`
+- `clearCustomLogLevel()` -> removed
+- `getCustomLevel()` -> removed
+- `getCustomLevelName()` -> `createStandardLog().toLogLevel()`
+- `getCustomLevels()` -> removed
+- `ProhibitedDuringProduction` -> removed
+- `InvalidEnvVar` -> removed
+- `getLogLevel()` -> `createStandardLog().toLogLevel()`
+- `setLogLevel()` -> removed
+- `setLogLevels()` -> removed
+- `getAllLogLevels()` -> removed
+- `addLogReporter()` -> `createStandardLog({ reporters: [...] })`
+- `getLogReporter()` -> removed
+- `hasConsoleReporter()` -> removed
+- `getConsoleReporter()` -> removed
+- `clearLogReporters()` -> removed
+- `shouldLog()` -> removed
+- `assertLogModeIsNotProduction()` -> removed
+
+- 8c86135: Adding a logger specific custom console report will not reuse the existing console reporter.
+
+  Originally it will adjust the `filter` of the existing console reporter.
+
+  But this ability can disable all console logs easily.
+  Meaning important console log messages will be hidden from the user.
+
+- ecda388: Remove `captureLogs()` support.
+
+  While normal usage of `captureLogs()` is fine,
+  it is possible that the application may accidentally leak mutable code.
+
+  When that happens, hacker can override functions and capture the logs within,
+  and send it somewhere else.
+
+  Although the leak is likely break everything already,
+  having `captureLogs()` increase exposures.
+
+- f2a038e: Remove log reporters functions.
+
+  The log reporters should not be changed during runtime.
+
+  Should only be configured during `config()`.
+
+  The same when during test, use `configForTest()`.
+
+  `standard-log-color` is no longer load by default.
+
+  To use `standard-log-color`, you should create the reporter manually:
+
+  ```ts
+  import { createStandardLog } from "standard-log";
+  import { createColorLogReporter } from "standard-log-color";
+
+  const standardLog = createStandardLog({
+    reporters: [createColorLogReporter()]
+  });
+  ```
+
+  This ability is removed because in ESM, `require()` is no-longer available,
+  and `import()` is dynamic import and not synchronous.
+
+### Patch Changes
+
+- eca8627: Remove `ramda` optional dependency.
+
+  It is only used in `testUtil` and that is not exposed or used in package.
+
 ## 8.0.1
 
 ### Patch Changes

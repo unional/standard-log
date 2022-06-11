@@ -1,5 +1,15 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [eca8627]
+- Updated dependencies [8c86135]
+- Updated dependencies [ecda388]
+- Updated dependencies [f2a038e]
+  - standard-log@9.0.0
+
 ## 5.0.0
 
 ### Minor Changes
