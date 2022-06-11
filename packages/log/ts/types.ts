@@ -94,3 +94,10 @@ export type LogReporterOptions<T = any> = {
 }
 
 export type LogLevel = number
+
+export interface ConsoleLike {
+  debug(...args: any[]): void,
+  info(...args: any[]): void,
+  warn(...args: any[]): void,
+  error(...args: any[]): void,
+}

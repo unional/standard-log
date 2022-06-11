@@ -456,7 +456,6 @@ describe('getLogger()', () => {
       // if not, it would be a security issue as the new reporter
       // can capture the logs from other logger and send it elsewhere
       const reporter = createMemoryLogReporter({ id: 'custom mem' });
-      (reporter as any).isConsoleReporter = true
       testWriteTo(['writeTo-reporter-no-override', { writeTo: reporter }],
         (_, memLogs, specialLogs, sl) => {
           const log = sl.getLogger(['writeTo-reporter-no-override-2'])

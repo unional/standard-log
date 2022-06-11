@@ -1,8 +1,8 @@
 import { required } from 'type-plus'
 import { logLevels } from './logLevels.js'
-import { isConsoleDebugAvailable } from './platform.js'
+import { isConsoleDebugAvailable, polyfill } from './platform.js'
 import { plainLogFormatter } from './reporter.js'
-import type { LogFormatter, LogReporter, LogReporterOptions } from './types.js'
+import type { ConsoleLike, LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export function toConsoleMethod(level: number) {
   switch (true) {
@@ -47,35 +47,26 @@ function buildFn(name: 'debug' | 'info' | 'warn' | 'error' | 'log') {
   return function (...args: any[]) { console[name](...args) }
 }
 
-export interface Console {
-  debug(...args: any[]): void,
-  info(...args: any[]): void,
-  warn(...args: any[]): void,
-  error(...args: any[]): void,
-}
-
-let polyfilledConsole: Console
-
 
 export type ConsoleLogFormatter = LogFormatter<any[]>
-export type ConsoleLogReporter = LogReporter<any[]> & { console: Console }
+export type ConsoleLogReporter = LogReporter<any[]> & { console: ConsoleLike }
 export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): ConsoleLogReporter {
   const { id, formatter, filter } = required({ id: 'console', formatter: plainLogFormatter }, options)
-  if (!polyfilledConsole) polyfilledConsole = buildPolyfillConsole()
+  if (!polyfill.console) polyfill.console = buildPolyfillConsole()
 
-  return {
+  return Object.freeze({
     id,
     isConsoleReporter: true,
     get formatter() { return formatter },
     get filter() { return filter },
-    console: polyfilledConsole,
-    write(entry) {
+    console: polyfill.console,
+    write(entry: LogEntry) {
       if (filter && !filter(entry)) return
       const values = formatter(entry)
       const method = toConsoleMethod(entry.level)
       this.console[method](...values)
     }
-  }
+  })
 }
