@@ -1,5 +1,5 @@
 import { required } from 'type-plus'
-import { toInspectLogEntry } from './platform/index.js'
+import { toInspectLogEntry } from './platform.js'
 import { formatLogLevel } from './reporter.js'
 import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 

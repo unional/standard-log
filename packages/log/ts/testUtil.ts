@@ -1,6 +1,6 @@
 import R from 'ramda'
 import { plainLogFormatter } from './reporter.js'
-import { toInspectLogEntry } from './platform/index.js'
+import { toInspectLogEntry } from './platform.js'
 import type { LogEntry } from './types.js'
 
 export function rangeEntries(start: number, end: number, expected: any) {
