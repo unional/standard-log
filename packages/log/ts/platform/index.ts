@@ -1,6 +1,5 @@
 import { inspect } from 'util'
-import type { LogEntry, LogMode } from '../types.js'
-import { InvalidEnvVar } from '../errors.js'
+import type { LogEntry } from '../types.js'
 
 export function semverGt(versionString: string, version: [number, number, number]) {
   const actual = versionString.split('.').reverse().reduce((p, v, i) => {
@@ -28,18 +27,4 @@ export function createColorLogReporter() {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const colorModule = require('standard-log' + c)
     return colorModule.createColorLogReporter()
-}
-
-const logModeValues = ['production', 'development', 'test']
-
-export function getLogModeFromEnvironment(): LogMode | undefined {
-  const mode = process.env.STANDARD_LOG
-  if (mode === undefined || isLogMode(mode)) {
-    return mode
-  }
-  throw new InvalidEnvVar('STANDARD_LOG', mode, logModeValues, { ssf: getLogModeFromEnvironment })
-}
-
-function isLogMode(mode: string): mode is LogMode {
-  return logModeValues.indexOf(mode) !== -1
 }

@@ -1,17 +1,13 @@
 import a from 'assertron'
 import { createMemoryLogReporter, logLevels } from './index.js'
-import { store } from './store.js'
 import { assertSSF, logEntriesToString } from './testUtil.js'
 
 describe('MemoryLogReporter', () => {
-  describe('production checks', () => {
-    beforeEach(() => store.reset())
-    it('set filter throws with ssf at call site', () => {
-      const reporter = createMemoryLogReporter()
-      const err = a.throws(() => { (reporter as any).filter = () => true }, err => /only a getter/.test(err))
+  it('filter is readonly', () => {
+    const reporter = createMemoryLogReporter()
+    const err = a.throws(() => { (reporter as any).filter = () => true }, err => /only a getter/.test(err))
 
-      assertSSF(err, __filename)
-    })
+    assertSSF(err, __filename)
   })
 
   describe('unit tests', () => {

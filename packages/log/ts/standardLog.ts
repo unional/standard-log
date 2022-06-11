@@ -1,9 +1,10 @@
+import { StackTraceMeta } from '@just-func/types'
 import { required } from 'type-plus'
 import { createLogger } from './logger.js'
 import { logLevels } from './logLevels.js'
 import { createLogStore } from './logStore.js'
 import { createMemoryLogReporter } from './memory.js'
-import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StackTraceMeta, StandardLogOptions } from './types.js'
+import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogOptions } from './types.js'
 
 export interface StandLog<N extends string = LogMethodNames> {
   readonly logLevel: number,
