@@ -1,5 +1,5 @@
 import { inspect } from 'util'
-import type { LogEntry } from './types.js'
+import type { ConsoleLike, LogEntry } from './types.js'
 
 export function semverGt(versionString: string, version: [number, number, number]) {
   const actual = versionString.split('.').reverse().reduce((p, v, i) => {
@@ -20,3 +20,5 @@ export function isConsoleDebugAvailable() {
 export const toInspectLogEntry = (e: LogEntry) => (
   e.args = e.args.map(value => typeof value === 'object' && value !== null ? inspect(value) : value),
   e)
+
+export const polyfill: { console?: ConsoleLike } = {}
