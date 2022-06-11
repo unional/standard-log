@@ -1,5 +1,5 @@
 import a from 'assertron'
-import { createMemoryLogReporter, logLevels } from './index.js'
+import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
 import { assertSSF, logEntriesToString } from './testUtil.js'
 
 describe('MemoryLogReporter', () => {
@@ -24,19 +24,21 @@ describe('MemoryLogReporter', () => {
     })
 
     test('can filter', () => {
-      const reporter = createMemoryLogReporter({ filter(entry) { return entry.id !== 'secret' } })
+      const filter: LogFilter = (entry) => entry.id !== 'secret'
+      const reporter = createMemoryLogReporter({ filter })
+      expect(reporter.filter).toBe(filter)
       reporter.write({ id: 'ok', level: 1, args: ['some messages'], timestamp: new Date() })
       reporter.write({ id: 'secret', level: 1, args: ['some messages'], timestamp: new Date() })
       expect(reporter.logs.length).toBe(1)
     })
 
     test('formatter can be used to pre-process the log', () => {
-      const reporter = createMemoryLogReporter({
-        formatter: (entry) => ({
-          ...entry,
-          args: entry.args.map(arg => arg === 'secret' ? '<censored>' : arg)
-        })
+      const formatter: LogFormatter<LogEntry> = (entry) => ({
+        ...entry,
+        args: entry.args.map(arg => arg === 'secret' ? '<censored>' : arg)
       })
+      const reporter = createMemoryLogReporter({ formatter })
+      expect(reporter.formatter).toBe(formatter)
 
       const entry = { id: 'log', level: 1, args: ['a', 'secret', 'b'], timestamp: new Date() }
       reporter.write(entry)
