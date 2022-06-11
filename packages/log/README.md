@@ -36,7 +36,7 @@ For the full list of changes, please check the [change log](./CHANGELOG.md).
 
 ## Usage
 
-To use `standard-log`, you first create a new log system.
+To use [`standard-log`], you first create a new log system.
 
 ```ts
 import { createStandardLog } from 'standard-log'
@@ -131,10 +131,9 @@ createConsoleLogReporter({
 
 Here are some additional reporters:
 
-- [`standard-log-color`](https://github.com/unional/standard-log/tree/master/packages/color)
+- [`standard-log-color`]
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
-
 
 ### Suppress log
 
@@ -168,15 +167,16 @@ test('your test', () => {
 })
 ```
 
-[npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
-[npm-url]: https://www.npmjs.com/package/standard-log
-[downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
-[downloads-url]: https://npmjs.org/package/standard-log
-[github-nodejs]: https://github.com/unional/standard-log/workflows/Node%20CI/badge.svg
-[github-action-url]: https://github.com/unional/standard-log/actions
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
-[vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
-[vscode-url]: https://code.visualstudio.com/
 [`just-func`]: https://github.com/justland/just-func-typescript
 [`standard-log`]: https://github.com/unional/standard-log
+[`standard-log-color`]: https://github.com/unional/standard-log/tree/master/packages/color
+[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/unional/standard-log
+[downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
+[downloads-url]: https://npmjs.org/package/standard-log
+[github-action-url]: https://github.com/unional/standard-log/actions
+[github-nodejs]: https://github.com/unional/standard-log/workflows/Node%20CI/badge.svg
+[npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/standard-log
+[vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
+[vscode-url]: https://code.visualstudio.com/

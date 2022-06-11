@@ -3,12 +3,9 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Github NodeJS][github-nodejs]][github-action-url]
-[![Codecov][codecov-image]][codecov-url]
-[![Codacy Grade Badge][codacy-grade]][codacy-grade-url]
+[![GitHub NodeJS][github-nodejs]][github-action-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
-[![Wallaby.js][wallaby-image]][wallaby-url]
 
 This is the repository for [`standard-log`](https://github.com/unional/standard-log)
 
@@ -26,12 +23,6 @@ This is the repository for [`standard-log`](https://github.com/unional/standard-
 
 [github-nodejs]: https://github.com/unional/standard-log/workflows/nodejs/badge.svg
 [github-action-url]: https://github.com/unional/standard-log/actions
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
-[codacy-grade]: https://api.codacy.com/project/badge/Grade/707f89609508442486050d207ec5bd78
-[codacy-grade-url]: https://www.codacy.com/app/homawong/standard-log?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/standard-log&amp;utm_campaign=Badge_Grade
 
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
-[wallaby-url]: https://wallabyjs.com
