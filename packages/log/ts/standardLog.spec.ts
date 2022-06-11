@@ -4,7 +4,7 @@ import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter } from './memory.js'
 import { createStandardLog, createStandardLogForTest, StandardLog, suppressLogs } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
-import { LogEntry, Logger, LoggerOptions, LogMethodNames } from './types.js'
+import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
 
 describe('createStandardLog()', () => {
   describe('logLevel', () => {
@@ -100,6 +100,20 @@ describe('getLogger()', () => {
     const sl = createStandardLog({ customLevels: { 'to_logger': 1234 } })
     const actual = sl.getLogger(['to_logger_logger'])
     expect(typeof actual.to_logger).toBe('function')
+  })
+
+  it('Logger have at least the default log method names', () => {
+    function wrapper<N extends string = LogMethodNames>(options: Partial<StandardLogOptions<N>>) {
+      const sl = createStandardLog<N>(options)
+      // since `N` is generic, just `Logger<N>` will not have the default log method names.
+      const log = sl.getLogger(['local'])
+      expect(log.info).toBeDefined()
+      return sl
+    }
+
+    const sl = wrapper({ customLevels: { 'cust': 123 } })
+    const actual = sl.getLogger(['c'])
+    expect(actual.cust).toBeDefined()
   })
 
   describe('log levels', () => {
@@ -455,7 +469,7 @@ describe('getLogger()', () => {
     test('the custom console reporter cannot pick up logs from other loggers', () => {
       // if not, it would be a security issue as the new reporter
       // can capture the logs from other logger and send it elsewhere
-      const reporter = createMemoryLogReporter({ id: 'custom mem' });
+      const reporter = createMemoryLogReporter({ id: 'custom mem' })
       testWriteTo(['writeTo-reporter-no-override', { writeTo: reporter }],
         (_, memLogs, specialLogs, sl) => {
           const log = sl.getLogger(['writeTo-reporter-no-override-2'])

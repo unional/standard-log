@@ -10,7 +10,7 @@ export interface StandardLog<N extends string = LogMethodNames> {
   readonly logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
-  getLogger(params: [id: string, options?: LoggerOptions], meta?: StackTraceMeta): Logger<N>
+  getLogger(params: [id: string, options?: LoggerOptions], meta?: StackTraceMeta): Logger<N | LogMethodNames>
 }
 
 export function createStandardLog<N extends string = LogMethodNames>(
@@ -27,7 +27,7 @@ export function createStandardLog<N extends string = LogMethodNames>(
     toLogLevel(name: string) {
       return store.logLevelStore.getLevel(name)
     },
-    getLogger([id, options]: [id: string, options?: LoggerOptions], meta?: StackTraceMeta): Logger<N> {
+    getLogger([id, options]: [id: string, options?: LoggerOptions], meta?: StackTraceMeta) {
       if (store.loggers[id]) return store.loggers[id] as any
       const opt = required({ level: store.logLevel }, options)
       return store.loggers[id] = createLogger([store, id, opt], { ssf: this.getLogger, ...meta }) as any
