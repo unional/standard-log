@@ -67,41 +67,12 @@ Log level of this logger.
 
 Only log to specific reporter(s).
 
-### Mode
-
-By default, `standard-log` runs in production mode.
-You can change it programmatically:
-
-```ts
-import { config } from 'standard-log'
-
-config({ mode: 'production' }) // or 'development', 'test'
-```
-
-or by setting the environment variable `STANDARD_LOG`.
-
-`production` mode:
-
-- `config()` can only be called once.
-- configuration is protected from tempering.
-
-`development` mode:
-
-- a warning is emitted when calling `config()` or log for the first time.
-
-`test` mode:
-
-- no warning is emitted
-
 ### Log Level
 
 `standard-log` log level defaults to `logLevels.info`.
 It comes with many log levels out of the box:
 
 ```ts
-import { getLogger } from 'standard-log'
-
-const log = getLogger('x')
 log.emergency('msg')
 log.alert('msg')
 log.critical('msg')
@@ -119,16 +90,16 @@ When sending logs to console, they are mapped to `info`, `warn`, `error`, and `d
 You can also add your own custom levels:
 
 ```ts
-import { config, getLogger, logLevel } from 'standard-log'
+import { createStandardLog } from 'standard-log'
 
-config({
+const standardLog = createStandardLog({
   customLevels: {
     'important': logLevel.warn + 1,
     'silly': logLevel.debug + 1
   }
 })
 
-const log = getLogger<'silly' | 'important'>('custom')
+const log = standardLog.getLogger('custom')
 log.important('this is an important message')
 log.silly('oh silly')
 ```
@@ -139,14 +110,14 @@ Besides printing the logs to console,
 you can use different reporters to save the logs in memory, file, service, or others.
 
 ```ts
-import { config, createConsoleLogReporter, createMemoryLogReporter } from 'standard-log'
+import { createStandardLog, createConsoleLogReporter, createMemoryLogReporter } from 'standard-log'
 
-config({
+createStandardLog({
   reporters: [createConsoleLogReporter(), createMemoryLogReporter()]
 })
 ```
 
-Some reporters allows you to format the logs and/or filter them.
+Some reporters allow you to format the logs and/or filter them.
 Using the console log reporter as an example:
 
 ```ts
@@ -164,32 +135,6 @@ Here are some additional reporters:
 - `standard-log-file` (TODO)
 - `standard-log-syslog` (TODO)
 
-### Capture Logs
-
-You can temporarily capture logs by `captureLogs()`.
-This is useful when you are writing tests.
-
-```ts
-import { getLogger, captureLogs } from 'standard-log'
-import a from 'assertron'
-
-test('your test', () => {
-  function foo() {
-    const log = getLogger('foo logger')
-    // this log will not be sent to normal reporters
-    log.info('some messages')
-    return 'miku'
-  }
-  const log = getLogger('foo logger')
-  const [result, logs] = captureLogs(log, foo)
-
-  a.satisfies(logs, [{ args: ['some messages']}])
-  a.equals('miku', result)
-
-  // rewriting the logs
-  logs.forEach(entry => log.write(entry))
-})
-```
 
 ### Suppress log
 
@@ -204,45 +149,22 @@ const log = getLogger('some logger')
 suppressLogs(() => log.info('not logged'), log)
 ```
 
-## Browser usage
-
-The package comes with a pre-bundled file under `dist`.
-To use it, you also need to load [`global-store`](https://github.com/unional/global-store)
-
-If you are building a library and bundle it, make sure you mark `global-store` as externals.
-You can check out [`global-store`](https://github.com/unional/global-store) for more information.
-
-## testing
+## Testing
 
 During test,
-you should configure `standard-log` to `test` mode and use `MemoryReporter` to capture the logs.
+you should use `createStandardLogForTest` which includes a `MemoryReporter` to capture the logs.
 
 ```ts
-import { config, createMemoryReporter } from 'standard-log'
+import { createStandardLogForTest, createMemoryReporter } from 'standard-log'
 
 test('your test', () => {
-  const reporter = createMemoryLogReporter()
-  config({
-    reporters: [reporter],
-    mode: 'test'
-  })
+  const standardLog = createStandardLogForTest()
+  yourApp.standardLog = standardLog
 
-  // do your thing...
+// do your thing...
 
-  const messages = reporter.getLogMessage() // or getLogMessageWithLevel()
+  const messages = standardLog.reporter.getLogMessage() // or getLogMessageWithLevel()
   // validate the message if you want to
-})
-```
-
-And to simplify things, you can use the `configForTest()` function:
-
-```ts
-import { configForTest } from 'standard-log'
-
-test('your test', () => {
-  const { reporter } = configForTest()
-
-  // do your thing...
 })
 ```
 
@@ -250,12 +172,11 @@ test('your test', () => {
 [npm-url]: https://www.npmjs.com/package/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log
-
 [github-nodejs]: https://github.com/unional/standard-log/workflows/Node%20CI/badge.svg
 [github-action-url]: https://github.com/unional/standard-log/actions
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
-
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [`just-func`]: https://github.com/justland/just-func-typescript
+[`standard-log`]: https://github.com/unional/standard-log
