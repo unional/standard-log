@@ -10,9 +10,3 @@ export class InvalidId extends StandardLogError {
     super(`logger id only supports alphanumeric, unicode characters, and [:_-.]. Received ${id}`, options)
   }
 }
-
-export class InvalidEnvVar extends StandardLogError {
-  constructor(public name: string, public value: string, public possibleValues: string[], options?: IsoError.Options) {
-    super(`${name} contains invalid value '${value}'${` valid values: [${possibleValues.join()}]`}`, options)
-  }
-}
