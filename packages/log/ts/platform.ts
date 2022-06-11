@@ -10,6 +10,7 @@ export function semverGt(versionString: string, version: [number, number, number
   return actual > (version[0] * 10000 + version[1] * 100 + version[2])
 }
 
+// istanbul ignore next
 export function isConsoleDebugAvailable() {
   // without this, systemJs will complain `process is not defined`
   if (!global.process) return true
