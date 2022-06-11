@@ -1,9 +1,3 @@
-import { AnyFunction } from 'type-plus'
-
-export interface StackTraceMeta {
-  ssf: AnyFunction
-}
-
 export type StandardLogOptions<CustomLevelNames extends string = string> = {
   customLevels: Record<CustomLevelNames, number>,
   logLevel: number,
@@ -13,16 +7,6 @@ export type StandardLogOptions<CustomLevelNames extends string = string> = {
 export interface LoggerOptions {
   level?: number,
   writeTo?: LogReporter | ReporterFilter
-}
-
-export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'warn' | 'notice' | 'info' | 'debug' | 'trace' | 'planck'
-
-export type LogEntry = {
-  id: string,
-  level: number,
-  // args instead of messages because it is `any[]` instead of `string[]`
-  args: any[],
-  timestamp: Date
 }
 
 export type Logger<T extends string = LogMethodNames> = {
@@ -44,14 +28,22 @@ export type Logger<T extends string = LogMethodNames> = {
   write(entry: LogEntry): void
 } & { [k in T]: LogMethod }
 
+/**
+ * Names of the standard log methods.
+ */
+export type LogMethodNames = 'emergency' | 'alert' | 'critical' | 'error' | 'warn' | 'notice' | 'info' | 'debug' | 'trace' | 'planck'
+
+export type LogEntry = {
+  id: string,
+  level: number,
+  // args instead of messages because it is `any[]` instead of `string[]`
+  args: any[],
+  timestamp: Date
+}
+
 export type LogMethod = (...args: any[]) => void
 
-
-export type LogMode = 'development' | 'production' | 'test'
-
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
-
-
 
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 
@@ -68,8 +60,6 @@ export type LogFormatter<T = any[]> = (entry: LogEntry) => T
 export type LogFilter = (entry: LogEntry) => boolean
 
 export type LogLevelEntry = { name: string, level: number }
-
-export type LogLevelListener = (logLevelEntry: LogLevelEntry) => void
 
 export interface LogReporter<T = any> {
   readonly id: string,

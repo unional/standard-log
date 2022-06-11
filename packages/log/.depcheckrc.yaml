@@ -1,5 +1,7 @@
 ignore-patterns:
+  - cjs
   - dist
+  - esm
   - tslib
 ignores:
   - '@size-limit/preset-small-lib'

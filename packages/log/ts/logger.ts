@@ -3,7 +3,6 @@ import { RequiredPick } from 'type-plus'
 import { InvalidId } from './errors.js'
 import { logLevels } from './logLevels.js'
 import { LogStore } from './logStore.js'
-import { store } from './store.js'
 import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
 import { LogLevel } from './types.js'
 
@@ -35,7 +34,7 @@ export function createLogger<T extends string = LogMethodNames>(
       writable: false,
       value: ((counter) => (...args: any[]) => {
         const level = logLevels.debug
-        if (shouldLog(level, logger.level))
+        if (shouldLog(store, level, logger.level))
           write({
             id,
             level,
@@ -48,7 +47,7 @@ export function createLogger<T extends string = LogMethodNames>(
       writable: false,
       value: (level: number | T, logFn: LogFunction) => {
         const logLevel = typeof level === 'string' ? store.logLevelStore.getLevel(level)! : level
-        if (shouldLog(logLevel, logger.level)) {
+        if (shouldLog(store, logLevel, logger.level)) {
           const methodName = store.logLevelStore.getName(logLevel)
           const bindedMethod = logger[methodName].bind(logger)
           const result = logFn(bindedMethod)
@@ -61,7 +60,7 @@ export function createLogger<T extends string = LogMethodNames>(
     Object.defineProperty(logger, name, {
       writable: false,
       value: (...args: any[]) => {
-        if (shouldLog(level, logger.level)) write({ id, level, args, timestamp: new Date() })
+        if (shouldLog(store, level, logger.level)) write({ id, level, args, timestamp: new Date() })
       }
     })
   })
@@ -81,6 +80,6 @@ function writeToReporters(reporters: LogReporter[], logEntry: LogEntry, filter: 
  * @param loggerLevel Log level of the logger.
  * It can be undefined which the global log level will be used.
  */
-function shouldLog(targetLevel: LogLevel, loggerLevel: LogLevel | undefined) {
-  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.value.logLevel)
+function shouldLog(store: LogStore, targetLevel: LogLevel, loggerLevel: LogLevel | undefined) {
+  return targetLevel <= (loggerLevel !== undefined ? loggerLevel : store.logLevel)
 }
