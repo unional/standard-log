@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "standard-log-color": "5.0.0",
+    "standard-log": "8.0.0",
+    "standard-log-syslog": "3.0.0"
+  },
+  "changesets": []
+}
