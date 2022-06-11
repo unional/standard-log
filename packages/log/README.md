@@ -3,50 +3,61 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Github NodeJS][github-nodejs]][github-action-url]
+[![GitHub NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Codacy Grade Badge][codacy-grade]][codacy-grade-url]
-[![Codacy Coverage Badge][codacy-coverage]][codacy-coverage-url]
-
-[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
-[![Wallaby.js][wallaby-image]][wallaby-url]
 
-`standard-log` is a powerful and extensible logging library.
+[`standard-log`] is a powerful and extensible logging library.
+
+## New in 9.0
+
+[`standard-log`] 9.0 is a trimmed down version that focus more on security and support the micro-app paradigm.
+
+The key changes are:
+
+- No side effects: application calling `createStandardLog()` gets a completely enclosed log system.
+- Immutable: after the log system can be configured when calling `createStandardLog()`.\
+  But after that, the system is immutable and cannot be changed.\
+
+For the full list of changes, please check the [change log](./CHANGELOG.md).
 
 ## Key features
 
-- create multiple loggers for different part of your application.
-- provide multiple log levels out of the box.
-- add custom log levels.
-- global and local log level control.
-- send logs to multiple reporters, e.g. console, file, memory, or remote service.
-- custom formatting and filtering for each reporter.
-- config tempering protection during production
+- Support micro-app with isolated log system.
+- Create multiple loggers for different part of your application.
+- Provide multiple log levels out of the box.
+- Support custom log levels.
+- Three levels of log level controls: log system, logger, and log method.
+- Send logs to multiple reporters, e.g. console, file, memory, or remote service.
+- Custom formatting and filtering for each reporter.
+- Security focus. After the system is created, it cannot be changed.
+- Compliant with the [`just-func`] paradigm.
 
 ## Usage
 
-To use `standard-log`, simply create your logger and log away:
+To use `standard-log`, you first create a new log system.
 
 ```ts
-import { getLogger } from 'standard-log'
+import { createStandardLog } from 'standard-log'
 
-const log = getLogger('my-app')
+const standardLog = createStandarLog(/* options */)
 
-log.error('error')
-log.warn('warn')
-log.info('info')
+const log = standardLog.getLogger(['my-app'])
+
+log.error('error message')
+log.warn('warn message')
+log.info('info message')
 // by default debug() will not be printed
 // because production mode defaults log level to `info`
-log.debug('debug')
+log.debug('debug message')
 ```
 
-![rendering-example](images/2019-08-08-23-40-05.png)
+![Rendering example](images/2022-06-10-19-21-48.png)
 
-(above is logged with `standard-log-color` installed)
+(above is logged with `standard-log-color`)
 
-You can configure a logger by doing `getLogger(id, options)`:
+You can configure a logger by doing `getLogger([id, options])`:
 
 `options.level: number`:
 
@@ -244,15 +255,7 @@ test('your test', () => {
 [github-action-url]: https://github.com/unional/standard-log/actions
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
-[codacy-grade]: https://api.codacy.com/project/badge/Grade/707f89609508442486050d207ec5bd78
-[codacy-grade-url]: https://www.codacy.com/app/homawong/standard-log?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/standard-log&amp;utm_campaign=Badge_Grade
-[codacy-coverage]: https://api.codacy.com/project/badge/Coverage/707f89609508442486050d207ec5bd78
-[codacy-coverage-url]: https://www.codacy.com/manual/homawong/standard-log?utm_source=github.com&utm_medium=referral&utm_content=unional/standard-log&utm_campaign=Badge_Coverage
-
-[greenkeeper-image]: https://badges.greenkeeper.io/unional/standard-log.svg
-[greenkeeper-url]: https://greenkeeper.io/
 
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
-[wallaby-url]: https://wallabyjs.com
+[`just-func`]: https://github.com/justland/just-func-typescript

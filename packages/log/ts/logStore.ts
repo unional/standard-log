@@ -2,13 +2,12 @@
 import { mapKey, reduceByKey, reduceKey } from 'type-plus'
 import { createConsoleLogReporter } from './console.js'
 import { logLevels, toLogLevel, toLogLevelName } from './logLevels.js'
-import { createColorLogReporter } from './platform.js'
 import type { Logger, LogLevel, LogReporter, StandardLogOptions } from './types.js'
 
 export function createLogStore(options: StandardLogOptions): LogStore {
   return {
     loggers: {},
-    reporters: options.reporters || [getDefaultReporter()],
+    reporters: options.reporters || [createConsoleLogReporter()],
     logLevel: options.logLevel,
     logLevelStore: logLevelStore(options)
   }
@@ -49,15 +48,5 @@ export function logLevelStore(options: LogLevelStoreOptions) {
         return result
       }, mapKey(store.customLevels, name => ({ name, level: store.customLevels[name] })))
     }
-  }
-}
-
-function getDefaultReporter() {
-  try {
-    return createColorLogReporter()
-  }
-  catch (e) {
-    // istanbul ignore next
-    return createConsoleLogReporter()
   }
 }
