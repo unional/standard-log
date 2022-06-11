@@ -50,6 +50,9 @@ export const logLevels = {
   all: Infinity
 }
 
+/**
+ * Convert default log level value to log level name.
+ */
 export function toLogLevelName(level: number) {
   if (level <= 100) return 'emergency'
   if (level <= 200) return 'alert'
@@ -63,6 +66,9 @@ export function toLogLevelName(level: number) {
   return 'planck'
 }
 
+/**
+ * Convert default log level name to log level value.
+ */
 export function toLogLevel(name: string) {
   return (logLevels as any)[name.toLocaleLowerCase()]
 }
