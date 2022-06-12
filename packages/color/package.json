@@ -93,7 +93,7 @@
     "webpack-cli": "^4.9.2"
   },
   "peerDependencies": {
-    "standard-log": ">=9.1.1"
+    "standard-log": ">=9.1.2"
   },
   "size-limit": [
     {
