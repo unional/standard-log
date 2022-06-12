@@ -1,5 +1,14 @@
 # Change Log
 
+## 9.1.2
+
+### Patch Changes
+
+- c427571: Exports `suppressLogs()`.
+
+  The global instance will be configured when `createStandardLog()` is called,
+  if `configGlobal()` is not called before.
+
 ## 9.1.1
 
 ### Patch Changes
