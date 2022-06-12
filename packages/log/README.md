@@ -16,7 +16,7 @@
 
 The key changes are:
 
-- No side effects: application calling `createStandardLog()` gets a completely enclosed log system.
+- Side effects free: application calling `createStandardLog()` gets a completely enclosed log system.
 - Immutable: after the log system can be configured when calling `createStandardLog()`.\
   But after that, the system is immutable and cannot be changed.\
 
@@ -36,7 +36,10 @@ For the full list of changes, please check the [change log](./CHANGELOG.md).
 
 ## Usage
 
-To use [`standard-log`], you first create a new log system.
+There are two ways to use [`standard-log`]: global or standalone.
+
+Standalone is the preferred way.
+You call `createStandardLog()` to get an isolated log system.
 
 ```ts
 import { createStandardLog } from 'standard-log'
@@ -166,6 +169,34 @@ test('your test', () => {
   // validate the message if you want to
 })
 ```
+
+## Global usage
+
+You can also call `getLogger()` to get a logger and log away:
+
+```ts
+import { getLogger } from 'standard-log'
+
+const log = getLogger('my-lib')
+log.info('log away')
+```
+
+It internally creates a global instance of `standard-log`.
+To configure this global instance, use `configGlobal()`:
+
+```ts
+import { configGlobal } from 'standard-log'
+
+configGlobal({ logLevel: logLevels.info, reporters: [ ... ] })
+```
+
+This global instance does not support custom levels.
+And it will emit a warning when `configGlobal()` is called more than once.
+Typically, `configGlobal()` should be called by the application, and it happens only once.
+But in micro-app situation, the library can be shared, and each application can call `configGlobal()`
+
+In general, using this global instance should be avoided.
+It is the main driving force for 9.0.
 
 [`just-func`]: https://github.com/justland/just-func-typescript
 [`standard-log`]: https://github.com/unional/standard-log
