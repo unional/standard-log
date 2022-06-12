@@ -103,7 +103,7 @@ describe('getLogger()', () => {
   })
 
   it('Logger have at least the default log method names', () => {
-    function wrapper<N extends string = LogMethodNames>(options: Partial<StandardLogOptions<N>>) {
+    function wrapper<N extends string = LogMethodNames>(options: StandardLogOptions<N>) {
       const sl = createStandardLog<N>(options)
       // since `N` is generic, just `Logger<N>` will not have the default log method names.
       const log = sl.getLogger(['local'])
