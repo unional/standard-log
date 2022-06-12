@@ -1,8 +1,9 @@
 import { assertron as a } from 'assertron'
 import { InvalidId } from './errors.js'
+import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter } from './memory.js'
-import { createStandardLog, createStandardLogForTest, StandardLog, suppressLogs } from './standardLog.js'
+import { configGlobal, ctx } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
 
@@ -39,6 +40,17 @@ describe('createStandardLog()', () => {
       expect(mem.logs.length).toBe(1)
     })
   })
+
+  describe('related to global', () => {
+    beforeEach(() => {
+      ctx.gsl = undefined
+      ctx.configured = false
+    })
+    it('will affect getLogger() if configGlobal() is not called', () => {
+      createStandardLog({ logLevel: logLevels.planck })
+      expect(ctx.gsl?.standardLog.logLevel).toBe(logLevels.planck)
+    })
+  })
 })
 
 describe('createStandardLogForTest()', () => {
@@ -53,7 +65,7 @@ describe('createStandardLogForTest()', () => {
   })
 })
 
-describe('getLogger()', () => {
+describe('standardLog.getLogger()', () => {
   it('supports id with alphanumeric and :_-.', () => {
     const sl = createStandardLog()
     sl.getLogger(['abcdefghijklmnopqrstuvwxyz:-_.1234567890'])
@@ -509,5 +521,45 @@ describe('suppressLogs()', () => {
     const log2 = sl.getLogger(['l2'])
     const a = suppressLogs(() => 1, log1, log2)
     expect(a).toBe(1)
+  })
+})
+
+describe('getLogger()', () => {
+  it('gets a logger that logs to console by default', () => {
+    const log = getLogger(['default'])
+    log.info('from global log, expected to be printed')
+    log.debug('from global log, this should not be printed')
+  })
+})
+
+describe('configGlobal()', () => {
+  beforeEach(() => {
+    ctx.gsl = undefined
+    ctx.configured = false
+  })
+  it('configure the global instance', () => {
+    const mem = createMemoryLogReporter()
+    configGlobal({ logLevel: logLevels.error, reporters: [mem] })
+
+    const log = getLogger(['default'])
+    log.error('error message')
+    log.info('info message')
+    expect(mem.logs.length).toBe(1)
+  })
+  it('can call after getLogger', () => {
+    const log = getLogger(['default'])
+    log.info('from global log, expected to be printed')
+
+    const mem = createMemoryLogReporter()
+    configGlobal({ logLevel: logLevels.error, reporters: [mem] })
+    log.error('from global log, expected to be printed')
+    log.info('from global log, this should not be printed')
+    expect(mem.logs.length).toBe(1)
+  })
+  it('will emit a warning when called twice', () => {
+    const mem = createMemoryLogReporter()
+    configGlobal({ reporters: [mem] })
+    configGlobal({ reporters: [] })
+    a.satisfies(mem.logs, [{ id: 'standard-log', level: logLevels.warn, args: [/being called more than once/] }])
   })
 })
