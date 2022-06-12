@@ -1,5 +1,5 @@
 import { configGlobal, ctx } from './global.js'
-import { createMemoryLogReporter, getLogger, logLevels, LogMethodNames } from './index.js'
+import { createMemoryLogReporter, getLogger, logLevels } from './index.js'
 
 describe('getLogger()', () => {
   it('gets a logger that logs to console by default', () => {
