@@ -1,4 +1,3 @@
-import { StackTraceMeta } from '@just-func/types'
 import { record, required } from 'type-plus'
 import { createLogger } from './logger.js'
 import { logLevels } from './logLevels.js'
@@ -10,7 +9,7 @@ export interface StandardLogInstance<N extends string = LogMethodNames> {
   logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
-  getLogger(params: [id: string, options?: LoggerOptions], meta?: StackTraceMeta): Logger<N | LogMethodNames>
+  getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
 }
 
 export interface StandardLog<N extends string = LogMethodNames> extends Readonly<StandardLogInstance<N>> {
@@ -40,9 +39,9 @@ export function createStandardLogClosure<N extends string = LogMethodNames>(
       toLogLevel(name: string) {
         return store.logLevelStore.getLevel(name)
       },
-      getLogger([id, options]: [id: string, options?: LoggerOptions], meta?: StackTraceMeta) {
+      getLogger(id: string, options?: LoggerOptions) {
         if (store.loggers[id]) return store.loggers[id] as any
-        return store.loggers[id] = createLogger([store, id, options], { ssf: this.getLogger, ...meta }) as any
+        return store.loggers[id] = createLogger(store, id, { ssf: this.getLogger, ...options }) as any
       }
     }
   }
@@ -66,9 +65,8 @@ export function suppressLogs<R>(block: () => R, ...logs: Logger[]): R {
   return result
 }
 
-export function getLogger<N extends string = LogMethodNames>(
-  params: [id: string, options?: LoggerOptions], meta?: StackTraceMeta) {
-  return getGlobalSL<N>().getLogger(params, meta)
+export function getLogger<N extends string = LogMethodNames>(id: string, options?: LoggerOptions) {
+  return getGlobalSL<N>().getLogger(id, options)
 }
 
 export const ctx: {
@@ -84,7 +82,7 @@ function getGlobalSL<N extends string = LogMethodNames>(): StandardLogInstance<N
 
 export function configGlobal(options: Omit<StandardLogOptions, 'customLevels'>) {
   if (ctx.configured) {
-    const log = ctx.gsl?.standardLog.getLogger(['standard-log'])
+    const log = ctx.gsl?.standardLog.getLogger('standard-log')
     log?.warn('configGlobal() is being called more than once. Please make sure this is expected. Application should use `createStandardLog()` most of the time.')
   }
 

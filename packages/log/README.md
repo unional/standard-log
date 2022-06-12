@@ -32,7 +32,6 @@ For the full list of changes, please check the [change log](./CHANGELOG.md).
 - Send logs to multiple reporters, e.g. console, file, memory, or remote service.
 - Custom formatting and filtering for each reporter.
 - Security focus. After the system is created, it cannot be changed.
-- Compliant with the [`just-func`] paradigm.
 
 ## Usage
 
@@ -46,7 +45,7 @@ import { createStandardLog } from 'standard-log'
 
 const standardLog = createStandarLog(/* options */)
 
-const log = standardLog.getLogger(['my-app'])
+const log = standardLog.getLogger('my-app')
 
 log.error('error message')
 log.warn('warn message')
@@ -60,7 +59,7 @@ log.debug('debug message')
 
 (above is logged with `standard-log-color`)
 
-You can configure a logger by doing `getLogger([id, options])`:
+You can configure a logger by doing `getLogger(id, options)`:
 
 `options.level: number`:
 

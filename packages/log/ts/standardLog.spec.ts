@@ -35,7 +35,7 @@ describe('createStandardLog()', () => {
     it('can specify reporter', () => {
       const mem = createMemoryLogReporter()
       const sl = createStandardLog({ reporters: [mem] })
-      const log = sl.getLogger(['x'])
+      const log = sl.getLogger('x')
       log.info('abc')
       expect(mem.logs.length).toBe(1)
     })
@@ -68,49 +68,49 @@ describe('createStandardLogForTest()', () => {
 describe('standardLog.getLogger()', () => {
   it('supports id with alphanumeric and :_-.', () => {
     const sl = createStandardLog()
-    sl.getLogger(['abcdefghijklmnopqrstuvwxyz:-_.1234567890'])
+    sl.getLogger('abcdefghijklmnopqrstuvwxyz:-_.1234567890')
   })
   it('supports id with unicode', () => {
     const sl = createStandardLog()
-    sl.getLogger(['ミク香港'])
+    sl.getLogger('ミク香港')
   })
   it('supports id with @, \\ and /', () => {
     const sl = createStandardLog()
-    sl.getLogger(['@unional/fixture'])
-    sl.getLogger([`a\\b\\c`])
+    sl.getLogger('@unional/fixture')
+    sl.getLogger(`a\\b\\c`)
   })
   it.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
     const sl = createStandardLog()
-    a.throws(() => sl.getLogger([char]), InvalidId)
+    a.throws(() => sl.getLogger(char), InvalidId)
   })
   it('throw InvalidId with ssf to the call site', () => {
     const sl = createStandardLog()
-    const err = a.throws(() => sl.getLogger(['!']), InvalidId)
+    const err = a.throws(() => sl.getLogger('!'), InvalidId)
 
     assertSSF(err, __filename)
   })
   test('id is readonly', () => {
     const sl = createStandardLog()
-    const log: any = sl.getLogger(['id is readonly'])
+    const log: any = sl.getLogger('id is readonly')
     a.throws(() => log.id = 'b')
   })
 
   test('get logger with same name gets the same instance', () => {
     const sl = createStandardLog()
-    const expected = sl.getLogger(['same-inst'])
-    const actual = sl.getLogger(['same-inst'])
+    const expected = sl.getLogger('same-inst')
+    const actual = sl.getLogger('same-inst')
     expect(actual).toBe(expected)
   })
 
   it('can specify local log level', () => {
     const sl = createStandardLog()
-    const log = sl.getLogger(['local', { level: logLevels.trace }])
+    const log = sl.getLogger('local', { level: logLevels.trace })
     expect(log.level).toBe(logLevels.trace)
   })
 
   test('new logger will get custom level', () => {
     const sl = createStandardLog({ customLevels: { 'to_logger': 1234 } })
-    const actual = sl.getLogger(['to_logger_logger'])
+    const actual = sl.getLogger('to_logger_logger')
     expect(typeof actual.to_logger).toBe('function')
   })
 
@@ -118,32 +118,32 @@ describe('standardLog.getLogger()', () => {
     function wrapper<N extends string = LogMethodNames>(options: StandardLogOptions<N>) {
       const sl = createStandardLog<N>(options)
       // since `N` is generic, just `Logger<N>` will not have the default log method names.
-      const log = sl.getLogger(['local'])
+      const log = sl.getLogger('local')
       expect(log.info).toBeDefined()
       return sl
     }
 
     const sl = wrapper({ customLevels: { 'cust': 123 } })
-    const actual = sl.getLogger(['c'])
+    const actual = sl.getLogger('c')
     expect(actual.cust).toBeDefined()
   })
 
   describe('log levels', () => {
     async function assertLoggedAtLevel(sl: ReturnType<typeof createStandardLogForTest>, method: LogMethodNames, level: number) {
-      const log = sl.getLogger([method])
+      const log = sl.getLogger(method)
       const msg = `should log on level: ${level}`;
       (log as any)[method](msg)
       a.satisfies(sl.reporter.logs, [{ id: method, level: sl.toLogLevel(method), args: [msg] }])
     }
 
     async function assertNotLoggedAtLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, level: number) {
-      const log = sl.getLogger([method]);
+      const log = sl.getLogger(method);
       (log as any)[method](`should not log on level: ${level}`)
       expect(sl.reporter.logs.length).toBe(0)
     }
 
     async function assertLoggedAtLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: LogMethodNames, localLevel: number) {
-      const log = sl.getLogger([method, { level: localLevel }])
+      const log = sl.getLogger(method, { level: localLevel })
 
       const msg = `should log on level: ${localLevel}`;
       (log as any)[method](msg)
@@ -151,32 +151,32 @@ describe('standardLog.getLogger()', () => {
     }
 
     async function assertNotLoggedAtLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number) {
-      const log = sl.getLogger([method, { level: localLevel }]);
+      const log = sl.getLogger(method, { level: localLevel });
       (log as any)[method](`should not log on level: ${localLevel}`)
       expect(sl.reporter.logs.length).toBe(0)
     }
 
     async function assertLoggedAtCallLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, callLevel: number) {
-      const log = sl.getLogger([method])
+      const log = sl.getLogger(method)
       let actual = false
       log.on(callLevel, () => actual = true)
       expect(actual).toBe(true)
     }
 
     async function assertNotLoggedAtCallLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, callLevel: number, actualLevel: number) {
-      const log = sl.getLogger([method])
+      const log = sl.getLogger(method)
       log.on(callLevel, () => { throw new Error(`should not log at level ${actualLevel}`) })
     }
 
     async function assertLoggedAtCallLevelOverrideLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number, callLevel: number) {
-      const log = sl.getLogger([method, { level: localLevel }])
+      const log = sl.getLogger(method, { level: localLevel })
       let actual = false
       log.on(callLevel, () => actual = true)
       expect(actual).toBe(true)
     }
 
     async function assertNotLoggedAtCallLevelOverrideLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number, callLevel: number) {
-      const log = sl.getLogger([method, { level: localLevel }])
+      const log = sl.getLogger(method, { level: localLevel })
       log.on(callLevel, () => { throw new Error(`should not log at level ${localLevel}`) })
     }
 
@@ -353,14 +353,14 @@ describe('standardLog.getLogger()', () => {
 
   it('writes entry directly', () => {
     const sl = createStandardLogForTest()
-    const log = sl.getLogger(['write-entry'])
+    const log = sl.getLogger('write-entry')
     const entry = { id: 'write-entry', level: logLevels.info, args: ['abc'], timestamp: new Date() }
     log.write(entry)
     a.satisfies(sl.reporter.logs, [entry])
   })
   test.each(['on', 'count', 'error', 'warn', 'info', 'debug'])('method %s is readonly', name => {
     const sl = createStandardLog()
-    const log: any = sl.getLogger([`${name} is readonly`])
+    const log: any = sl.getLogger(`${name} is readonly`)
 
     a.throws(() => log[name] = true)
   })
@@ -369,7 +369,7 @@ describe('standardLog.getLogger()', () => {
   describe('on()', () => {
     it('log using log argument', () => {
       const sl = createStandardLogForTest()
-      const logger = sl.getLogger(['log on fn'])
+      const logger = sl.getLogger('log on fn')
       logger.on('error', log => { log('value') })
 
       a.satisfies(sl.reporter.logs, [
@@ -378,14 +378,14 @@ describe('standardLog.getLogger()', () => {
     })
     it('can take log level name in first argument', () => {
       const sl = createStandardLogForTest()
-      const log = sl.getLogger(['string-on'])
+      const log = sl.getLogger('string-on')
       log.on('debug', () => { return })
     })
   })
   describe('count()', () => {
     test('will increment the counter', async () => {
       const sl = createStandardLogForTest()
-      const logger = sl.getLogger(['inc counter'])
+      const logger = sl.getLogger('inc counter')
 
       logger.count()
       logger.count()
@@ -399,7 +399,7 @@ describe('standardLog.getLogger()', () => {
     test('append args after the counter', async () => {
       const sl = createStandardLogForTest(logLevels.debug)
       const id = 'inc with args'
-      const logger = sl.getLogger([id])
+      const logger = sl.getLogger(id)
       logger.count('msg1', 'msg2')
 
       a.satisfies(sl.reporter.logs, [
@@ -410,7 +410,7 @@ describe('standardLog.getLogger()', () => {
     test('not log if log level is less than debug', async () => {
       const sl = createStandardLogForTest(logLevels.debug - 1)
       const id = 'inc with args'
-      const logger = sl.getLogger([id])
+      const logger = sl.getLogger(id)
       logger.count('msg1', 'msg2')
 
       expect(sl.reporter.logs.length).toBe(0)
@@ -420,7 +420,7 @@ describe('standardLog.getLogger()', () => {
   test('logger with custom level', async () => {
     const mem = createMemoryLogReporter()
     const sl = createStandardLog({ customLevels: { 'cust_lvl': 100 }, reporters: [mem] })
-    const logger = sl.getLogger(['cust'])
+    const logger = sl.getLogger('cust')
     logger.cust_lvl('a', 'b')
 
     a.satisfies(mem.logs, [{ id: 'cust', level: 100, args: ['a', 'b'] }])
@@ -428,39 +428,39 @@ describe('standardLog.getLogger()', () => {
 
   describe('getLogger([,{ writeTo }])', () => {
     function testWriteTo(
-      loggerParams: [id: string, options: LoggerOptions],
+      id: string, options: LoggerOptions,
       handler: (log: Logger, memLogs: LogEntry[], specialLogs: LogEntry[], sl: StandardLog) => void
     ) {
       const memReporter = createMemoryLogReporter()
       const specialReporter = createMemoryLogReporter({ id: 'special' })
       const sl = createStandardLog({ reporters: [memReporter, specialReporter] })
 
-      const log = sl.getLogger(loggerParams)
+      const log = sl.getLogger(id, options)
       handler(log, memReporter.logs, specialReporter.logs, sl)
     }
     it('can specify which reporter to use by name', () => {
-      testWriteTo(['writeTo-string', { writeTo: 'special' }], (log, memLogs, specialLogs) => {
+      testWriteTo('writeTo-string', { writeTo: 'special' }, (log, memLogs, specialLogs) => {
         log.error('error message')
         expect(memLogs.length).toEqual(0)
         expect(specialLogs.length).toEqual(1)
       })
     })
     it('can specify which reporter to use by regex', () => {
-      testWriteTo(['writeTo-regex', { writeTo: /^spec/ }], (log, memLogs, specialLogs) => {
+      testWriteTo('writeTo-regex', { writeTo: /^spec/ }, (log, memLogs, specialLogs) => {
         log.error('error message')
         expect(memLogs.length).toEqual(0)
         expect(specialLogs.length).toEqual(1)
       })
     })
     it('can specify which reporter to use by RegExp', () => {
-      testWriteTo(['writeTo-RegExp', { writeTo: new RegExp('^spec') }], (log, memLogs, specialLogs) => {
+      testWriteTo('writeTo-RegExp', { writeTo: new RegExp('^spec') }, (log, memLogs, specialLogs) => {
         log.error('error message')
         expect(memLogs.length).toEqual(0)
         expect(specialLogs.length).toEqual(1)
       })
     })
     it('can specify which reporter to use by function', () => {
-      testWriteTo(['writeTo-fn', { writeTo: id => id === 'special' }],
+      testWriteTo('writeTo-fn', { writeTo: id => id === 'special' },
         (log, memLogs, specialLogs) => {
           log.error('error message')
           expect(memLogs.length).toEqual(0)
@@ -469,7 +469,7 @@ describe('standardLog.getLogger()', () => {
     })
     it('can specify custom reporter', () => {
       const reporter = createMemoryLogReporter({ id: 'custom mem' })
-      testWriteTo(['writeTo-reporter', { writeTo: reporter }],
+      testWriteTo('writeTo-reporter', { writeTo: reporter },
         (log, memLogs, specialLogs) => {
           log.error('error message')
           expect(memLogs.length).toEqual(0)
@@ -482,9 +482,9 @@ describe('standardLog.getLogger()', () => {
       // if not, it would be a security issue as the new reporter
       // can capture the logs from other logger and send it elsewhere
       const reporter = createMemoryLogReporter({ id: 'custom mem' })
-      testWriteTo(['writeTo-reporter-no-override', { writeTo: reporter }],
+      testWriteTo('writeTo-reporter-no-override', { writeTo: reporter },
         (_, memLogs, specialLogs, sl) => {
-          const log = sl.getLogger(['writeTo-reporter-no-override-2'])
+          const log = sl.getLogger('writeTo-reporter-no-override-2')
           log.error('error message')
 
           expect(reporter.logs.length).toEqual(0)
@@ -496,7 +496,7 @@ describe('standardLog.getLogger()', () => {
 describe('suppressLogs()', () => {
   test('suppress log', () => {
     const sl = createStandardLogForTest()
-    const log = sl.getLogger(['l'])
+    const log = sl.getLogger('l')
     suppressLogs(() => {
       log.alert('should not see me')
     }, log)
@@ -506,8 +506,8 @@ describe('suppressLogs()', () => {
 
   test('suppress multiple logs', () => {
     const sl = createStandardLogForTest()
-    const log1 = sl.getLogger(['l1'])
-    const log2 = sl.getLogger(['l2'])
+    const log1 = sl.getLogger('l1')
+    const log2 = sl.getLogger('l2')
     suppressLogs(() => {
       log1.alert('should not see me')
       log2.alert('should not see me too')
@@ -517,8 +517,8 @@ describe('suppressLogs()', () => {
 
   test('return block result', () => {
     const sl = createStandardLogForTest()
-    const log1 = sl.getLogger(['l'])
-    const log2 = sl.getLogger(['l2'])
+    const log1 = sl.getLogger('l')
+    const log2 = sl.getLogger('l2')
     const a = suppressLogs(() => 1, log1, log2)
     expect(a).toBe(1)
   })
@@ -526,7 +526,7 @@ describe('suppressLogs()', () => {
 
 describe('getLogger()', () => {
   it('gets a logger that logs to console by default', () => {
-    const log = getLogger(['default'])
+    const log = getLogger('default')
     log.info('from global log, expected to be printed')
     log.debug('from global log, this should not be printed')
   })
@@ -541,13 +541,13 @@ describe('configGlobal()', () => {
     const mem = createMemoryLogReporter()
     configGlobal({ logLevel: logLevels.error, reporters: [mem] })
 
-    const log = getLogger(['default'])
+    const log = getLogger('default')
     log.error('error message')
     log.info('info message')
     expect(mem.logs.length).toBe(1)
   })
   it('can call after getLogger', () => {
-    const log = getLogger(['default'])
+    const log = getLogger('default')
     log.info('from global log, expected to be printed')
 
     const mem = createMemoryLogReporter()
