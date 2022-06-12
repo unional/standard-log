@@ -1,7 +1,7 @@
 export type StandardLogOptions<CustomLevelNames extends string = string> = {
-  customLevels: Record<CustomLevelNames, number>,
-  logLevel: number,
-  reporters: LogReporter[]
+  customLevels?: Record<CustomLevelNames, number>,
+  logLevel?: number,
+  reporters?: LogReporter[]
 }
 
 export interface LoggerOptions {

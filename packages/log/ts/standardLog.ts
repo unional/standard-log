@@ -2,37 +2,48 @@ import { StackTraceMeta } from '@just-func/types'
 import { required } from 'type-plus'
 import { createLogger } from './logger.js'
 import { logLevels } from './logLevels.js'
-import { createLogStore } from './logStore.js'
+import { createLogStore, LogStore } from './logStore.js'
 import { createMemoryLogReporter } from './memory.js'
 import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogOptions } from './types.js'
 
-export interface StandardLog<N extends string = LogMethodNames> {
-  readonly logLevel: number,
+export interface StandardLogInstance<N extends string = LogMethodNames> {
+  logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
   getLogger(params: [id: string, options?: LoggerOptions], meta?: StackTraceMeta): Logger<N | LogMethodNames>
 }
 
+export interface StandardLog<N extends string = LogMethodNames> extends Readonly<StandardLogInstance<N>> {
+}
+
 export function createStandardLog<N extends string = LogMethodNames>(
-  options?: Partial<StandardLogOptions<N>>, _meta?: StackTraceMeta
-): Readonly<StandardLog<N>> {
+  options?: StandardLogOptions<N>
+): StandardLog<N> {
+  return createStandardLogClosure(options).standardLog
+}
+
+export function createStandardLogClosure<N extends string = LogMethodNames>(
+  options?: StandardLogOptions<N>
+): { store: LogStore, standardLog: StandardLog<N> } {
   const store = createLogStore(required({ logLevel: logLevels.info }, options))
 
-  return Object.freeze({
-    get logLevel() { return store.logLevel },
+  return {
+    store,
+    standardLog: {
+      get logLevel() { return store.logLevel },
 
-    toLogLevelName(level: number) {
-      return store.logLevelStore.getName(level)
-    },
-    toLogLevel(name: string) {
-      return store.logLevelStore.getLevel(name)
-    },
-    getLogger([id, options]: [id: string, options?: LoggerOptions], meta?: StackTraceMeta) {
-      if (store.loggers[id]) return store.loggers[id] as any
-      const opt = required({ level: store.logLevel }, options)
-      return store.loggers[id] = createLogger([store, id, opt], { ssf: this.getLogger, ...meta }) as any
+      toLogLevelName(level: number) {
+        return store.logLevelStore.getName(level)
+      },
+      toLogLevel(name: string) {
+        return store.logLevelStore.getLevel(name)
+      },
+      getLogger([id, options]: [id: string, options?: LoggerOptions], meta?: StackTraceMeta) {
+        if (store.loggers[id]) return store.loggers[id] as any
+        return store.loggers[id] = createLogger([store, id, options], { ssf: this.getLogger, ...meta }) as any
+      }
     }
-  })
+  }
 }
 
 export function createStandardLogForTest(logLevel: LogLevel = logLevels.debug) {

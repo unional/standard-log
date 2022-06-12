@@ -1,5 +1,4 @@
 import type { StackTraceMeta } from '@just-func/types'
-import { RequiredPick } from 'type-plus'
 import { InvalidId } from './errors.js'
 import { logLevels } from './logLevels.js'
 import { LogStore } from './logStore.js'
@@ -7,10 +6,11 @@ import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogR
 import { LogLevel } from './types.js'
 
 export function createLogger<T extends string = LogMethodNames>(
-  [store, id, { level, writeTo = () => true }]: [LogStore, string, RequiredPick<LoggerOptions, 'level'>],
+  [store, id, options]: [LogStore, string, LoggerOptions | undefined],
   meta?: StackTraceMeta
 ): Logger {
   validateId(id, meta)
+  const writeTo = options?.writeTo ?? (() => true)
   const [filter, reporters]: [(reporterId: string) => boolean, LogReporter[]] = typeof writeTo === 'string'
     ? [id => id === writeTo, store.reporters]
     : writeTo instanceof RegExp
@@ -24,7 +24,7 @@ export function createLogger<T extends string = LogMethodNames>(
   }
 
   const logger = {
-    level,
+    level: options?.level,
     write
   } as any
 
