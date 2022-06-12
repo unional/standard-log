@@ -6,10 +6,9 @@ import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogR
 import { LogLevel } from './types.js'
 
 export function createLogger<T extends string = LogMethodNames>(
-  [store, id, options]: [LogStore, string, LoggerOptions | undefined],
-  meta?: StackTraceMeta
+  store: LogStore, id: string, options?: LoggerOptions
 ): Logger {
-  validateId(id, meta)
+  validateId(id, options)
   const writeTo = options?.writeTo ?? (() => true)
   const [filter, reporters]: [(reporterId: string) => boolean, LogReporter[]] = typeof writeTo === 'string'
     ? [id => id === writeTo, store.reporters]

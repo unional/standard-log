@@ -116,7 +116,7 @@ describe('createConsoleLogReporter', () => {
         },
         reporters: [reporter]
       })
-      const log = sl.getLogger([id])
+      const log = sl.getLogger(id)
       log.high('a')
       log.important('b')
       log.interest('c')
