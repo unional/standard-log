@@ -1,5 +1,16 @@
 # Change Log
 
+## 9.1.0
+
+### Minor Changes
+
+- 6ed55c4: Adjust the `StandardLog` and `StandardLogOptions` types.
+
+  Add back `getLogger()`.
+  Add `configGlobal()`.
+
+  Remove the `console.debug` check that is only useful for NodeJS 9.3 or below.
+
 ## 9.0.1
 
 ### Patch Changes
