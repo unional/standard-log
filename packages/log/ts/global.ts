@@ -9,15 +9,23 @@ export function getLogger<N extends string = LogMethodNames>(
   return getGlobalSL<N>().getLogger(params, meta)
 }
 
-export const ctx: { gsl?: { store: LogStore, standardLog: StandardLogInstance<any> } } = record()
+export const ctx: {
+  configured?: boolean,
+  gsl?: { store: LogStore, standardLog: StandardLogInstance<LogMethodNames> }
+} = record()
 
 function getGlobalSL<N extends string = LogMethodNames>(): StandardLogInstance<N> {
-  if (!ctx.gsl) configGlobal({})
+  if (!ctx.gsl) ctx.gsl = createStandardLogClosure()
 
-  return ctx.gsl!.standardLog
+  return ctx.gsl!.standardLog as StandardLogInstance<N>
 }
 
-export function configGlobal<N extends string = LogMethodNames>(options: Omit<StandardLogOptions, 'customLevels'>) {
+export function configGlobal(options: Omit<StandardLogOptions, 'customLevels'>) {
+  if (ctx.configured) {
+    const log = ctx.gsl?.standardLog.getLogger(['standard-log'])
+    log?.warn('configGlobal() is being called more than once. Please make sure this is expected. Application should use `createStandardLog()` most of the time.')
+  }
+
   if (ctx.gsl) {
     if (options.logLevel) {
       ctx.gsl.store.logLevel = options.logLevel
@@ -29,6 +37,7 @@ export function configGlobal<N extends string = LogMethodNames>(options: Omit<St
     }
   }
   else {
-    ctx.gsl = createStandardLogClosure<N>(options)
+    ctx.gsl = createStandardLogClosure(options)
   }
+  ctx.configured = true
 }

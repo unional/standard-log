@@ -1,3 +1,4 @@
+import { a } from 'assertron'
 import { configGlobal, ctx } from './global.js'
 import { createMemoryLogReporter, getLogger, logLevels } from './index.js'
 
@@ -10,7 +11,10 @@ describe('getLogger()', () => {
 })
 
 describe('configGlobal()', () => {
-  beforeEach(() => ctx.gsl = undefined)
+  beforeEach(() => {
+    ctx.gsl = undefined
+    ctx.configured = false
+  })
   it('configure the global instance', () => {
     const mem = createMemoryLogReporter()
     configGlobal({ logLevel: logLevels.error, reporters: [mem] })
@@ -29,5 +33,11 @@ describe('configGlobal()', () => {
     log.error('from global log, expected to be printed')
     log.info('from global log, this should not be printed')
     expect(mem.logs.length).toBe(1)
+  })
+  it('will emit a warning when called twice', () => {
+    const mem = createMemoryLogReporter()
+    configGlobal({ reporters: [mem] })
+    configGlobal({ reporters: [] })
+    a.satisfies(mem.logs, [{ id: 'standard-log', level: logLevels.warn, args: [/being called more than once/] }])
   })
 })
