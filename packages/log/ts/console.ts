@@ -1,7 +1,7 @@
 import { required } from 'type-plus'
-import { logLevels } from './logLevels.js'
-import { isConsoleDebugAvailable, polyfill } from './platform.js'
 import { plainLogFormatter } from './formatter.js'
+import { logLevels } from './logLevels.js'
+import { polyfill } from './platform.js'
 import type { ConsoleLike, LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export function toConsoleMethod(level: number) {
@@ -22,11 +22,9 @@ function buildPolyfillConsole() {
   const hasBind = !!console.log.bind as boolean
   if (hasBind) {
     return {
-      // Node@9.3 or below has `console.debug = undefined` or it doesn't log
-      // Should use `console.log()` in those case.
-      debug: (isConsoleDebugAvailable() ? console.debug : console.log).bind(console),
       // the `typeof` guards against IE where `console.log.apply()`
       // results in error `Object doesn't support property or method 'apply'`
+      debug: (typeof console.info === 'function' ? console.debug : console.log).bind(console),
       info: (typeof console.info === 'function' ? console.info : console.log).bind(console),
       warn: (typeof console.warn === 'function' ? console.warn : console.log).bind(console),
       error: (typeof console.error === 'function' ? console.error : console.log).bind(console)
@@ -34,7 +32,7 @@ function buildPolyfillConsole() {
   }
   else {
     return {
-      debug: buildFn(isConsoleDebugAvailable() ? 'debug' : 'log'),
+      debug: buildFn(typeof console.debug === 'function' ? 'debug' : 'log'),
       info: buildFn(typeof console.info === 'function' ? 'info' : 'log'),
       warn: buildFn(typeof console.warn === 'function' ? 'warn' : 'log'),
       error: buildFn(typeof console.error === 'function' ? 'error' : 'log'),
