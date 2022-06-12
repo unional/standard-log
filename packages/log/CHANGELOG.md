@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.1
+
+### Patch Changes
+
+- a7b47b6: Add warning when `configGlobal()` is called more than once.
+
 ## 9.1.0
 
 ### Minor Changes
