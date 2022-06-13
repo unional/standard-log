@@ -1,5 +1,14 @@
 # Change Log
 
+## 5.0.1
+
+### Patch Changes
+
+- 69d60ce: Downgrade output to ES2019
+- Updated dependencies [69d60ce]
+- Updated dependencies [023ba01]
+  - standard-log@9.1.4
+
 ## 5.0.0
 
 ### Patch Changes
