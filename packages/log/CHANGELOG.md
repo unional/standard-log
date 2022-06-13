@@ -1,5 +1,12 @@
 # Change Log
 
+## 9.1.4
+
+### Patch Changes
+
+- 69d60ce: Downgrade output to ES2019
+- 023ba01: Default `StardardLogOptions<N = LogMethodNames>`
+
 ## 9.1.3
 
 ### Patch Changes
