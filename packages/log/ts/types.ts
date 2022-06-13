@@ -1,6 +1,6 @@
 import { StackTraceMeta } from '@just-func/types'
 
-export type StandardLogOptions<CustomLevelNames extends string = string> = {
+export type StandardLogOptions<CustomLevelNames extends string = LogMethodNames> = {
   customLevels?: Record<CustomLevelNames, number>,
   logLevel?: number,
   reporters?: LogReporter[]
