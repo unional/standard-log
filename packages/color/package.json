@@ -68,7 +68,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "color-map": "^1.1.4",
+    "color-map": "^2.0.0",
     "unpartial": "^0.7.5"
   },
   "devDependencies": {

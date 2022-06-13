@@ -7838,10 +7838,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"color-map@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "color-map@npm:1.1.4"
-  checksum: f02187d0504ad178131964fa83ea8e99ed7ff93301a15a2a6f865cb6e99c2b2e65d99b1a394ddb77ac9c83f9d236283d83b68106b6fc4f6ad8b580fac8035489
+"color-map@npm:^2.0.0":
+  version: 2.0.3
+  resolution: "color-map@npm:2.0.3"
+  checksum: 17a8de7b3f05a2cbe8c53bc220346a3866bce952a70bd078616e71bb07307021ce73ceed15c6b731d47ce4d9cef6bf8399a516d4717eeac6c3395ef27418648e
   languageName: node
   linkType: hard
 
@@ -17782,7 +17782,7 @@ __metadata:
   dependencies:
     "@size-limit/preset-small-lib": ^7.0.8
     assertron: ^9.2.3
-    color-map: ^1.1.4
+    color-map: ^2.0.0
     compression-webpack-plugin: ^10.0.0
     cross-env: ^7.0.3
     depcheck: ^1.4.3
