@@ -21,8 +21,7 @@ module.exports = {
         loader: 'ts-loader',
         test: /\.tsx?$/,
         options: {
-          // configFile: 'tsconfig.dist-esm.json'
-          configFile: 'tsconfig.dist-es5.json'
+          configFile: 'tsconfig.dist-nodenext.json'
         }
       }
     ]
@@ -34,12 +33,12 @@ module.exports = {
       destructuring: false
     },
     path: path.resolve('dist'),
-    filename: `${filename}.es5.js`,
+    filename: `${filename}.nodenext.js`,
     library: globalVariable
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js'],
-    mainFields: ['browser', 'main', 'module']
+    mainFields: ['browser', 'main']
   },
   plugins: [
     new NormalModuleReplacementPlugin(/.js$/, (resource) => {

@@ -1,8 +1,8 @@
 {
   "extends": "../../config/tsconfig.base.json",
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "rootDir": "ts",
     "outDir": "dist",
     "target": "ES2019"
