@@ -1,5 +1,12 @@
 # Change Log
 
+## 9.1.5
+
+### Patch Changes
+
+- d186055: Add `StandardLogForTest` type
+- c7bfa46: Update type-plus
+
 ## 9.1.4
 
 ### Patch Changes

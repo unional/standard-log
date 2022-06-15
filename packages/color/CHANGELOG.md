@@ -1,5 +1,14 @@
 # Change Log
 
+## 7.0.2
+
+### Patch Changes
+
+- c7bfa46: Update color-map
+- Updated dependencies [d186055]
+- Updated dependencies [c7bfa46]
+  - standard-log@9.1.5
+
 ## 7.0.1
 
 ### Patch Changes
