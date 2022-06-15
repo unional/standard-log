@@ -3,7 +3,7 @@ import { InvalidId } from './errors.js'
 import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter } from './memory.js'
-import { configGlobal, ctx } from './standardLog.js'
+import { configGlobal, ctx, StandardLogForTest } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
 
@@ -114,11 +114,11 @@ describe('standardLog.getLogger()', () => {
     expect(typeof actual.to_logger).toBe('function')
   })
 
-  it('Logger have at least the default log method names', () => {
+  it('needs to cast Logger when wrapped', () => {
     function wrapper<N extends string = LogMethodNames>(options: StandardLogOptions<N>) {
       const sl = createStandardLog<N>(options)
       // since `N` is generic, just `Logger<N>` will not have the default log method names.
-      const log = sl.getLogger('local')
+      const log = sl.getLogger('local') as Logger<LogMethodNames>
       expect(log.info).toBeDefined()
       return sl
     }
@@ -129,20 +129,20 @@ describe('standardLog.getLogger()', () => {
   })
 
   describe('log levels', () => {
-    async function assertLoggedAtLevel(sl: ReturnType<typeof createStandardLogForTest>, method: LogMethodNames, level: number) {
+    async function assertLoggedAtLevel(sl: StandardLogForTest, method: LogMethodNames, level: number) {
       const log = sl.getLogger(method)
       const msg = `should log on level: ${level}`;
       (log as any)[method](msg)
       a.satisfies(sl.reporter.logs, [{ id: method, level: sl.toLogLevel(method), args: [msg] }])
     }
 
-    async function assertNotLoggedAtLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, level: number) {
+    async function assertNotLoggedAtLevel(sl: StandardLogForTest, method: string, level: number) {
       const log = sl.getLogger(method);
       (log as any)[method](`should not log on level: ${level}`)
       expect(sl.reporter.logs.length).toBe(0)
     }
 
-    async function assertLoggedAtLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: LogMethodNames, localLevel: number) {
+    async function assertLoggedAtLocalLevel(sl: StandardLogForTest, method: LogMethodNames, localLevel: number) {
       const log = sl.getLogger(method, { level: localLevel })
 
       const msg = `should log on level: ${localLevel}`;
@@ -150,32 +150,32 @@ describe('standardLog.getLogger()', () => {
       a.satisfies(sl.reporter.logs, [{ id: log.id, level: sl.toLogLevel(method), args: [msg] }])
     }
 
-    async function assertNotLoggedAtLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number) {
+    async function assertNotLoggedAtLocalLevel(sl: StandardLogForTest, method: string, localLevel: number) {
       const log = sl.getLogger(method, { level: localLevel });
       (log as any)[method](`should not log on level: ${localLevel}`)
       expect(sl.reporter.logs.length).toBe(0)
     }
 
-    async function assertLoggedAtCallLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, callLevel: number) {
+    async function assertLoggedAtCallLevel(sl: StandardLogForTest, method: string, callLevel: number) {
       const log = sl.getLogger(method)
       let actual = false
       log.on(callLevel, () => actual = true)
       expect(actual).toBe(true)
     }
 
-    async function assertNotLoggedAtCallLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, callLevel: number, actualLevel: number) {
+    async function assertNotLoggedAtCallLevel(sl: StandardLogForTest, method: string, callLevel: number, actualLevel: number) {
       const log = sl.getLogger(method)
       log.on(callLevel, () => { throw new Error(`should not log at level ${actualLevel}`) })
     }
 
-    async function assertLoggedAtCallLevelOverrideLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number, callLevel: number) {
+    async function assertLoggedAtCallLevelOverrideLocalLevel(sl: StandardLogForTest, method: string, localLevel: number, callLevel: number) {
       const log = sl.getLogger(method, { level: localLevel })
       let actual = false
       log.on(callLevel, () => actual = true)
       expect(actual).toBe(true)
     }
 
-    async function assertNotLoggedAtCallLevelOverrideLocalLevel(sl: ReturnType<typeof createStandardLogForTest>, method: string, localLevel: number, callLevel: number) {
+    async function assertNotLoggedAtCallLevelOverrideLocalLevel(sl: StandardLogForTest, method: string, localLevel: number, callLevel: number) {
       const log = sl.getLogger(method, { level: localLevel })
       log.on(callLevel, () => { throw new Error(`should not log at level ${localLevel}`) })
     }
@@ -529,6 +529,12 @@ describe('getLogger()', () => {
     const log = getLogger('default')
     log.info('from global log, expected to be printed')
     log.debug('from global log, this should not be printed')
+  })
+  it('write to local reporter', () => {
+    const reporter = createMemoryLogReporter()
+    const log = getLogger('to local reporter', { writeTo: reporter })
+    log.warn('hello')
+    expect(reporter.logs.length).toBe(1)
   })
 })
 

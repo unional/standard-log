@@ -2,14 +2,14 @@ import { record, required } from 'type-plus'
 import { createLogger } from './logger.js'
 import { logLevels } from './logLevels.js'
 import { createLogStore, LogStore } from './logStore.js'
-import { createMemoryLogReporter } from './memory.js'
+import { createMemoryLogReporter, MemoryLogReporter } from './memory.js'
 import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogOptions } from './types.js'
 
 export interface StandardLogInstance<N extends string = LogMethodNames> {
   logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
-  getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
+  getLogger(id: string, options?: LoggerOptions): Logger<N>
 }
 
 export interface StandardLog<N extends string = LogMethodNames> extends Readonly<StandardLogInstance<N>> {
@@ -47,9 +47,13 @@ export function createStandardLogClosure<N extends string = LogMethodNames>(
   }
 }
 
-export function createStandardLogForTest(logLevel: LogLevel = logLevels.debug) {
+export type StandardLogForTest<N extends string = LogMethodNames> = StandardLog<N> & { reporter: MemoryLogReporter }
+
+export function createStandardLogForTest<N extends string = LogMethodNames>(
+  logLevel: LogLevel = logLevels.debug
+): StandardLogForTest<N> {
   const reporter = createMemoryLogReporter()
-  const standardLog = createStandardLog({ reporters: [reporter], logLevel })
+  const standardLog = createStandardLog<N>({ reporters: [reporter], logLevel })
   return { ...standardLog, reporter }
 }
 
