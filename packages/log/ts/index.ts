@@ -7,5 +7,5 @@ export {
   configGlobal, createStandardLog, createStandardLogForTest,
   getLogger, suppressLogs
 } from './standardLog.js'
-export type { StandardLog, StandardLogInstance } from './standardLog.js'
+export type { StandardLog, StandardLogForTest, StandardLogInstance } from './standardLog.js'
 export * from './types.js'
