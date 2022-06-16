@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.6
+
+### Patch Changes
+
+- 5050737: Export `StandardLogForTest` types at top level
+
 ## 9.1.5
 
 ### Patch Changes
