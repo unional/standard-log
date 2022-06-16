@@ -14688,9 +14688,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^13.1.5":
-  version: 13.1.5
-  resolution: "npm-check-updates@npm:13.1.5"
+"npm-check-updates@npm:^14.0.0":
+  version: 14.0.1
+  resolution: "npm-check-updates@npm:14.0.1"
   dependencies:
     chalk: ^4.1.2
     cint: ^8.2.1
@@ -14707,7 +14707,7 @@ __metadata:
     lodash: ^4.17.21
     minimatch: ^5.1.0
     p-map: ^4.0.0
-    pacote: ^13.5.0
+    pacote: ^13.6.0
     parse-github-url: ^1.0.2
     progress: ^2.0.3
     prompts: ^2.4.2
@@ -14723,7 +14723,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: b1f1c50e3716198d5eac9204e74185433768d98f8d0959358ad12b296eea3b38f15120573a1d356e26ab9a6ab68edb8684dec571c3c5fd60efe675a73b620f16
+  checksum: b830ad48f17f8f73dba06f4efde5a9bc0b0ff4c9edcea1aa1e74a2910cb33b58b487bf3d434c3392db15f3e56a5af20c5550865411dc9f59abee561a678cec27
   languageName: node
   linkType: hard
 
@@ -15254,7 +15254,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pacote@npm:^13.5.0":
+"pacote@npm:^13.6.0":
   version: 13.6.0
   resolution: "pacote@npm:13.6.0"
   dependencies:
@@ -17058,7 +17058,7 @@ __metadata:
     jest-watch-suspend: ^1.1.2
     jest-watch-toggle-config: ^2.0.1
     jest-watch-typeahead: ^1.1.0
-    npm-check-updates: ^13.1.5
+    npm-check-updates: ^14.0.0
     npm-run-all: ^4.1.5
     pinst: ^3.0.0
     standard-log: "workspace:*"
