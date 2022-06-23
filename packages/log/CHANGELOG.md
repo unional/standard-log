@@ -1,5 +1,11 @@
 # Change Log
 
+## 9.1.7
+
+### Patch Changes
+
+- bbeca2f: Fix log methods props in generic environment
+
 ## 9.1.6
 
 ### Patch Changes
