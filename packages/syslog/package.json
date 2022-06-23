@@ -73,7 +73,7 @@
     "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
-    "standard-log": ">=9.1.6"
+    "standard-log": ">=9.1.7"
   },
   "size-limit": [
     {

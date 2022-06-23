@@ -17897,7 +17897,7 @@ __metadata:
     webpack: ^5.73.0
     webpack-cli: ^4.10.0
   peerDependencies:
-    standard-log: ">=9.1.6"
+    standard-log: ">=9.1.7"
   languageName: unknown
   linkType: soft
 
@@ -17926,7 +17926,7 @@ __metadata:
     webpack: ^5.73.0
     webpack-cli: ^4.10.0
   peerDependencies:
-    standard-log: ">=9.1.6"
+    standard-log: ">=9.1.7"
   languageName: unknown
   linkType: soft
 
