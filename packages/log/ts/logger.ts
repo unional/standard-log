@@ -5,9 +5,9 @@ import { LogStore } from './logStore.js'
 import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
 import { LogLevel } from './types.js'
 
-export function createLogger<T extends string = LogMethodNames>(
+export function createLogger<N extends string = LogMethodNames>(
   store: LogStore, id: string, options?: LoggerOptions
-): Logger {
+): Logger<N | LogMethodNames> {
   validateId(id, options)
   const writeTo = options?.writeTo ?? (() => true)
   const [filter, reporters]: [(reporterId: string) => boolean, LogReporter[]] = typeof writeTo === 'string'
@@ -44,7 +44,7 @@ export function createLogger<T extends string = LogMethodNames>(
     },
     on: {
       writable: false,
-      value: (level: number | T, logFn: LogFunction) => {
+      value: (level: number | N | LogMethodNames, logFn: LogFunction) => {
         const logLevel = typeof level === 'string' ? store.logLevelStore.getLevel(level)! : level
         if (shouldLog(store, logLevel, logger.level)) {
           const methodName = store.logLevelStore.getName(logLevel)

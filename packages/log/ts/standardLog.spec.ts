@@ -117,8 +117,7 @@ describe('standardLog.getLogger()', () => {
   it('needs to cast Logger when wrapped', () => {
     function wrapper<N extends string = LogMethodNames>(options: StandardLogOptions<N>) {
       const sl = createStandardLog<N>(options)
-      // since `N` is generic, just `Logger<N>` will not have the default log method names.
-      const log = sl.getLogger('local') as Logger<LogMethodNames>
+      const log = sl.getLogger('local')
       expect(log.info).toBeDefined()
       return sl
     }
@@ -126,6 +125,9 @@ describe('standardLog.getLogger()', () => {
     const sl = wrapper({ customLevels: { 'cust': 123 } })
     const actual = sl.getLogger('c')
     expect(actual.cust).toBeDefined()
+
+    // make sure the logger outside also get default log methods
+    expect(actual.error).toBeDefined()
   })
 
   describe('log levels', () => {
