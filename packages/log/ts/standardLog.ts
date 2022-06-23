@@ -9,7 +9,7 @@ export interface StandardLogInstance<N extends string = LogMethodNames> {
   logLevel: number,
   toLogLevelName(level: number): string,
   toLogLevel(name: N): number,
-  getLogger(id: string, options?: LoggerOptions): Logger<N>
+  getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
 }
 
 export interface StandardLog<N extends string = LogMethodNames> extends Readonly<StandardLogInstance<N>> {

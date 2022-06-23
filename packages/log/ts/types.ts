@@ -11,7 +11,7 @@ export interface LoggerOptions extends StackTraceMeta {
   writeTo?: LogReporter | ReporterFilter
 }
 
-export type Logger<T extends string = LogMethodNames> = {
+export type Logger<N extends string = LogMethodNames> = {
   readonly id: string,
   /**
    * Logger local log level.
@@ -22,12 +22,12 @@ export type Logger<T extends string = LogMethodNames> = {
    * This is useful during debugging to check for steps executed.
    */
   count(...args: any[]): void,
-  on(level: number | T, logFunction: LogFunction): void,
+  on(level: number | N, logFunction: LogFunction): void,
   /**
    * Write custom log entries.
    */
   write(entry: LogEntry): void
-} & { [k in T]: LogMethod }
+} & { [k in N]: LogMethod }
 
 /**
  * Names of the standard log methods.
