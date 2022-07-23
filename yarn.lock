@@ -7635,7 +7635,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.2":
+"chalk@npm:^4.0.0, chalk@npm:^4.1.0":
   version: 4.1.2
   resolution: "chalk@npm:4.1.2"
   dependencies:
@@ -7782,13 +7782,6 @@ __metadata:
   version: 1.2.2
   resolution: "ci-job-number@npm:1.2.2"
   checksum: 9da8edd2c1d79e59f28e1c62e8f9f2611c29d6e470cd02551fcb8b5f5eaed6385711b9c5e3fb3b9c456dc716058fc48b4a9e38783bc378a26a8c7d4ed1348211
-  languageName: node
-  linkType: hard
-
-"cint@npm:^8.2.1":
-  version: 8.2.1
-  resolution: "cint@npm:8.2.1"
-  checksum: 5f32feed160b63f5f7622095a0e330e0679b47ea4d7cd6a4eaf8045e1298092710f5cfdd005717954966edf9e3722df860cbff4632917c1a9ad3d43450bcddca
   languageName: node
   linkType: hard
 
@@ -14872,12 +14865,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^15.0.0":
-  version: 15.0.0
-  resolution: "npm-check-updates@npm:15.0.0"
+"npm-check-updates@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "npm-check-updates@npm:16.0.0"
   dependencies:
-    chalk: ^4.1.2
-    cint: ^8.2.1
+    chalk: ^5.0.1
     cli-table: ^0.3.11
     commander: ^9.3.0
     fast-memoize: ^2.5.2
@@ -14894,7 +14886,7 @@ __metadata:
     pacote: ^13.6.1
     parse-github-url: ^1.0.2
     progress: ^2.0.3
-    prompts-ncu: ^2.5.0
+    prompts-ncu: ^2.5.1
     rc-config-loader: ^4.1.0
     remote-git-tags: ^3.0.0
     rimraf: ^3.0.2
@@ -14907,7 +14899,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: 12e6c00ba234a25b350c96be394b0143f9e699de63c5ad37682c897e20740fb615561a80eb236d839d5dbb16093f47dc19f2cf3af6e1a1ae37aca02460b83c5b
+  checksum: cc7289f8c9492b5fd0d0d507eeb016dc730ba8ea05947554705f1d39ecb5f64adc43213fd198004662876e92477425c103c51f8e4fc099bfebbf6543cf0f1f8a
   languageName: node
   linkType: hard
 
@@ -16170,13 +16162,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prompts-ncu@npm:^2.5.0":
-  version: 2.5.0
-  resolution: "prompts-ncu@npm:2.5.0"
+"prompts-ncu@npm:^2.5.1":
+  version: 2.5.1
+  resolution: "prompts-ncu@npm:2.5.1"
   dependencies:
     kleur: ^4.0.1
     sisteransi: ^1.0.5
-  checksum: e050961c300b897f166b9abdde02a3087222a12b50598015072fd31fd401def4cf665ec2ada80710d84bb8611092cd57b39e820ff509af740f9f531987bfc9a6
+  checksum: e8b64793053382c46dbdfe482e4523e83cb3770faa453abc37652752a12e612c87f43bb2b8bb1f4962db644bc448c350777d506d61bd18e5a3e3a2aa3d0c3695
   languageName: node
   linkType: hard
 
@@ -17266,7 +17258,7 @@ __metadata:
     jest-watch-suspend: ^1.1.2
     jest-watch-toggle-config: ^2.0.1
     jest-watch-typeahead: ^2.0.0
-    npm-check-updates: ^15.0.0
+    npm-check-updates: ^16.0.0
     npm-run-all: ^4.1.5
     pinst: ^3.0.0
     standard-log: "workspace:*"
