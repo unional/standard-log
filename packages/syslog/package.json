@@ -51,7 +51,7 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-small-lib": "^8.0.0",
     "@types/ramda": "^0.28.13",
     "compression-webpack-plugin": "^10.0.0",
     "cross-env": "^7.0.3",
