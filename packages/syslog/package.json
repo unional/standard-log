@@ -63,7 +63,7 @@
     "pascal-case": "^3.1.2",
     "ramda": "^0.28.0",
     "rimraf": "^3.0.2",
-    "size-limit": "^7.0.8",
+    "size-limit": "^8.0.0",
     "standard-log": "workspace:*",
     "ts-jest": "^28.0.5",
     "ts-loader": "^9.3.0",
