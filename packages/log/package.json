@@ -62,7 +62,7 @@
     "upper-case": "^2.0.2"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-small-lib": "^8.0.0",
     "@types/ms": "^0.7.31",
     "@types/ramda": "^0.28.13",
     "assertron": "^9.2.5",
