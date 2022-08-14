@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.0.0",
-    "assertron": "^9.2.3",
+    "assertron": "^10.0.0",
     "compression-webpack-plugin": "^10.0.0",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
