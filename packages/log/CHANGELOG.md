@@ -1,5 +1,13 @@
 # Change Log
 
+## 9.1.8
+
+### Patch Changes
+
+- 1cf4cef: Fix an issue when formatter is set to `undefined`.
+
+  updated `unpartial` and `type-plus`.
+
 ## 9.1.7
 
 ### Patch Changes
