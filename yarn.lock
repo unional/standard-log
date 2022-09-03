@@ -18073,7 +18073,7 @@ __metadata:
     ts-loader: ^9.3.0
     tslib: ^2.4.0
     typescript: ^4.7.3
-    unpartial: ^0.7.5
+    unpartial: ^1.0.2
     webpack: ^5.73.0
     webpack-cli: ^4.10.0
   peerDependencies:
@@ -18135,7 +18135,7 @@ __metadata:
     ts-jest: ^28.0.5
     ts-loader: ^9.3.0
     tslib: ^2.4.0
-    type-plus: ^4.10.2
+    type-plus: ^4.11.2
     typescript: ^4.7.3
     upper-case: ^2.0.2
     webpack: ^5.73.0
@@ -19311,13 +19311,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-plus@npm:^4.10.2":
-  version: 4.10.2
-  resolution: "type-plus@npm:4.10.2"
+"type-plus@npm:^4.11.2":
+  version: 4.11.2
+  resolution: "type-plus@npm:4.11.2"
   dependencies:
     tersify: ^3.10.2
-    unpartial: ^0.7.5
-  checksum: e3638e0add2fb6faaf87070fc853a6a71136a93eb3066070064518276ad1182dc03ccaba1d8f4735024b4070835391b2a4b751077e7b3d9c06635fa2e55574d7
+    unpartial: ^1.0.1
+  checksum: e51864db13f3a4ccc507bf1b105137c7b33c8c696dbfb1daafe76678ec1a076d85f3551c0647bc5a96bf91dee8e4440b8ae3d2009368b369a2daf9d9d17bbd58
   languageName: node
   linkType: hard
 
@@ -19632,16 +19632,16 @@ __metadata:
   linkType: hard
 
 "unpartial@npm:^0.7.3, unpartial@npm:^0.7.4":
-  version: 0.7.4
-  resolution: "unpartial@npm:0.7.4"
-  checksum: 28c57b77b7d64135a22a50b57ef5388da7eece85efab0f117d323000866df6ab4fde1c1fdef55f2a56f52f566d711e86b0b4dc28e375debfb7288924efc86f57
-  languageName: node
-  linkType: hard
-
-"unpartial@npm:^0.7.5":
   version: 0.7.5
   resolution: "unpartial@npm:0.7.5"
   checksum: d38b2ba134ad94c7cd2148001865948541da93b51560aa63056940924c3f4cc9eb52da196e7f45df369aa414e5202ddc9483352e663245b4c3b28503573e0ec9
+  languageName: node
+  linkType: hard
+
+"unpartial@npm:^1.0.1, unpartial@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "unpartial@npm:1.0.2"
+  checksum: 17ccbcf29f0ea00f5d897b2e387f4b168d68525d8242eab60e2c5959ceca9f473c1f063966e74c926b9b51656efb5ef046b8a77e427926f8fd1b8601c4c81a92
   languageName: node
   linkType: hard
 

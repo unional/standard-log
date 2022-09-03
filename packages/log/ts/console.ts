@@ -1,4 +1,4 @@
-import { required } from 'type-plus'
+import { unpartial } from 'type-plus'
 import { plainLogFormatter } from './formatter.js'
 import { logLevels } from './logLevels.js'
 import { polyfill } from './platform.js'
@@ -51,7 +51,7 @@ export type ConsoleLogReporter = LogReporter<any[]> & { console: ConsoleLike }
 export type ConsoleLogReporterOptions = LogReporterOptions<any[]>
 
 export function createConsoleLogReporter(options?: ConsoleLogReporterOptions): ConsoleLogReporter {
-  const { id, formatter, filter } = required({ id: 'console', formatter: plainLogFormatter }, options)
+  const { id, formatter, filter } = unpartial({ id: 'console', formatter: plainLogFormatter }, options)
   if (!polyfill.console) polyfill.console = buildPolyfillConsole()
 
   return Object.freeze({

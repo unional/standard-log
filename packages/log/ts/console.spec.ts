@@ -141,6 +141,16 @@ describe('createConsoleLogReporter', () => {
 
       expect(fakeConsole.errors).toEqual([['id-only']])
     })
+    it('uses plainLogFormatter if formatter is undefined', () => {
+      const reporter = createConsoleLogReporter({ formatter: undefined })
+
+      const entry = { id: 'no formatter', level: logLevels.emergency, args: ['emergency'], timestamp: new Date() }
+      reporter.write(entry)
+
+      expect(fakeConsole.errors).toEqual([
+        [entry.timestamp.toISOString(), 'no formatter', '(EMERGENCY)', 'emergency']
+      ])
+    })
   })
 
   describe('filter', () => {
