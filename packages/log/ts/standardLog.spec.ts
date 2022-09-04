@@ -530,7 +530,6 @@ describe('getLogger()', () => {
   it('gets a logger that logs to console by default', () => {
     const log = getLogger('default')
     log.info('from global log, expected to be printed')
-    log.debug('from global log, this should not be printed')
   })
   it('write to local reporter', () => {
     const reporter = createMemoryLogReporter()
