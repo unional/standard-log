@@ -1,5 +1,20 @@
 # Change Log
 
+## 8.0.0
+
+### Major Changes
+
+- 88298b8: Now support different color profiles for `stdout` and `stderr`.
+
+  The ID color is simplified with only white or black text to make it easier to read.
+
+  Uses `supports-color` for server side color detection.
+
+### Patch Changes
+
+- Updated dependencies [19dbee6]
+  - standard-log@10.0.0
+
 ## 7.0.3
 
 ### Patch Changes

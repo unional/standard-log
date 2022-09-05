@@ -1,6 +1,6 @@
 {
   "name": "standard-log-syslog",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "description": "syslog plugin for `standard-log`",
   "homepage": "https://github.com/unional/standard-log/tree/master/packages/syslog",
   "bugs": {
@@ -73,7 +73,7 @@
     "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
-    "standard-log": ">=9.1.8"
+    "standard-log": ">=10.0.0"
   },
   "size-limit": [
     {
