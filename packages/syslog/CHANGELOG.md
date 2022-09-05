@@ -1,5 +1,12 @@
 # Change Log
 
+## 6.0.0
+
+### Patch Changes
+
+- Updated dependencies [19dbee6]
+  - standard-log@10.0.0
+
 ## 5.0.1
 
 ### Patch Changes
