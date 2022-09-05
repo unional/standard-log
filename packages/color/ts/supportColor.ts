@@ -37,6 +37,7 @@ let value: supportColor.Result
  * The result value is made the same so that it can be used in all platforms.
  */
 export function supportColor(): supportColor.Result {
+  // istanbul ignore next
   return value = value || {
     stderr: sc.stderr ? sc.stderr.level : ColorLevels.DISABLED,
     stdout: sc.stdout ? sc.stdout.level : ColorLevels.DISABLED
