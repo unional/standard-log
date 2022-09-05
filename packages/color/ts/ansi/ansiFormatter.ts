@@ -1,48 +1,99 @@
 import { createTimestampFormatter, LogEntry, TimestampFormat, toConsoleMethod } from 'standard-log'
-import { adjustCodes } from './adjustCodes.js'
-import { ANSI_FOREGROUND, ANSI_RED, ANSI_YELLOW } from './constants.js'
-import { createColorCodes } from './createColorCodes.js'
-import { wrapAnsi, wrapAnsiId } from './wrapAnsi.js'
-
-type Context = {
-  colorMap: number[][],
-  idMap: Record<string, number[]>,
-  counter: number
-}
+import { ColorLevels, supportColor } from '../supportColor.js'
+import { ANSI_BACKGROUND, ANSI_BLACK, ANSI_BLUE, ANSI_BRIGHT, ANSI_CYAN, ANSI_FOREGROUND, ANSI_GREEN, ANSI_MAGENTA, ANSI_RED, ANSI_UNDERSCORE, ANSI_WHITE, ANSI_YELLOW } from './constants.js'
+import { wrapAnsi } from './wrapAnsi.js'
 
 export type AnsiFormatterOptions = {
   timestamp: TimestampFormat
 }
 
 export function createAnsiFormatter(options: AnsiFormatterOptions = { timestamp: 'none' }) {
-  const colorMap = getColorMap()
-  const context: Context = {
-    colorMap,
-    idMap: {},
-    counter: 0
-  }
   const timestampFormatter = createTimestampFormatter(options.timestamp)
 
   return function ansiFormatter(entry: LogEntry) {
     const consoleMethod = toConsoleMethod(entry.level)
-    const codes = adjustCodes(getCodes(context, entry.id), consoleMethod)
-    const id = wrapAnsiId(entry.id, codes)
-    const rest = [...entry.args]
-    const timestamp = timestampFormatter(entry.timestamp)
-    if (timestamp !== undefined) rest.push(timestamp)
-    const textCodes = consoleMethod === 'error' ? [ANSI_RED + ANSI_FOREGROUND] :
-      consoleMethod === 'warn' ? [ANSI_YELLOW + ANSI_FOREGROUND] : undefined
-
-    return textCodes ?
-      [id, ...rest.map(x => wrapAnsi(x, textCodes))] :
-      [id, ...rest]
+    const id = formatID(consoleMethod, entry.id)
+    const args = formatArgs(timestampFormatter, consoleMethod, entry)
+    return [id, ...args]
   }
 }
 
-function getCodes(context: Context, id: string) {
-  return context.idMap[id] = context.idMap[id] || context.colorMap[context.counter++ % context.colorMap.length]
+function formatArgs(timestampFormatter: (timestamp: Date) => string | undefined, method: 'error' | 'warn' | 'info' | 'debug', entry: Pick<LogEntry, 'args' | 'timestamp'>) {
+  const args = [...entry.args]
+  const timestamp = timestampFormatter(entry.timestamp)
+  if (timestamp !== undefined) args.push(timestamp)
+  const textCodes = method === 'error' ? [ANSI_RED + ANSI_FOREGROUND] :
+    method === 'warn' ? [ANSI_YELLOW + ANSI_FOREGROUND] : undefined
+
+  return textCodes ? args.map(x => wrapAnsi(x, textCodes)) : args
 }
 
-function getColorMap() {
-  return createColorCodes()
+function formatID(method: 'error' | 'warn' | 'info' | 'debug', id: string) {
+  const colorLevels = supportColor()
+  const colorLevel = method === 'error' ? colorLevels.stderr : colorLevels.stdout
+  return toIDFormatter(colorLevel)(id)
+}
+
+function toIDFormatter(colorLevel: ColorLevels) {
+  switch (colorLevel) {
+    case ColorLevels.DISABLED: return (id: string) => id
+    case ColorLevels.BASIC: return basicIDFormatter
+    case ColorLevels.ANSI: return ansiIDFormatter
+    case ColorLevels.TRUE: return truecolorIDFormatter
+  }
+}
+
+function basicIDFormatter(id: string) {
+  const codes = getAnsiColor(id)
+  return wrapAnsi(` ${id} `, codes)
+}
+
+const ansiColors: {
+  counter: number,
+  list: Array<number[]>
+} = {
+  counter: 0, list: [
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_RED + ANSI_BACKGROUND],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_GREEN + ANSI_BACKGROUND],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_YELLOW + ANSI_BACKGROUND],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLUE + ANSI_BACKGROUND],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_MAGENTA + ANSI_BACKGROUND],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_CYAN + ANSI_BACKGROUND],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLACK + ANSI_BACKGROUND],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_RED + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_GREEN + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_YELLOW + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLUE + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_MAGENTA + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_CYAN + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLACK + ANSI_BACKGROUND, ANSI_BRIGHT],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_RED + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_GREEN + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_YELLOW + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLUE + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_MAGENTA + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_CYAN + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLACK + ANSI_BACKGROUND, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_RED + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_GREEN + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_YELLOW + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLUE + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_MAGENTA + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_BLACK + ANSI_FOREGROUND, ANSI_CYAN + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+    [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLACK + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
+  ]
+}
+const ansiColorMap: Record<string, number[]> = {}
+
+function getAnsiColor(id: string) {
+  return ansiColorMap[id] = ansiColorMap[id] || ansiColors.list[ansiColors.counter++ % ansiColors.list.length]
+}
+
+
+function ansiIDFormatter(id: string) {
+  return basicIDFormatter(id)
+}
+
+function truecolorIDFormatter(id: string) {
+  return basicIDFormatter(id)
 }
