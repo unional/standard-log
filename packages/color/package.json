@@ -57,18 +57,19 @@
     "bundle:esm": "webpack -c ./webpack.esm.cjs",
     "bundle:nodenext": "webpack -c ./webpack.nodenext.cjs",
     "clean": "rimraf cjs coverage dist esm lib libm tslib .tsbuildinfo && mkdir cjs && echo '{\"type\":\"commonjs\"}' > cjs/package.json || true",
-    "coverage": "jest --coverage",
+    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
     "prepublishOnly": "yarn build && yarn bundle",
     "size": "size-limit",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "verify": "npm-run-all clean -p build depcheck lint coverage -p size",
-    "watch": "jest --watch"
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "dependencies": {
     "color-map": "^2.0.3",
+    "supports-color": "^9.2.2",
     "unpartial": "^1.0.2"
   },
   "devDependencies": {

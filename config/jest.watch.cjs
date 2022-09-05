@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   watchPlugins: [
     'jest-watch-suspend',
     'jest-watch-typeahead/filename',

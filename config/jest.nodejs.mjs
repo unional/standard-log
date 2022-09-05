@@ -1,4 +1,4 @@
-import ts from './jest.ts.mjs'
+import ts from './jest.ts.cjs'
 
 export default {
   ...ts,
