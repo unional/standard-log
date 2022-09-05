@@ -35,6 +35,7 @@ function formatID(method: 'error' | 'warn' | 'info' | 'debug', id: string) {
 }
 
 function toIDFormatter(colorLevel: ColorLevels) {
+  // istanbul ignore next
   switch (colorLevel) {
     case ColorLevels.DISABLED: return (id: string) => id
     case ColorLevels.BASIC: return basicIDFormatter
@@ -89,11 +90,12 @@ function getAnsiColor(id: string) {
   return ansiColorMap[id] = ansiColorMap[id] || ansiColors.list[ansiColors.counter++ % ansiColors.list.length]
 }
 
-
+// istanbul ignore next
 function ansiIDFormatter(id: string) {
   return basicIDFormatter(id)
 }
 
+// istanbul ignore next
 function truecolorIDFormatter(id: string) {
   return basicIDFormatter(id)
 }
