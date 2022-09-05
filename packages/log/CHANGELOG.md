@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.0.0
+
+### Major Changes
+
+- 19dbee6: Add `consoleFormatter`.
+  It will be used as the default formatter instead of `plainLogFormatter`,
+  so that the default log output will be the same as vanilla `console.log`.
+
 ## 9.1.8
 
 ### Patch Changes
