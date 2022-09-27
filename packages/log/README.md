@@ -197,15 +197,14 @@ But in micro-app situation, the library can be shared, and each application can 
 In general, using this global instance should be avoided.
 It is the main driving force for 9.0.
 
-[`just-func`]: https://github.com/justland/just-func-typescript
-[`standard-log`]: https://github.com/unional/standard-log
 [`standard-log-color`]: https://github.com/unional/standard-log/tree/master/packages/color
+[`standard-log`]: https://github.com/unional/standard-log
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log
 [github-action-url]: https://github.com/unional/standard-log/actions
-[github-nodejs]: https://github.com/unional/standard-log/workflows/Node%20CI/badge.svg
+[github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
