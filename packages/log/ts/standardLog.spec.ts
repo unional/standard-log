@@ -544,6 +544,7 @@ describe('configGlobal()', () => {
     ctx.gsl = undefined
     ctx.configured = false
   })
+
   it('configure the global instance', () => {
     const mem = createMemoryLogReporter()
     configGlobal({ logLevel: logLevels.error, reporters: [mem] })
@@ -553,6 +554,7 @@ describe('configGlobal()', () => {
     log.info('info message')
     expect(mem.logs.length).toBe(1)
   })
+
   it('can call after getLogger', () => {
     const log = getLogger('default')
     log.info('from global log, expected to be printed')
@@ -563,10 +565,22 @@ describe('configGlobal()', () => {
     log.info('from global log, this should not be printed')
     expect(mem.logs.length).toBe(1)
   })
+
   it('will emit a warning when called twice', () => {
     const mem = createMemoryLogReporter()
     configGlobal({ reporters: [mem] })
     configGlobal({ reporters: [] })
     a.satisfies(mem.logs, [{ id: 'standard-log', level: logLevels.warn, args: [/being called more than once/] }])
+  })
+
+  it('remove existing reporter', () => {
+    const log = getLogger('default')
+    log.info('from global log, expected to be printed')
+
+    const mem = createMemoryLogReporter()
+    configGlobal({ logLevel: logLevels.error, reporters: [mem] })
+
+    const reporters = ctx.gsl?.store.reporters
+    expect(reporters).toEqual([mem])
   })
 })

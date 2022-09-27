@@ -96,7 +96,7 @@ export function configGlobal(options: Omit<StandardLogOptions, 'customLevels'>) 
     }
     if (options.reporters) {
       const reporters = ctx.gsl.store.reporters
-      while (reporters.length > 0) reporters.pop()
+      reporters.length = 0
       reporters.push(...options.reporters)
     }
   }
