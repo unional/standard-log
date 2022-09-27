@@ -1,4 +1,4 @@
-import watch from './config/jest.watch.mjs'
+import watch from './config/jest.watch.cjs'
 
 export default {
   collectCoverageFrom: [
