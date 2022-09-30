@@ -10,6 +10,7 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
    * The message only contains arguments for each log entry.
    */
   getLogMessage(): string,
+  getLogMessages(): string[],
   getLogMessageWithLevel(): string
 }
 
@@ -38,9 +39,11 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       logs.push(formatter(entry))
     },
     getLogMessage() {
+      return this.getLogMessages().join('\n')
+    },
+    getLogMessages() {
       return logs.map(toInspectLogEntry)
         .map(log => log.args.join(' '))
-        .join('\n')
     },
     getLogMessageWithLevel() { return toMessageWithLevel(logs) }
   })

@@ -2,7 +2,11 @@ import a from 'assertron'
 import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
 import { assertSSF, logEntriesToString } from './testUtil.js'
 
-describe('MemoryLogReporter', () => {
+const mikuIsSinging = { id: 'log', level: 1, args: ['miku', 'is', 'singing'], timestamp: new Date() }
+const lukaIsDancing = { id: 'log', level: 1, args: ['luka', 'is', 'dancing'], timestamp: new Date() }
+const reporter = createMemoryLogReporter()
+
+describe(createMemoryLogReporter.name, () => {
   it('filter is readonly', () => {
     const reporter = createMemoryLogReporter()
     const err = a.throws(() => { (reporter as any).filter = () => true }, err => /only a getter/.test(err))
@@ -10,76 +14,84 @@ describe('MemoryLogReporter', () => {
     assertSSF(err, __filename)
   })
 
-  describe('unit tests', () => {
-    test('log entries are saved in the `logs` property', () => {
+  test('log entries are saved in the `logs` property', () => {
+    const reporter = createMemoryLogReporter()
+    const entry = { id: 'log', level: 1, args: ['some messages'], timestamp: new Date() }
+    reporter.write(entry)
+    expect(reporter.logs).toEqual([entry])
+  })
+
+  test('can override id', () => {
+    const reporter = createMemoryLogReporter({ id: 'custom-id-mem' })
+    expect(reporter.id).toBe('custom-id-mem')
+  })
+
+  test('can filter', () => {
+    const filter: LogFilter = (entry) => entry.id !== 'secret'
+    const reporter = createMemoryLogReporter({ filter })
+    expect(reporter.filter).toBe(filter)
+    reporter.write({ id: 'ok', level: 1, args: ['some messages'], timestamp: new Date() })
+    reporter.write({ id: 'secret', level: 1, args: ['some messages'], timestamp: new Date() })
+    expect(reporter.logs.length).toBe(1)
+  })
+
+  test('formatter can be used to pre-process the log', () => {
+    const formatter: LogFormatter<LogEntry> = (entry) => ({
+      ...entry,
+      args: entry.args.map(arg => arg === 'secret' ? '<censored>' : arg)
+    })
+    const reporter = createMemoryLogReporter({ formatter })
+    expect(reporter.formatter).toBe(formatter)
+
+    const entry = { id: 'log', level: 1, args: ['a', 'secret', 'b'], timestamp: new Date() }
+    reporter.write(entry)
+
+    expect(reporter.logs[0].args[1]).toBe('<censored>')
+  })
+
+  describe(reporter.getLogMessages.name, () => {
+    it('maps each log entries to string', () => {
+      const r = createMemoryLogReporter()
+      r.write(mikuIsSinging)
+      r.write(lukaIsDancing)
+      expect(r.getLogMessages()).toEqual([
+        'miku is singing',
+        'luka is dancing'
+      ])
+    })
+  })
+  describe(reporter.getLogMessage.name, () => {
+    test('empty logs returns empty string', () => {
       const reporter = createMemoryLogReporter()
-      const entry = { id: 'log', level: 1, args: ['some messages'], timestamp: new Date() }
+
+      expect(reporter.getLogMessage()).toEqual('')
+    })
+
+    test('print args', () => {
+      const reporter = createMemoryLogReporter()
+      const entry = { id: 'log', level: 1, args: ['miku', 'is', 'singing'], timestamp: new Date() }
       reporter.write(entry)
-      expect(reporter.logs).toEqual([entry])
+      expect(reporter.getLogMessage()).toEqual('miku is singing')
     })
 
-    test('can override id', () => {
-      const reporter = createMemoryLogReporter({ id: 'custom-id-mem' })
-      expect(reporter.id).toBe('custom-id-mem')
-    })
-
-    test('can filter', () => {
-      const filter: LogFilter = (entry) => entry.id !== 'secret'
-      const reporter = createMemoryLogReporter({ filter })
-      expect(reporter.filter).toBe(filter)
-      reporter.write({ id: 'ok', level: 1, args: ['some messages'], timestamp: new Date() })
-      reporter.write({ id: 'secret', level: 1, args: ['some messages'], timestamp: new Date() })
-      expect(reporter.logs.length).toBe(1)
-    })
-
-    test('formatter can be used to pre-process the log', () => {
-      const formatter: LogFormatter<LogEntry> = (entry) => ({
-        ...entry,
-        args: entry.args.map(arg => arg === 'secret' ? '<censored>' : arg)
-      })
-      const reporter = createMemoryLogReporter({ formatter })
-      expect(reporter.formatter).toBe(formatter)
-
-      const entry = { id: 'log', level: 1, args: ['a', 'secret', 'b'], timestamp: new Date() }
+    test('print object arg', () => {
+      const reporter = createMemoryLogReporter()
+      const entry = { id: 'log', level: 1, args: [{ 'miku': 'sing' }], timestamp: new Date() }
       reporter.write(entry)
-
-      expect(reporter.logs[0].args[1]).toBe('<censored>')
+      expect(reporter.getLogMessage()).toEqual("{ miku: 'sing' }")
     })
-
-    describe('getLogMessages()', () => {
-      test('empty logs returns empty string', () => {
-        const reporter = createMemoryLogReporter()
-
-        expect(reporter.getLogMessage()).toEqual('')
-      })
-
-      test('print args', () => {
-        const reporter = createMemoryLogReporter()
-        const entry = { id: 'log', level: 1, args: ['miku', 'is', 'singing'], timestamp: new Date() }
-        reporter.write(entry)
-        expect(reporter.getLogMessage()).toEqual('miku is singing')
-      })
-
-      test('print object arg', () => {
-        const reporter = createMemoryLogReporter()
-        const entry = { id: 'log', level: 1, args: [{ 'miku': 'sing' }], timestamp: new Date() }
-        reporter.write(entry)
-        expect(reporter.getLogMessage()).toEqual("{ miku: 'sing' }")
-      })
-    })
-
-    describe('getLogMessageWithLevel', () => {
-      test('print with level', () => {
-        const reporter = createMemoryLogReporter()
-        reporter.write({ id: 'log', level: logLevels.info, args: ['msg 1'], timestamp: new Date() })
-        reporter.write({ id: 'log', level: logLevels.warn, args: ['msg 2'], timestamp: new Date() })
-        expect(reporter.getLogMessageWithLevel()).toEqual(`(INFO) msg 1\n(WARN) msg 2`)
-      })
+  })
+  describe(reporter.getLogMessageWithLevel.name, () => {
+    test('print with level', () => {
+      const reporter = createMemoryLogReporter()
+      reporter.write({ id: 'log', level: logLevels.info, args: ['msg 1'], timestamp: new Date() })
+      reporter.write({ id: 'log', level: logLevels.warn, args: ['msg 2'], timestamp: new Date() })
+      expect(reporter.getLogMessageWithLevel()).toEqual(`(INFO) msg 1\n(WARN) msg 2`)
     })
   })
 })
 
-describe('logEntriesToString()', () => {
+describe(logEntriesToString.name, () => {
   test('convert log entries to string', () => {
     const timestamp = new Date(2019, 6)
     const actual = logEntriesToString([
