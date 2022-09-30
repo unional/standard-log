@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.1.0
+
+### Minor Changes
+
+- db2cc1c: Add `createMemoryLogReporter().getLogMessages()`.
+
+  This is easier to use during tests compare to `getLogMessage()`
+
 ## 10.0.0
 
 ### Major Changes
