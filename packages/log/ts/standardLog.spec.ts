@@ -66,6 +66,12 @@ describe('createStandardLogForTest()', () => {
 })
 
 describe('standardLog.getLogger()', () => {
+  /**
+   * The logger id does not allow all characters due to security concerns.
+   * Since we have no control over where the logs will be written to,
+   * the could be a case that the ID is being used to exploit those environment.
+   * So keeping the supported characters in sane way helps mitigates the risk.
+   */
   it('supports id with alphanumeric and :_-.', () => {
     const sl = createStandardLog()
     sl.getLogger('abcdefghijklmnopqrstuvwxyz:-_.1234567890')
@@ -78,6 +84,10 @@ describe('standardLog.getLogger()', () => {
     const sl = createStandardLog()
     sl.getLogger('@unional/fixture')
     sl.getLogger(`a\\b\\c`)
+  })
+  it('supports id with space', () => {
+    const sl = createStandardLog()
+    sl.getLogger('hello world')
   })
   it.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
     const sl = createStandardLog()
