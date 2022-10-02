@@ -18,7 +18,7 @@
     "lint": "turbo run lint",
     "log": "pnpm --filter=standard-log",
     "nuke": "turbo run nuke && pnpm nuke:local",
-    "nuke:local": "rimraf node_modules || true",
+    "nuke:local": "rimraf node_modules",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "prepare": "husky install",
