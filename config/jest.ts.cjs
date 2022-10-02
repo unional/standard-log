@@ -29,9 +29,14 @@ module.exports = {
   // transformIgnorePatterns: [
   //   // Need to MANUALLY identify each ESM package, one by one
   //   'node_modules/(?!(@unional\\fixture|chalk)/)'
+  //   'node_modules/.*\\.(ts|tsx|mts|cts)$'
   // ],
   // transform: {
-  // '^.+\\.(js|jsx|mjs)$': 'babel-jest'
+  //   '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',
+  //   '^.+\\.(ts|tsx|mts|cts)$': ['ts-jest', {
+  //     isolatedModules: true,
+  //     useESM: true
+  //   }]
   // },
   roots: [
     '<rootDir>/ts',
