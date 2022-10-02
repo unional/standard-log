@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.2.1
+
+### Patch Changes
+
+- e9cf556: Loosen `DEFAULT_LOG_METHOD_NAMES` type to `string[]`.
+
 ## 10.2.0
 
 ### Minor Changes
