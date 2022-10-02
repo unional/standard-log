@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:doc:skip": "typedoc && copyfiles -f packages/log/images/* docs/images",
+    "build:doc": "typedoc && copyfiles -f packages/log/images/* docs/images",
     "clean": "turbo run clean",
     "color": "pnpm --filter=standard-log-color",
     "coverage": "turbo run coverage",
@@ -34,9 +34,12 @@
     "@changesets/cli": "^2.25.0",
     "@commitlint/cli": "^17.1.2",
     "@commitlint/config-conventional": "^17.1.0",
+    "copyfiles": "^2.4.1",
     "husky": "^8.0.1",
     "pinst": "^3.0.0",
     "turbo": "^1.5.5",
+    "typedoc": "^0.23.15",
+    "typedoc-plugin-extras": "^2.3.0",
     "typescript": "^4.8.4"
   },
   "packageManager": "pnpm@7.12.2"
