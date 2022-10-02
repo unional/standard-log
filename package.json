@@ -5,7 +5,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "build:doc": "typedoc && copyfiles -f packages/log/images/* docs/images",
+    "build:doc:skip": "typedoc && copyfiles -f packages/log/images/* docs/images",
     "clean": "turbo run clean",
     "color": "pnpm --filter=standard-log-color",
     "coverage": "turbo run coverage",
@@ -22,6 +22,7 @@
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
     "prepare": "husky install",
+    "release": "changeset publish",
     "size": "turbo run size",
     "syslog": "pnpm --filter=standard-log-syslog",
     "test": "turbo run test",
@@ -30,29 +31,12 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
-    "@types/copyfiles": "^2",
-    "@types/eslint": "^8",
-    "@typescript-eslint/eslint-plugin": "^5.27.0",
-    "copyfiles": "^2.4.1",
-    "eslint": "^8.17.0",
-    "eslint-plugin-harmony": "^7.1.0",
+    "@changesets/cli": "^2.25.0",
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
     "husky": "^8.0.1",
-    "jest": "^29.0.0",
-    "jest-watch-suspend": "^1.1.2",
-    "jest-watch-toggle-config": "^2.0.1",
-    "jest-watch-typeahead": "^2.0.0",
-    "npm-check-updates": "^16.0.0",
-    "npm-run-all": "^4.1.5",
     "pinst": "^3.0.0",
-    "standard-log": "workspace:*",
-    "standard-log-color": "workspace:*",
-    "turbo": "^1.2.16",
-    "typedoc": "^0.23.0",
-    "typedoc-plugin-extras": "^2.2.3",
-    "typescript": "^4.8.4"
+    "turbo": "^1.5.5"
   },
   "packageManager": "pnpm@7.12.2"
 }
