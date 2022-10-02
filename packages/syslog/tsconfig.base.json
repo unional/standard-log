@@ -4,8 +4,7 @@
     "rootDir": "ts",
     "lib": [
       "ES2021.Promise"
-    ],
-    "tsBuildInfoFile": ".tsbuildinfo"
+    ]
   },
   "references": [
     {
