@@ -11,7 +11,8 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
    */
   getLogMessage(): string,
   getLogMessages(): string[],
-  getLogMessageWithLevel(): string
+  getLogMessageWithLevel(): string,
+  getLogMessagesWithIdAndLevel(): string[]
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
@@ -44,6 +45,10 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
     getLogMessages() {
       return logs.map(toInspectLogEntry)
         .map(log => log.args.join(' '))
+    },
+    getLogMessagesWithIdAndLevel() {
+      return logs.map(toInspectLogEntry)
+        .map(log => `${log.id} ${formatLogLevel(log.level)} ${log.args.join(' ')}`)
     },
     getLogMessageWithLevel() { return toMessageWithLevel(logs) }
   })

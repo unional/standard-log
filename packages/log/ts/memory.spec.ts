@@ -2,8 +2,8 @@ import a from 'assertron'
 import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
 import { assertSSF, logEntriesToString } from './testUtil.js'
 
-const mikuIsSinging = { id: 'log', level: 1, args: ['miku', 'is', 'singing'], timestamp: new Date() }
-const lukaIsDancing = { id: 'log', level: 1, args: ['luka', 'is', 'dancing'], timestamp: new Date() }
+const mikuIsSinging = { id: 'test-log', level: logLevels.info, args: ['miku', 'is', 'singing'], timestamp: new Date() }
+const lukaIsDancing = { id: 'test-log', level: logLevels.warn, args: ['luka', 'is', 'dancing'], timestamp: new Date() }
 const reporter = createMemoryLogReporter()
 
 describe(createMemoryLogReporter.name, () => {
@@ -87,6 +87,18 @@ describe(createMemoryLogReporter.name, () => {
       reporter.write({ id: 'log', level: logLevels.info, args: ['msg 1'], timestamp: new Date() })
       reporter.write({ id: 'log', level: logLevels.warn, args: ['msg 2'], timestamp: new Date() })
       expect(reporter.getLogMessageWithLevel()).toEqual(`(INFO) msg 1\n(WARN) msg 2`)
+    })
+  })
+
+  describe(reporter.getLogMessagesWithIdAndLevel.name, () => {
+    it('does what the name says', () => {
+      const r = createMemoryLogReporter()
+      r.write(mikuIsSinging)
+      r.write(lukaIsDancing)
+      expect(r.getLogMessagesWithIdAndLevel()).toEqual([
+        'test-log (INFO) miku is singing',
+        'test-log (WARN) luka is dancing'
+      ])
     })
   })
 })
