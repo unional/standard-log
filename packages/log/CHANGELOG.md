@@ -1,5 +1,11 @@
 # Change Log
 
+## 10.3.0
+
+### Minor Changes
+
+- 0500d1e: Add `memory.getLogMessagesWithIdAndLevel()` for easier testing
+
 ## 10.2.1
 
 ### Patch Changes
@@ -182,7 +188,7 @@ The following functions/features are removed and replaced:
   import { createColorLogReporter } from "standard-log-color";
 
   const standardLog = createStandardLog({
-    reporters: [createColorLogReporter()]
+    reporters: [createColorLogReporter()],
   });
   ```
 
