@@ -28,9 +28,6 @@
         "^build"
       ]
     },
-    "dev": {
-      "cache": false
-    },
     "lint": {},
     "nuke": {
       "cache": false
@@ -44,9 +41,6 @@
       "dependsOn": [
         "^build"
       ]
-    },
-    "verify": {
-      "cache": false
     },
     "watch": {
       "dependsOn": [
