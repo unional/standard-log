@@ -1,6 +1,7 @@
 ignores:
   - '@size-limit/preset-small-lib'
   - '@types/jest'
+  - '@types/node'
   - '@typescript-eslint/eslint-plugin'
   - '@typescript-eslint/parser'
   - compression-webpack-plugin
