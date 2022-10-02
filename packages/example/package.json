@@ -1,6 +1,10 @@
 {
   "name": "@standard-log/example",
   "private": true,
+  "scripts": {
+    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006"
+  },
   "devDependencies": {
     "@babel/core": "^7.18.2",
     "@mdx-js/react": "^2.0.0",
@@ -16,9 +20,5 @@
     "@types/babel__core": "^7",
     "babel-loader": "^8.2.5",
     "console-feed": "^3.3.0"
-  },
-  "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
   }
 }

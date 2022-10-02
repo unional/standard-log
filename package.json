@@ -7,15 +7,15 @@
     "build": "turbo run build",
     "build:doc": "typedoc && copyfiles -f packages/log/images/* docs/images",
     "clean": "turbo run clean",
-    "color": "yarn workspace standard-log-color",
+    "color": "pnpm --filter=standard-log-color",
     "coverage": "turbo run coverage",
     "cs": "changeset",
     "depcheck": "turbo run depcheck",
     "dev": "turbo run dev --parallel",
     "postinstall": "husky install",
-    "just-func": "yarn workspace just-func",
+    "just-func": "pnpm --filter=just-func",
     "lint": "turbo run lint",
-    "log": "yarn workspace standard-log",
+    "log": "pnpm --filter=standard-log",
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",
     "prepack": "pinst --disable",
@@ -53,5 +53,5 @@
     "typedoc-plugin-extras": "^2.2.3",
     "typescript": "^4.7.3"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "pnpm@7.12.2"
 }

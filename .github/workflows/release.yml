@@ -5,13 +5,13 @@ on:
 
 jobs:
   code:
-    uses: unional/.github/.github/workflows/yarn-verify-cross-platform.yml@main
+    uses: unional/.github/.github/workflows/pnpm-verify-cross-platform.yml@main
 
   release:
-    uses: unional/.github/.github/workflows/yarn-release-changeset.yml@main
+    uses: unional/.github/.github/workflows/pnpm-release-changeset.yml@main
     needs: code
     secrets: inherit
 
   docgen:
-      uses: unional/.github/.github/workflows/yarn-docs.yml@main
+      uses: unional/.github/.github/workflows/pnpm-docs.yml@main
       needs: release
