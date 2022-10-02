@@ -60,7 +60,8 @@ packages/*/esm
 packages/*/tslib
 packages/*/dist
 packages/*/lib*
-pacakges/*/out*
+packages/*/out*
+packages/*/*.tsbuildinfo
 .nowhere
 .reports
 /docs
