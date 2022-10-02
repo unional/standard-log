@@ -1,5 +1,12 @@
 # Change Log
 
+## 10.0.0
+
+### Patch Changes
+
+- Updated dependencies [0500d1e]
+  - standard-log@10.3.0
+
 ## 9.0.0
 
 ### Patch Changes
