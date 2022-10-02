@@ -1,5 +1,12 @@
 # Change Log
 
+## 7.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - standard-log@10.2.0
+
 ## 6.0.0
 
 ### Patch Changes

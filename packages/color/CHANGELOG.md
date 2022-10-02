@@ -1,5 +1,12 @@
 # Change Log
 
+## 9.0.0
+
+### Patch Changes
+
+- Updated dependencies
+  - standard-log@10.2.0
+
 ## 8.0.0
 
 ### Major Changes

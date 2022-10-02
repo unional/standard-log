@@ -1,5 +1,13 @@
 # Change Log
 
+## 10.2.0
+
+### Minor Changes
+
+- Add `DEFAULT_LOG_METHOD_NAMES`.
+
+  This is useful if you want to manipulate the method names.
+
 ## 10.1.0
 
 ### Minor Changes

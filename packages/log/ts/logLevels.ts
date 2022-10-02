@@ -1,3 +1,5 @@
+import { LogMethodNames } from './types.js'
+
 export const logLevels = {
   /**
    * none: 0
@@ -72,3 +74,16 @@ export function toLogLevelName(level: number) {
 export function toLogLevel(name: string) {
   return (logLevels as any)[name.toLocaleLowerCase()]
 }
+
+export const DEFAULT_LOG_METHOD_NAMES: LogMethodNames[] = [
+  'emergency',
+  'alert',
+  'critical',
+  'error',
+  'warn',
+  'notice',
+  'info',
+  'debug',
+  'trace',
+  'planck'
+]
