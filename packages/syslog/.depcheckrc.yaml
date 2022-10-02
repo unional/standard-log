@@ -3,9 +3,10 @@ ignores:
   - '@types/jest'
   - '@typescript-eslint/eslint-plugin'
   - '@typescript-eslint/parser'
-  - 'eslint-config-prettier'
-  - 'eslint-plugin-harmony'
   - compression-webpack-plugin
+  - eslint-config-prettier
+  - eslint-plugin-harmony
+  - jest-*
   - param-case
   - pascal-case
   - size-limit
