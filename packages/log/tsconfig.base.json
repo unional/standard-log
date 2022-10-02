@@ -3,6 +3,8 @@
   "compilerOptions": {
     "rootDir": "ts",
     "lib": [
+      "DOM",
+      "ES2015",
       "ES2021.Promise"
     ],
     "tsBuildInfoFile": ".tsbuildinfo"
