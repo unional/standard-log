@@ -71,12 +71,13 @@
   },
   "dependencies": {
     "color-map": "^2.0.3",
-    "supports-color": "^9.2.3",
+    "supports-color": "^8.1.1",
     "unpartial": "^1.0.4"
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/jest": "^29.1.1",
+    "@types/supports-color": "^8.1.1",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
     "assertron": "^10.0.0",
