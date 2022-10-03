@@ -60,6 +60,7 @@ describe(createMemoryLogReporter.name, () => {
       ])
     })
   })
+
   describe(reporter.getLogMessage.name, () => {
     test('empty logs returns empty string', () => {
       const reporter = createMemoryLogReporter()
@@ -81,6 +82,7 @@ describe(createMemoryLogReporter.name, () => {
       expect(reporter.getLogMessage()).toEqual("{ miku: 'sing' }")
     })
   })
+
   describe(reporter.getLogMessageWithLevel.name, () => {
     test('print with level', () => {
       const reporter = createMemoryLogReporter()
@@ -99,6 +101,18 @@ describe(createMemoryLogReporter.name, () => {
         'test-log (INFO) miku is singing',
         'test-log (WARN) luka is dancing'
       ])
+    })
+  })
+
+  describe(reporter.emit.name, () => {
+    it('emit saved logs to console', () => {
+      const r = createMemoryLogReporter()
+      r.write(mikuIsSinging)
+      r.write(lukaIsDancing)
+      r.write({ id: 'test-log', level: logLevels.info, args: ['the two messages above are expected'], timestamp: new Date() })
+
+      // inspect visually
+      r.emit()
     })
   })
 })
