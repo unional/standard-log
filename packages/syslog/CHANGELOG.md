@@ -1,5 +1,12 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- Updated dependencies [00ffb1d]
+  - standard-log@11.0.0
+
 ## 8.0.0
 
 ### Patch Changes

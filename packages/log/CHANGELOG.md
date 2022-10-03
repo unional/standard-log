@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.0.0
+
+### Minor Changes
+
+- 00ffb1d: Add `memoryReporter.emit()`.
+
+  This make it a lot easier to inspect the logs in the console when needed.
+
 ## 10.3.0
 
 ### Minor Changes
