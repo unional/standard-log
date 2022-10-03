@@ -2,6 +2,7 @@ import { required } from 'type-plus'
 import { toInspectLogEntry } from './platform.js'
 import { formatLogLevel } from './formatter.js'
 import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
+import { createConsoleLogReporter } from './console.js'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
   logs: LogEntry[],
@@ -12,7 +13,8 @@ export type MemoryLogReporter = LogReporter<LogEntry> & {
   getLogMessage(): string,
   getLogMessages(): string[],
   getLogMessageWithLevel(): string,
-  getLogMessagesWithIdAndLevel(): string[]
+  getLogMessagesWithIdAndLevel(): string[],
+  emit(): void
 }
 
 export type MemoryLogFormatter = LogFormatter<LogEntry>
@@ -50,6 +52,13 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
       return logs.map(toInspectLogEntry)
         .map(log => `${log.id} ${formatLogLevel(log.level)} ${log.args.join(' ')}`)
     },
-    getLogMessageWithLevel() { return toMessageWithLevel(logs) }
+    getLogMessageWithLevel() { return toMessageWithLevel(logs) },
+    /**
+     * emit the saved log to console for easy debugging
+     */
+    emit() {
+      const reporter = createConsoleLogReporter()
+      logs.forEach(l => reporter.write(l))
+    }
   })
 }

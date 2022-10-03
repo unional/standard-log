@@ -54,6 +54,7 @@
     "nuke:local": "rimraf node_modules",
     "size": "size-limit",
     "test": "jest",
+    "test:watch": "jest --watch",
     "verify": "npm-run-all -p build depcheck lint coverage -p size",
     "watch": "jest --watch"
   },
