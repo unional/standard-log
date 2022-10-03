@@ -1,5 +1,16 @@
 # Change Log
 
+## 11.0.0
+
+### Patch Changes
+
+- bd86aaa: Downgrade `supports-color` to `8.1.1`.
+
+  `supports-color@9` is ESM only and doesn't work with the CJS distribution.
+
+- Updated dependencies [00ffb1d]
+  - standard-log@11.0.0
+
 ## 10.0.0
 
 ### Patch Changes
