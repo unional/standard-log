@@ -27,7 +27,7 @@
     "syslog": "pnpm --filter=standard-log-syslog",
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
-    "version": "changeset version && yarn install",
+    "version": "changeset version",
     "watch": "jest --watch"
   },
   "devDependencies": {
