@@ -3,46 +3,66 @@ export const logLevels = {
   /**
    * none: 0
    */
-  none: 0,
+  none: 0 as const,
   /**
    * emergency: 100
+   *
+   * emergency -> alert
    */
-  emergency: 100,
+  emergency: 100 as const,
   /**
    * alert: 200
+   *
+   * emergency -> alert -> critical
    */
-  alert: 200,
+  alert: 200 as const,
   /**
    * critical: 300
+   *
+   * alert -> critical -> error
    */
-  critical: 300,
+  critical: 300 as const,
   /**
    * error: 400
+   *
+   * critical -> error -> warn
    */
-  error: 400,
+  error: 400 as const,
   /**
    * warn: 500
+   *
+   * error -> warn -> notice
    */
-  warn: 500,
+  warn: 500 as const,
   /**
    * notice: 600
+   *
+   * warn -> notice -> info
    */
-  notice: 600,
+  notice: 600 as const,
   /**
    * info: 700
+   *
+   * notice -> info -> debug
    */
-  info: 700,
+  info: 700 as const,
   /**
    * debug: 800
+   *
+   * info -> debug -> trace
    */
-  debug: 800,
+  debug: 800 as const,
   /**
    * trace: 900
+   *
+   * debug -> trace -> planck
    */
-  trace: 900,
+  trace: 900 as const,
   /**
    * planck: Infinity
    * `planck unit` is a very small unit <https://en.wikipedia.org/wiki/Planck_units>.
+   *
+   * trace -> planck
    */
   planck: Infinity,
   /**
