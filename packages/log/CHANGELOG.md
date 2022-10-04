@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.0.1
+
+### Patch Changes
+
+- 2dd09cd: The `logLevels` values are now typed `as const` to make it easier to check when using IDE.
+
 ## 11.0.0
 
 ### Minor Changes
