@@ -36,7 +36,7 @@ describe('createStandardLog()', () => {
       const mem = createMemoryLogReporter()
       const sl = createStandardLog({ reporters: [mem] })
       const log = sl.getLogger('x')
-      log.info('abc')
+      log.notice('abc')
       expect(mem.logs.length).toBe(1)
     })
   })
