@@ -654,4 +654,12 @@ describe('getNonConsoleLogger()', () => {
       level: logLevels.warn
     }])
   })
+
+  it('will get the same non-console logger if spplies with the same name', () => {
+    const sl = createStandardLogForTest()
+    const logA = sl.getNonConsoleLogger('non-console')
+    const logB = sl.getNonConsoleLogger('non-console')
+
+    expect(logA).toStrictEqual(logB)
+  })
 })
