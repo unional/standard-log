@@ -124,8 +124,8 @@ function getGlobalSL<N extends string = LogMethodNames>(): StandardLogInstance<N
 
 export function configGlobal(options: Omit<StandardLogOptions, 'customLevels'>) {
   if (ctx.configured) {
-    const log = ctx.gsl?.standardLog.getLogger('standard-log')
-    log?.warn('configGlobal() is being called more than once. Please make sure this is expected. Application should use `createStandardLog()` most of the time.')
+    const log = ctx.gsl!.standardLog.getLogger('standard-log')
+    log.warn('configGlobal() is being called more than once. Please make sure this is expected. Application should use `createStandardLog()` most of the time.')
   }
 
   if (ctx.gsl) {
