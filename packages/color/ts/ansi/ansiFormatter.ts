@@ -84,7 +84,7 @@ const ansiColors: {
     [ANSI_WHITE + ANSI_FOREGROUND, ANSI_BLACK + ANSI_BACKGROUND, ANSI_BRIGHT, ANSI_UNDERSCORE],
   ]
 }
-const ansiColorMap: Record<string, number[]> = {}
+const ansiColorMap: Record<string, number[]> = Object.create(null)
 
 function getAnsiColor(id: string) {
   return ansiColorMap[id] = ansiColorMap[id] || ansiColors.list[ansiColors.counter++ % ansiColors.list.length]

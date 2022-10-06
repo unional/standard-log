@@ -62,3 +62,40 @@ export function createMemoryLogReporter(options?: LogReporterOptions<LogEntry>):
     }
   })
 }
+
+
+export function createMemoryWithConsoleLogReporter(options?: LogReporterOptions<LogEntry>): MemoryLogReporter {
+  const { id, formatter, filter } = required({ id: 'memory-with-console', formatter: (e: LogEntry) => e }, options)
+  const logs: LogEntry[] = []
+  const consoleReporter = createConsoleLogReporter()
+  return Object.freeze({
+    id,
+    isConsoleReporter: true,
+    get formatter() { return formatter },
+    get filter() { return filter },
+    logs,
+    write(entry: LogEntry) {
+      if (filter && !filter(entry)) return
+      logs.push(formatter(entry))
+      consoleReporter.write(entry)
+    },
+    getLogMessage() {
+      return this.getLogMessages().join('\n')
+    },
+    getLogMessages() {
+      return logs.map(toInspectLogEntry)
+        .map(log => log.args.join(' '))
+    },
+    getLogMessagesWithIdAndLevel() {
+      return logs.map(toInspectLogEntry)
+        .map(log => `${log.id} ${formatLogLevel(log.level)} ${log.args.join(' ')}`)
+    },
+    getLogMessageWithLevel() { return toMessageWithLevel(logs) },
+    /**
+     * emit the saved log to console for easy debugging
+     */
+    emit() {
+      logs.forEach(l => consoleReporter.write(l))
+    }
+  })
+}
