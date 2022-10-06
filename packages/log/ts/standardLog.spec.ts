@@ -2,7 +2,7 @@ import { assertron as a } from 'assertron'
 import { InvalidId } from './errors.js'
 import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
-import { createMemoryLogReporter } from './memory.js'
+import { createMemoryLogReporter, createMemoryWithConsoleLogReporter } from './memory.js'
 import { configGlobal, ctx, StandardLogForTest } from './standardLog.js'
 import { assertSSF, wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
@@ -39,6 +39,18 @@ describe('createStandardLog()', () => {
       log.notice('abc')
       expect(mem.logs.length).toBe(1)
     })
+
+    it('all reporters must have an id', () => {
+      const reporter = createMemoryLogReporter({ id: '' })
+      createStandardLog({ reporters: [reporter] })
+
+      a.satisfies(reporter.logs, [{
+        id: 'standard-log',
+        level: logLevels.critical,
+        args: [`Detected reporter with empty id. This is not allowed as it will create problems with feature like 'getNonConsoleLogger()'. Please add an id to your reporter.`]
+      }])
+    })
+
   })
 
   describe('related to global', () => {
@@ -592,5 +604,54 @@ describe('configGlobal()', () => {
 
     const reporters = ctx.gsl?.store.reporters
     expect(reporters).toEqual([mem])
+  })
+})
+
+describe('getNonConsoleLogger()', () => {
+  it('will not write to console', () => {
+    const memory = createMemoryLogReporter()
+    const c = createMemoryWithConsoleLogReporter()
+    const sl = createStandardLog({ reporters: [memory, c] })
+    const log = sl.getNonConsoleLogger('non-console')
+
+    log.info('should not see this')
+    expect(c.logs).toEqual([])
+  })
+
+  it('no non-console reporter should get logger with noop', () => {
+    const reporter = createMemoryWithConsoleLogReporter()
+    const sl = createStandardLog({ reporters: [reporter] })
+    const log = sl.getNonConsoleLogger('non-console')
+
+    log.emergency('should not see this')
+    log.alert('should not see this')
+    log.critical('should not see this')
+    log.error('should not see this')
+    log.warn('should not see this')
+    log.notice('should not see this')
+    log.info('should not see this')
+    log.debug('should not see this')
+    log.trace('should not see this')
+    log.planck('should not see this')
+    log.count('should not see this')
+    log.write({ id: 'x', args: ['y'], level: logLevels.alert, timestamp: new Date() })
+    log.on(logLevels.emergency, () => 'should not see this')
+
+    expect(reporter.logs).toEqual([])
+  })
+
+  it('with existing id should fail', () => {
+    const memory = createMemoryLogReporter()
+    const c = createMemoryWithConsoleLogReporter()
+    const sl = createStandardLog({ reporters: [memory, c] })
+    sl.getLogger('exist-expected to see')
+    const log = sl.getNonConsoleLogger('exist-expected to see')
+    log.error('should not see this')
+
+    a.satisfies(memory.logs, [{
+      id: 'standard-log',
+      args: [`attempt to create a non-console logger with existing id ('exist-expected to see'), ignoring`],
+      level: logLevels.warn
+    }])
   })
 })

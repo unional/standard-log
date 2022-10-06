@@ -15,7 +15,7 @@ export type CssFormatterOptions = {
 
 export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
   const { maxColor, timestamp } = required({ maxColor: 20, timestamp: 'none' }, options)
-  const loggerMap: Record<string, RGB> = {}
+  const loggerMap: Record<string, RGB> = Object.create(null)
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)
   let count = 0
 

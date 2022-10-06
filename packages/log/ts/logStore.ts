@@ -1,12 +1,13 @@
 
-import { mapKey, reduceByKey, reduceKey } from 'type-plus'
+import { mapKey, record, reduceByKey, reduceKey } from 'type-plus'
 import { createConsoleLogReporter } from './console.js'
 import { logLevels, toLogLevel, toLogLevelName } from './logLevels.js'
 import type { Logger, LogLevel, LogMethodNames, LogReporter, StandardLogOptions } from './types.js'
 
 export function createLogStore<N extends string = LogMethodNames>(options: Required<StandardLogOptions<N>>): LogStore {
   return {
-    loggers: {},
+    loggers: record(),
+    nonConsoleLoggers: record(),
     reporters: options.reporters || [createConsoleLogReporter()],
     logLevel: options.logLevel,
     logLevelStore: logLevelStore(options)
@@ -15,6 +16,7 @@ export function createLogStore<N extends string = LogMethodNames>(options: Requi
 
 export interface LogStore {
   loggers: Record<string, Logger>,
+  nonConsoleLoggers: Record<string, Logger>,
   reporters: LogReporter[],
   logLevel: LogLevel,
   logLevelStore: ReturnType<typeof logLevelStore>
@@ -25,7 +27,7 @@ export interface LogLevelStoreOptions {
 }
 
 export function logLevelStore(options: LogLevelStoreOptions) {
-  const customLevels = options.customLevels || {}
+  const customLevels = options.customLevels || record()
 
   const store = {
     customLevels,
