@@ -101,7 +101,7 @@ importers:
 
   packages/log:
     specifiers:
-      '@just-func/types': ^0.3.0
+      '@just-func/types': ^0.4.0
       '@size-limit/preset-small-lib': ^8.1.0
       '@types/jest': ^29.1.1
       '@types/ms': ^0.7.31
@@ -136,7 +136,7 @@ importers:
       webpack-bundle-analyzer: ^4.6.1
       webpack-cli: ^4.10.0
     dependencies:
-      '@just-func/types': 0.3.0
+      '@just-func/types': 0.4.0
       iso-error: 4.4.0
       ms: 2.1.3
       type-plus: 4.13.1
@@ -1505,8 +1505,8 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.14
     dev: true
 
-  /@just-func/types/0.3.0:
-    resolution: {integrity: sha512-rUvlsmAs4Or435YZQR033KD7x8B8GokcDKe9dDq1Gp4niwlnFh83lBKz9eBCpZikmHyp/eo5/qyDZxsRaYSSJA==}
+  /@just-func/types/0.4.0:
+    resolution: {integrity: sha512-JsBoSndz/rN/cmBgUC9DOFyWdMMJzBwEcaNnayZgzZ30mRnQVKEot5Xqy6X3Cc3+RwAmrowQFudLGTH3kfzXxA==}
     dependencies:
       type-plus: 4.13.1
     dev: false
