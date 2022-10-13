@@ -5,5 +5,8 @@
     "moduleResolution": "Node",
     "outDir": "cjs",
     "target": "ES5"
-  }
+  },
+  "exclude": [
+    "ts/**/*.spec.ts"
+  ]
 }

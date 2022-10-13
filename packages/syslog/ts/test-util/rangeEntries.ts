@@ -1,5 +1,5 @@
-import R from 'ramda';
+import { range } from 'ramda'
 
 export function rangeEntries(start: number, end: number, expected: any) {
-  return R.range(start, end).map(value => ([value, expected]))
+  return range(start, end).map(value => ([value, expected]))
 }

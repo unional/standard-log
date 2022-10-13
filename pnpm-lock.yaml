@@ -111,6 +111,7 @@ importers:
       compression-webpack-plugin: ^10.0.0
       cross-env: ^7.0.3
       depcheck: ^1.4.3
+      dirname-filename-esm: ^1.1.1
       eslint: ^8.24.0
       iso-error: ^4.4.0
       jest: ^29.1.2
@@ -151,6 +152,7 @@ importers:
       compression-webpack-plugin: 10.0.0_webpack@5.74.0
       cross-env: 7.0.3
       depcheck: 1.4.3
+      dirname-filename-esm: 1.1.1
       eslint: 8.24.0
       jest: 29.1.2_@types+node@14.18.31
       jest-validate: 29.1.2
@@ -2991,6 +2993,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
+    dev: true
+
+  /dirname-filename-esm/1.1.1:
+    resolution: {integrity: sha512-BWBkv157Cf/z7Hjod2v2JS7vyC36Dk1QQolAtuLjpl8RBlv7Z92X7+Ufc2cjfR/B3iJUiK0QmGZkgtsmmLz0Tw==}
     dev: true
 
   /doctrine/3.0.0:
