@@ -1,10 +1,9 @@
 import { assertron as a } from 'assertron'
-import { InvalidId } from './errors.js'
 import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter, createMemoryWithConsoleLogReporter } from './memory.js'
 import { configGlobal, ctx, StandardLogForTest } from './standardLog.js'
-import { assertSSF, wrapTest } from './testUtil.js'
+import { wrapTest } from './testUtil.js'
 import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
 
 describe('createStandardLog()', () => {
@@ -101,15 +100,15 @@ describe('standardLog.getLogger()', () => {
     const sl = createStandardLog()
     sl.getLogger('hello world')
   })
-  it.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('throws if id has unsupported character %s', (char: string) => {
+  it.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))('replace unsupported character %s in id with -', (char: string) => {
     const sl = createStandardLog()
-    a.throws(() => sl.getLogger(char), InvalidId)
+    const log = sl.getLogger(`abc${char}def`)
+    expect(log.id).toEqual('abc-def')
   })
-  it('throw InvalidId with ssf to the call site', () => {
+  it('replace all unsupported characters in id with -', () => {
     const sl = createStandardLog()
-    const err = a.throws(() => sl.getLogger('!'), InvalidId)
-
-    assertSSF(err, __filename)
+    const log = sl.getLogger(`a!()b%{}c`)
+    expect(log.id).toEqual('a---b---c')
   })
   test('id is readonly', () => {
     const sl = createStandardLog()
