@@ -1,5 +1,3 @@
-import type { StackTraceMeta } from '@just-func/types'
-import { InvalidId } from './errors.js'
 import { logLevels } from './logLevels.js'
 import { LogStore } from './logStore.js'
 import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
@@ -8,7 +6,7 @@ import { LogLevel } from './types.js'
 export function createLogger<N extends string = LogMethodNames>(
   store: LogStore, id: string, options?: LoggerOptions
 ): Logger<N | LogMethodNames> {
-  validateId(id, options)
+  id = sanitizeId(id)
   const writeTo = options?.writeTo ?? (() => true)
   const [filter, reporters]: [(reporterId: string) => boolean, LogReporter[]] = typeof writeTo === 'string'
     ? [id => id === writeTo, store.reporters]
@@ -66,8 +64,8 @@ export function createLogger<N extends string = LogMethodNames>(
   return logger
 }
 
-function validateId(id: string, meta?: StackTraceMeta) {
-  if (/[`~!#$%^&*()=+[\]{},|<>?]/.test(id)) throw new InvalidId(id, meta)
+function sanitizeId(id: string) {
+  return id.replace(/[`~!#$%^&*()=+[\]{},|<>?]/g, '-')
 }
 
 function writeToReporters(reporters: LogReporter[], logEntry: LogEntry, filter: (reporterId: string) => boolean) {
