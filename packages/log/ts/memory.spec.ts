@@ -1,6 +1,7 @@
 import a from 'assertron'
 import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
 import { assertSSF, logEntriesToString } from './testUtil.js'
+import { filename } from 'dirname-filename-esm'
 
 const mikuIsSinging = { id: 'test-log', level: logLevels.info, args: ['miku', 'is', 'singing'], timestamp: new Date() }
 const lukaIsDancing = { id: 'test-log', level: logLevels.warn, args: ['luka', 'is', 'dancing'], timestamp: new Date() }
@@ -11,7 +12,7 @@ describe(createMemoryLogReporter.name, () => {
     const reporter = createMemoryLogReporter()
     const err = a.throws(() => { (reporter as any).filter = () => true }, err => /only a getter/.test(err))
 
-    assertSSF(err, __filename)
+    assertSSF(err, filename(import.meta))
   })
 
   test('log entries are saved in the `logs` property', () => {

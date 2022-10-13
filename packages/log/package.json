@@ -47,16 +47,16 @@
     "bundle:es5": "webpack -c ./webpack.es5.cjs",
     "bundle:esm": "webpack -c ./webpack.esm.cjs",
     "clean": "rimraf cjs coverage dist esm lib libm tslib *.tsbuildinfo",
-    "coverage": "jest --coverage",
+    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules",
     "size": "size-limit",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "verify": "npm-run-all -p build depcheck lint coverage -p size",
-    "watch": "jest --watch"
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "dependencies": {
     "@just-func/types": "^0.4.0",
@@ -75,6 +75,7 @@
     "compression-webpack-plugin": "^10.0.0",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
+    "dirname-filename-esm": "^1.1.1",
     "eslint": "^8.24.0",
     "jest": "^29.1.2",
     "jest-validate": "^29.1.2",

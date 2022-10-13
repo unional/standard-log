@@ -1,10 +1,10 @@
-import R from 'ramda'
+import { range } from 'ramda'
 import { plainLogFormatter } from './formatter.js'
 import { toInspectLogEntry } from './platform.js'
 import type { LogEntry } from './types.js'
 
 export function rangeEntries(start: number, end: number, expected: any) {
-  return R.range(start, end).map(value => ([value, expected]))
+  return range(start, end).map(value => ([value, expected]))
 }
 
 export function assertSSF(err: Error, filename: string) {
