@@ -1,5 +1,5 @@
 import { logLevels } from 'standard-log'
-import a from 'assertron'
+import { a } from 'assertron'
 import { anything } from 'satisfier'
 import { createCssFormatter } from './cssFormatter.js'
 
