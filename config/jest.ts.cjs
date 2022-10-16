@@ -2,10 +2,7 @@ const path = require('path')
 const watch = require('./jest.watch.cjs')
 
 module.exports = {
-  preset: 'ts-jest/presets/default-esm',
-  // globals: {
-  //   'ts-jest': { isolatedModules: true, useESM: true }
-  // },
+  extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     // remove the phantom `.js` extension
     '^(\\.{1,2}/.*)\\.js$': '$1',
@@ -29,18 +26,6 @@ module.exports = {
       useESM: true
     }],
   },
-  // transformIgnorePatterns: [
-  //   // Need to MANUALLY identify each ESM package, one by one
-  //   'node_modules/(?!(@unional\\fixture|chalk)/)'
-  //   'node_modules/.*\\.(ts|tsx|mts|cts)$'
-  // ],
-  // transform: {
-  //   '^.+\\.(js|jsx|mjs|cjs)$': 'babel-jest',
-  //   '^.+\\.(ts|tsx|mts|cts)$': ['ts-jest', {
-  //     isolatedModules: true,
-  //     useESM: true
-  //   }]
-  // },
   roots: [
     '<rootDir>/ts',
   ],
