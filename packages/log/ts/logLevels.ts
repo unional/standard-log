@@ -90,7 +90,7 @@ export function toLogLevelName(level: number) {
 /**
  * Convert default log level name to log level value.
  */
-export function toLogLevel(name: string) {
+export function toLogLevel(name: string): number | undefined {
   return (logLevels as any)[name.toLocaleLowerCase()]
 }
 
