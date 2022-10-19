@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.2.1
+
+### Patch Changes
+
+- affd50f: improve `toLogLevel()` return type to `number | undefined`
+
 ## 11.2.0
 
 ### Minor Changes
