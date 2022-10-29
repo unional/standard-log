@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.2.2
+
+### Patch Changes
+
+- 5b25a2d: Update homepage url
+
 ## 11.2.1
 
 ## 11.2.0
