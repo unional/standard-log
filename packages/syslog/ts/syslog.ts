@@ -5,19 +5,19 @@
  */
 export function toSyslogSeverity(level: number) {
   switch (true) {
-    case (level < 20):
+    case (level < 200):
       return 'emergency'
-    case (level < 30):
+    case (level < 300):
       return 'alert'
-    case (level < 40):
+    case (level < 400):
       return 'critical'
-    case (level < 50):
+    case (level < 500):
       return 'error'
-    case (level < 60):
+    case (level < 600):
       return 'warning'
-    case (level < 70):
+    case (level < 700):
       return 'notice'
-    case (level < 80):
+    case (level < 800):
       return 'informational'
     default:
       return 'debug'
@@ -31,19 +31,19 @@ export function toSyslogSeverity(level: number) {
  */
 export function toSyslogKeyword(level: number) {
   switch (true) {
-    case (level < 20):
+    case (level < 200):
       return 'emerg'
-    case (level < 30):
+    case (level < 300):
       return 'alert'
-    case (level < 40):
+    case (level < 400):
       return 'crit'
-    case (level < 50):
+    case (level < 500):
       return 'err'
-    case (level < 60):
+    case (level < 600):
       return 'warning'
-    case (level < 70):
+    case (level < 700):
       return 'notice'
-    case (level < 80):
+    case (level < 800):
       return 'info'
     default:
       return 'debug'
