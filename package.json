@@ -26,7 +26,7 @@
     "size": "turbo run size",
     "syslog": "pnpm --filter=standard-log-syslog",
     "test": "turbo run test",
-    "verify": "turbo run verify",
+    "verify": "turbo run lint build coverage depcheck size",
     "version": "changeset version",
     "watch": "jest --watch"
   },

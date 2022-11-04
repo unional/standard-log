@@ -8,18 +8,21 @@
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 
-syslog plugin for [`standard-log`](https://github.com/unional/standard-log)
+[syslog] plugin for [`standard-log`](https://github.com/unional/standard-log)
 
 ## Usage
 
+Typeically, you can create a reporter the logs to a file or to another service.
+Here, we do an example with the built-in console log reporter.
+
 ```ts
-import { createSyslogLogReporter } from 'standard-log-syslog'
-import { config, getLogger } from 'standard-log'
+import { createSyslogFormatter } from 'standard-log-syslog'
+import { createStandardLog, createConsoleLogReporter } from 'standard-log'
 
-const reporter = createSyslogLogReporter()
-config({ reporters: [reporter]})
+const reporter = createConsoleLogReporter({ formatter: createSyslogFormatter() })
+const standardLog = createStandardLog({ reporters: [reporter] })
 
-const log = getLogger('some logger')
+const log = standardLog.getLogger('some logger')
 log.info('some log')
 ```
 
@@ -31,5 +34,6 @@ log.info('some log')
 [github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log-syslog.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log-syslog
+[syslog]: https://en.wikipedia.org/wiki/Syslog
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/

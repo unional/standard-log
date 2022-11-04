@@ -1,5 +1,3 @@
-import { range } from 'ramda'
-
-export function rangeEntries(start: number, end: number, expected: any) {
-  return range(start, end).map(value => ([value, expected]))
+export function rangeEntries(expected: string, values: number[]) {
+  return values.map(value => ([value, expected] as const))
 }
