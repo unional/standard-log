@@ -12,6 +12,7 @@
     [
       "standard-log",
       "standard-log-color",
+      "standard-log-remote",
       "standard-log-syslog"
     ]
   ],

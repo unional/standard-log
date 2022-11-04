@@ -13,8 +13,10 @@ This is the repository for [`standard-log`](https://github.com/unional/standard-
 
 ## Links
 
-- [`standard-log` documentation](packages/log/README.md)
-- [`standard-log-color` documentation](packages/color/README.md)
+- [standard-log](packages/log/README.md)
+- [standard-log-color](packages/color/README.md)
+- [standard-log-remote](packages/remote/README.md)
+- [standard-log-syslog](packages/syslog/README.md)
 
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
