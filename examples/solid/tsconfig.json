@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "rootDir": "ts",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "types": [
+      "vite/client"
+    ],
+    "noEmit": true,
+    "isolatedModules": true
+  },
+  "references": [
+    {
+      "path": "../../packages/color"
+    },
+    {
+      "path": "../../packages/log"
+    }
+  ],
+}

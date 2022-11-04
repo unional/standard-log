@@ -1,8 +1,5 @@
 {
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
   "scripts": {
     "build": "turbo run build",
     "build:doc": "typedoc && copyfiles -f packages/log/images/* docs/images",
@@ -12,7 +9,7 @@
     "cs": "changeset",
     "depcheck": "turbo run depcheck",
     "dev": "turbo run dev --parallel",
-    "example": "pnpm --filter=@standard-log/example",
+    "solid-example": "pnpm --filter=@standard-log/solid-example",
     "postinstall": "husky install",
     "lint": "turbo run lint",
     "log": "pnpm --filter=standard-log",
