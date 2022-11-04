@@ -28,7 +28,7 @@
     "cjs",
     "esm",
     "ts",
-    "!ts/**/*.spec.ts"
+    "!**/*.spec.*"
   ],
   "scripts": {
     "build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
