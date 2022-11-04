@@ -42,15 +42,6 @@
         "^build"
       ]
     },
-    "verify": {
-      "dependsOn": [
-        "lint",
-        "build",
-        "coverage",
-        "depcheck",
-        "size"
-      ]
-    },
     "watch": {
       "dependsOn": [
         "^build"

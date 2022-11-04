@@ -70,7 +70,7 @@
     "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch"
   },
   "dependencies": {
-    "color-map": "^2.0.3",
+    "color-map": "^2.0.6",
     "supports-color": "^8.1.1",
     "unpartial": "^1.0.4"
   },
