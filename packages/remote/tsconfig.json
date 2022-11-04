@@ -1,0 +1,18 @@
+{
+  "extends": "../../config/tsconfig.setting.json",
+  "compilerOptions": {
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "outDir": "esm",
+    "rootDir": "ts"
+  },
+  "references": [
+    {
+      "path": "../log"
+    }
+  ],
+  "include": [
+    "ts",
+    "typings"
+  ]
+}
