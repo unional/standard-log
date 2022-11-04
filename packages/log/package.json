@@ -34,8 +34,8 @@
     "dist",
     "esm",
     "ts",
-    "!ts/**/*.spec.ts",
-    "!ts/testUtil.ts"
+    "!**/*.spec.*",
+    "!**/testUtil.*"
   ],
   "scripts": {
     "build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
