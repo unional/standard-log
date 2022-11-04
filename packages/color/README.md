@@ -8,9 +8,11 @@
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 
-Color console reporter for [`standard-log`](https://github.com/unional/standard-log).
+[standard-log-color] provides a log reporter that will color the logger id for [standard-log].
 
-## Installation
+This makes the log pops and is easier to spot where the log is coming from.
+
+## Install
 
 ```sh
 npm install standard-log-color
@@ -19,15 +21,16 @@ yarn add standard-log-color
 
 ## Usage
 
-If installed, this will be used as the default reporter of [`standard-log`](https://github.com/unional/standard-log)
-
-To customize:
-
 ```ts
-import { config } from 'standard-log'
+import { createStandardLog } from 'standard-log'
 import { createColorLogReporter } from 'standard-log-color'
 
-config({ reporters: [createColorLogReporter({ ... }), /* other reporters if needed */] })
+const standardLog = createStandardLog({
+   reporters: [createColorLogReporter({ ... })]
+})
+
+const log = standardLog.getLogger(...)
+log.info('with color!')
 ```
 
 By default, it will use ansi formatter in NodeJS and css formatter in browser.
@@ -78,3 +81,4 @@ createCssLogFormatter({ timestamp: 'elapsed' })
 [npm-url]: https://www.npmjs.com/package/standard-log-color
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
+[standard-log]: https://github.com/unional/standard-log
