@@ -33,6 +33,8 @@ const log = standardLog.getLogger(...)
 log.info('with color!')
 ```
 
+![Rendering example][rendering-example]
+
 By default, it will use ansi formatter in NodeJS and css formatter in browser.
 
 If you want to change that, or use your own formatter:
@@ -53,8 +55,6 @@ import { createCssLogFormatter } from 'standard-log-color'
 createCssLogFormatter({ maxColor: 30 })
 ```
 
-![CSS example](2019-07-13-17-19-12.png)
-
 You can also add `timestamp`:
 
 ```ts
@@ -69,8 +69,6 @@ createCssLogFormatter({ timestamp: 'iso' })
 createCssLogFormatter({ timestamp: 'elapsed' })
 ```
 
-![timestamp example](2019-07-13-17-18-14.png)
-
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log-color.svg?style=flat
@@ -81,4 +79,5 @@ createCssLogFormatter({ timestamp: 'elapsed' })
 [npm-url]: https://www.npmjs.com/package/standard-log-color
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
+[rendering-example]: https://github.com/unional/standard-log/tree/main/images/color-log.png
 [standard-log]: https://github.com/unional/standard-log

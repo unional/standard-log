@@ -8,19 +8,7 @@
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 
-[`standard-log`] is a powerful and extensible logging library.
-
-## New in 9.0
-
-[`standard-log`] 9.0 is a trimmed down version that focus more on security and support the micro-app paradigm.
-
-The key changes are:
-
-- Side effects free: application calling `createStandardLog()` gets a completely enclosed log system.
-- Immutable: after the log system can be configured when calling `createStandardLog()`.\
-  But after that, the system is immutable and cannot be changed.\
-
-For the full list of changes, please check the [change log](./CHANGELOG.md).
+[standard-log] is a powerful and extensible logging library.
 
 ## Key features
 
@@ -35,7 +23,7 @@ For the full list of changes, please check the [change log](./CHANGELOG.md).
 
 ## Usage
 
-There are two ways to use [`standard-log`]: global or standalone.
+There are two ways to use [standard-log]: global or standalone.
 
 Standalone is the preferred way.
 You call `createStandardLog()` to get an isolated log system.
@@ -55,7 +43,7 @@ log.info('info message')
 log.debug('debug message')
 ```
 
-![Rendering example](images/2022-06-10-19-21-48.png)
+![Rendering example][rendering-example]
 
 (above is logged with `standard-log-color`)
 
@@ -133,9 +121,9 @@ createConsoleLogReporter({
 
 Here are some additional reporters:
 
-- [`standard-log-color`]
+- [standard-log-color]
 - `standard-log-file` (TODO)
-- `standard-log-syslog` (TODO)
+- [standard-log-syslog]
 
 ### Suppress log
 
@@ -197,8 +185,6 @@ But in micro-app situation, the library can be shared, and each application can 
 In general, using this global instance should be avoided.
 It is the main driving force for 9.0.
 
-[`standard-log-color`]: https://github.com/unional/standard-log/tree/master/packages/color
-[`standard-log`]: https://github.com/unional/standard-log
 [codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
@@ -207,5 +193,9 @@ It is the main driving force for 9.0.
 [github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
+[rendering-example]: https://github.com/unional/standard-log/tree/main/images/color-log.png
+[standard-log-color]: https://github.com/unional/standard-log/tree/master/packages/color
+[standard-log-syslog]: https://github.com/unional/standard-log/tree/master/packages/syslog
+[standard-log]: https://github.com/unional/standard-log
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
