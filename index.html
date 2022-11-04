@@ -19,18 +19,7 @@
 <p><a href="https://github.com/unional/standard-log/actions"><img src="https://github.com/unional/standard-log/workflows/release/badge.svg" alt="GitHub NodeJS"></a>
 <a href="https://codecov.io/gh/unional/standard-log"><img src="https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg" alt="Codecov"></a></p>
 <p><a href="https://code.visualstudio.com/"><img src="https://img.shields.io/badge/vscode-ready-green.svg" alt="Visual Studio Code"></a></p>
-<p><a href="https://github.com/unional/standard-log"><code>standard-log</code></a> is a powerful and extensible logging library.</p>
-
-<a href="#new-in-90" id="new-in-90" style="color: inherit; text-decoration: none;">
-  <h2>New in 9.0</h2>
-</a>
-<p><a href="https://github.com/unional/standard-log"><code>standard-log</code></a> 9.0 is a trimmed down version that focus more on security and support the micro-app paradigm.</p>
-<p>The key changes are:</p>
-<ul>
-<li>Side effects free: application calling <code>createStandardLog()</code> gets a completely enclosed log system.</li>
-<li>Immutable: after the log system can be configured when calling <code>createStandardLog()</code>.<br>But after that, the system is immutable and cannot be changed.\</li>
-</ul>
-<p>For the full list of changes, please check the <a href="./CHANGELOG.md">change log</a>.</p>
+<p><a href="https://github.com/unional/standard-log">standard-log</a> is a powerful and extensible logging library.</p>
 
 <a href="#key-features" id="key-features" style="color: inherit; text-decoration: none;">
   <h2>Key features</h2>
@@ -49,12 +38,12 @@
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h2>Usage</h2>
 </a>
-<p>There are two ways to use <a href="https://github.com/unional/standard-log"><code>standard-log</code></a>: global or standalone.</p>
+<p>There are two ways to use <a href="https://github.com/unional/standard-log">standard-log</a>: global or standalone.</p>
 <p>Standalone is the preferred way.
 You call <code>createStandardLog()</code> to get an isolated log system.</p>
 <pre><code class="language-ts"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">createStandardLog</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;standard-log&#39;</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">standardLog</span><span class="hl-1"> = </span><span class="hl-6">createStandarLog</span><span class="hl-1">(</span><span class="hl-7">/* options */</span><span class="hl-1">)</span><br/><br/><span class="hl-4">const</span><span class="hl-1"> </span><span class="hl-5">log</span><span class="hl-1"> = </span><span class="hl-2">standardLog</span><span class="hl-1">.</span><span class="hl-6">getLogger</span><span class="hl-1">(</span><span class="hl-3">&#39;my-app&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-2">log</span><span class="hl-1">.</span><span class="hl-6">error</span><span class="hl-1">(</span><span class="hl-3">&#39;error message&#39;</span><span class="hl-1">)</span><br/><span class="hl-2">log</span><span class="hl-1">.</span><span class="hl-6">warn</span><span class="hl-1">(</span><span class="hl-3">&#39;warn message&#39;</span><span class="hl-1">)</span><br/><span class="hl-2">log</span><span class="hl-1">.</span><span class="hl-6">info</span><span class="hl-1">(</span><span class="hl-3">&#39;info message&#39;</span><span class="hl-1">)</span><br/><span class="hl-7">// by default debug() will not be printed</span><br/><span class="hl-7">// because production mode defaults log level to `info`</span><br/><span class="hl-2">log</span><span class="hl-1">.</span><span class="hl-6">debug</span><span class="hl-1">(</span><span class="hl-3">&#39;debug message&#39;</span><span class="hl-1">)</span>
 </code></pre>
-<p><img src="images/2022-06-10-19-21-48.png" alt="Rendering example"></p>
+<p><img src="https://github.com/unional/standard-log/tree/main/images/color-log.png" alt="Rendering example"></p>
 <p>(above is logged with <code>standard-log-color</code>)</p>
 <p>You can configure a logger by doing <code>getLogger(id, options)</code>:</p>
 <p><code>options.level: number</code>:</p>
@@ -87,9 +76,9 @@ Using the console log reporter as an example:</p>
 </code></pre>
 <p>Here are some additional reporters:</p>
 <ul>
-<li><a href="https://github.com/unional/standard-log/tree/master/packages/color"><code>standard-log-color</code></a></li>
+<li><a href="https://github.com/unional/standard-log/tree/master/packages/color">standard-log-color</a></li>
 <li><code>standard-log-file</code> (TODO)</li>
-<li><code>standard-log-syslog</code> (TODO)</li>
+<li><a href="https://github.com/unional/standard-log/tree/master/packages/syslog">standard-log-syslog</a></li>
 </ul>
 
 <a href="#suppress-log" id="suppress-log" style="color: inherit; text-decoration: none;">
