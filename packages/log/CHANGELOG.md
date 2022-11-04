@@ -1,5 +1,15 @@
 # Change Log
 
+## 11.2.3
+
+### Patch Changes
+
+- 41be820: Clean up distribution.
+
+  Remove extra files.
+
+- cd7e183: Update deps
+
 ## 11.2.2
 
 ### Patch Changes
