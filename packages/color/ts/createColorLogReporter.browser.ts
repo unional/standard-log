@@ -1,10 +1,11 @@
-import { consoleFormatter, ConsoleLogReporterOptions, createConsoleLogReporter } from 'standard-log'
+import { consoleFormatter, createConsoleLogReporter } from 'standard-log'
 import { unpartial } from 'unpartial'
 import { createCssFormatter } from './css/index.js'
+import type { ColorLogReporterOptions } from './types.js'
 
-export function createColorLogReporter(options?: ConsoleLogReporterOptions) {
+export function createColorLogReporter(options?: ColorLogReporterOptions) {
   return createConsoleLogReporter(unpartial({
-    formatter: supportCSSColorInConsole() ? createCssFormatter() : consoleFormatter
+    formatter: supportCSSColorInConsole() ? createCssFormatter(options?.cssFormatterOptions) : consoleFormatter
   }, options))
 }
 

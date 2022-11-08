@@ -1,20 +1,15 @@
-import { createTimestampFormatter, LogEntry, TimestampFormat } from 'standard-log'
 import { createColorsFromMap, RGB, RGBA, rgbHex } from 'color-map'
+import { createTimestampFormatter, LogEntry } from 'standard-log'
 import { required } from 'unpartial'
+import type { CssFormatterOptions } from '../types.js'
 import { rainbow } from './colors.js'
 
-export type CssFormatterOptions = {
-  /**
-   * How many colors available.
-   * Recommend at least 10.
-   * Default to 20.
-   */
-  maxColor: number,
-  timestamp: TimestampFormat
-}
-
-export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
-  const { maxColor, timestamp } = required({ maxColor: 20, timestamp: 'none' }, options)
+export function createCssFormatter(options?: CssFormatterOptions) {
+  const { maxColor, timestamp, style } = required({
+    maxColor: 20,
+    timestamp: 'none',
+    style: 'padding: 2px; margin: 2px; line-height: 1.8em;'
+  }, options)
   const loggerMap: Record<string, RGB> = Object.create(null)
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)
   let count = 0
@@ -37,7 +32,7 @@ export function createCssFormatter(options?: Partial<CssFormatterOptions>) {
     const color = getForegroundColor(rgb)
     const result = [
       idStr,
-      `padding: 2px; margin: 2px; line-height: 1.8em;background: ${background};border: 1px solid ${border};color: ${color};`,
+      `${style}background: ${background};border: 1px solid ${border};color: ${color};`,
       ...args
     ]
     const t = timestampFormatter(entry.timestamp)
