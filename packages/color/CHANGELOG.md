@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.3.0
+
+### Minor Changes
+
+- a028c69: Now you can configure the `CssFormatterOptions` directly during `createColorLogReporter()`.
+
+  The default style (other than the color) can now be configured.
+
 ## 11.2.3
 
 ### Patch Changes
