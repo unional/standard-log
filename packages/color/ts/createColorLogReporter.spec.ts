@@ -47,3 +47,8 @@ describe('id', () => {
   })
 })
 
+describe('cssFormatterOptions', () => {
+  it('does nothing in nodejs environment', () => {
+    createColorLogReporter({ cssFormatterOptions: { style: '' } })
+  })
+})
