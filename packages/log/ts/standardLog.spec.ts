@@ -1,10 +1,11 @@
 import { assertron as a } from 'assertron'
+import { CanAssign, isType } from 'type-plus'
 import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
 import { logLevels, toLogLevelName } from './logLevels.js'
 import { createMemoryLogReporter, createMemoryWithConsoleLogReporter } from './memory.js'
-import { configGlobal, ctx, StandardLogForTest } from './standardLog.js'
+import { configGlobal, ctx, GetLogger, StandardLogForTest } from './standardLog.js'
 import { wrapTest } from './testUtil.js'
-import { LogEntry, Logger, LoggerOptions, LogMethodNames, StandardLogOptions } from './types.js'
+import { LogEntry, Logger, LoggerOptions, LogMethod, LogMethodNames, StandardLogOptions } from './types.js'
 
 describe('createStandardLog()', () => {
   describe('logLevel', () => {
@@ -557,6 +558,17 @@ describe('getLogger()', () => {
     const log = getLogger('to local reporter', { writeTo: reporter })
     log.warn('hello')
     expect(reporter.logs.length).toBe(1)
+  })
+})
+
+describe(`GetLogger<N>`, () => {
+  it('can assign getLogger into', () => {
+    isType.t<CanAssign<typeof getLogger, GetLogger>>()
+  })
+  it('can specify additional methods', () => {
+    const l: GetLogger<'silly'> = getLogger
+    const logger = l('a')
+    isType.equal<true, LogMethod, typeof logger.silly>()
   })
 })
 

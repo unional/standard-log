@@ -107,6 +107,8 @@ export function suppressLogs<R>(block: () => R, ...logs: Logger[]): R {
   return result
 }
 
+export type GetLogger<N extends string = LogMethodNames> = (id: string, options?: LoggerOptions) => Logger<LogMethodNames | N>
+
 export function getLogger<N extends string = LogMethodNames>(id: string, options?: LoggerOptions) {
   return getGlobalSL<N>().getLogger(id, options)
 }
