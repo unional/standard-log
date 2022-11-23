@@ -1,4 +1,4 @@
-import { StackTraceMeta } from '@just-func/types'
+import type { StackTraceMeta } from '@just-func/types'
 
 export type StandardLogOptions<CustomLevelNames extends string = LogMethodNames> = {
   customLevels?: Record<CustomLevelNames, number>,
@@ -47,6 +47,14 @@ export type LogMethod = (...args: any[]) => void
 export type LogFunction = ((log: LogMethod) => void) | (() => string)
 
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
+
+export interface StandardLogInstance<N extends string = LogMethodNames> {
+  logLevel: number,
+  toLogLevelName(level: number): string,
+  toLogLevel(name: N): number,
+  getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>,
+  getNonConsoleLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
+}
 
 /**
  * Formats a log entry.

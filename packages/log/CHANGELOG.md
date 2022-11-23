@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.4.1
+
+### Patch Changes
+
+- bf28064: Export `GetLogger`.
+
 ## 11.4.0
 
 ### Minor Changes

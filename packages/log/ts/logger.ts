@@ -30,11 +30,10 @@ export function createLogger<N extends string = LogMethodNames>(
     count: {
       writable: false,
       value: ((counter) => (...args: any[]) => {
-        const level = logLevels.debug
-        if (shouldLog(store, level, logger.level))
+        if (shouldLog(store, logLevels.debug, logger.level))
           write({
             id,
-            level,
+            level: logLevels.debug,
             args: [++counter, ...args],
             timestamp: new Date()
           })

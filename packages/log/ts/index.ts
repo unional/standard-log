@@ -7,5 +7,10 @@ export {
   configGlobal, createStandardLog, createStandardLogForTest,
   getLogger, suppressLogs
 } from './standardLog.js'
-export type { StandardLog, StandardLogForTest, StandardLogInstance } from './standardLog.js'
-export * from './types.js'
+export type { GetLogger, StandardLog, StandardLogForTest } from './standardLog.js'
+export type {
+  ConsoleLike, LogEntry, LogFilter, LogFormatter, LogFunction, Logger, LoggerOptions, LogLevel,
+  LogLevelEntry, LogMethod, LogMethodNames, LogReporter, LogReporterOptions, ReporterFilter,
+  StandardLogInstance, StandardLogOptions
+} from './types.js'
+

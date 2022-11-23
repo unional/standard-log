@@ -3,15 +3,8 @@ import { createLogger } from './logger.js'
 import { DEFAULT_LOG_METHOD_NAMES, logLevels } from './logLevels.js'
 import { createLogStore, LogStore } from './logStore.js'
 import { createMemoryLogReporter, MemoryLogReporter } from './memory.js'
-import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogOptions } from './types.js'
-
-export interface StandardLogInstance<N extends string = LogMethodNames> {
-  logLevel: number,
-  toLogLevelName(level: number): string,
-  toLogLevel(name: N): number,
-  getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>,
-  getNonConsoleLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
-}
+import { ctx } from './standardLog.ctx.js'
+import type { Logger, LoggerOptions, LogLevel, LogMethodNames, StandardLogInstance, StandardLogOptions } from './types.js'
 
 export interface StandardLog<N extends string = LogMethodNames> extends Readonly<StandardLogInstance<N>> {
 }
@@ -112,11 +105,6 @@ export type GetLogger<N extends string = LogMethodNames> = (id: string, options?
 export function getLogger<N extends string = LogMethodNames>(id: string, options?: LoggerOptions) {
   return getGlobalSL<N>().getLogger(id, options)
 }
-
-export const ctx: {
-  configured?: boolean,
-  gsl?: { store: LogStore, standardLog: StandardLogInstance<LogMethodNames> }
-} = record()
 
 function getGlobalSL<N extends string = LogMethodNames>(): StandardLogInstance<N> {
   if (!ctx.gsl) ctx.gsl = createStandardLogClosure()

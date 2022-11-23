@@ -1,11 +1,12 @@
 import { assertron as a } from 'assertron'
 import { CanAssign, isType } from 'type-plus'
-import { createStandardLog, createStandardLogForTest, getLogger, StandardLog, suppressLogs } from './index.js'
-import { logLevels, toLogLevelName } from './logLevels.js'
-import { createMemoryLogReporter, createMemoryWithConsoleLogReporter } from './memory.js'
-import { configGlobal, ctx, GetLogger, StandardLogForTest } from './standardLog.js'
+import {
+  configGlobal, createMemoryLogReporter, createMemoryWithConsoleLogReporter, createStandardLog,
+  createStandardLogForTest, GetLogger, getLogger, LogEntry, Logger, LoggerOptions, logLevels, LogMethod,
+  LogMethodNames, StandardLog, StandardLogForTest, StandardLogOptions, suppressLogs, toLogLevelName
+} from './index.js'
+import { ctx } from './standardLog.ctx.js'
 import { wrapTest } from './testUtil.js'
-import { LogEntry, Logger, LoggerOptions, LogMethod, LogMethodNames, StandardLogOptions } from './types.js'
 
 describe('createStandardLog()', () => {
   describe('logLevel', () => {
