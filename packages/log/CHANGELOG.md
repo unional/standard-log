@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.4.0
+
+### Minor Changes
+
+- 278afbf: Add `GetLogger` type
+
 ## 11.3.0
 
 ## 11.2.3
