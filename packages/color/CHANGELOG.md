@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.5.0
+
+### Patch Changes
+
+- e275270: Adjust CSS.
+
+  Remove `margin` and set `line-height: 1rem`.
+
 ## 11.4.1
 
 ## 11.4.0

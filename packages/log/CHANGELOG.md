@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.5.0
+
+### Minor Changes
+
+- e275270: Supply `logLevel` to `log.on()` handler.
+
 ## 11.4.1
 
 ### Patch Changes
