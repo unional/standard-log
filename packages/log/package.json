@@ -71,7 +71,7 @@
     "@types/ms": "^0.7.31",
     "@types/node": "^18.0.0",
     "@types/ramda": "^0.28.15",
-    "assertron": "^10.0.0",
+    "assertron": "^11.0.0",
     "compression-webpack-plugin": "^10.0.0",
     "cross-env": "^7.0.3",
     "depcheck": "^1.4.3",
