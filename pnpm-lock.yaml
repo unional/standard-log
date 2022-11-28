@@ -68,7 +68,7 @@ importers:
       '@types/supports-color': ^8.1.1
       '@typescript-eslint/eslint-plugin': ^5.38.1
       '@typescript-eslint/parser': ^5.38.1
-      assertron: ^10.0.0
+      assertron: ^11.0.0
       color-map: ^2.0.6
       compression-webpack-plugin: ^10.0.0
       cross-env: ^7.0.3
@@ -107,7 +107,7 @@ importers:
       '@types/supports-color': 8.1.1
       '@typescript-eslint/eslint-plugin': 5.38.1_mt2wisneb2zzk3jfi2vj5rzgge
       '@typescript-eslint/parser': 5.38.1_dzaqnnvmziamvf4skdzy3jp2by
-      assertron: 10.0.0
+      assertron: 11.0.1
       compression-webpack-plugin: 10.0.0_webpack@5.74.0
       cross-env: 7.0.3
       depcheck: 1.4.3_supports-color@8.1.1
@@ -142,7 +142,7 @@ importers:
       '@types/ms': ^0.7.31
       '@types/node': ^18.0.0
       '@types/ramda': ^0.28.15
-      assertron: ^10.0.0
+      assertron: ^11.0.0
       compression-webpack-plugin: ^10.0.0
       cross-env: ^7.0.3
       depcheck: ^1.4.3
@@ -183,7 +183,7 @@ importers:
       '@types/ms': 0.7.31
       '@types/node': 18.7.23
       '@types/ramda': 0.28.15
-      assertron: 10.0.0
+      assertron: 11.0.1
       compression-webpack-plugin: 10.0.0_webpack@5.74.0
       cross-env: 7.0.3
       depcheck: 1.4.3
@@ -214,7 +214,7 @@ importers:
       '@size-limit/preset-small-lib': ^8.1.0
       '@types/jest': ^29.1.1
       '@types/node': ^14.18.33
-      assertron: ^10.0.0
+      assertron: ^11.0.0
       cross-env: ^7.0.3
       cross-fetch: ^3.1.5
       depcheck: ^1.4.3
@@ -237,7 +237,7 @@ importers:
       '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
       '@types/jest': 29.1.1
       '@types/node': 14.18.33
-      assertron: 10.0.0
+      assertron: 11.0.1
       cross-env: 7.0.3
       depcheck: 1.4.3
       eslint: 8.24.0
@@ -5796,8 +5796,8 @@ packages:
       util: 0.10.3
     dev: true
 
-  /assertron/10.0.0:
-    resolution: {integrity: sha512-u4bl3Yrj5rEtYr0FoSAyK9CUKxUv/N8dd+kts5FNkXHuFqjwJi4BxN8rMNyrS3FmCKdRv0FBwP/YNDtSNN0AnA==}
+  /assertron/11.0.1:
+    resolution: {integrity: sha512-D1U7weslbYgIoItGhuRqasdvZtU/1dtO9cmeMhuUbcNzd6Zztp3mlNlUF/EtZBfgjSFLjgUhBxw5uabsDR/b8A==}
     engines: {node: '>= 10'}
     dependencies:
       is-promise: 4.0.0
@@ -5805,7 +5805,7 @@ packages:
       path-equal: 1.2.2
       satisfier: 5.2.2
       tersify: 3.10.5
-      type-plus: 4.16.0
+      type-plus: 4.18.0
     dev: true
 
   /assign-symbols/1.0.0:
@@ -14773,13 +14773,13 @@ packages:
     dependencies:
       tersify: 3.10.5
       unpartial: 1.0.4
+    dev: false
 
   /type-plus/4.18.0:
     resolution: {integrity: sha512-Hds5neDmogRcQheEmdjbEqVq/cE9UUdd9Ic7eCRI2/AzUH1JB+0ha3Hb3Spn2m1PQRBA61kNjbgSLaljNp0L9Q==}
     dependencies:
       tersify: 3.10.5
       unpartial: 1.0.4
-    dev: false
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}
