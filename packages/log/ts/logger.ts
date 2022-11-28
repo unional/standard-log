@@ -46,7 +46,7 @@ export function createLogger<N extends string = LogMethodNames>(
         if (shouldLog(store, logLevel, logger.level)) {
           const methodName = store.logLevelStore.getName(logLevel)
           const bindedMethod = logger[methodName].bind(logger)
-          const result = logFn(bindedMethod)
+          const result = logFn(bindedMethod, logger.level ?? store.logLevel)
           if (result) bindedMethod(result)
         }
       }

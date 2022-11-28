@@ -42,7 +42,7 @@
     "build:clean": "rimraf *.tsbuildinfo",
     "build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
     "build:esm": "tsc -p ./tsconfig.esm.json",
-    "build:tslib": "tsc -p ./tsconfig.tslib.json",
+    "build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
     "bundle": "run-p bundle:es5 bundle:esm",
     "bundle:es5": "webpack -c ./webpack.es5.cjs",
     "bundle:esm": "webpack -c ./webpack.esm.cjs",

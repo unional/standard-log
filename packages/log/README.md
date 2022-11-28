@@ -41,6 +41,11 @@ log.info('info message')
 // by default debug() will not be printed
 // because production mode defaults log level to `info`
 log.debug('debug message')
+
+// If the message is consume resource to generage,
+// you can use `log.on()` so that it will be called only
+// if the level is met.
+log.on(logLevels.trace, () => prettify(someValue))
 ```
 
 ![Rendering example][rendering-example]

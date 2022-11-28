@@ -8,7 +8,7 @@ const cssFormatter = createCssFormatter()
 test('same logger will get the same color', () => {
   const a = cssFormatter({ id: 'log', level: logLevels.critical, args: ['a'], timestamp: new Date() })
   const b = cssFormatter({ id: 'log', level: logLevels.critical, args: ['a'], timestamp: new Date() })
-  expect(a[1]).toEqual('padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;')
+  expect(a[1]).toEqual('padding: 2px; line-height: 1rem;background: #96005a;border: 1px solid #76003a;color: #ffffff;')
   expect(a[1]).toEqual(b[1])
 })
 
@@ -21,7 +21,7 @@ test('support color template', () => {
   })
   a.satisfies(actual, [
     '%c color-template %c SomeColored Text %c AnotherColor',
-    'padding: 2px; margin: 2px; line-height: 1.8em;background: #96005a;border: 1px solid #76003a;color: #ffffff;',
+    'padding: 2px; line-height: 1rem;background: #96005a;border: 1px solid #76003a;color: #ffffff;',
     'color:blue;',
     'color:red;',
     'not colored',
