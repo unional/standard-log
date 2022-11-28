@@ -8,7 +8,7 @@ export function createCssFormatter(options?: CssFormatterOptions) {
   const { maxColor, timestamp, style } = required({
     maxColor: 20,
     timestamp: 'none',
-    style: 'padding: 2px; margin: 2px; line-height: 1.8em;'
+    style: 'padding: 2px; line-height: 1rem;'
   }, options)
   const loggerMap: Record<string, RGB> = Object.create(null)
   const colorMap: RGBA[] = createColorsFromMap(rainbow, maxColor)

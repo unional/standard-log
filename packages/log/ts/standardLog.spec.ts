@@ -184,7 +184,7 @@ describe('standardLog.getLogger()', () => {
     async function assertLoggedAtCallLevel(sl: StandardLogForTest, method: string, callLevel: number) {
       const log = sl.getLogger(method)
       let actual = false
-      log.on(callLevel, () => actual = true)
+      log.on(callLevel, () => { actual = true })
       expect(actual).toBe(true)
     }
 
@@ -196,7 +196,7 @@ describe('standardLog.getLogger()', () => {
     async function assertLoggedAtCallLevelOverrideLocalLevel(sl: StandardLogForTest, method: string, localLevel: number, callLevel: number) {
       const log = sl.getLogger(method, { level: localLevel })
       let actual = false
-      log.on(callLevel, () => actual = true)
+      log.on(callLevel, () => { actual = true })
       expect(actual).toBe(true)
     }
 
@@ -383,13 +383,13 @@ describe('standardLog.getLogger()', () => {
     log.write(entry)
     a.satisfies(sl.reporter.logs, [entry])
   })
+
   test.each(['on', 'count', 'error', 'warn', 'info', 'debug'])('method %s is readonly', name => {
     const sl = createStandardLog()
     const log: any = sl.getLogger(`${name} is readonly`)
 
     a.throws(() => log[name] = true)
   })
-
 
   describe('on()', () => {
     it('log using log argument', () => {
@@ -406,7 +406,27 @@ describe('standardLog.getLogger()', () => {
       const log = sl.getLogger('string-on')
       log.on('debug', () => { return })
     })
+    it('logs with return string', () => {
+      const sl = createStandardLogForTest()
+      const logger = sl.getLogger('log on fn')
+      logger.on('error', () => 'value')
+
+      a.satisfies(sl.reporter.logs, [
+        { id: 'log on fn', level: logLevels.error, args: ['value'] }
+      ])
+    })
+    it('gives logLevel to handler', () => {
+      const sl = createStandardLogForTest(logLevels.planck)
+      const logger = sl.getLogger('handler get level')
+      logger.on('error', (_, level) => { expect(level).toEqual(logLevels.planck) })
+    })
+    it('gives logger logLevel to handler', () => {
+      const sl = createStandardLogForTest()
+      const logger = sl.getLogger('handler get level', { level: logLevels.planck })
+      logger.on('error', (_, level) => { expect(level).toEqual(logLevels.planck) })
+    })
   })
+
   describe('count()', () => {
     test('will increment the counter', async () => {
       const sl = createStandardLogForTest()
