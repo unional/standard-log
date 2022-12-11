@@ -4,6 +4,7 @@ ignore-patterns:
   - esm
   - tslib
 ignores:
+  - '@repobuddy/jest'
   - '@size-limit/preset-small-lib'
   - '@types/jest'
   - '@typescript-eslint/eslint-plugin'

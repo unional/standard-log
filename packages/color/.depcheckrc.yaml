@@ -3,6 +3,7 @@ ignores:
   - '@types/jest'
   - '@typescript-eslint/eslint-plugin'
   - '@typescript-eslint/parser'
+  - '@repobuddy/jest'
   - compression-webpack-plugin
   - eslint-config-prettier
   - eslint-plugin-harmony
