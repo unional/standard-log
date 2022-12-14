@@ -1,5 +1,11 @@
 # Change Log
 
+## 11.5.1
+
+### Patch Changes
+
+- c7229b2: Update `type-plus`
+
 ## 11.5.0
 
 ### Minor Changes
