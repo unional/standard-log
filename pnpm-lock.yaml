@@ -218,7 +218,7 @@ importers:
       '@repobuddy/jest': ^2.1.0
       '@size-limit/preset-small-lib': ^8.1.0
       '@types/jest': ^29.1.1
-      '@types/node': ^14.18.33
+      '@types/node': ^18.0.0
       assertron: ^11.0.0
       cross-env: ^7.0.3
       cross-fetch: ^3.1.5
@@ -242,12 +242,12 @@ importers:
       '@repobuddy/jest': 2.1.0_zriuhlls5zcqiy624yix7yprnm
       '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
       '@types/jest': 29.1.1
-      '@types/node': 14.18.33
+      '@types/node': 18.7.23
       assertron: 11.0.1
       cross-env: 7.0.3
       depcheck: 1.4.3
       eslint: 8.24.0
-      jest: 29.1.2_@types+node@14.18.33
+      jest: 29.1.2_@types+node@18.7.23
       jest-validate: 29.1.2
       jest-watch-suspend: 1.1.2_jest@29.1.2
       jest-watch-toggle-config-2: 2.1.0_jest@29.1.2
@@ -1007,7 +1007,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.19.6
+      '@babel/core': 7.19.6_supports-color@8.1.1
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 
@@ -1083,7 +1083,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.19.6
+      '@babel/core': 7.19.6_supports-color@8.1.1
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 
@@ -1204,7 +1204,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
-      '@babel/core': 7.19.6
+      '@babel/core': 7.19.6_supports-color@8.1.1
       '@babel/helper-plugin-utils': 7.19.0
     dev: true
 
@@ -3082,7 +3082,7 @@ packages:
       ts-jest:
         optional: true
     dependencies:
-      jest: 29.1.2_@types+node@18.7.23
+      jest: 29.1.2_supports-color@8.1.1
       jest-resolve: 29.3.1
       jest-watch-suspend: 1.1.2_jest@29.1.2
       jest-watch-toggle-config-2: 2.1.0_jest@29.1.2
@@ -5407,7 +5407,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.74.0_webpack-cli@5.0.0
-      webpack-cli: 5.0.0_xgpjwh65cyl6w2gopx5ood4ol4
+      webpack-cli: 5.0.0_webpack@5.74.0
     dev: true
 
   /@webpack-cli/info/2.0.0_lwrf2iswd67b4idwf6q6uvn7sa:
@@ -5418,7 +5418,7 @@ packages:
       webpack-cli: 5.x.x
     dependencies:
       webpack: 5.74.0_webpack-cli@5.0.0
-      webpack-cli: 5.0.0_xgpjwh65cyl6w2gopx5ood4ol4
+      webpack-cli: 5.0.0_webpack@5.74.0
     dev: true
 
   /@webpack-cli/serve/2.0.0_lwrf2iswd67b4idwf6q6uvn7sa:
@@ -5433,7 +5433,7 @@ packages:
         optional: true
     dependencies:
       webpack: 5.74.0_webpack-cli@5.0.0
-      webpack-cli: 5.0.0_xgpjwh65cyl6w2gopx5ood4ol4
+      webpack-cli: 5.0.0_webpack@5.74.0
     dev: true
 
   /@xtuc/ieee754/1.2.0:
@@ -6108,7 +6108,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.19.6
+      '@babel/core': 7.19.6_supports-color@8.1.1
       '@babel/plugin-syntax-async-generators': 7.8.4_@babel+core@7.19.6
       '@babel/plugin-syntax-bigint': 7.8.3_@babel+core@7.19.6
       '@babel/plugin-syntax-class-properties': 7.12.13_@babel+core@7.19.6
@@ -6129,7 +6129,7 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0
     dependencies:
-      '@babel/core': 7.19.6
+      '@babel/core': 7.19.6_supports-color@8.1.1
       babel-plugin-jest-hoist: 29.0.2
       babel-preset-current-node-syntax: 1.0.1_@babel+core@7.19.6
     dev: true
@@ -8162,7 +8162,7 @@ packages:
     peerDependencies:
       eslint: '>=5'
     dependencies:
-      eslint: 8.24.0
+      eslint: 8.24.0_supports-color@8.1.1
       eslint-visitor-keys: 2.1.0
     dev: true
 
@@ -10261,34 +10261,6 @@ packages:
       - supports-color
     dev: true
 
-  /jest-cli/29.1.2_@types+node@14.18.33:
-    resolution: {integrity: sha512-vsvBfQ7oS2o4MJdAH+4u9z76Vw5Q8WBQF5MchDbkylNknZdrPTX1Ix7YRJyTlOWqRaS7ue/cEAn+E4V1MWyMzw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    hasBin: true
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/core': 29.1.2
-      '@jest/test-result': 29.1.2
-      '@jest/types': 29.1.2
-      chalk: 4.1.2
-      exit: 0.1.2
-      graceful-fs: 4.2.10
-      import-local: 3.1.0
-      jest-config: 29.1.2_@types+node@14.18.33
-      jest-util: 29.1.2
-      jest-validate: 29.1.2
-      prompts: 2.4.2
-      yargs: 17.6.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - supports-color
-      - ts-node
-    dev: true
-
   /jest-cli/29.1.2_@types+node@18.7.23:
     resolution: {integrity: sha512-vsvBfQ7oS2o4MJdAH+4u9z76Vw5Q8WBQF5MchDbkylNknZdrPTX1Ix7YRJyTlOWqRaS7ue/cEAn+E4V1MWyMzw==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -10343,45 +10315,6 @@ packages:
       - '@types/node'
       - supports-color
       - ts-node
-    dev: true
-
-  /jest-config/29.1.2_@types+node@14.18.33:
-    resolution: {integrity: sha512-EC3Zi86HJUOz+2YWQcJYQXlf0zuBhJoeyxLM6vb6qJsVmpP7KcCP1JnyF0iaqTaXdBP8Rlwsvs7hnKWQWWLwwA==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    peerDependencies:
-      '@types/node': '*'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      '@babel/core': 7.19.6
-      '@jest/test-sequencer': 29.1.2
-      '@jest/types': 29.1.2
-      '@types/node': 14.18.33
-      babel-jest: 29.1.2_@babel+core@7.19.6
-      chalk: 4.1.2
-      ci-info: 3.4.0
-      deepmerge: 4.2.2
-      glob: 7.2.3
-      graceful-fs: 4.2.10
-      jest-circus: 29.1.2
-      jest-environment-node: 29.1.2
-      jest-get-type: 29.0.0
-      jest-regex-util: 29.0.0
-      jest-resolve: 29.3.1
-      jest-runner: 29.1.2
-      jest-util: 29.3.1
-      jest-validate: 29.3.1
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.1.2
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /jest-config/29.1.2_@types+node@18.7.23:
@@ -10979,7 +10912,7 @@ packages:
       jest: '>=23'
     dependencies:
       chalk: 2.4.2
-      jest: 29.1.2_@types+node@18.7.23
+      jest: 29.1.2_supports-color@8.1.1
       unpartial: 0.6.4
     dev: true
 
@@ -10990,7 +10923,7 @@ packages:
       jest: '>= 23.4.1'
     dependencies:
       chalk: 4.1.2
-      jest: 29.1.2_@types+node@18.7.23
+      jest: 29.1.2_supports-color@8.1.1
     dev: true
 
   /jest-watch-typeahead/2.2.0_jest@29.1.2:
@@ -11001,7 +10934,7 @@ packages:
     dependencies:
       ansi-escapes: 5.0.0
       chalk: 4.1.2
-      jest: 29.1.2_@types+node@18.7.23
+      jest: 29.1.2_supports-color@8.1.1
       jest-regex-util: 29.0.0
       jest-watcher: 29.1.2
       slash: 4.0.0
@@ -11059,26 +10992,6 @@ packages:
       jest-util: 29.3.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
-    dev: true
-
-  /jest/29.1.2_@types+node@14.18.33:
-    resolution: {integrity: sha512-5wEIPpCezgORnqf+rCaYD1SK+mNN7NsstWzIsuvsnrhR/hSxXWd82oI7DkrbJ+XTD28/eG8SmxdGvukrGGK6Tw==}
-    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
-    hasBin: true
-    peerDependencies:
-      node-notifier: ^8.0.1 || ^9.0.0 || ^10.0.0
-    peerDependenciesMeta:
-      node-notifier:
-        optional: true
-    dependencies:
-      '@jest/core': 29.1.2
-      '@jest/types': 29.1.2
-      import-local: 3.1.0
-      jest-cli: 29.1.2_@types+node@14.18.33
-    transitivePeerDependencies:
-      - '@types/node'
-      - supports-color
-      - ts-node
     dev: true
 
   /jest/29.1.2_@types+node@18.7.23:
@@ -14688,7 +14601,7 @@ packages:
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.1.2_@types+node@18.7.23
+      jest: 29.1.2_supports-color@8.1.1
       jest-util: 29.1.2
       json5: 2.2.1
       lodash.memoize: 4.1.2
@@ -15685,7 +15598,7 @@ packages:
       tapable: 2.2.1
       terser-webpack-plugin: 5.3.6_webpack@5.74.0
       watchpack: 2.4.0
-      webpack-cli: 5.0.0_xgpjwh65cyl6w2gopx5ood4ol4
+      webpack-cli: 5.0.0_webpack@5.74.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:
       - '@swc/core'
