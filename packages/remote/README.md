@@ -32,7 +32,7 @@ const log = standardLog.getLogger('my logger')
 log.info('to the remote service!')
 ```
 
-## Securty
+## Security
 
 Note that logs sent from browser can be intercept an potentially be modified through man-in-the-middle.
 To mitigate the risk, you can:
