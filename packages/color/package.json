@@ -75,7 +75,7 @@
     "unpartial": "^1.0.4"
   },
   "devDependencies": {
-    "@repobuddy/jest": "^2.1.0",
+    "@repobuddy/jest": "^3.0.0",
     "@size-limit/preset-small-lib": "^8.1.0",
     "@types/jest": "^29.1.1",
     "@types/supports-color": "^8.1.1",
