@@ -70,7 +70,7 @@
     "size-limit": "^8.1.0",
     "standard-log": "workspace:^",
     "ts-jest": "^29.0.3",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.0"
   },
   "peerDependencies": {
     "standard-log": ">=11.0.1"
