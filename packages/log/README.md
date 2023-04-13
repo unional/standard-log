@@ -48,7 +48,7 @@ log.debug('debug message')
 log.on(logLevels.trace, () => prettify(someValue))
 ```
 
-![Rendering example][rendering-example]
+![Rendering example](../../images/color-log.png)
 
 (above is logged with `standard-log-color`)
 
@@ -149,7 +149,7 @@ During test,
 you should use `createStandardLogForTest` which includes a `MemoryReporter` to capture the logs.
 
 ```ts
-import { createStandardLogForTest, createMemoryReporter } from 'standard-log'
+import { createStandardLogForTest } from 'standard-log/testing'
 
 test('your test', () => {
   const standardLog = createStandardLogForTest()
@@ -198,7 +198,6 @@ It is the main driving force for 9.0.
 [github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log
-[rendering-example]: https://github.com/unional/standard-log/tree/main/images/color-log.png
 [standard-log-color]: https://github.com/unional/standard-log/tree/master/packages/color
 [standard-log-syslog]: https://github.com/unional/standard-log/tree/master/packages/syslog
 [standard-log]: https://github.com/unional/standard-log
