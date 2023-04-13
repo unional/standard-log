@@ -1,6 +1,6 @@
 import { unpartial } from 'type-plus'
 import { consoleFormatter } from './formatter.js'
-import { logLevels } from './logLevels.js'
+import { logLevels } from './log_levels.js'
 import { polyfill } from './platform.js'
 import type { ConsoleLike, LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 

@@ -1,5 +1,5 @@
-import { logLevels } from './logLevels.js'
-import { LogStore } from './logStore.js'
+import { logLevels } from './log_levels.js'
+import { LogStore } from './log_store.js'
 import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
 import { LogLevel } from './types.js'
 

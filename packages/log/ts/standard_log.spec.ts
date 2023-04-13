@@ -20,8 +20,8 @@ import {
 	suppressLogs,
 	toLogLevelName
 } from './index.js'
-import { ctx } from './standardLog.ctx.js'
-import { wrapTest } from './testUtil.js'
+import { ctx } from './standard_log.ctx.js'
+import { wrapTest } from './test_utils.js'
 
 describe('createStandardLog()', () => {
 	describe('logLevel', () => {

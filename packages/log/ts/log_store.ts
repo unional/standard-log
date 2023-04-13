@@ -1,6 +1,6 @@
 import { mapKey, record, reduceByKey, reduceKey } from 'type-plus'
 import { createConsoleLogReporter } from './console.js'
-import { logLevels, toLogLevel, toLogLevelName } from './logLevels.js'
+import { logLevels, toLogLevel, toLogLevelName } from './log_levels.js'
 import type { Logger, LogLevel, LogMethodNames, LogReporter, StandardLogOptions } from './types.js'
 
 export function createLogStore<N extends string = LogMethodNames>(

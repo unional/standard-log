@@ -1,7 +1,7 @@
 import { forEachKey } from 'type-plus'
-import { logLevels } from './logLevels.js'
-import { logLevelStore } from './logStore.js'
-import { rangeEntries } from './testUtil.js'
+import { logLevels } from './log_levels.js'
+import { logLevelStore } from './log_store.js'
+import { rangeEntries } from './test_utils.js'
 
 describe('getName()', () => {
 	it.each([

@@ -1,6 +1,6 @@
 import a from 'assertron'
 import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
-import { assertSSF, logEntriesToString } from './testUtil.js'
+import { assertSSF, logEntriesToString } from './test_utils.js'
 import { filename } from 'dirname-filename-esm'
 
 const mikuIsSinging = {
