@@ -1,10 +1,10 @@
-import { isType } from 'type-plus'
-import { StandardLog, StandardLogInstance, DEFAULT_LOG_METHOD_NAMES } from './index.js'
+import { testType } from 'type-plus'
+import { DEFAULT_LOG_METHOD_NAMES, StandardLog, StandardLogInstance } from './index.js'
 
 describe('type tests', () => {
 	it('export types', () => {
-		isType.equal<false, void, StandardLog>()
-		isType.equal<false, void, StandardLogInstance>()
+		testType.equal<StandardLog, any>(false)
+		testType.equal<StandardLogInstance, any>(false)
 	})
 
 	it('exports DEFAULT_LOG_METHOD_NAMES', () => {
