@@ -12,6 +12,7 @@ jobs:
     needs: code
     secrets: inherit
 
+  # TODO: do not run this when release creates PR only
   docgen:
-      uses: unional/.github/.github/workflows/pnpm-docs.yml@main
-      needs: release
+    uses: unional/.github/.github/workflows/pnpm-docs.yml@main
+    needs: release
