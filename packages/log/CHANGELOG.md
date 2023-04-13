@@ -1,5 +1,15 @@
 # Change Log
 
+## 12.0.0
+
+### Major Changes
+
+- 35bcd49: `createStandardLogForTest()` now takes in `options` instead of just `level`.
+
+  This allows the creation of the memory log reporter to be externalized.
+
+- ae4651e: Move `createStandardLogForTest()` to `standard-log/testing`.
+
 ## 11.5.2
 
 ### Patch Changes
