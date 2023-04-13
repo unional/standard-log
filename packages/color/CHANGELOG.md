@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.5.2
+
+### Patch Changes
+
+- 4f549d3: add `module` field back and adjust `exports` field.
+
+  Having `module` field allows the package to be used by Webpack 4.
+
 ## 11.5.1
 
 ## 11.5.0

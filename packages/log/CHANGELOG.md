@@ -1,5 +1,13 @@
 # Change Log
 
+## 11.5.2
+
+### Patch Changes
+
+- 4f549d3: add `module` field back and adjust `exports` field.
+
+  Having `module` field allows the package to be used by Webpack 4.
+
 ## 11.5.1
 
 ### Patch Changes
@@ -272,12 +280,12 @@ The following functions/features are removed and replaced:
   To use `standard-log-color`, you should create the reporter manually:
 
   ```ts
-  import { createStandardLog } from "standard-log";
-  import { createColorLogReporter } from "standard-log-color";
+  import { createStandardLog } from 'standard-log'
+  import { createColorLogReporter } from 'standard-log-color'
 
   const standardLog = createStandardLog({
-    reporters: [createColorLogReporter()],
-  });
+  	reporters: [createColorLogReporter()]
+  })
   ```
 
   This ability is removed because in ESM, `require()` is no-longer available,
