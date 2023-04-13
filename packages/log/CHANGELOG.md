@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.1
+
+### Patch Changes
+
+- 4d4e7b3: Include testing folder
+
 ## 12.0.0
 
 ### Major Changes
