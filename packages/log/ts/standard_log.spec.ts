@@ -1,22 +1,22 @@
 import { assertron as a } from 'assertron'
 import { CanAssign, isType } from 'type-plus'
 import {
-  GetLogger,
-  LogEntry,
-  LogMethod,
-  LogMethodNames,
-  Logger,
-  LoggerOptions,
-  StandardLog,
-  StandardLogOptions,
-  configGlobal,
-  createMemoryLogReporter,
-  createMemoryWithConsoleLogReporter,
-  createStandardLog,
-  getLogger,
-  logLevels,
-  suppressLogs,
-  toLogLevelName
+	GetLogger,
+	LogEntry,
+	LogMethod,
+	LogMethodNames,
+	Logger,
+	LoggerOptions,
+	StandardLog,
+	StandardLogOptions,
+	configGlobal,
+	createMemoryLogReporter,
+	createMemoryWithConsoleLogReporter,
+	createStandardLog,
+	getLogger,
+	logLevels,
+	suppressLogs,
+	toLogLevelName
 } from './index.js'
 import { ctx } from './standard_log.ctx.js'
 import { wrapTest } from './test_utils.js'
@@ -255,18 +255,18 @@ describe('standardLog.getLogger()', () => {
 			})
 		}
 
-		const shouldLog = wrapTest(test => (method: LogMethodNames, level: number) => {
-			const sl = createStandardLogForTest(level)
-			const name = sl.toLogLevelName(level)
-			test(`${method}() should log on level: ${name} (${level})`, () => {
-				return assertLoggedAtLevel(sl, method, level)
+		const shouldLog = wrapTest(test => (method: LogMethodNames, logLevel: number) => {
+			const sl = createStandardLogForTest({ logLevel })
+			const name = sl.toLogLevelName(logLevel)
+			test(`${method}() should log on level: ${name} (${logLevel})`, () => {
+				return assertLoggedAtLevel(sl, method, logLevel)
 			})
 		})
-		const shouldNotLog = wrapTest(test => (method: string, level: number) => {
-			const sl = createStandardLogForTest(level)
-			const name = sl.toLogLevelName(level)
-			test(`${method}() should not log on level: ${name} (${level})`, () => {
-				return assertNotLoggedAtLevel(sl, method, level)
+		const shouldNotLog = wrapTest(test => (method: string, logLevel: number) => {
+			const sl = createStandardLogForTest({ logLevel })
+			const name = sl.toLogLevelName(logLevel)
+			test(`${method}() should not log on level: ${name} (${logLevel})`, () => {
+				return assertNotLoggedAtLevel(sl, method, logLevel)
 			})
 		})
 
@@ -276,7 +276,7 @@ describe('standardLog.getLogger()', () => {
 				globalLevel => {
 					const globalName = toLogLevelName(globalLevel) || 'none'
 					test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
-						const sl = createStandardLogForTest(globalLevel)
+						const sl = createStandardLogForTest({ logLevel: globalLevel })
 						return assertLoggedAtLocalLevel(sl, method, localLevel)
 					})
 				}
@@ -290,7 +290,7 @@ describe('standardLog.getLogger()', () => {
 				globalLevel => {
 					const globalName = toLogLevelName(globalLevel) || 'none'
 					test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
-						const sl = createStandardLogForTest(globalLevel)
+						const sl = createStandardLogForTest({ logLevel: globalLevel })
 						return assertNotLoggedAtLocalLevel(sl, method, localLevel)
 					})
 				}
@@ -301,7 +301,7 @@ describe('standardLog.getLogger()', () => {
 			const method = toLogLevelName(callLevel)
 			const name = toLogLevelName(actualLevel)
 			test(`${method}() should call log function on level: ${name} (${actualLevel})`, () => {
-				const sl = createStandardLogForTest(actualLevel)
+				const sl = createStandardLogForTest({ logLevel: actualLevel })
 				return assertLoggedAtCallLevel(sl, method, callLevel)
 			})
 		})
@@ -310,7 +310,7 @@ describe('standardLog.getLogger()', () => {
 			const method = toLogLevelName(callLevel)
 			const name = toLogLevelName(actualLevel)
 			test(`${method}() should not call log function on level: ${name} (${actualLevel})`, () => {
-				const sl = createStandardLogForTest(actualLevel)
+				const sl = createStandardLogForTest({ logLevel: actualLevel })
 				return assertNotLoggedAtCallLevel(sl, method, callLevel, actualLevel)
 			})
 		})
@@ -324,7 +324,7 @@ describe('standardLog.getLogger()', () => {
 					globalLevel => {
 						const globalName = toLogLevelName(globalLevel) || 'none'
 						test(`${method}() should log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
-							const sl = createStandardLogForTest(globalLevel)
+							const sl = createStandardLogForTest({ logLevel: globalLevel })
 							return assertLoggedAtCallLevelOverrideLocalLevel(sl, method, localLevel, callLevel)
 						})
 					}
@@ -341,7 +341,7 @@ describe('standardLog.getLogger()', () => {
 					globalLevel => {
 						const globalName = toLogLevelName(globalLevel) || 'none'
 						test(`${method}() should not log on local level: ${localName} (${localLevel}) while global level: ${globalName} (${globalLevel})`, () => {
-							const sl = createStandardLogForTest(globalLevel)
+							const sl = createStandardLogForTest({ logLevel: globalLevel })
 							return assertNotLoggedAtCallLevelOverrideLocalLevel(sl, method, localLevel, callLevel)
 						})
 					}
@@ -478,7 +478,7 @@ describe('standardLog.getLogger()', () => {
 			a.satisfies(sl.reporter.logs, [{ id: 'log on fn', level: logLevels.error, args: ['value'] }])
 		})
 		it('gives logLevel to handler', () => {
-			const sl = createStandardLogForTest(logLevels.planck)
+			const sl = createStandardLogForTest({ logLevel: logLevels.planck })
 			const logger = sl.getLogger('handler get level')
 			logger.on('error', (_, level) => {
 				expect(level).toEqual(logLevels.planck)
@@ -508,7 +508,7 @@ describe('standardLog.getLogger()', () => {
 		})
 
 		test('append args after the counter', async () => {
-			const sl = createStandardLogForTest(logLevels.debug)
+			const sl = createStandardLogForTest({ logLevel: logLevels.debug })
 			const id = 'inc with args'
 			const logger = sl.getLogger(id)
 			logger.count('msg1', 'msg2')
@@ -517,7 +517,7 @@ describe('standardLog.getLogger()', () => {
 		})
 
 		test('not log if log level is less than debug', async () => {
-			const sl = createStandardLogForTest(logLevels.debug - 1)
+			const sl = createStandardLogForTest({ logLevel: logLevels.debug - 1 })
 			const id = 'inc with args'
 			const logger = sl.getLogger(id)
 			logger.count('msg1', 'msg2')
