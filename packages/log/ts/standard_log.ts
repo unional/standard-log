@@ -1,14 +1,12 @@
 import { record, required } from 'type-plus'
-import { createLogger } from './logger.js'
 import { DEFAULT_LOG_METHOD_NAMES, logLevels } from './log_levels.js'
-import { createLogStore, LogStore } from './log_store.js'
-import { createMemoryLogReporter, MemoryLogReporter } from './memory.js'
+import { createLogStore, type LogStore } from './log_store.js'
+import { createLogger } from './logger.js'
 import { ctx } from './standard_log.ctx.js'
 import type {
+	LogMethodNames,
 	Logger,
 	LoggerOptions,
-	LogLevel,
-	LogMethodNames,
 	StandardLogInstance,
 	StandardLogOptions
 } from './types.js'
@@ -89,18 +87,6 @@ function createDummyLogger(logMethods: string[]) {
 		p[m] = noop
 		return p
 	}, record()) as Logger
-}
-
-export type StandardLogForTest<N extends string = LogMethodNames> = StandardLog<N> & {
-	reporter: MemoryLogReporter
-}
-
-export function createStandardLogForTest<N extends string = LogMethodNames>(
-	logLevel: LogLevel = logLevels.debug
-): StandardLogForTest<N> {
-	const reporter = createMemoryLogReporter()
-	const closure = createStandardLogClosure<N>({ reporters: [reporter], logLevel })
-	return { ...closure.standardLog, reporter }
 }
 
 /**
