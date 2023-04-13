@@ -1,6 +1,6 @@
 {
 	"name": "standard-log-remote",
-	"version": "11.5.1",
+	"version": "11.5.2",
 	"description": "remote logging for `standard-log`",
 	"homepage": "https://github.com/unional/standard-log/tree/main/packages/remote",
 	"bugs": {
@@ -19,17 +19,17 @@
 	"sideEffects": false,
 	"type": "module",
 	"exports": {
-    "import": {
-      "types": "./esm/index.d.ts",
-      "default": "./esm/index.js"
-    },
-    "require": {
-      "types": "./cjs/index.d.ts",
-      "default": "./cjs/index.js"
-    }
+		"import": {
+			"types": "./esm/index.d.ts",
+			"default": "./esm/index.js"
+		},
+		"require": {
+			"types": "./cjs/index.d.ts",
+			"default": "./cjs/index.js"
+		}
 	},
 	"main": "./cjs/index.js",
-  "module": "./esm/index.js",
+	"module": "./esm/index.js",
 	"types": "./cjs/index.d.ts",
 	"files": [
 		"cjs",
