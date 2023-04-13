@@ -2,7 +2,7 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo run build",
-		"build:doc": "typedoc && copyfiles -f packages/log/images/* docs/images",
+		"build:doc": "typedoc --plugin typedoc-plugin-extras && copyfiles -f packages/log/images/* docs/images",
 		"clean": "turbo run clean",
 		"color": "pnpm --filter=standard-log-color",
 		"coverage": "turbo run coverage",
