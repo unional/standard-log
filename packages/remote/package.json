@@ -1,88 +1,88 @@
 {
-  "name": "standard-log-remote",
-  "version": "11.5.1",
-  "description": "remote logging for `standard-log`",
-  "homepage": "https://github.com/unional/standard-log/tree/main/packages/remote",
-  "bugs": {
-    "url": "https://github.com/unional/standard-log/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unional/standard-log.git",
-    "directory": "packages/remote"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Homa Wong",
-    "email": "homawong@gmail.com"
-  },
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    "import": "./esm/index.js",
-    "require": "./cjs/index.js"
-  },
-  "main": "./cjs/index.js",
-  "types": "./cjs/index.d.ts",
-  "files": [
-    "cjs",
-    "esm",
-    "ts",
-    "!**/*.spec.*"
-  ],
-  "scripts": {
-    "build": "run-p build:cjs build:esm",
-    "build:clean": "rimraf *.tsbuildinfo",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
-    "build:esm": "tsc",
-    "clean": "rimraf cjs coverage dist esm lib libm tslib *.tsbuildinfo",
-    "coverage": "jest --coverage",
-    "depcheck": "depcheck",
-    "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
-    "nuke": "run-s clean nuke:local",
-    "nuke:local": "rimraf node_modules",
-    "size": "size-limit",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "verify": "npm-run-all -p build depcheck lint coverage -p size",
-    "watch": "jest --watch"
-  },
-  "dependencies": {
-    "cross-fetch": "^3.1.5"
-  },
-  "devDependencies": {
-    "@repobuddy/jest": "^3.0.0",
-    "@size-limit/preset-small-lib": "^8.1.0",
-    "@types/jest": "^29.1.1",
-    "@types/node": "^18.0.0",
-    "assertron": "^11.0.0",
-    "cross-env": "^7.0.3",
-    "depcheck": "^1.4.3",
-    "eslint": "^8.24.0",
-    "jest": "^29.1.2",
-    "jest-validate": "^29.1.2",
-    "jest-watch-suspend": "^1.1.2",
-    "jest-watch-toggle-config-2": "^2.1.0",
-    "jest-watch-typeahead": "^2.2.0",
-    "ncp": "^2.0.0",
-    "npm-run-all": "^4.1.5",
-    "rimraf": "^3.0.2",
-    "size-limit": "^8.1.0",
-    "standard-log": "workspace:^",
-    "ts-jest": "^29.0.3",
-    "typescript": "^5.0.0"
-  },
-  "peerDependencies": {
-    "standard-log": ">=11.0.1"
-  },
-  "size-limit": [
-    {
-      "path": "./cjs/index.js",
-      "limit": "10 kB"
-    },
-    {
-      "path": "./esm/index.js",
-      "limit": "10 kB"
-    }
-  ]
+	"name": "standard-log-remote",
+	"version": "11.5.1",
+	"description": "remote logging for `standard-log`",
+	"homepage": "https://github.com/unional/standard-log/tree/main/packages/remote",
+	"bugs": {
+		"url": "https://github.com/unional/standard-log/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/unional/standard-log.git",
+		"directory": "packages/remote"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Homa Wong",
+		"email": "homawong@gmail.com"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"import": "./esm/index.js",
+		"require": "./cjs/index.js"
+	},
+	"main": "./cjs/index.js",
+	"types": "./cjs/index.d.ts",
+	"files": [
+		"cjs",
+		"esm",
+		"ts",
+		"!**/*.spec.*"
+	],
+	"scripts": {
+		"build": "run-p build:cjs build:esm",
+		"build:clean": "rimraf *.tsbuildinfo",
+		"build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
+		"build:esm": "tsc",
+		"clean": "rimraf cjs coverage dist esm lib libm tslib *.tsbuildinfo",
+		"coverage": "jest --coverage",
+		"depcheck": "depcheck",
+		"lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
+		"nuke": "run-s clean nuke:local",
+		"nuke:local": "rimraf node_modules",
+		"size": "size-limit",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"verify": "npm-run-all -p build depcheck lint coverage -p size",
+		"watch": "jest --watch"
+	},
+	"dependencies": {
+		"cross-fetch": "^3.1.5"
+	},
+	"devDependencies": {
+		"@repobuddy/jest": "^3.0.0",
+		"@size-limit/preset-small-lib": "^8.1.0",
+		"@types/jest": "^29.1.1",
+		"@types/node": "^18.0.0",
+		"assertron": "^11.0.0",
+		"cross-env": "^7.0.3",
+		"depcheck": "^1.4.3",
+		"eslint": "^8.24.0",
+		"jest": "^29.1.2",
+		"jest-validate": "^29.1.2",
+		"jest-watch-suspend": "^1.1.2",
+		"jest-watch-toggle-config-2": "^2.1.0",
+		"jest-watch-typeahead": "^2.2.0",
+		"ncp": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"rimraf": "^3.0.2",
+		"size-limit": "^8.1.0",
+		"standard-log": "workspace:^",
+		"ts-jest": "^29.0.3",
+		"typescript": "^5.0.0"
+	},
+	"peerDependencies": {
+		"standard-log": ">=11.0.1"
+	},
+	"size-limit": [
+		{
+			"path": "./cjs/index.js",
+			"limit": "10 kB"
+		},
+		{
+			"path": "./esm/index.js",
+			"limit": "10 kB"
+		}
+	]
 }

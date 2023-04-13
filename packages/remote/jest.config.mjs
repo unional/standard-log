@@ -1,4 +1,4 @@
 export default {
-  preset: '@repobuddy/jest/presets/ts-esm-watch',
-  displayName: 'remote'
+	preset: '@repobuddy/jest/presets/ts-esm-watch',
+	displayName: 'remote'
 }

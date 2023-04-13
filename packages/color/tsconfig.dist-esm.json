@@ -1,16 +1,12 @@
 {
-  "extends": "../../config/tsconfig.base.json",
-  "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "rootDir": "ts",
-    "outDir": "dist",
-    "target": "ES2019"
-  },
-  "include": [
-    "typings"
-  ],
-  "files": [
-    "ts/index.ts"
-  ]
+	"extends": "../../config/tsconfig.base.json",
+	"compilerOptions": {
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"rootDir": "ts",
+		"outDir": "dist",
+		"target": "ES2019"
+	},
+	"include": ["typings"],
+	"files": ["ts/index.ts"]
 }

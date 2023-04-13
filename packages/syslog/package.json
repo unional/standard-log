@@ -1,100 +1,100 @@
 {
-  "name": "standard-log-syslog",
-  "version": "11.5.1",
-  "description": "syslog plugin for `standard-log`",
-  "homepage": "https://github.com/unional/standard-log/tree/main/packages/syslog",
-  "bugs": {
-    "url": "https://github.com/unional/standard-log/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unional/standard-log.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Homa Wong",
-    "email": "homawong@gmail.com"
-  },
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    "import": "./esm/index.js",
-    "require": "./cjs/index.js"
-  },
-  "main": "./cjs/index.js",
-  "types": "./cjs/index.d.ts",
-  "files": [
-    "dist",
-    "cjs",
-    "esm",
-    "ts",
-    "!**/*.spec.*"
-  ],
-  "scripts": {
-    "build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
-    "build:clean": "rimraf *.tsbuildinfo",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.esm.json",
-    "build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
-    "bundle": "run-p bundle:es5 bundle:esm",
-    "bundle:es5": "webpack -c ./webpack.es5.cjs",
-    "bundle:esm": "webpack -c ./webpack.esm.cjs",
-    "clean": "rimraf cjs coverage dist esm lib libm tslib *.tsbuildinfo",
-    "coverage": "jest --coverage",
-    "depcheck": "depcheck",
-    "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
-    "nuke": "run-s clean nuke:local",
-    "nuke:local": "rimraf node_modules",
-    "prepublishOnly": "yarn build && yarn bundle",
-    "size": "size-limit",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "verify": "npm-run-all -p build depcheck lint coverage -p size",
-    "watch": "jest --watch"
-  },
-  "devDependencies": {
-    "@repobuddy/jest": "^3.0.0",
-    "@size-limit/preset-small-lib": "^8.1.0",
-    "@types/jest": "^29.1.1",
-    "@types/node": "^18.0.0",
-    "compression-webpack-plugin": "^10.0.0",
-    "cross-env": "^7.0.3",
-    "depcheck": "^1.4.3",
-    "eslint": "^8.24.0",
-    "jest": "^29.1.2",
-    "jest-validate": "^29.1.2",
-    "jest-watch-suspend": "^1.1.2",
-    "jest-watch-toggle-config-2": "^2.1.0",
-    "jest-watch-typeahead": "^2.2.0",
-    "ncp": "^2.0.0",
-    "npm-run-all": "^4.1.5",
-    "param-case": "^3.0.4",
-    "pascal-case": "^3.1.2",
-    "rimraf": "^3.0.2",
-    "size-limit": "^8.1.0",
-    "standard-log": "workspace:*",
-    "ts-jest": "^29.0.3",
-    "ts-loader": "^9.4.1",
-    "tslib": "^2.4.0",
-    "typescript": "^5.0.0",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^5.0.0"
-  },
-  "peerDependencies": {
-    "standard-log": ">=11.0.1"
-  },
-  "size-limit": [
-    {
-      "path": "./cjs/index.js",
-      "limit": "10 kB"
-    },
-    {
-      "path": "./esm/index.js",
-      "limit": "10 kB"
-    },
-    {
-      "path": "./tslib/index.js",
-      "limit": "10 kB"
-    }
-  ]
+	"name": "standard-log-syslog",
+	"version": "11.5.1",
+	"description": "syslog plugin for `standard-log`",
+	"homepage": "https://github.com/unional/standard-log/tree/main/packages/syslog",
+	"bugs": {
+		"url": "https://github.com/unional/standard-log/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/unional/standard-log.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Homa Wong",
+		"email": "homawong@gmail.com"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		"import": "./esm/index.js",
+		"require": "./cjs/index.js"
+	},
+	"main": "./cjs/index.js",
+	"types": "./cjs/index.d.ts",
+	"files": [
+		"dist",
+		"cjs",
+		"esm",
+		"ts",
+		"!**/*.spec.*"
+	],
+	"scripts": {
+		"build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
+		"build:clean": "rimraf *.tsbuildinfo",
+		"build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
+		"build:esm": "tsc -p ./tsconfig.esm.json",
+		"build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
+		"bundle": "run-p bundle:es5 bundle:esm",
+		"bundle:es5": "webpack -c ./webpack.es5.cjs",
+		"bundle:esm": "webpack -c ./webpack.esm.cjs",
+		"clean": "rimraf cjs coverage dist esm lib libm tslib *.tsbuildinfo",
+		"coverage": "jest --coverage",
+		"depcheck": "depcheck",
+		"lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
+		"nuke": "run-s clean nuke:local",
+		"nuke:local": "rimraf node_modules",
+		"prepublishOnly": "yarn build && yarn bundle",
+		"size": "size-limit",
+		"test": "jest",
+		"test:watch": "jest --watch",
+		"verify": "npm-run-all -p build depcheck lint coverage -p size",
+		"watch": "jest --watch"
+	},
+	"devDependencies": {
+		"@repobuddy/jest": "^3.0.0",
+		"@size-limit/preset-small-lib": "^8.1.0",
+		"@types/jest": "^29.1.1",
+		"@types/node": "^18.0.0",
+		"compression-webpack-plugin": "^10.0.0",
+		"cross-env": "^7.0.3",
+		"depcheck": "^1.4.3",
+		"eslint": "^8.24.0",
+		"jest": "^29.1.2",
+		"jest-validate": "^29.1.2",
+		"jest-watch-suspend": "^1.1.2",
+		"jest-watch-toggle-config-2": "^2.1.0",
+		"jest-watch-typeahead": "^2.2.0",
+		"ncp": "^2.0.0",
+		"npm-run-all": "^4.1.5",
+		"param-case": "^3.0.4",
+		"pascal-case": "^3.1.2",
+		"rimraf": "^3.0.2",
+		"size-limit": "^8.1.0",
+		"standard-log": "workspace:*",
+		"ts-jest": "^29.0.3",
+		"ts-loader": "^9.4.1",
+		"tslib": "^2.4.0",
+		"typescript": "^5.0.0",
+		"webpack": "^5.74.0",
+		"webpack-cli": "^5.0.0"
+	},
+	"peerDependencies": {
+		"standard-log": ">=11.0.1"
+	},
+	"size-limit": [
+		{
+			"path": "./cjs/index.js",
+			"limit": "10 kB"
+		},
+		{
+			"path": "./esm/index.js",
+			"limit": "10 kB"
+		},
+		{
+			"path": "./tslib/index.js",
+			"limit": "10 kB"
+		}
+	]
 }

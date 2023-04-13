@@ -4,5 +4,5 @@ import { createAnsiFormatter } from './ansi/index.js'
 import type { ColorLogReporterOptions } from './types.js'
 
 export function createColorLogReporter(options?: ColorLogReporterOptions) {
-  return createConsoleLogReporter(required({ formatter: createAnsiFormatter() }, options))
+	return createConsoleLogReporter(required({ formatter: createAnsiFormatter() }, options))
 }

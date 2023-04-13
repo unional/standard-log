@@ -1,51 +1,32 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "cjs/**",
-        "dist/**",
-        "esm/**",
-        "tslib/**"
-      ]
-    },
-    "clean": {
-      "cache": false
-    },
-    "coverage": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "coverage/**"
-      ]
-    },
-    "depcheck": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "lint": {},
-    "nuke": {
-      "cache": false
-    },
-    "size": {
-      "dependsOn": [
-        "build"
-      ]
-    },
-    "test": {
-      "dependsOn": [
-        "^build"
-      ]
-    },
-    "watch": {
-      "dependsOn": [
-        "^build"
-      ]
-    }
-  }
+	"$schema": "https://turborepo.org/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["cjs/**", "dist/**", "esm/**", "tslib/**"]
+		},
+		"clean": {
+			"cache": false
+		},
+		"coverage": {
+			"dependsOn": ["^build"],
+			"outputs": ["coverage/**"]
+		},
+		"depcheck": {
+			"dependsOn": ["^build"]
+		},
+		"lint": {},
+		"nuke": {
+			"cache": false
+		},
+		"size": {
+			"dependsOn": ["build"]
+		},
+		"test": {
+			"dependsOn": ["^build"]
+		},
+		"watch": {
+			"dependsOn": ["^build"]
+		}
+	}
 }

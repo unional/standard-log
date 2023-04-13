@@ -1,9 +1,9 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "esm",
-    "target": "ES2021"
-  }
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"outDir": "esm",
+		"target": "ES2021"
+	}
 }

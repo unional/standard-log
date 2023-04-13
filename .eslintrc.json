@@ -1,28 +1,21 @@
 {
-  "env": {
-    "node": true,
-    "es6": true,
-    "jest": true
-  },
-  "extends": [
-    "plugin:harmony/latest"
-  ],
-  "overrides": [
-    {
-      "extends": [
-        "plugin:harmony/ts-recommended"
-      ],
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
-      "rules": {
-        "no-use-before-define": "off"
-      }
-    }
-  ],
-  "parserOptions": {
-    "sourceType": "module"
-  },
-  "root": true
+	"env": {
+		"node": true,
+		"es6": true,
+		"jest": true
+	},
+	"extends": ["plugin:harmony/latest"],
+	"overrides": [
+		{
+			"extends": ["plugin:harmony/ts-prettier"],
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"no-use-before-define": "off"
+			}
+		}
+	],
+	"parserOptions": {
+		"sourceType": "module"
+	},
+	"root": true
 }

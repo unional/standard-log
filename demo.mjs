@@ -1,8 +1,8 @@
 import { createStandardLog, logLevels } from 'standard-log'
 import { createColorLogReporter } from 'standard-log-color'
 const standardLog = createStandardLog({
-  logLevel: logLevels.debug,
-  reporters: [createColorLogReporter()]
+	logLevel: logLevels.debug,
+	reporters: [createColorLogReporter()]
 })
 
 const logger = standardLog.getLogger(['standard-log'])

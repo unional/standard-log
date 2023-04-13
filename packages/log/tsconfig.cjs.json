@@ -1,12 +1,10 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "outDir": "cjs",
-    "target": "ES5"
-  },
-  "exclude": [
-    "ts/**/*.spec.ts"
-  ]
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"moduleResolution": "Node",
+		"outDir": "cjs",
+		"target": "ES5"
+	},
+	"exclude": ["ts/**/*.spec.ts"]
 }

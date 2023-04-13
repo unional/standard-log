@@ -1,31 +1,29 @@
 {
-  "json.schemas": [
-    {
-      "fileMatch": [
-        "tsconfig.*.json"
-      ],
-      "url": "http://json.schemastore.org/tsconfig"
-    },
-    {
-      "fileMatch": ["tslint.json"],
-      "url": "http://json.schemastore.org/tslint"
-    }
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "eslint.enable": true,
-  "cSpell.words": [
-    "binded",
-    "changesets",
-    "codeql",
-    "cust",
-    "Greenkeeper",
-    "miku",
-    "pinst",
-    "snyk",
-    "syslog",
-    "tsbuildinfo",
-    "uglifyjs",
-    "Unmount",
-    "unpartial"
-  ]
+	"json.schemas": [
+		{
+			"fileMatch": ["tsconfig.*.json"],
+			"url": "http://json.schemastore.org/tsconfig"
+		},
+		{
+			"fileMatch": ["tslint.json"],
+			"url": "http://json.schemastore.org/tslint"
+		}
+	],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"eslint.enable": true,
+	"cSpell.words": [
+		"binded",
+		"changesets",
+		"codeql",
+		"cust",
+		"Greenkeeper",
+		"miku",
+		"pinst",
+		"snyk",
+		"syslog",
+		"tsbuildinfo",
+		"uglifyjs",
+		"Unmount",
+		"unpartial"
+	]
 }
