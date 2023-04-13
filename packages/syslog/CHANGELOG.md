@@ -1,5 +1,7 @@
 # Change Log
 
+## 12.0.0
+
 ## 11.5.2
 
 ### Patch Changes

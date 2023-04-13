@@ -1,6 +1,6 @@
 {
   "name": "standard-log",
-  "version": "11.5.2",
+  "version": "12.0.0",
   "description": "The standard log library",
   "homepage": "https://github.com/unional/standard-log/tree/main/packages/log",
   "bugs": {
