@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.2
+
+### Patch Changes
+
+- Add `testing` folder to `exports` field.
+
 ## 12.0.1
 
 ### Patch Changes

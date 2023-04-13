@@ -1,6 +1,6 @@
 {
   "name": "standard-log",
-  "version": "12.0.1",
+  "version": "12.0.2",
   "description": "The standard log library",
   "homepage": "https://github.com/unional/standard-log/tree/main/packages/log",
   "bugs": {
@@ -18,13 +18,25 @@
   "sideEffects": false,
   "type": "module",
   "exports": {
-    "import": {
-      "types": "./esm/index.d.ts",
-      "default": "./esm/index.js"
+    ".": {
+      "import": {
+        "types": "./esm/index.d.ts",
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": "./cjs/index.d.ts",
+        "default": "./cjs/index.js"
+      }
     },
-    "require": {
-      "types": "./cjs/index.d.ts",
-      "default": "./cjs/index.js"
+    "./testing": {
+      "import": {
+        "types": "./esm/testing/index.d.ts",
+        "default": "./esm/testing/index.js"
+      },
+      "require": {
+        "types": "./cjs/testing/index.d.ts",
+        "default": "./cjs/testing/index.js"
+      }
     }
   },
   "main": "./cjs/index.js",
