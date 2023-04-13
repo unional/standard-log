@@ -48,7 +48,7 @@ log.debug('debug message')
 log.on(logLevels.trace, () => prettify(someValue))
 ```
 
-![Rendering example](../../images/color-log.png)
+![Rendering example](https://raw.githubusercontent.com/unional/standard-log/main/images/color-log.png)
 
 (above is logged with `standard-log-color`)
 
