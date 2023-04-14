@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.3
+
+### Patch Changes
+
+- f14baff: Expose MemroyLogReporter in `/testing`
+
 ## 12.0.2
 
 ### Patch Changes
