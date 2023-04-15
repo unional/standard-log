@@ -31,8 +31,8 @@ let value: supportColor.Result
 /**
  * Detects if the platform supports color.
  * For browser, the value can only be:
- * - `{ stdout: 0, stderr: 0 }`, or
- * - `{ stdout: 3, stderr: 3 }`.
+ * - `{ stdout: 0, stderr: 0 }` (DISABLED), or
+ * - `{ stdout: 3, stderr: 3 }` (TRUE).
  * So you only need to check one case.
  * The result value is made the same so that it can be used in all platforms.
  */

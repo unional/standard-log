@@ -7,10 +7,18 @@ export type CssFormatterOptions = {
 	 * Default to 20.
 	 */
 	maxColor?: number
+  /**
+   * Style of the timestamp.
+   * Defaults to `none`.
+   *
+   * - `none`: no timestamp.
+   * - `iso`: in iso format.
+   * - `long`: as elapsed time.
+   */
 	timestamp?: TimestampFormat
 	/**
 	 * style of the id block.
-	 * Defaults to `padding: 2px; margin: 2px; line-height: 1.8em;`
+	 * Defaults to `padding: 2px; line-height: 1rem;`
 	 */
 	style?: string
 }
@@ -19,7 +27,7 @@ export type ColorLogReporterOptions = ConsoleLogReporterOptions & {
 	/**
 	 * CSS formatter options.
 	 * This can be used to specify the CSS formatter options in the browser,
-	 * IF you do not specify your own `formatter`.
+	 * If you do not specify your own `formatter`.
 	 */
 	cssFormatterOptions?: CssFormatterOptions
 }

@@ -89,9 +89,6 @@ export interface StandardLogInstance<N extends string = LogMethodNames> {
 	 * Get a logger instance with the specified id.
 	 *
 	 * ```ts
-	 * import { createStandardLog } from 'standard-log'
-	 *
-	 * const sl = createStandardLog()
 	 * const logger = sl.getLogger('my-logger')
 	 *
 	 * logger.info('Hello world!') // 2020-01-01T00:00:00.000Z my-logger (INFO) Hello world!
@@ -101,15 +98,12 @@ export interface StandardLogInstance<N extends string = LogMethodNames> {
 	/**
 	 * Get a non-console logger instance with the specified id.
 	 *
-	 * The resulting logger will only write to the reporters that are not console reporters.
+	 * The resulting logger will only send to the reporters that are not console reporters.
 	 *
 	 * ```ts
-	 * import { createStandardLog } from 'standard-log'
-	 *
-	 * const sl = createStandardLog({ reporter: [createConsoleReporter(), createRemoteReporter(...)] })
 	 * const logger = sl.getNonConsoleLogger('my-logger')
 	 *
-	 * logger.info('Hello world!') // will only write to remote reporter
+	 * logger.info('Hello world!') // will not send to any console reporter
 	 * ```
 	 */
 	getNonConsoleLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
