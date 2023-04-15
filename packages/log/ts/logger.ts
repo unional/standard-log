@@ -34,7 +34,7 @@ export function createLogger<N extends string = LogMethodNames>(
 			writable: false,
 			value: (
 				counter =>
-				(...args: any[]) => {
+				(...args: any[]): void => {
 					if (shouldLog(store, logLevels.debug, logger.level))
 						write({
 							id,
