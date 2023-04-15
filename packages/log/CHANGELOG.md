@@ -1,5 +1,14 @@
 # Change Log
 
+## 12.0.5
+
+### Patch Changes
+
+- 9729992: Adjust jsdoc.
+
+  Remove the `import { ... } from 'standard-log'` from the examples.
+  This allows the type and docs to be reused when other packages exports the types or instances.
+
 ## 12.0.4
 
 ### Patch Changes

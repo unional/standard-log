@@ -1,6 +1,6 @@
 {
 	"name": "standard-log-remote",
-	"version": "12.0.4",
+	"version": "12.0.5",
 	"description": "remote logging for `standard-log`",
 	"homepage": "https://github.com/unional/standard-log/tree/main/packages/remote",
 	"bugs": {
