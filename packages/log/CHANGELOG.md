@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.0.4
+
+### Patch Changes
+
+- 6446396: Add JSDocs to the standard log instance.
+
 ## 12.0.3
 
 ### Patch Changes
