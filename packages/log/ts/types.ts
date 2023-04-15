@@ -1,6 +1,20 @@
 import type { StackTraceMeta } from '@just-func/types'
 
 export type StandardLogOptions<CustomLevelNames extends string = LogMethodNames> = {
+	/**
+	 * A map of custom log levels.
+	 *
+	 * Each logger created will have a method for each custom level.
+	 *
+	 * ```ts
+	 * import { createStandardLog } from 'standard-log'
+	 *
+	 * const sl = createStandardLog({ customLevels: { foo: 100 } })
+	 * const logger = sl.getLogger('my-logger')
+	 *
+	 * logger.foo('Hello world!') // 2020-01-01T00:00:00.000Z my-logger (FOO) Hello world!
+	 * ```
+	 */
 	customLevels?: Record<CustomLevelNames, number>
 	logLevel?: number
 	reporters?: LogReporter[]
@@ -59,10 +73,45 @@ export type LogFunction = (log: LogMethod, logLevel: number) => string | void
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 
 export interface StandardLogInstance<N extends string = LogMethodNames> {
+	/**
+	 * The current log level.
+	 */
 	logLevel: number
+	/**
+	 * Convert log level number to log level name.
+	 */
 	toLogLevelName(level: number): string
+	/**
+	 * Convert log level name to log level number.
+	 */
 	toLogLevel(name: N): number
+	/**
+	 * Get a logger instance with the specified id.
+	 *
+	 * ```ts
+	 * import { createStandardLog } from 'standard-log'
+	 *
+	 * const sl = createStandardLog()
+	 * const logger = sl.getLogger('my-logger')
+	 *
+	 * logger.info('Hello world!') // 2020-01-01T00:00:00.000Z my-logger (INFO) Hello world!
+	 * ```
+	 */
 	getLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
+	/**
+	 * Get a non-console logger instance with the specified id.
+	 *
+	 * The resulting logger will only write to the reporters that are not console reporters.
+	 *
+	 * ```ts
+	 * import { createStandardLog } from 'standard-log'
+	 *
+	 * const sl = createStandardLog({ reporter: [createConsoleReporter(), createRemoteReporter(...)] })
+	 * const logger = sl.getNonConsoleLogger('my-logger')
+	 *
+	 * logger.info('Hello world!') // will only write to remote reporter
+	 * ```
+	 */
 	getNonConsoleLogger(id: string, options?: LoggerOptions): Logger<N | LogMethodNames>
 }
 
@@ -92,7 +141,7 @@ export interface LogReporter<T = any> {
 	 */
 	readonly filter?: LogFilter
 	/**
-	 * Indicate if this is a console reporter.
+	 * Indicates if this is a console reporter.
 	 * There is only one console reporter can be present in the system.
 	 */
 	readonly isConsoleReporter?: boolean

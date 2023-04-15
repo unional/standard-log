@@ -1,22 +1,22 @@
 import { assertron as a } from 'assertron'
 import { testType } from 'type-plus'
 import {
-  GetLogger,
-  LogEntry,
-  LogMethod,
-  LogMethodNames,
-  Logger,
-  LoggerOptions,
-  StandardLog,
-  StandardLogOptions,
-  configGlobal,
-  createMemoryLogReporter,
-  createMemoryWithConsoleLogReporter,
-  createStandardLog,
-  getLogger,
-  logLevels,
-  suppressLogs,
-  toLogLevelName
+	GetLogger,
+	LogEntry,
+	LogMethod,
+	LogMethodNames,
+	Logger,
+	LoggerOptions,
+	StandardLog,
+	StandardLogOptions,
+	configGlobal,
+	createMemoryLogReporter,
+	createMemoryWithConsoleLogReporter,
+	createStandardLog,
+	getLogger,
+	logLevels,
+	suppressLogs,
+	toLogLevelName
 } from './index.js'
 import { ctx } from './standard_log.ctx.js'
 import { wrapTest } from './test_utils.js'
@@ -655,7 +655,7 @@ describe(`GetLogger<N>`, () => {
 	it('can specify additional methods', () => {
 		const l: GetLogger<'silly'> = getLogger
 		const logger = l('a')
-    testType.equal<typeof logger.silly, LogMethod>(true)
+		testType.equal<typeof logger.silly, LogMethod>(true)
 	})
 })
 
