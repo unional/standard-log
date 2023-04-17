@@ -1,5 +1,15 @@
 # Change Log
 
+## 12.1.0
+
+### Minor Changes
+
+- 8bb6167: Add `memoryReporter.getMessagesWithLevel()` method.
+
+### Patch Changes
+
+- 760e33d: fix example doc
+
 ## 12.0.5
 
 ### Patch Changes
