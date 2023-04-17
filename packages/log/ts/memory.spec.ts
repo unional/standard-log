@@ -105,6 +105,18 @@ describe(createMemoryLogReporter.name, () => {
 		})
 	})
 
+	describe(reporter.getLogMessagesWithLevel.name, () => {
+		it('does what the name says', () => {
+			const r = createMemoryLogReporter()
+			r.write(mikuIsSinging)
+			r.write(lukaIsDancing)
+			expect(r.getLogMessagesWithLevel()).toEqual([
+				'(INFO) miku is singing',
+				'(WARN) luka is dancing'
+			])
+		})
+	})
+
 	describe(reporter.getLogMessagesWithIdAndLevel.name, () => {
 		it('does what the name says', () => {
 			const r = createMemoryLogReporter()
