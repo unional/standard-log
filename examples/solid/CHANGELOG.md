@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Updated dependencies [0c0e0ce]
+  - standard-log@12.1.1
+  - standard-log-color@12.1.1
+
+## null
+
+### Patch Changes
+
 - Updated dependencies [8bb6167]
 - Updated dependencies [760e33d]
   - standard-log@12.1.0

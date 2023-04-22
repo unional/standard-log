@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.1.1
+
+### Patch Changes
+
+- 0c0e0ce: Add `emitLog` support for test
+
 ## 12.1.0
 
 ### Minor Changes
