@@ -6,7 +6,7 @@ import type { LogMethodNames, StandardLogOptions } from './types.js'
 
 export type StandardLogForTestOptions<N extends string = LogMethodNames> = StandardLogOptions<N> & {
 	/**
-	 * Send the logs to console to easy debugging.
+	 * Send the logs to console for easy debugging.
 	 *
 	 * @default false
 	 */
