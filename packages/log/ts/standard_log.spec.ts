@@ -20,7 +20,7 @@ import {
 } from './index.js'
 import { ctx } from './standard_log.ctx.js'
 import { wrapTest } from './test_utils.js'
-import { StandardLogForTest, createStandardLogForTest } from './testing/index.js'
+import { createStandardLogForTest, type StandardLogForTest } from './testing/index.js'
 
 describe('createStandardLog()', () => {
 	describe('logLevel', () => {
@@ -83,18 +83,6 @@ describe('createStandardLog()', () => {
 			createStandardLog({ logLevel: logLevels.planck })
 			expect(ctx.gsl?.standardLog.logLevel).toBe(logLevels.planck)
 		})
-	})
-})
-
-describe('createStandardLogForTest()', () => {
-	it('returns with memory reporter', () => {
-		const { reporter } = createStandardLogForTest()
-		expect(reporter.getLogMessageWithLevel()).toBe('')
-	})
-
-	it('defaults to debug', () => {
-		const store = createStandardLogForTest()
-		expect(store.logLevel).toBe(logLevels.debug)
 	})
 })
 

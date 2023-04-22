@@ -76,7 +76,8 @@
     "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
     "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "verify": "npm-run-all -p build depcheck lint coverage -p size",
-    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch"
+    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
+    "w": "pnpm watch"
   },
   "dependencies": {
     "@just-func/types": "^0.5.0",
