@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.1.2
+
+### Patch Changes
+
+- b15d65c: Fix JSDoc typo
+
 ## 12.1.1
 
 ### Patch Changes
