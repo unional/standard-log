@@ -1,5 +1,11 @@
 # Change Log
 
+## 12.1.2
+
+### Patch Changes
+
+- 4eaf64f: Downgrade `supports-color` for cjs support
+
 ## 12.1.1
 
 ## 12.1.0
