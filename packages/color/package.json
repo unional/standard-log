@@ -106,7 +106,7 @@
     "pascal-case": "^3.1.2",
     "rimraf": "^5.0.0",
     "satisfier": "^5.2.2",
-    "size-limit": "^9.0.0",
+    "size-limit": "^10.0.0",
     "standard-log": "workspace:*",
     "ts-jest": "^29.0.3",
     "ts-loader": "^9.3.0",
