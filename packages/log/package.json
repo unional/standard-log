@@ -91,7 +91,7 @@
     "@size-limit/preset-small-lib": "^9.0.0",
     "@types/jest": "^29.1.1",
     "@types/ms": "^0.7.31",
-    "@types/node": "^18.0.0",
+    "@types/node": "^20.0.0",
     "@types/ramda": "^0.29.0",
     "assertron": "^11.0.0",
     "compression-webpack-plugin": "^11.0.0",
