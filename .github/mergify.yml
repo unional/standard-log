@@ -5,16 +5,16 @@ pull_request_rules:
       - title~=^Bump [^\s]+ from ([\d]+)\..+ to \1\.
     actions:
       merge:
-        method: squash
+        method: rebase
   - name: automatic merge for Renovate pull requests
     conditions:
       - author=renovate[bot]
       - and:
-        - head~=^(?!major-)
-        - -title~=update dependency @types\/node
+          - head~=^(?!major-)
+          - -title~=update dependency @types\/node
     actions:
       merge:
-        method: squash
+        method: rebase
   - name: automatic merge for Snyk pull requests
     conditions:
       - title~=^\[Snyk\]
@@ -22,4 +22,4 @@ pull_request_rules:
       - check-success~=^security/snyk
     actions:
       merge:
-        method: squash
+        method: rebase
