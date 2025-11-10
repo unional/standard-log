@@ -59,7 +59,7 @@
 	},
 	"devDependencies": {
 		"@repobuddy/jest": "^3.0.0",
-		"@size-limit/preset-small-lib": "^9.0.0",
+		"@size-limit/preset-small-lib": "^11.0.0",
 		"@types/jest": "^29.1.1",
 		"@types/node": "^18.0.0",
 		"assertron": "^11.0.0",
