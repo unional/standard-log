@@ -35,7 +35,7 @@
 		"husky": "^9.0.0",
 		"pinst": "^3.0.0",
 		"turbo": "^1.9.1",
-		"typedoc": "^0.25.0",
+		"typedoc": "^0.28.0",
 		"typedoc-plugin-extras": "^3.0.0",
 		"typescript": "^5.0.0"
 	},
