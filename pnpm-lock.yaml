@@ -161,8 +161,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.1
       param-case:
-        specifier: ^3.0.4
-        version: 3.0.4
+        specifier: ^4.0.0
+        version: 4.0.0
       pascal-case:
         specifier: ^3.1.2
         version: 3.1.2
@@ -273,8 +273,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.1
       param-case:
-        specifier: ^3.0.4
-        version: 3.0.4
+        specifier: ^4.0.0
+        version: 4.0.0
       pascal-case:
         specifier: ^3.1.2
         version: 3.1.2
@@ -424,8 +424,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.1
       param-case:
-        specifier: ^3.0.4
-        version: 3.0.4
+        specifier: ^4.0.0
+        version: 4.0.0
       pascal-case:
         specifier: ^3.1.2
         version: 3.1.2
@@ -12485,6 +12485,11 @@ packages:
       tslib: 2.4.0
     dev: true
 
+  /no-case@4.0.0:
+    resolution: {integrity: sha512-WmS3EUGw+vXHlTgiUPi3NzbZNwH6+uGX0QLGgqG+aFSJ5rkX/Ee0nuwHBJfZTfQwwR8lGO819NEIwQ7CGhkdEQ==}
+    deprecated: Use `change-case`
+    dev: true
+
   /node-dir@0.1.17:
     resolution: {integrity: sha512-tmPX422rYgofd4epzrNoOXiE8XFZYOcCq1vD7MAXCDO+O+zndlA2ztdKKMa+EeuBG5tHETpr4ml4RGgpqDCCAg==}
     engines: {node: '>= 0.10.5'}
@@ -12924,6 +12929,13 @@ packages:
     dependencies:
       dot-case: 3.0.4
       tslib: 2.4.0
+    dev: true
+
+  /param-case@4.0.0:
+    resolution: {integrity: sha512-+kVIBemYVaPPzBX6Z9FcBvaY0YSIBxD1fyShn6P3HkWOIbsOkT8OmEgLrQSaAHRDyYKdu7YH5RRiACiJLSJ2pw==}
+    deprecated: Use `change-case`
+    dependencies:
+      no-case: 4.0.0
     dev: true
 
   /parent-module@1.0.1:
