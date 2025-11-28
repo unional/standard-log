@@ -164,8 +164,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       pascal-case:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^4.0.0
+        version: 4.0.0
       rimraf:
         specifier: ^5.0.0
         version: 5.0.0
@@ -276,8 +276,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       pascal-case:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^4.0.0
+        version: 4.0.0
       ramda:
         specifier: ^0.32.0
         version: 0.32.0
@@ -427,8 +427,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       pascal-case:
-        specifier: ^3.1.2
-        version: 3.1.2
+        specifier: ^4.0.0
+        version: 4.0.0
       rimraf:
         specifier: ^5.0.0
         version: 5.0.0
@@ -13010,6 +13010,13 @@ packages:
     dependencies:
       no-case: 3.0.4
       tslib: 2.4.0
+    dev: true
+
+  /pascal-case@4.0.0:
+    resolution: {integrity: sha512-DPrSBfN1ivlJ5WwTdcBfCfmOHZXjaeW+b8DMHXcUWiR8wmO92T6N8elBsJj/v3g+INObw8Zx/q6eFAjA1w071Q==}
+    deprecated: Use `change-case`
+    dependencies:
+      no-case: 4.0.0
     dev: true
 
   /pascalcase@0.1.1:
