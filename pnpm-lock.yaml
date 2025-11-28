@@ -225,8 +225,8 @@ importers:
         specifier: ^29.1.1
         version: 29.1.1
       '@types/ms':
-        specifier: ^0.7.31
-        version: 0.7.31
+        specifier: ^2.0.0
+        version: 2.1.0
       '@types/node':
         specifier: ^18.0.0
         version: 18.7.23
@@ -5373,8 +5373,8 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/ms@0.7.31:
-    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
+  /@types/ms@2.1.0:
+    resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
     dev: true
 
   /@types/node-fetch@2.6.2:
