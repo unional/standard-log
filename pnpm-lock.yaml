@@ -33,8 +33,8 @@ importers:
         specifier: ^0.28.0
         version: 0.28.14(typescript@5.0.2)
       typedoc-plugin-extras:
-        specifier: ^3.0.0
-        version: 3.0.0(typedoc@0.28.14)
+        specifier: ^4.0.0
+        version: 4.0.1(typedoc@0.28.14)
       typescript:
         specifier: ^5.0.0
         version: 5.0.2
@@ -15887,10 +15887,10 @@ packages:
     resolution: {integrity: sha512-/aCDEGatGvZ2BIk+HmLf4ifCJFwvKFNb9/JeZPMulfgFracn9QFcAf5GO8B/mweUjSoblS5In0cWhqpfs/5PQA==}
     dev: true
 
-  /typedoc-plugin-extras@3.0.0(typedoc@0.28.14):
-    resolution: {integrity: sha512-eiAe3qtm2WbV5owdncpt0zHZPqsNZH2mzNGILPd4zqrvEZie3Et9es4cpGZ+8lHO/SI0pVKwsAj7IuMxPNOdYg==}
+  /typedoc-plugin-extras@4.0.1(typedoc@0.28.14):
+    resolution: {integrity: sha512-ab3T37ukHCwBjwBJpAcWdxy/XAaLdUyy5pwbgF9WDqCRN0DTJmJPLew9Kv6qrx5qnxiyfe6F4Og+PUp15kJWLw==}
     peerDependencies:
-      typedoc: 0.25.x
+      typedoc: 0.27.x || 0.28.x
     dependencies:
       typedoc: 0.28.14(typescript@5.0.2)
     dev: true
