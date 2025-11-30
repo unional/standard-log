@@ -78,14 +78,14 @@
   },
   "dependencies": {
     "color-map": "^2.0.6",
-    "supports-color": "^8.1.1",
+    "supports-color": "^10.0.0",
     "unpartial": "^1.0.4"
   },
   "devDependencies": {
     "@repobuddy/jest": "^5.0.0",
     "@size-limit/preset-small-lib": "^9.0.0",
     "@types/jest": "^30.0.0",
-    "@types/supports-color": "^8.1.1",
+    "@types/supports-color": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "assertron": "^11.0.0",
