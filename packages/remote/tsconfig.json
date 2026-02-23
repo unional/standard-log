@@ -6,10 +6,7 @@
 		"outDir": "esm",
 		"rootDir": "ts"
 	},
-	"references": [
-		{
-			"path": "../log"
-		}
-	],
-	"include": ["ts", "typings"]
+	"references": [{ "path": "../log" }],
+	"include": ["ts", "typings"],
+	"exclude": ["ts/**/*.spec.ts"]
 }

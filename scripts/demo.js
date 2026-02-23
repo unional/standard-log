@@ -1,7 +1,4 @@
-'use strict'
-'use strict'
-
-const cp = require('child_process')
+const cp = require('node:child_process')
 const browserSync = require('browser-sync')
 
 let bs

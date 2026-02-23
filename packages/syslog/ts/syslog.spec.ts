@@ -12,7 +12,7 @@ describe('toSyslogSeverity()', () => {
 		...rangeEntries('warning', [500, 599]),
 		...rangeEntries('notice', [600, 699]),
 		...rangeEntries('informational', [700, 799]),
-		...rangeEntries('debug', [800, 900, 1000, Infinity])
+		...rangeEntries('debug', [800, 900, 1000, Number.POSITIVE_INFINITY])
 	])('convert %i to %s', (level: number, severity: string) => {
 		expect(toSyslogSeverity(level)).toBe(severity)
 	})
@@ -27,7 +27,7 @@ describe('toSyslogKeyword()', () => {
 		...rangeEntries('warning', [500, 599]),
 		...rangeEntries('notice', [600, 699]),
 		...rangeEntries('info', [700, 799]),
-		...rangeEntries('debug', [800, 900, 1000, Infinity])
+		...rangeEntries('debug', [800, 900, 1000, Number.POSITIVE_INFINITY])
 	])('convert %i to %s', (level: number, keyword: string) => {
 		expect(toSyslogKeyword(level)).toBe(keyword)
 	})
@@ -43,7 +43,7 @@ describe('toSyslogLevel()', () => {
 		[logLevels.notice, 5],
 		[logLevels.info, 6],
 		[logLevels.debug, 7]
-	])(`convert %i to %i`, (level: number, syslogLevel: number) => {
+	])('convert %i to %i', (level: number, syslogLevel: number) => {
 		expect(toSyslogLevel(level)).toBe(syslogLevel)
 	})
 })

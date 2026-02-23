@@ -8,6 +8,7 @@
 		"serve": "vite preview",
 		"nuke": "rimraf node_modules",
 		"sb": "start-storybook -p 6006",
+		"build-doc": "build-storybook -o ../../docs",
 		"build-storybook": "build-storybook"
 	},
 	"dependencies": {
@@ -29,5 +30,5 @@
 		"vite": "^3.1.6",
 		"vite-plugin-solid": "^2.3.9"
 	},
-	"version": null
+	"version": "0.0.0"
 }

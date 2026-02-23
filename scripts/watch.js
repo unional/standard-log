@@ -1,6 +1,4 @@
-'use strict'
-
-const cp = require('child_process')
+const cp = require('node:child_process')
 
 let runner
 cp.spawn('tsc', ['-w'], { shell: true }).stdout.on('data', data => {
@@ -8,7 +6,7 @@ cp.spawn('tsc', ['-w'], { shell: true }).stdout.on('data', data => {
 	process.stdout.write(text)
 	if (/.*Found 0 errors/.test(text)) {
 		if (!runner) {
-			runner = cp.spawn('jest', ['--watch'], {
+			runner = cp.spawn('pnpm', ['exec', 'vitest'], {
 				stdio: 'inherit',
 				shell: true
 			})

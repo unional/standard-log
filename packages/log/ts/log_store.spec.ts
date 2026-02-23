@@ -40,7 +40,18 @@ describe('getLevel()', () => {
 			'trace',
 			'planck'
 		]
-		expect(names.map(n => store.getLevel(n))).toEqual([100, 200, 300, 400, 500, 600, 700, 800, 900, Infinity])
+		expect(names.map(n => store.getLevel(n))).toEqual([
+			100,
+			200,
+			300,
+			400,
+			500,
+			600,
+			700,
+			800,
+			900,
+			Number.POSITIVE_INFINITY
+		])
 	})
 	it('is case insensitive for default levels', () => {
 		const store = logLevelStore({ customLevels: {} })
@@ -56,7 +67,18 @@ describe('getLevel()', () => {
 			'traCe',
 			'planCk'
 		]
-		expect(names.map(n => store.getLevel(n))).toEqual([100, 200, 300, 400, 500, 600, 700, 800, 900, Infinity])
+		expect(names.map(n => store.getLevel(n))).toEqual([
+			100,
+			200,
+			300,
+			400,
+			500,
+			600,
+			700,
+			800,
+			900,
+			Number.POSITIVE_INFINITY
+		])
 	})
 	it('gets custom log level', () => {
 		const store = logLevelStore({ customLevels: { 'cust-get': 123 } })

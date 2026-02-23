@@ -1,4 +1,4 @@
-import { IsoError, ModuleError } from 'iso-error'
+import { type IsoError, ModuleError } from 'iso-error'
 
 /**
  * @deprecated No longer used since 11.2.0
@@ -13,7 +13,10 @@ export class StandardLogError extends ModuleError {
  * @deprecated no longer used since 11.2.0
  */
 export class InvalidId extends StandardLogError {
-	constructor(public id: string, options?: IsoError.Options) {
+	constructor(
+		public id: string,
+		options?: IsoError.Options
+	) {
 		super(`logger id only supports alphanumeric, unicode characters, and [:_-.]. Received ${id}`, options)
 	}
 }

@@ -10,7 +10,7 @@ module.exports = {
 	features: {
 		storyStoreV7: true
 	},
-	async viteFinal(config, { configType }) {
+	async viteFinal(config) {
 		config.plugins.unshift(Solid({ hot: false }))
 
 		return config

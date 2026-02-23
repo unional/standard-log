@@ -1,5 +1,5 @@
-import { createColorsFromMap, RGB, RGBA, rgbHex } from 'color-map'
-import { createTimestampFormatter, LogEntry } from 'standard-log'
+import { createColorsFromMap, type RGB, type RGBA, rgbHex } from 'color-map'
+import { createTimestampFormatter, type LogEntry } from 'standard-log'
 import { required } from 'unpartial'
 import type { CssFormatterOptions } from '../types.js'
 import { rainbow } from './colors.js'
@@ -86,9 +86,9 @@ function getRelativeLuminance(rgb: RGB) {
 	const gsrgb = rgb[1] / 255
 	const bsrgb = rgb[2] / 255
 
-	const r = rsrgb <= 0.03928 ? rsrgb * gammaMap['lowc'] : Math.pow((rsrgb + 0.055) / 1.055, 2.4)
-	const g = gsrgb <= 0.03928 ? gsrgb * gammaMap['lowc'] : Math.pow((gsrgb + 0.055) / 1.055, 2.4)
-	const b = bsrgb <= 0.03928 ? bsrgb * gammaMap['lowc'] : Math.pow((bsrgb + 0.055) / 1.055, 2.4)
+	const r = rsrgb <= 0.03928 ? rsrgb * gammaMap['lowc'] : ((rsrgb + 0.055) / 1.055) ** 2.4
+	const g = gsrgb <= 0.03928 ? gsrgb * gammaMap['lowc'] : ((gsrgb + 0.055) / 1.055) ** 2.4
+	const b = bsrgb <= 0.03928 ? bsrgb * gammaMap['lowc'] : ((bsrgb + 0.055) / 1.055) ** 2.4
 
 	return r * gammaMap['rc'] + g * gammaMap['gc'] + b * gammaMap['bc']
 }

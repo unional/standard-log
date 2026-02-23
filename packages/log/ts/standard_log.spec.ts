@@ -1,20 +1,21 @@
 import { assertron as a } from 'assertron'
 import { testType } from 'type-plus'
+import { beforeEach, describe, expect, it, test } from 'vitest'
 import {
-	GetLogger,
-	LogEntry,
-	LogMethod,
-	LogMethodNames,
-	Logger,
-	LoggerOptions,
-	StandardLog,
-	StandardLogOptions,
 	configGlobal,
 	createMemoryLogReporter,
 	createMemoryWithConsoleLogReporter,
 	createStandardLog,
+	type GetLogger,
 	getLogger,
+	type LogEntry,
+	type Logger,
+	type LoggerOptions,
+	type LogMethod,
+	type LogMethodNames,
 	logLevels,
+	type StandardLog,
+	type StandardLogOptions,
 	suppressLogs,
 	toLogLevelName
 } from './index.js'
@@ -104,23 +105,22 @@ describe('standardLog.getLogger()', () => {
 	it('supports id with @, \\ and /', () => {
 		const sl = createStandardLog()
 		sl.getLogger('@unional/fixture')
-		sl.getLogger(`a\\b\\c`)
+		sl.getLogger('a\\b\\c')
 	})
 	it('supports id with space', () => {
 		const sl = createStandardLog()
 		sl.getLogger('hello world')
 	})
-	it.each('`~!#$%^&*()=+|[]{}<>,?'.split(''))(
-		'replace unsupported character %s in id with -',
-		(char: string) => {
-			const sl = createStandardLog()
-			const log = sl.getLogger(`abc${char}def`)
-			expect(log.id).toEqual('abc-def')
-		}
-	)
+	it.each(
+		'`~!#$%^&*()=+|[]{}<>,?'.split('')
+	)('replace unsupported character %s in id with -', (char: string) => {
+		const sl = createStandardLog()
+		const log = sl.getLogger(`abc${char}def`)
+		expect(log.id).toEqual('abc-def')
+	})
 	it('replace all unsupported characters in id with -', () => {
 		const sl = createStandardLog()
-		const log = sl.getLogger(`a!()b%{}c`)
+		const log = sl.getLogger('a!()b%{}c')
 		expect(log.id).toEqual('a---b---c')
 	})
 	test('id is readonly', () => {
@@ -551,7 +551,7 @@ describe('standardLog.getLogger()', () => {
 			})
 		})
 		it('can specify which reporter to use by RegExp', () => {
-			testWriteTo('writeTo-RegExp', { writeTo: new RegExp('^spec') }, (log, memLogs, specialLogs) => {
+			testWriteTo('writeTo-RegExp', { writeTo: /^spec/ }, (log, memLogs, specialLogs) => {
 				log.error('error message')
 				expect(memLogs.length).toEqual(0)
 				expect(specialLogs.length).toEqual(1)
@@ -578,7 +578,7 @@ describe('standardLog.getLogger()', () => {
 			// if not, it would be a security issue as the new reporter
 			// can capture the logs from other logger and send it elsewhere
 			const reporter = createMemoryLogReporter({ id: 'custom mem' })
-			testWriteTo('writeTo-reporter-no-override', { writeTo: reporter }, (_, memLogs, specialLogs, sl) => {
+			testWriteTo('writeTo-reporter-no-override', { writeTo: reporter }, (_, _memLogs, _specialLogs, sl) => {
 				const log = sl.getLogger('writeTo-reporter-no-override-2')
 				log.error('error message')
 
@@ -636,7 +636,7 @@ describe('getLogger()', () => {
 	})
 })
 
-describe(`GetLogger<N>`, () => {
+describe('GetLogger<N>', () => {
 	it('can assign getLogger into', () => {
 		testType.canAssign<typeof getLogger, GetLogger>(true)
 	})

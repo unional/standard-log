@@ -34,19 +34,18 @@ function buildPolyfillConsole() {
 			warn: (typeof console.warn === 'function' ? console.warn : console.log).bind(console),
 			error: (typeof console.error === 'function' ? console.error : console.log).bind(console)
 		}
-	} else {
-		return {
-			debug: buildFn(typeof console.debug === 'function' ? 'debug' : 'log'),
-			info: buildFn(typeof console.info === 'function' ? 'info' : 'log'),
-			warn: buildFn(typeof console.warn === 'function' ? 'warn' : 'log'),
-			error: buildFn(typeof console.error === 'function' ? 'error' : 'log')
-		}
+	}
+	return {
+		debug: buildFn(typeof console.debug === 'function' ? 'debug' : 'log'),
+		info: buildFn(typeof console.info === 'function' ? 'info' : 'log'),
+		warn: buildFn(typeof console.warn === 'function' ? 'warn' : 'log'),
+		error: buildFn(typeof console.error === 'function' ? 'error' : 'log')
 	}
 }
 
 // istanbul ignore next
 function buildFn(name: 'debug' | 'info' | 'warn' | 'error' | 'log') {
-	return function (...args: any[]) {
+	return (...args: any[]) => {
 		console[name](...args)
 	}
 }

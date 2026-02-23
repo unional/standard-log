@@ -7,14 +7,14 @@ export type CssFormatterOptions = {
 	 * Default to 20.
 	 */
 	maxColor?: number
-  /**
-   * Style of the timestamp.
-   * Defaults to `none`.
-   *
-   * - `none`: no timestamp.
-   * - `iso`: in iso format.
-   * - `long`: as elapsed time.
-   */
+	/**
+	 * Style of the timestamp.
+	 * Defaults to `none`.
+	 *
+	 * - `none`: no timestamp.
+	 * - `iso`: in iso format.
+	 * - `long`: as elapsed time.
+	 */
 	timestamp?: TimestampFormat
 	/**
 	 * style of the id block.

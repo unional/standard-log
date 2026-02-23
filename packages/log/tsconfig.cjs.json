@@ -6,5 +6,5 @@
 		"outDir": "cjs",
 		"target": "ES5"
 	},
-	"exclude": ["ts/**/*.spec.ts"]
+	"exclude": ["ts/**/*.spec.ts", "ts/**/test_utils*.ts"]
 }

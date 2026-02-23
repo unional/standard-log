@@ -1,5 +1,5 @@
-import { a, AssertOrder } from 'assertron'
-import { createStandardLog, LogEntry, logLevels } from 'standard-log'
+import { AssertOrder, a } from 'assertron'
+import { createStandardLog, type LogEntry, logLevels } from 'standard-log'
 import { createRemoteLogReporter } from './createRemoteLogReporter.js'
 import { ctx } from './crreateRemoteLogReporter.ctx.js'
 

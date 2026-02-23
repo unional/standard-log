@@ -1,6 +1,6 @@
 {
 	"files": [],
-	"exclude": ["packages/*/cjs", "packages/*/esm", "packages/*/lib*"],
+	"exclude": ["packages/*/cjs", "packages/*/esm", "packages/*/lib*", "opensrc"],
 	"references": [
 		{
 			"path": "packages/log"

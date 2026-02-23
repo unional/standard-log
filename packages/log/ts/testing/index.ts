@@ -1,6 +1,6 @@
-export { type MemoryLogReporter } from '../memory.js'
+export type { MemoryLogReporter } from '../memory.js'
 export {
 	createStandardLogForTest,
-	type StandardLogForTestOptions,
-	type StandardLogForTest
+	type StandardLogForTest,
+	type StandardLogForTestOptions
 } from '../standard_log.testing.js'

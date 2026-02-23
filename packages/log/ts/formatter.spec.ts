@@ -10,7 +10,7 @@ describe('plainLogFormatter()', () => {
 			timestamp
 		})
 
-		expect(actual).toEqual([timestamp.toISOString(), 'plain', `(EMERGENCY)`, `emergency`])
+		expect(actual).toEqual([timestamp.toISOString(), 'plain', '(EMERGENCY)', 'emergency'])
 	})
 })
 

@@ -1,13 +1,13 @@
-import { createStandardLog } from './standard_log.js'
 import {
-	ConsoleLogFormatter,
+	type ConsoleLogFormatter,
 	createConsoleLogReporter,
-	LogFilter,
+	type LogFilter,
 	logLevels,
 	plainLogFormatter,
 	toConsoleMethod
 } from './index.js'
 import { polyfill } from './platform.js'
+import { createStandardLog } from './standard_log.js'
 
 describe('toConsoleMethod()', () => {
 	it('converts any level to standard console method names: debug, info, warn, error', () => {
@@ -25,7 +25,7 @@ describe('toConsoleMethod()', () => {
 		expect(toConsoleMethod(701)).toEqual('debug')
 		expect(toConsoleMethod(800)).toEqual('debug')
 		expect(toConsoleMethod(801)).toEqual('debug')
-		expect(toConsoleMethod(Infinity)).toEqual('debug')
+		expect(toConsoleMethod(Number.POSITIVE_INFINITY)).toEqual('debug')
 	})
 	it('converts to debug for 0 (none) or negative (not valid) level', () => {
 		// these are invalid input.

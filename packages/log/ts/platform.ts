@@ -1,5 +1,5 @@
+import { inspect } from 'node:util'
 import { record } from 'type-plus'
-import { inspect } from 'util'
 import type { ConsoleLike, LogEntry } from './types.js'
 
 export const toInspectLogEntry = (e: LogEntry) => (

@@ -43,41 +43,31 @@
 		"build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
 		"build:esm": "tsc",
 		"clean": "rimraf cjs coverage dist esm lib libm tslib --glob *.tsbuildinfo",
-		"coverage": "jest --coverage",
+		"coverage": "vitest run --coverage",
 		"depcheck": "depcheck",
-		"lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
 		"nuke": "run-s clean nuke:local",
 		"nuke:local": "rimraf node_modules",
 		"size": "size-limit",
-		"test": "jest",
-		"test:watch": "jest --watch",
-		"verify": "npm-run-all -p build depcheck lint coverage -p size",
-		"watch": "jest --watch"
+		"test": "vitest run",
+		"verify": "npm-run-all -p build depcheck coverage -p size",
+		"w": "vitest"
 	},
 	"dependencies": {
 		"cross-fetch": "^4.0.0"
 	},
 	"devDependencies": {
-		"@repobuddy/jest": "^5.0.0",
+		"@repobuddy/vitest": "^2.1.1",
 		"@size-limit/preset-small-lib": "^9.0.0",
-		"@types/jest": "^30.0.0",
 		"@types/node": "^18.0.0",
 		"assertron": "^11.0.0",
-		"cross-env": "^7.0.3",
 		"depcheck": "^1.4.3",
-		"eslint": "^8.24.0",
-		"jest": "^30.0.0",
-		"jest-validate": "^30.0.0",
-		"jest-watch-suspend": "^1.1.2",
-		"jest-watch-toggle-config-2": "^2.1.0",
-		"jest-watch-typeahead": "^3.0.0",
 		"ncp": "^2.0.0",
 		"npm-run-all2": "^8.0.0",
 		"rimraf": "^6.0.0",
 		"size-limit": "^9.0.0",
 		"standard-log": "workspace:^",
-		"ts-jest": "^29.0.3",
-		"typescript": "^5.0.0"
+		"typescript": "^5.0.0",
+		"vitest": "^4.0.18"
 	},
 	"peerDependencies": {
 		"standard-log": ">=11.0.1"

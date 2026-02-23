@@ -1,4 +1,4 @@
-import { createTimestampFormatter, LogEntry, TimestampFormat, toConsoleMethod } from 'standard-log'
+import { createTimestampFormatter, type LogEntry, type TimestampFormat, toConsoleMethod } from 'standard-log'
 import { ColorLevels, supportColor } from '../supportColor.js'
 import {
 	ANSI_BACKGROUND,
@@ -43,8 +43,8 @@ function formatArgs(
 		method === 'error'
 			? [ANSI_RED + ANSI_FOREGROUND]
 			: method === 'warn'
-			? [ANSI_YELLOW + ANSI_FOREGROUND]
-			: undefined
+				? [ANSI_YELLOW + ANSI_FOREGROUND]
+				: undefined
 
 	return textCodes ? args.map(x => wrapAnsi(x, textCodes)) : args
 }

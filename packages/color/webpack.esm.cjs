@@ -1,6 +1,6 @@
 const paramCase = require('param-case').paramCase
 const pascalCase = require('pascal-case').pascalCase
-const path = require('path')
+const path = require('node:path')
 const CompressionPlugin = require('compression-webpack-plugin')
 const pjson = require('./package.json')
 const { NormalModuleReplacementPlugin } = require('webpack')

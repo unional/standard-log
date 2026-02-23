@@ -1,4 +1,4 @@
-import { LogEntry } from 'standard-log'
+import type { LogEntry } from 'standard-log'
 import { toSyslogLevel } from './syslog.js'
 
 export type SyslogFormatterOptions = {
@@ -18,14 +18,13 @@ export function createSyslogFormatter({
 	procid = '-',
 	msgid = '-'
 }: SyslogFormatterOptions) {
-	return function (entry: LogEntry) {
-		return `<${toPriorityValue(
+	return (entry: LogEntry) =>
+		`<${toPriorityValue(
 			facility,
 			toSyslogLevel(entry.level)
 		)}>${version} ${entry.timestamp.toISOString()} ${hostname} ${appname} ${procid} ${msgid} - ${JSON.stringify(
 			entry.args
 		)}`
-	}
 }
 
 function toPriorityValue(facility: number, syslogLevel: number) {

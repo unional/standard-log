@@ -1,7 +1,14 @@
 import { logLevels } from './log_levels.js'
-import { LogStore } from './log_store.js'
-import type { LogEntry, LogFunction, Logger, LoggerOptions, LogMethodNames, LogReporter } from './types.js'
-import { LogLevel } from './types.js'
+import type { LogStore } from './log_store.js'
+import type {
+	LogEntry,
+	LogFunction,
+	Logger,
+	LoggerOptions,
+	LogLevel,
+	LogMethodNames,
+	LogReporter
+} from './types.js'
 
 export function createLogger<N extends string = LogMethodNames>(
 	store: LogStore,
@@ -14,10 +21,10 @@ export function createLogger<N extends string = LogMethodNames>(
 		typeof writeTo === 'string'
 			? [id => id === writeTo, store.reporters]
 			: writeTo instanceof RegExp
-			? [id => writeTo.test(id), store.reporters]
-			: typeof writeTo === 'function'
-			? [writeTo, store.reporters]
-			: [() => true, [writeTo]]
+				? [id => writeTo.test(id), store.reporters]
+				: typeof writeTo === 'function'
+					? [writeTo, store.reporters]
+					: [() => true, [writeTo]]
 
 	function write(entry: LogEntry) {
 		writeToReporters(reporters, entry, filter)

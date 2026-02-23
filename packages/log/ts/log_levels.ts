@@ -63,11 +63,11 @@ export const logLevels = {
 	 *
 	 * trace -> planck
 	 */
-	planck: Infinity,
+	planck: Number.POSITIVE_INFINITY,
 	/**
 	 * all: Infinity
 	 */
-	all: Infinity
+	all: Number.POSITIVE_INFINITY
 }
 
 /**

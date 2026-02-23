@@ -66,3 +66,7 @@ packages/*/lib*
 packages/*/out*
 packages/*/*.tsbuildinfo
 /docs
+**/storybook-static
+
+# opensrc - source code for packages
+opensrc/

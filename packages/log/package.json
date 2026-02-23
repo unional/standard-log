@@ -1,136 +1,125 @@
 {
-  "name": "standard-log",
-  "version": "12.1.2",
-  "description": "The standard log library",
-  "homepage": "https://github.com/unional/standard-log/tree/main/packages/log",
-  "bugs": {
-    "url": "https://github.com/unional/standard-log/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/unional/standard-log.git"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Homa Wong",
-    "email": "homawong@gmail.com"
-  },
-  "sideEffects": false,
-  "type": "module",
-  "exports": {
-    ".": {
-      "import": {
-        "types": "./esm/index.d.ts",
-        "default": "./esm/index.js"
-      },
-      "require": {
-        "types": "./cjs/index.d.ts",
-        "default": "./cjs/index.js"
-      }
-    },
-    "./testing": {
-      "import": {
-        "types": "./esm/testing/index.d.ts",
-        "default": "./esm/testing/index.js"
-      },
-      "require": {
-        "types": "./cjs/testing/index.d.ts",
-        "default": "./cjs/testing/index.js"
-      }
-    }
-  },
-  "main": "./cjs/index.js",
-  "module": "./esm/index.js",
-  "browser": {
-    "./cjs/platform.js": "./cjs/platform.browser.js",
-    "./esm/platform.js": "./esm/platform.browser.js",
-    "./tslib/platform.js": "./tslib/platform.browser.js",
-    "./ts/platform.ts": "./ts/platform.browser.ts"
-  },
-  "types": "./cjs/index.d.ts",
-  "files": [
-    "cjs",
-    "dist",
-    "esm",
-    "testing",
-    "ts",
-    "!**/*.{spec,test,unit,accept,integrate,system}.*",
-    "!**/test_utils.*"
-  ],
-  "scripts": {
-    "build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
-    "build:clean": "rimraf *.tsbuildinfo",
-    "build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
-    "build:esm": "tsc -p ./tsconfig.esm.json",
-    "build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
-    "bundle": "run-p bundle:es5 bundle:esm",
-    "bundle:es5": "webpack -c ./webpack.es5.cjs",
-    "bundle:esm": "webpack -c ./webpack.esm.cjs",
-    "clean": "rimraf cjs coverage dist esm lib libm tslib --glob *.tsbuildinfo",
-    "coverage": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --coverage",
-    "depcheck": "depcheck",
-    "lint": "cross-env TIMING=1 eslint --ext=ts,js,cjs,mjs .",
-    "nuke": "run-s clean nuke:local",
-    "nuke:local": "rimraf node_modules",
-    "size": "size-limit",
-    "test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest",
-    "test:watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "verify": "npm-run-all -p build depcheck lint coverage -p size",
-    "watch": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --watch",
-    "w": "pnpm watch"
-  },
-  "dependencies": {
-    "@just-func/types": "^0.5.0",
-    "iso-error": "^6.0.0",
-    "ms": "^2.1.3",
-    "type-plus": "^7.0.0",
-    "upper-case": "^2.0.2"
-  },
-  "devDependencies": {
-    "@repobuddy/jest": "^5.0.0",
-    "@size-limit/preset-small-lib": "^9.0.0",
-    "@types/jest": "^30.0.0",
-    "@types/ms": "^2.0.0",
-    "@types/node": "^18.0.0",
-    "@types/ramda": "^0.31.0",
-    "assertron": "^11.0.0",
-    "compression-webpack-plugin": "^11.0.0",
-    "cross-env": "^7.0.3",
-    "depcheck": "^1.4.3",
-    "dirname-filename-esm": "^1.1.1",
-    "eslint": "^8.24.0",
-    "jest": "^30.0.0",
-    "jest-validate": "^30.0.0",
-    "jest-watch-suspend": "^1.1.2",
-    "jest-watch-toggle-config-2": "^2.1.0",
-    "jest-watch-typeahead": "^3.0.0",
-    "ncp": "^2.0.0",
-    "npm-run-all2": "^8.0.0",
-    "param-case": "^4.0.0",
-    "pascal-case": "^4.0.0",
-    "ramda": "^0.32.0",
-    "rimraf": "^6.0.0",
-    "size-limit": "^9.0.0",
-    "ts-jest": "^29.0.3",
-    "ts-loader": "^9.4.1",
-    "tslib": "^2.4.0",
-    "typescript": "^5.0.0",
-    "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^5.0.0",
-    "webpack-cli": "^6.0.0"
-  },
-  "size-limit": [
-    {
-      "path": "./cjs/index.js",
-      "limit": "20 kB"
-    },
-    {
-      "path": "./esm/index.js",
-      "limit": "10 kB"
-    },
-    {
-      "path": "./tslib/index.js",
-      "limit": "20 kB"
-    }
-  ]
+	"name": "standard-log",
+	"version": "12.1.2",
+	"description": "The standard log library",
+	"homepage": "https://github.com/unional/standard-log/tree/main/packages/log",
+	"bugs": {
+		"url": "https://github.com/unional/standard-log/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/unional/standard-log.git"
+	},
+	"license": "MIT",
+	"author": {
+		"name": "Homa Wong",
+		"email": "homawong@gmail.com"
+	},
+	"sideEffects": false,
+	"type": "module",
+	"exports": {
+		".": {
+			"import": {
+				"types": "./esm/index.d.ts",
+				"default": "./esm/index.js"
+			},
+			"require": {
+				"types": "./cjs/index.d.ts",
+				"default": "./cjs/index.js"
+			}
+		},
+		"./testing": {
+			"import": {
+				"types": "./esm/testing/index.d.ts",
+				"default": "./esm/testing/index.js"
+			},
+			"require": {
+				"types": "./cjs/testing/index.d.ts",
+				"default": "./cjs/testing/index.js"
+			}
+		}
+	},
+	"main": "./cjs/index.js",
+	"module": "./esm/index.js",
+	"browser": {
+		"./cjs/platform.js": "./cjs/platform.browser.js",
+		"./esm/platform.js": "./esm/platform.browser.js",
+		"./tslib/platform.js": "./tslib/platform.browser.js",
+		"./ts/platform.ts": "./ts/platform.browser.ts"
+	},
+	"types": "./cjs/index.d.ts",
+	"files": [
+		"cjs",
+		"dist",
+		"esm",
+		"testing",
+		"ts",
+		"!**/*.{spec,test,unit,accept,integrate,system}.*",
+		"!**/test_utils.*"
+	],
+	"scripts": {
+		"build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
+		"build:clean": "rimraf *.tsbuildinfo",
+		"build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
+		"build:esm": "tsc -p ./tsconfig.esm.json",
+		"build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
+		"bundle": "run-p bundle:es5 bundle:esm",
+		"bundle:es5": "webpack -c ./webpack.es5.cjs",
+		"bundle:esm": "webpack -c ./webpack.esm.cjs",
+		"clean": "rimraf cjs coverage dist esm lib libm tslib --glob *.tsbuildinfo",
+		"coverage": "vitest run --coverage",
+		"depcheck": "depcheck",
+		"nuke": "run-s clean nuke:local",
+		"nuke:local": "rimraf node_modules",
+		"size": "size-limit",
+		"test": "vitest run",
+		"verify": "npm-run-all -p build depcheck coverage -p size",
+		"w": "vitest"
+	},
+	"dependencies": {
+		"@just-func/types": "^0.5.0",
+		"iso-error": "^6.0.0",
+		"ms": "^2.1.3",
+		"type-plus": "^7.0.0",
+		"upper-case": "^2.0.2"
+	},
+	"devDependencies": {
+		"@repobuddy/vitest": "^2.1.1",
+		"@size-limit/preset-small-lib": "^9.0.0",
+		"@types/ms": "^2.0.0",
+		"@types/node": "^18.0.0",
+		"@types/ramda": "^0.31.0",
+		"assertron": "^11.0.0",
+		"compression-webpack-plugin": "^11.0.0",
+		"depcheck": "^1.4.3",
+		"dirname-filename-esm": "^1.1.1",
+		"ncp": "^2.0.0",
+		"npm-run-all2": "^8.0.0",
+		"param-case": "^4.0.0",
+		"pascal-case": "^4.0.0",
+		"ramda": "^0.32.0",
+		"rimraf": "^6.0.0",
+		"size-limit": "^9.0.0",
+		"ts-loader": "^9.4.1",
+		"tslib": "^2.4.0",
+		"typescript": "^5.0.0",
+		"vitest": "^4.0.18",
+		"webpack": "^5.74.0",
+		"webpack-bundle-analyzer": "^5.0.0",
+		"webpack-cli": "^6.0.0"
+	},
+	"size-limit": [
+		{
+			"path": "./cjs/index.js",
+			"limit": "20 kB"
+		},
+		{
+			"path": "./esm/index.js",
+			"limit": "10 kB"
+		},
+		{
+			"path": "./tslib/index.js",
+			"limit": "20 kB"
+		}
+	]
 }

@@ -1,8 +1,8 @@
 import { required, unpartial } from 'type-plus'
-import { toInspectLogEntry } from './platform.js'
-import { formatLogLevel } from './formatter.js'
-import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 import { createConsoleLogReporter } from './console.js'
+import { formatLogLevel } from './formatter.js'
+import { toInspectLogEntry } from './platform.js'
+import type { LogEntry, LogFormatter, LogReporter, LogReporterOptions } from './types.js'
 
 export type MemoryLogReporter = LogReporter<LogEntry> & {
 	logs: LogEntry[]
@@ -60,9 +60,7 @@ function buildMemoryReporter(options?: LogReporterOptions<LogEntry>) {
 			return logs.map(toInspectLogEntry).map(log => log.args.join(' '))
 		},
 		getLogMessagesWithLevel() {
-			return logs
-				.map(toInspectLogEntry)
-				.map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
+			return logs.map(toInspectLogEntry).map(log => `${formatLogLevel(log.level)} ${log.args.join(' ')}`)
 		},
 		getLogMessagesWithIdAndLevel() {
 			return logs

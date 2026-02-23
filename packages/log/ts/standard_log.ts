@@ -4,9 +4,9 @@ import { createLogStore, type LogStore } from './log_store.js'
 import { createLogger } from './logger.js'
 import { ctx } from './standard_log.ctx.js'
 import type {
-	LogMethodNames,
 	Logger,
 	LoggerOptions,
+	LogMethodNames,
 	StandardLogInstance,
 	StandardLogOptions
 } from './types.js'
@@ -76,7 +76,7 @@ export function createStandardLogClosure<N extends string = LogMethodNames>(
 								writeTo(reporterId) {
 									return nonConsoleReporters.indexOf(reporterId) >= 0
 								}
-						  }))
+							}))
 			}
 		}
 	}

@@ -5,5 +5,6 @@
 		"moduleResolution": "NodeNext",
 		"outDir": "esm",
 		"target": "ES2019"
-	}
+	},
+	"exclude": ["ts/**/*.spec.ts", "ts/**/test_utils*.ts"]
 }

@@ -1,7 +1,13 @@
 import a from 'assertron'
-import { createMemoryLogReporter, LogEntry, LogFilter, LogFormatter, logLevels } from './index.js'
-import { assertSSF, logEntriesToString } from './test_utils.js'
 import { filename } from 'dirname-filename-esm'
+import {
+	createMemoryLogReporter,
+	type LogEntry,
+	type LogFilter,
+	type LogFormatter,
+	logLevels
+} from './index.js'
+import { assertSSF, logEntriesToString } from './test_utils.js'
 
 const mikuIsSinging = {
 	id: 'test-log',
@@ -101,7 +107,7 @@ describe(createMemoryLogReporter.name, () => {
 			const reporter = createMemoryLogReporter()
 			reporter.write({ id: 'log', level: logLevels.info, args: ['msg 1'], timestamp: new Date() })
 			reporter.write({ id: 'log', level: logLevels.warn, args: ['msg 2'], timestamp: new Date() })
-			expect(reporter.getLogMessageWithLevel()).toEqual(`(INFO) msg 1\n(WARN) msg 2`)
+			expect(reporter.getLogMessageWithLevel()).toEqual('(INFO) msg 1\n(WARN) msg 2')
 		})
 	})
 
@@ -110,10 +116,7 @@ describe(createMemoryLogReporter.name, () => {
 			const r = createMemoryLogReporter()
 			r.write(mikuIsSinging)
 			r.write(lukaIsDancing)
-			expect(r.getLogMessagesWithLevel()).toEqual([
-				'(INFO) miku is singing',
-				'(WARN) luka is dancing'
-			])
+			expect(r.getLogMessagesWithLevel()).toEqual(['(INFO) miku is singing', '(WARN) luka is dancing'])
 		})
 	})
 

@@ -1,4 +1,4 @@
-import { ColorMap } from 'color-map'
+import type { ColorMap } from 'color-map'
 
 export const rainbow: ColorMap = [
 	{ index: 0, rgb: [150, 0, 90] },

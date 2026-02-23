@@ -68,7 +68,7 @@ export type LogEntry = {
 
 export type LogMethod = (...args: any[]) => void
 
-export type LogFunction = (log: LogMethod, logLevel: number) => string | void
+export type LogFunction = (log: LogMethod, logLevel: number) => string | undefined | void
 
 export type ReporterFilter = string | RegExp | ((reporterId: string) => boolean)
 

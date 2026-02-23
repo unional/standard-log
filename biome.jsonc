@@ -1,0 +1,74 @@
+{
+	"$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+	"extends": ["@repobuddy/biome/recommended"],
+	"files": {
+		"includes": [
+			"!.turbo",
+			"!.vscode/*.code-workspace",
+			"!.vscode/*.txt",
+			"!docs",
+			"!**/*.css",
+			"!**/cjs",
+			"!**/coverage",
+			"!**/dist",
+			"!**/esm",
+			"!**/node_modules",
+			"!opensrc",
+			"!**/opensrc",
+			"!**/storybook-static",
+			"!**/tslib",
+			"!**/vite.config.*.timestamp*",
+			"!**/vitest.config.*.timestamp*"
+		]
+	},
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "asNeeded",
+			"indentStyle": "tab",
+			"lineWidth": 110,
+			"quoteStyle": "single",
+			"semicolons": "asNeeded",
+			"trailingCommas": "none"
+		}
+	},
+	"linter": {
+		"rules": {
+			"suspicious": {
+				"noConfusingVoidType": "off"
+			}
+		}
+	},
+	"overrides": [
+		{
+			"includes": ["packages/log/**"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsole": "off",
+						"useIterableCallbackReturn": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/*.browser.ts", "**/*.browser.tsx"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsole": "off"
+					}
+				}
+			}
+		},
+		{
+			"includes": ["**/*.stories.*", ".storybook/**"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedFunctionParameters": "off"
+					}
+				}
+			}
+		}
+	]
+}
