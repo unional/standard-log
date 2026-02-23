@@ -55,6 +55,9 @@ node_modules
 !.yarn/versions
 
 # project folders
+.nowhere
+.reports
+.turbo
 packages/*/cjs
 packages/*/esm
 packages/*/tslib
@@ -62,6 +65,4 @@ packages/*/dist
 packages/*/lib*
 packages/*/out*
 packages/*/*.tsbuildinfo
-.nowhere
-.reports
 /docs
