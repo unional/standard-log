@@ -185,8 +185,8 @@ importers:
         specifier: ^7.0.0
         version: 7.6.2
       upper-case:
-        specifier: ^2.0.2
-        version: 2.0.2
+        specifier: ^3.0.0
+        version: 3.0.0
     devDependencies:
       '@repobuddy/vitest':
         specifier: ^2.1.1
@@ -7214,8 +7214,9 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  upper-case@2.0.2:
-    resolution: {integrity: sha512-KgdgDGJt2TpuwBUIjgG6lzw2GWFRCW9Qkfkiv0DxqHHLYJHmtmdUIKcZd8rHgFSjopVTlw6ggzCm1b8MFQwikg==}
+  upper-case@3.0.0:
+    resolution: {integrity: sha512-q6ZAk+RaBO94GGFpdM6GJ2pOXx6Ky/BK9xluGUqMYvY6qZjFN7RPbzqcd+OBru8tRFlcLcS40AIrIq48VhcTIA==}
+    deprecated: Use `str.toLocaleUpperCase` or `str.toUpperCase`
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -7267,7 +7268,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8-compile-cache@2.4.0:
@@ -16198,9 +16199,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  upper-case@2.0.2:
-    dependencies:
-      tslib: 2.8.1
+  upper-case@3.0.0: {}
 
   uri-js@4.4.1:
     dependencies:
