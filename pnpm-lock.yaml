@@ -16,7 +16,7 @@ importers:
         version: 2.29.8(@types/node@18.19.130)
       '@commitlint/cli':
         specifier: ^21.0.0
-        version: 21.0.1(@types/node@18.19.130)(conventional-commits-parser@6.4.0)(typescript@5.9.3)
+        version: 21.0.1(@types/node@18.19.130)(conventional-commits-parser@6.4.0)(typescript@6.0.3)
       '@commitlint/config-conventional':
         specifier: ^21.0.0
         version: 21.0.1
@@ -42,8 +42,8 @@ importers:
         specifier: ^2.8.3
         version: 2.8.10
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@18.19.130)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
@@ -153,13 +153,13 @@ importers:
         version: link:../log
       ts-loader:
         specifier: ^9.3.0
-        version: 9.5.4(typescript@5.9.3)(webpack@5.103.0)
+        version: 9.5.4(typescript@6.0.3)(webpack@5.103.0)
       tslib:
         specifier: ^2.4.0
         version: 2.8.1
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@18.19.130)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
@@ -238,13 +238,13 @@ importers:
         version: 9.0.0
       ts-loader:
         specifier: ^9.4.1
-        version: 9.5.4(typescript@5.9.3)(webpack@5.103.0)
+        version: 9.5.4(typescript@6.0.3)(webpack@5.103.0)
       tslib:
         specifier: ^2.4.0
         version: 2.8.1
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@18.19.130)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
@@ -295,8 +295,8 @@ importers:
         specifier: workspace:^
         version: link:../log
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@18.19.130)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
@@ -341,13 +341,13 @@ importers:
         version: link:../log
       ts-loader:
         specifier: ^9.4.1
-        version: 9.5.4(typescript@5.9.3)(webpack@5.103.0)
+        version: 9.5.4(typescript@6.0.3)(webpack@5.103.0)
       tslib:
         specifier: ^2.4.0
         version: 2.8.1
       typescript:
-        specifier: ^5.0.0
-        version: 5.9.3
+        specifier: ^6.0.0
+        version: 6.0.3
       vitest:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@18.19.130)(jiti@2.6.1)(terser@5.44.1)(yaml@2.8.1)
@@ -7067,8 +7067,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -8747,11 +8747,11 @@ snapshots:
   '@colors/colors@1.5.0':
     optional: true
 
-  '@commitlint/cli@21.0.1(@types/node@18.19.130)(conventional-commits-parser@6.4.0)(typescript@5.9.3)':
+  '@commitlint/cli@21.0.1(@types/node@18.19.130)(conventional-commits-parser@6.4.0)(typescript@6.0.3)':
     dependencies:
       '@commitlint/format': 21.0.1
       '@commitlint/lint': 21.0.1
-      '@commitlint/load': 21.0.1(@types/node@18.19.130)(typescript@5.9.3)
+      '@commitlint/load': 21.0.1(@types/node@18.19.130)(typescript@6.0.3)
       '@commitlint/read': 21.0.1(conventional-commits-parser@6.4.0)
       '@commitlint/types': 21.0.1
       tinyexec: 1.0.2
@@ -8796,14 +8796,14 @@ snapshots:
       '@commitlint/rules': 21.0.1
       '@commitlint/types': 21.0.1
 
-  '@commitlint/load@21.0.1(@types/node@18.19.130)(typescript@5.9.3)':
+  '@commitlint/load@21.0.1(@types/node@18.19.130)(typescript@6.0.3)':
     dependencies:
       '@commitlint/config-validator': 21.0.1
       '@commitlint/execute-rule': 21.0.1
       '@commitlint/resolve-extends': 21.0.1
       '@commitlint/types': 21.0.1
-      cosmiconfig: 9.0.1(typescript@5.9.3)
-      cosmiconfig-typescript-loader: 6.2.0(@types/node@18.19.130)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
+      cosmiconfig-typescript-loader: 6.2.0(@types/node@18.19.130)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3)
       es-toolkit: 1.46.1
       is-plain-obj: 4.1.0
       picocolors: 1.1.1
@@ -11733,12 +11733,12 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.2.0(@types/node@18.19.130)(cosmiconfig@9.0.1(typescript@5.9.3))(typescript@5.9.3):
+  cosmiconfig-typescript-loader@6.2.0(@types/node@18.19.130)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
       '@types/node': 18.19.130
-      cosmiconfig: 9.0.1(typescript@5.9.3)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
       jiti: 2.6.1
-      typescript: 5.9.3
+      typescript: 6.0.3
 
   cosmiconfig@6.0.0:
     dependencies:
@@ -11756,14 +11756,14 @@ snapshots:
       path-type: 4.0.0
       yaml: 1.10.2
 
-  cosmiconfig@9.0.1(typescript@5.9.3):
+  cosmiconfig@9.0.1(typescript@6.0.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
 
   cp-file@7.0.0:
     dependencies:
@@ -15901,14 +15901,14 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  ts-loader@9.5.4(typescript@5.9.3)(webpack@5.103.0):
+  ts-loader@9.5.4(typescript@6.0.3)(webpack@5.103.0):
     dependencies:
       chalk: 4.1.2
       enhanced-resolve: 5.18.3
       micromatch: 4.0.8
       semver: 7.7.3
       source-map: 0.7.6
-      typescript: 5.9.3
+      typescript: 6.0.3
       webpack: 5.103.0(webpack-cli@7.0.0)
 
   ts-pnp@1.2.0(typescript@4.9.5):
@@ -16020,7 +16020,7 @@ snapshots:
 
   typescript@4.9.5: {}
 
-  typescript@5.9.3: {}
+  typescript@6.0.3: {}
 
   uglify-js@3.19.3:
     optional: true
