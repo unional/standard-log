@@ -1,5 +1,4 @@
 import ms from 'ms'
-import { upperCase } from 'upper-case'
 import { toLogLevelName } from './log_levels.js'
 import type { LogEntry } from './types.js'
 
@@ -24,7 +23,7 @@ export function createTimestampFormatter(format: TimestampFormat): (timestamp: D
 }
 
 export function formatLogLevel(level: number) {
-	return `(${upperCase(toLogLevelName(level))})`
+	return `(${toLogLevelName(level).toUpperCase()})`
 }
 
 /**

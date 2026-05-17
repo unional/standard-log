@@ -184,9 +184,6 @@ importers:
       type-plus:
         specifier: ^7.0.0
         version: 7.6.2
-      upper-case:
-        specifier: ^3.0.0
-        version: 3.0.0
     devDependencies:
       '@repobuddy/vitest':
         specifier: ^2.1.1
@@ -7214,10 +7211,6 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  upper-case@3.0.0:
-    resolution: {integrity: sha512-q6ZAk+RaBO94GGFpdM6GJ2pOXx6Ky/BK9xluGUqMYvY6qZjFN7RPbzqcd+OBru8tRFlcLcS40AIrIq48VhcTIA==}
-    deprecated: Use `str.toLocaleUpperCase` or `str.toUpperCase`
-
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
@@ -9749,7 +9742,7 @@ snapshots:
       case-sensitive-paths-webpack-plugin: 2.4.0
       core-js: 3.47.0
       css-loader: 3.6.0(webpack@4.47.0)
-      file-loader: 6.2.0(webpack@5.103.0)
+      file-loader: 6.2.0(webpack@4.47.0)
       find-up: 5.0.0
       fork-ts-checker-webpack-plugin: 4.1.6(eslint@8.4.1)(typescript@4.9.5)(webpack@4.47.0)
       glob: 7.2.3
@@ -10164,7 +10157,7 @@ snapshots:
       core-js: 3.47.0
       css-loader: 3.6.0(webpack@4.47.0)
       express: 4.21.2
-      file-loader: 6.2.0(webpack@4.47.0)
+      file-loader: 6.2.0(webpack@5.103.0)
       find-up: 5.0.0
       fs-extra: 9.1.0
       html-webpack-plugin: 4.5.2(webpack@4.47.0)
@@ -16198,8 +16191,6 @@ snapshots:
       browserslist: 4.28.0
       escalade: 3.2.0
       picocolors: 1.1.1
-
-  upper-case@3.0.0: {}
 
   uri-js@4.4.1:
     dependencies:
