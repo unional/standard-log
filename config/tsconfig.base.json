@@ -1,5 +1,6 @@
 {
 	"compilerOptions": {
+		"ignoreDeprecations": "6.0",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		// Inline sources should make it possible to not include the TS code in the package.
