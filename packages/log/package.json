@@ -93,7 +93,7 @@
 		"depcheck": "^1.4.3",
 		"dirname-filename-esm": "^1.1.1",
 		"ncp": "^2.0.0",
-		"npm-run-all2": "^8.0.0",
+		"npm-run-all2": "^9.0.0",
 		"param-case": "^4.0.0",
 		"pascal-case": "^4.0.0",
 		"ramda": "^0.32.0",
