@@ -58,7 +58,7 @@
 	"devDependencies": {
 		"@repobuddy/vitest": "^2.1.1",
 		"@size-limit/preset-small-lib": "^9.0.0",
-		"@types/node": "^18.0.0",
+		"@types/node": "^24.0.0",
 		"assertron": "^11.0.0",
 		"depcheck": "^1.4.3",
 		"ncp": "^2.0.0",
