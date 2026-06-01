@@ -67,7 +67,7 @@
 		"size-limit": "^9.0.0",
 		"standard-log": "workspace:^",
 		"typescript": "^5.0.0",
-		"vitest": "^4.0.18"
+		"vitest": "^4.1.0"
 	},
 	"peerDependencies": {
 		"standard-log": ">=11.0.1"
