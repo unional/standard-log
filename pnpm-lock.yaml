@@ -113,8 +113,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(vitest@4.1.0(@types/node@24.12.4)(vite@6.4.2(@types/node@24.12.4)(jiti@2.6.1)(terser@5.44.1)))
       '@size-limit/preset-small-lib':
-        specifier: ^12.0.0
-        version: 12.1.0(size-limit@12.1.0(jiti@2.6.1))
+        specifier: ^13.0.0
+        version: 13.0.2(size-limit@13.0.2)
       '@types/supports-color':
         specifier: ^10.0.0
         version: 10.0.0
@@ -146,8 +146,8 @@ importers:
         specifier: ^5.2.2
         version: 5.4.2
       size-limit:
-        specifier: ^12.0.0
-        version: 12.1.0(jiti@2.6.1)
+        specifier: ^13.0.0
+        version: 13.0.2
       standard-log:
         specifier: workspace:*
         version: link:../log
@@ -189,8 +189,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(vitest@4.1.0(@types/node@24.12.4)(vite@6.4.2(@types/node@24.12.4)(jiti@2.6.1)(terser@5.44.1)))
       '@size-limit/preset-small-lib':
-        specifier: ^12.0.0
-        version: 12.1.0(size-limit@12.1.0(jiti@2.6.1))
+        specifier: ^13.0.0
+        version: 13.0.2(size-limit@13.0.2)
       '@types/ms':
         specifier: ^2.0.0
         version: 2.1.0
@@ -231,8 +231,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.2
       size-limit:
-        specifier: ^12.0.0
-        version: 12.1.0(jiti@2.6.1)
+        specifier: ^13.0.0
+        version: 13.0.2
       ts-loader:
         specifier: ^9.4.1
         version: 9.5.4(typescript@5.9.3)(webpack@5.106.2)
@@ -265,8 +265,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(vitest@4.1.0(@types/node@24.12.4)(vite@6.4.2(@types/node@24.12.4)(jiti@2.6.1)(terser@5.44.1)))
       '@size-limit/preset-small-lib':
-        specifier: ^12.0.0
-        version: 12.1.0(size-limit@12.1.0(jiti@2.6.1))
+        specifier: ^13.0.0
+        version: 13.0.2(size-limit@13.0.2)
       '@types/node':
         specifier: ^24.0.0
         version: 24.12.4
@@ -286,8 +286,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.2
       size-limit:
-        specifier: ^12.0.0
-        version: 12.1.0(jiti@2.6.1)
+        specifier: ^13.0.0
+        version: 13.0.2
       standard-log:
         specifier: workspace:^
         version: link:../log
@@ -304,8 +304,8 @@ importers:
         specifier: ^2.1.1
         version: 2.1.1(vitest@4.1.0(@types/node@24.12.4)(vite@6.4.2(@types/node@24.12.4)(jiti@2.6.1)(terser@5.44.1)))
       '@size-limit/preset-small-lib':
-        specifier: ^12.0.0
-        version: 12.1.0(size-limit@12.1.0(jiti@2.6.1))
+        specifier: ^13.0.0
+        version: 13.0.2(size-limit@13.0.2)
       '@types/node':
         specifier: ^24.0.0
         version: 24.12.4
@@ -331,8 +331,8 @@ importers:
         specifier: ^6.0.0
         version: 6.1.2
       size-limit:
-        specifier: ^12.0.0
-        version: 12.1.0(jiti@2.6.1)
+        specifier: ^13.0.0
+        version: 13.0.2
       standard-log:
         specifier: workspace:*
         version: link:../log
@@ -1931,22 +1931,22 @@ packages:
     resolution: {integrity: sha512-KxXvfapcixpz6rVEB6HPjOUZT22yN6v0vI0urQSk1L8MlEWPDFCZkhw2xmkyoTGYeFw7tWTZd7e3lVzRZRN/EA==}
     engines: {node: '>=18'}
 
-  '@size-limit/esbuild@12.1.0':
-    resolution: {integrity: sha512-Um6MVrX+05kIxI4+zk0ZByG9dA/Th1f+sfGc571D95BnCPc90/pl2+2OdsQuOyoWEbeAMqfcTKo0v07i+E65Vw==}
+  '@size-limit/esbuild@13.0.2':
+    resolution: {integrity: sha512-+FA0qXnBxV+QgUgxA56bR6bVCpATJIn97qtnvfhlroKfZiah5nK3b8dTy08oBZ/J7L1s2foTwSIjEhEPRZMJ2A==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     peerDependencies:
-      size-limit: 12.1.0
+      size-limit: 13.0.2
 
-  '@size-limit/file@12.1.0':
-    resolution: {integrity: sha512-eGwDcIufnNnvJRzv3liDOn6MAOGgmOTUdpeGQ2KuRTlgIgO54AJH1ilvktlJc6PIjNfwpYY0dOGyap1QgM1swQ==}
+  '@size-limit/file@13.0.2':
+    resolution: {integrity: sha512-2jUyuOP1qJMjcsbDuAhHV4xoRK89uFCrz0DZ+qIRFwTsTxME4Rjb6E6ZYb7VNAy5K2aQyM/BQJOS+eT01KLRjg==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     peerDependencies:
-      size-limit: 12.1.0
+      size-limit: 13.0.2
 
-  '@size-limit/preset-small-lib@12.1.0':
-    resolution: {integrity: sha512-TVVQ/iuHbaGtHJrjur5s4XKYEyGk0nIwUAqhuzhKPbTyV9nYOH/laDelQ4vg3cGmm8sayRx998wxEdnwM/Yewg==}
+  '@size-limit/preset-small-lib@13.0.2':
+    resolution: {integrity: sha512-BC/f3be0XHBJHJGln4fuFYnaOj2Vr+juUS72JDvg4dhlJVyt+fHeu9zJ4fKzWdrSzuxsFgvsrFtF6XbaCe1cSQ==}
     peerDependencies:
-      size-limit: 12.1.0
+      size-limit: 13.0.2
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -5452,9 +5452,9 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanoid@5.1.16:
-    resolution: {integrity: sha512-kVrnsrJqMR8+oLJnGEmSWw9BivK5mt7H3FZatVRjrc5wGqFYuBxX1yG7+A7Gi5AefkX6t/oCkizcQgpu0cY1dQ==}
-    engines: {node: ^18 || >=20}
+  nanoid@6.0.0:
+    resolution: {integrity: sha512-mkUH+rPkwU2qPadJ0oJZOjeZ5Mxn8Q1UhevwkTRWNuUZzyia3h4rhzK39hxaHTk0o2OxB8W2SQ6A8k23ZDi1pQ==}
+    engines: {node: ^22 || ^24 || >=26}
     hasBin: true
 
   nanomatch@1.2.13:
@@ -6522,15 +6522,10 @@ packages:
   sisteransi@1.0.5:
     resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
 
-  size-limit@12.1.0:
-    resolution: {integrity: sha512-VnDS2fycANrJFVPQwjaD+h+hkISY7EB3LsPsYWje4lBCjQwwsZLxjwwRwVJKHrcj2ZqyG+DdXykWm9mbZklZrw==}
-    engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
+  size-limit@13.0.2:
+    resolution: {integrity: sha512-bB8Hv6g7nBtmWW+mB9Y1lkyJoDOxk6pO6p7xPsK8Y6t9CyKvBWhzTRXLlhhv1H2Ru9HIyLKbCaVswXGHwVXiwg==}
+    engines: {node: ^22.18.0 || ^24.0.0 || >=26.0.0}
     hasBin: true
-    peerDependencies:
-      jiti: ^2.0.0
-    peerDependenciesMeta:
-      jiti:
-        optional: true
 
   slash@2.0.0:
     resolution: {integrity: sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==}
@@ -9369,21 +9364,21 @@ snapshots:
 
   '@simple-libs/stream-utils@1.2.0': {}
 
-  '@size-limit/esbuild@12.1.0(size-limit@12.1.0(jiti@2.6.1))':
+  '@size-limit/esbuild@13.0.2(size-limit@13.0.2)':
     dependencies:
       esbuild: 0.28.1
-      nanoid: 5.1.16
-      size-limit: 12.1.0(jiti@2.6.1)
+      nanoid: 6.0.0
+      size-limit: 13.0.2
 
-  '@size-limit/file@12.1.0(size-limit@12.1.0(jiti@2.6.1))':
+  '@size-limit/file@13.0.2(size-limit@13.0.2)':
     dependencies:
-      size-limit: 12.1.0(jiti@2.6.1)
+      size-limit: 13.0.2
 
-  '@size-limit/preset-small-lib@12.1.0(size-limit@12.1.0(jiti@2.6.1))':
+  '@size-limit/preset-small-lib@13.0.2(size-limit@13.0.2)':
     dependencies:
-      '@size-limit/esbuild': 12.1.0(size-limit@12.1.0(jiti@2.6.1))
-      '@size-limit/file': 12.1.0(size-limit@12.1.0(jiti@2.6.1))
-      size-limit: 12.1.0(jiti@2.6.1)
+      '@size-limit/esbuild': 13.0.2(size-limit@13.0.2)
+      '@size-limit/file': 13.0.2(size-limit@13.0.2)
+      size-limit: 13.0.2
 
   '@standard-schema/spec@1.1.0': {}
 
@@ -14155,7 +14150,7 @@ snapshots:
 
   nanoid@3.3.12: {}
 
-  nanoid@5.1.16: {}
+  nanoid@6.0.0: {}
 
   nanomatch@1.2.13:
     dependencies:
@@ -15416,15 +15411,12 @@ snapshots:
 
   sisteransi@1.0.5: {}
 
-  size-limit@12.1.0(jiti@2.6.1):
+  size-limit@13.0.2:
     dependencies:
       bytes-iec: 3.1.1
       lilconfig: 3.1.3
       nanospinner: 1.2.2
       picocolors: 1.1.1
-      tinyglobby: 0.2.17
-    optionalDependencies:
-      jiti: 2.6.1
 
   slash@2.0.0: {}
 
