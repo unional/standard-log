@@ -48,12 +48,12 @@ They should not be returned to the user in the form of log reports,
 or else your application is subject to Log Injection/Forging and related attacks.
 
 
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
+[codecov-image]: https://codecov.io/gh/cyberuni/standard-log/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log-remote.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log-remote
 [npm-image]: https://img.shields.io/npm/v/standard-log-remote.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log-remote
-[standard-log]: https://github.com/unional/standard-log
+[standard-log]: https://github.com/cyberuni/standard-log
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/

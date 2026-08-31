@@ -5,14 +5,33 @@ on:
 
 jobs:
   code:
-    uses: unional/.github/.github/workflows/pnpm-verify.yml@main
+    uses: cyberuni/.github/.github/workflows/pnpm-verify.yml@main
+    with:
+      os: '["ubuntu-latest"]'
+      skip-playwright: true
+
+  # Runs on the default branch immediately before `changeset publish`, so a tarball that
+  # trips the gate blocks the release. It deliberately also runs on pushes that only open
+  # or update the changesets "Version Packages" PR — it fails closed.
+  #
+  # It cannot live on the Version PR itself: that PR is opened with the built-in
+  # GITHUB_TOKEN, which does not trigger `on: pull_request`, so it gets zero checks.
+  publish-gate:
+    uses: cyberuni/.github/.github/workflows/pnpm-publish-gate.yml@main
+    permissions:
+      contents: read
 
   release:
-    uses: unional/.github/.github/workflows/pnpm-release-changeset.yml@main
-    needs: code
-    secrets: inherit
+    uses: cyberuni/.github/.github/workflows/pnpm-release-changeset-oidc.yml@main
+    needs: [code, publish-gate]
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
 
   # TODO: do not run this when release creates PR only
   docgen:
-    uses: unional/.github/.github/workflows/pnpm-docs.yml@main
+    uses: cyberuni/.github/.github/workflows/pnpm-docs.yml@main
     needs: release
+    permissions:
+      contents: write

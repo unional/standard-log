@@ -2,7 +2,11 @@ name: pull-request
 on:
   pull_request:
     types: [opened, synchronize]
+  merge_group:
 
 jobs:
   code:
-    uses: unional/.github/.github/workflows/pnpm-verify.yml@main
+    uses: cyberuni/.github/.github/workflows/pnpm-verify.yml@main
+    with:
+      os: '["ubuntu-latest"]'
+      skip-playwright: true

@@ -69,15 +69,15 @@ createCssLogFormatter({ timestamp: 'iso' })
 createCssLogFormatter({ timestamp: 'elapsed' })
 ```
 
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
+[codecov-image]: https://codecov.io/gh/cyberuni/standard-log/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log-color.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log-color
-[github-action-url]: https://github.com/unional/standard-log/actions
-[github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
+[github-action-url]: https://github.com/cyberuni/standard-log/actions
+[github-nodejs]: https://github.com/cyberuni/standard-log/actions/workflows/release.yml/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log-color.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log-color
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[rendering-example]: https://github.com/unional/standard-log/tree/main/images/color-log.png
-[standard-log]: https://github.com/unional/standard-log
+[rendering-example]: https://github.com/cyberuni/standard-log/tree/main/images/color-log.png
+[standard-log]: https://github.com/cyberuni/standard-log

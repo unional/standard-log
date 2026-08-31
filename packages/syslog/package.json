@@ -2,13 +2,13 @@
 	"name": "standard-log-syslog",
 	"version": "12.1.2",
 	"description": "syslog plugin for `standard-log`",
-	"homepage": "https://github.com/unional/standard-log/tree/main/packages/syslog",
+	"homepage": "https://github.com/cyberuni/standard-log/tree/main/packages/syslog",
 	"bugs": {
-		"url": "https://github.com/unional/standard-log/issues"
+		"url": "https://github.com/cyberuni/standard-log/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/unional/standard-log.git"
+		"url": "https://github.com/cyberuni/standard-log.git"
 	},
 	"license": "MIT",
 	"author": {
