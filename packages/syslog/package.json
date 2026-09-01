@@ -51,7 +51,7 @@
 		"depcheck": "depcheck",
 		"nuke": "run-s clean nuke:local",
 		"nuke:local": "rimraf node_modules",
-		"prepublishOnly": "yarn build && yarn bundle",
+		"prepublishOnly": "pnpm build && pnpm bundle",
 		"size": "size-limit",
 		"test": "vitest run",
 		"verify": "npm-run-all -p build depcheck coverage -p size",
