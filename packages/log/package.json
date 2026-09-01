@@ -1,6 +1,6 @@
 {
 	"name": "standard-log",
-	"version": "12.1.2",
+	"version": "13.0.0",
 	"description": "The standard log library",
 	"homepage": "https://github.com/cyberuni/standard-log/tree/main/packages/log",
 	"bugs": {

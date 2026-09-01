@@ -1,5 +1,11 @@
 # standard-log-remote
 
+## 13.0.0
+
+### Patch Changes
+
+- f79033b: Point package metadata (`repository`, `homepage`, `bugs`) at the `cyberuni` organization following the repository transfer.
+
 ## 12.1.2
 
 ## 12.1.1
