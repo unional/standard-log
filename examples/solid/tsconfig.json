@@ -12,13 +12,5 @@
 		"types": ["vite/client"],
 		"noEmit": true,
 		"isolatedModules": true
-	},
-	"references": [
-		{
-			"path": "../../packages/color"
-		},
-		{
-			"path": "../../packages/log"
-		}
-	]
+	}
 }

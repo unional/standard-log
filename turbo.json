@@ -3,22 +3,16 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
-			"outputs": ["cjs/**", "dist/**", "esm/**", "tslib/**"]
+			"outputs": ["cjs/**", "dist/**", "esm/**"]
 		},
-		"build-doc": {
-			"outputs": ["storybook-static/**", "docs/**"]
-		},
-		"check": {},
 		"clean": { "cache": false },
 		"coverage": {
 			"dependsOn": ["^build"],
 			"outputs": ["coverage/**"]
 		},
-		"cov": {},
 		"depcheck": { "dependsOn": ["^build"] },
 		"nuke": { "cache": false },
-		"sb": {},
-		"size": { "dependsOn": ["build"] },
-		"test": { "dependsOn": ["^build"] }
+		"test": { "dependsOn": ["^build"] },
+		"typecheck": { "dependsOn": ["^build"] }
 	}
 }

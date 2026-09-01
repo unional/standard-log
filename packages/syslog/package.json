@@ -38,60 +38,26 @@
 		"!**/*.spec.*"
 	],
 	"scripts": {
-		"build": "run-p build:cjs build:esm build:tslib bundle:es5 bundle:esm",
-		"build:clean": "rimraf *.tsbuildinfo",
-		"build:cjs": "tsc -p ./tsconfig.cjs.json && ncp package.cjs.json cjs/package.json",
-		"build:esm": "tsc -p ./tsconfig.esm.json",
-		"build:tslib": "tsc -p ./tsconfig.tslib.json && ncp package.cjs.json tslib/package.json",
-		"bundle": "run-p bundle:es5 bundle:esm",
-		"bundle:es5": "webpack -c ./webpack.es5.cjs",
-		"bundle:esm": "webpack -c ./webpack.esm.cjs",
-		"clean": "rimraf cjs coverage dist esm lib libm tslib --glob *.tsbuildinfo",
+		"build": "tsdown",
+		"clean": "rimraf cjs coverage dist esm --glob *.tsbuildinfo",
 		"coverage": "vitest run --coverage",
 		"depcheck": "depcheck",
-		"nuke": "run-s clean nuke:local",
-		"nuke:local": "rimraf node_modules",
-		"prepublishOnly": "pnpm build && pnpm bundle",
-		"size": "size-limit",
+		"nuke": "pnpm clean && rimraf node_modules",
 		"test": "vitest run",
-		"verify": "npm-run-all -p build depcheck coverage -p size",
+		"typecheck": "tsc",
 		"w": "vitest"
 	},
 	"devDependencies": {
 		"@repobuddy/vitest": "^2.1.1",
-		"@size-limit/preset-small-lib": "^13.0.0",
 		"@types/node": "^24.0.0",
-		"compression-webpack-plugin": "^12.0.0",
 		"depcheck": "^1.4.3",
-		"ncp": "^2.0.0",
-		"npm-run-all2": "^9.0.0",
-		"param-case": "^4.0.0",
-		"pascal-case": "^4.0.0",
 		"rimraf": "^6.0.0",
-		"size-limit": "^13.0.0",
 		"standard-log": "workspace:*",
-		"ts-loader": "^9.4.1",
-		"tslib": "^2.4.0",
-		"typescript": "^5.0.0",
-		"vitest": "^4.1.0",
-		"webpack": "^5.74.0",
-		"webpack-cli": "^7.0.0"
+		"tsdown": "^0.22.14",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.0"
 	},
 	"peerDependencies": {
 		"standard-log": ">=11.0.1"
-	},
-	"size-limit": [
-		{
-			"path": "./cjs/index.js",
-			"limit": "10 kB"
-		},
-		{
-			"path": "./esm/index.js",
-			"limit": "10 kB"
-		},
-		{
-			"path": "./tslib/index.js",
-			"limit": "10 kB"
-		}
-	]
+	}
 }

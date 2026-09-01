@@ -1,19 +1,11 @@
+ignore-patterns:
+  - cjs
+  - dist
+  - esm
 ignores:
-  - '@repobuddy/jest'
-  - '@size-limit/preset-small-lib'
-  - '@types/jest'
-  - '@types/node'
-  - '@typescript-eslint/eslint-plugin'
-  - '@typescript-eslint/parser'
-  - compression-webpack-plugin
-  - eslint-config-prettier
-  - eslint-plugin-harmony
-  - jest-*
-  - param-case
-  - pascal-case
+  # Listed one package per line, never as a wildcard: a blanket pattern hides dead
+  # dependencies rather than declaring intentional ones.
+  - depcheck # bin-only, invoked from the depcheck script
   - rimraf # https://github.com/depcheck/depcheck/issues/776
-  - size-limit
-  - ts-jest
-  - ts-loader
-  - tslib
-  - webpack-cli
+  - tsdown # bin-only, configured by tsdown.config.ts
+  - typescript # bin-only, `tsc` in the typecheck script
