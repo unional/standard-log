@@ -5,3 +5,9 @@ allowBuilds:
   core-js: true
   esbuild: true
   fsevents: true
+# Supply-chain soak: refuse any package version published less than 24h ago.
+# `minimumReleaseAgeStrict` is what makes it a control rather than a suggestion — without it
+# pnpm's default behaviour on meeting a too-young package is to append that package to
+# `minimumReleaseAgeExclude` and carry on, silently weakening the policy it just enforced.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
