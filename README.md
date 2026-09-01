@@ -7,7 +7,7 @@
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 
-This is the repository for [`standard-log`](https://github.com/unional/standard-log)
+This is the repository for [`standard-log`](https://github.com/cyberuni/standard-log)
 
 `standard-log` is a powerful and extensible logging library.
 
@@ -23,8 +23,8 @@ This is the repository for [`standard-log`](https://github.com/unional/standard-
 [downloads-image]: https://img.shields.io/npm/dm/standard-log.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log
 
-[github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
-[github-action-url]: https://github.com/unional/standard-log/actions
+[github-nodejs]: https://github.com/cyberuni/standard-log/actions/workflows/release.yml/badge.svg
+[github-action-url]: https://github.com/cyberuni/standard-log/actions
 
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/

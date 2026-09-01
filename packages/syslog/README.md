@@ -8,7 +8,7 @@
 
 [![Visual Studio Code][vscode-image]][vscode-url]
 
-[syslog] plugin for [`standard-log`](https://github.com/unional/standard-log)
+[syslog] plugin for [`standard-log`](https://github.com/cyberuni/standard-log)
 
 ## Usage
 
@@ -26,12 +26,12 @@ const log = standardLog.getLogger('some logger')
 log.info('some log')
 ```
 
-[codecov-image]: https://codecov.io/gh/unional/standard-log/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/standard-log
+[codecov-image]: https://codecov.io/gh/cyberuni/standard-log/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/standard-log
 [downloads-image]: https://img.shields.io/npm/dm/standard-log-syslog.svg?style=flat
 [downloads-url]: https://npmjs.org/package/standard-log-syslog
-[github-action-url]: https://github.com/unional/standard-log/actions
-[github-nodejs]: https://github.com/unional/standard-log/workflows/release/badge.svg
+[github-action-url]: https://github.com/cyberuni/standard-log/actions
+[github-nodejs]: https://github.com/cyberuni/standard-log/actions/workflows/release.yml/badge.svg
 [npm-image]: https://img.shields.io/npm/v/standard-log-syslog.svg?style=flat
 [npm-url]: https://www.npmjs.com/package/standard-log-syslog
 [syslog]: https://en.wikipedia.org/wiki/Syslog
