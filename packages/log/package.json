@@ -101,7 +101,7 @@
 		"size-limit": "^13.0.0",
 		"ts-loader": "^9.4.1",
 		"tslib": "^2.4.0",
-		"typescript": "^5.0.0",
+		"typescript": "^7.0.0",
 		"vitest": "^4.1.0",
 		"webpack": "^5.74.0",
 		"webpack-bundle-analyzer": "^5.0.0",
