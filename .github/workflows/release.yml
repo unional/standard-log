@@ -28,10 +28,3 @@ jobs:
       id-token: write
       contents: write
       pull-requests: write
-
-  # TODO: do not run this when release creates PR only
-  docgen:
-    uses: cyberuni/.github/.github/workflows/pnpm-docs.yml@v2
-    needs: release
-    permissions:
-      contents: write

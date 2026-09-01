@@ -1,6 +1,0 @@
-node_modules
-packages/*/cjs
-packages/*/dist
-packages/*/esm
-packages/*/tslib
-packages/*/out*
