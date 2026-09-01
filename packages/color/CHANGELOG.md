@@ -1,5 +1,15 @@
 # Change Log
 
+## 13.0.0
+
+### Major Changes
+
+- fb6af72: Drop support for ES5.
+
+### Patch Changes
+
+- f79033b: Point package metadata (`repository`, `homepage`, `bugs`) at the `cyberuni` organization following the repository transfer.
+
 ## 12.1.2
 
 ### Patch Changes
