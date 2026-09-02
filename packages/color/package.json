@@ -1,6 +1,6 @@
 {
 	"name": "standard-log-color",
-	"version": "13.0.1",
+	"version": "13.0.2",
 	"description": "Color console reporter for `standard-log`",
 	"homepage": "https://github.com/cyberuni/standard-log/tree/main/packages/color",
 	"bugs": {
