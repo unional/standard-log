@@ -1,6 +1,6 @@
 {
 	"name": "standard-log-remote",
-	"version": "13.0.2",
+	"version": "13.1.0",
 	"description": "remote logging for `standard-log`",
 	"homepage": "https://github.com/cyberuni/standard-log/tree/main/packages/remote",
 	"bugs": {
