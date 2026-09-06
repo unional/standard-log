@@ -128,8 +128,8 @@ importers:
         specifier: ^2.1.3
         version: 2.1.3
       type-plus:
-        specifier: ^7.0.0
-        version: 7.6.2
+        specifier: ^8.0.0-beta.10
+        version: 8.0.0-beta.10(typescript@7.0.2)
     devDependencies:
       '@repobuddy/vitest':
         specifier: ^2.1.1
@@ -1418,6 +1418,11 @@ packages:
     engines: {node: '>=0.4.0'}
     hasBin: true
 
+  acorn@8.18.0:
+    resolution: {integrity: sha512-lGq+9yr1/GuAWaVYIHRjvvySG5/4VfKIvC8EWxStPdcDh/Ka7FG3twP6v4d5BkravUilhIAsG4Qj83t02LWUPQ==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
 
@@ -2279,6 +2284,9 @@ packages:
   tersify@3.12.1:
     resolution: {integrity: sha512-VwzXGHZSOB4T27s4uvh9v8FYrNXyfVz0nBQi28TDwrZoQwT8ZJUp1W2Ff73ekN07stJSb0D+pr6iXeNeFqTI6Q==}
 
+  tersify@4.0.6:
+    resolution: {integrity: sha512-+z2dTeRvbPyI7qiAmBY+VgWnhhN9IuaGjgrPfeF33hI4A/Yd9KT11tbc4l8vfIA3L/5EWiE0swvxOfAckGRuzA==}
+
   tinybench@2.9.0:
     resolution: {integrity: sha512-0+DUvqWMValLmha6lr4kD8iAMK1HzV0/aKnCtWb9v9641TnP/MFb7Pc2bxoxQjTXAErryXVgUOfv2YqNllqGeg==}
 
@@ -2364,6 +2372,11 @@ packages:
   type-plus@7.6.2:
     resolution: {integrity: sha512-qUlXv9Y0/W56pg38m275IMD3WA03QbVoqNY16S3kmwtuA4gOT2iheyUdOp8NWrmXWpf7om98hzr7AZD/eW2jLA==}
 
+  type-plus@8.0.0-beta.10:
+    resolution: {integrity: sha512-ZdhzmQg7f8oxt5Cbivslk8o3zef8L3ibpKIeGH1ESf73y8ZEY1z9fe4Z3fTxcjmFOb8ESE1TbW/MCgEvpeLC4w==}
+    peerDependencies:
+      typescript: '>= 5.6.0'
+
   types-ramda@0.32.0:
     resolution: {integrity: sha512-iZtriSUdsDqOlip/wUaDNcoiskbVf5RdcqLNpQdUcOM1JKFClochCvPZCDjn/cc9HzoBzi4DEB4iPr1PbrhN1w==}
 
@@ -2381,6 +2394,10 @@ packages:
   unpartial@1.0.5:
     resolution: {integrity: sha512-yAqaXcachjgZUnM2yIkf+4KJhmyuoj7stBvlnlZpB15OYVbKnLhgJfmLW7qkpzLHCdsm1bEFvhyN9hCmlZ3uuw==}
     engines: {node: '>=6'}
+
+  unpartial@1.0.7:
+    resolution: {integrity: sha512-DeyxEI3KSlmDihGAk3Js/p/Ca886ymIz39pWH3VVV/LZ36MsRETylFS37fdzWBWDjMlzB63Rdy2KLCdetOMPig==}
+    engines: {node: '>= 20'}
 
   update-browserslist-db@1.2.3:
     resolution: {integrity: sha512-Js0m9cx+qOgDxo0eMiFGEueWztz+d4+M3rGlmKPT+T4IS/jP4ylw3Nwpu6cpTTP8R1MAC1kF4VbdLt3ARf209w==}
@@ -3553,6 +3570,8 @@ snapshots:
   acorn@8.16.0:
     optional: true
 
+  acorn@8.18.0: {}
+
   ajv@8.20.0:
     dependencies:
       fast-deep-equal: 3.1.3
@@ -4413,6 +4432,11 @@ snapshots:
       is-buffer: 2.0.5
       unpartial: 1.0.5
 
+  tersify@4.0.6:
+    dependencies:
+      acorn: 8.18.0
+      unpartial: 1.0.7
+
   tinybench@2.9.0: {}
 
   tinyexec@1.0.2: {}
@@ -4484,6 +4508,12 @@ snapshots:
       tersify: 3.12.1
       unpartial: 1.0.5
 
+  type-plus@8.0.0-beta.10(typescript@7.0.2):
+    dependencies:
+      tersify: 4.0.6
+      typescript: 7.0.2
+      unpartial: 1.0.7
+
   types-ramda@0.32.0:
     dependencies:
       ts-toolbelt: 9.6.0
@@ -4519,6 +4549,8 @@ snapshots:
   undici-types@7.16.0: {}
 
   unpartial@1.0.5: {}
+
+  unpartial@1.0.7: {}
 
   update-browserslist-db@1.2.3(browserslist@4.28.2):
     dependencies:
