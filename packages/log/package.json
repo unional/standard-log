@@ -68,17 +68,17 @@
 		"w": "vitest"
 	},
 	"dependencies": {
-		"@just-func/types": "^0.5.0",
-		"iso-error": "^6.0.0",
+		"@just-func/types": "^0.6.0",
+		"iso-error": "^6.0.5",
 		"ms": "^2.1.3",
-		"type-plus": "^8.0.0-beta.10"
+		"type-plus": "8.0.0-beta.10"
 	},
 	"devDependencies": {
 		"@repobuddy/vitest": "^2.1.1",
 		"@types/ms": "^2.0.0",
 		"@types/node": "^24.0.0",
 		"@types/ramda": "^0.32.0",
-		"assertron": "^11.0.0",
+		"assertron": "^11.6.0",
 		"depcheck": "^1.4.3",
 		"dirname-filename-esm": "^1.1.1",
 		"ramda": "^0.32.0",
