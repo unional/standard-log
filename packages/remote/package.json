@@ -53,7 +53,7 @@
 	"devDependencies": {
 		"@repobuddy/vitest": "^2.1.1",
 		"@types/node": "^24.0.0",
-		"assertron": "^11.0.0",
+		"assertron": "^11.6.0",
 		"depcheck": "^1.4.3",
 		"rimraf": "^6.0.0",
 		"standard-log": "workspace:^",
