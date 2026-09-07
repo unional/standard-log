@@ -119,8 +119,8 @@ importers:
   packages/log:
     dependencies:
       '@just-func/types':
-        specifier: ^0.5.0
-        version: 0.5.1
+        specifier: ^0.6.0
+        version: 0.6.0(typescript@7.0.2)
       iso-error:
         specifier: ^6.0.0
         version: 6.0.3
@@ -732,8 +732,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@just-func/types@0.5.1':
-    resolution: {integrity: sha512-yP+XbIIT5qGI/6TOZ0lRFHq2UubCfpf+2EKQPhEwOGsvh1vJTdDTPGyNWYHmLMLT5jx8h/SR3mAAVDmYyAjpwA==}
+  '@just-func/types@0.6.0':
+    resolution: {integrity: sha512-5/nFEvX/QizdRCMXjo/VfW4qgBw2pX2+Sz5+aJ907d7NqXVXxEu1Hwu6k35A5INI2NtIOvplQnkm7uFqPGiL0w==}
 
   '@manypkg/find-root@3.1.0':
     resolution: {integrity: sha512-BcSqCyKhBVZ5YkSzOiheMCV41kqAFptW6xGqYSTjkVTl9XQpr+pqHhwgGCOHQtjDCv7Is6EFyA14Sm5GVbVABA==}
@@ -2361,9 +2361,6 @@ packages:
     resolution: {integrity: sha512-BQqXRr4UoWI3UPFrtznCLykYHxwxWh53iCB57x092jPMjIlW1wnm3N895g5irpiXmnxUhREBB0n6+y8BHhs4nw==}
     hasBin: true
 
-  type-plus@5.6.0:
-    resolution: {integrity: sha512-LAIvZzs6mKXYHzwRfGeOuWKsE5jHndwWlLheulMl6eWDSGa1bfZCd0aLQSMgP3HZTbazx/P2UumCqtOz5AMctA==}
-
   type-plus@7.6.2:
     resolution: {integrity: sha512-qUlXv9Y0/W56pg38m275IMD3WA03QbVoqNY16S3kmwtuA4gOT2iheyUdOp8NWrmXWpf7om98hzr7AZD/eW2jLA==}
 
@@ -3096,9 +3093,11 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@just-func/types@0.5.1':
+  '@just-func/types@0.6.0(typescript@7.0.2)':
     dependencies:
-      type-plus: 5.6.0
+      type-plus: 8.0.0-beta.10(typescript@7.0.2)
+    transitivePeerDependencies:
+      - typescript
 
   '@manypkg/find-root@3.1.0':
     dependencies:
@@ -4489,11 +4488,6 @@ snapshots:
       '@turbo/linux-arm64': 2.9.14
       '@turbo/windows-64': 2.9.14
       '@turbo/windows-arm64': 2.9.14
-
-  type-plus@5.6.0:
-    dependencies:
-      tersify: 3.12.1
-      unpartial: 1.0.5
 
   type-plus@7.6.2:
     dependencies:
